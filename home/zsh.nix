@@ -17,5 +17,5 @@ programs.zsh = {
 		  "dirhistory"
 		  ];
         };
-}
+};
 
