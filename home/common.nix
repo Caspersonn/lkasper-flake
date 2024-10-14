@@ -16,7 +16,7 @@ programs.firefox = {
  programs.home-manager.enable = true;
  #home.stateVersion = "23.11";
  home.stateVersion = "24.05";
- home.username = "wtoorren";
+ home.username = "casper";
  home.packages = with pkgs; [
   ];
 
