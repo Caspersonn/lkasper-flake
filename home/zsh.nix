@@ -3,7 +3,6 @@
 programs.zsh = {
 	enable = true;
     enableAutosuggestions = true;
-	zsh-autoenv.enable = true;
     syntaxHighlighting.enable = true;
 	 
 	oh-my-zsh = {
