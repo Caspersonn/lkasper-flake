@@ -74,7 +74,7 @@
 
       linux-defaults = {pkgs,config,homeage,...}: {
         home = { ##MAC
-        homeDirectory = "/home/casper";
+        homeDirectory = "/home/lucak";
       };
     };
 
