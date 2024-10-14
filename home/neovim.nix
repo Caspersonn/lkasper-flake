@@ -8,7 +8,7 @@
 		plugins = with pkgs.vimPlugins; [
 		     neo-tree-nvim
 			 tmux-nvim
-		     (pkgs.vimPlugins.buildVimPlugin {
+		     (pkgs.vimUtils.buildVimPlugin {
                pname = "neovim-like-vscode";
                 version = "1.0.0";  # You can update this with the actual version or commit hash you want
                 src = pkgs.fetchFromGitHub {
