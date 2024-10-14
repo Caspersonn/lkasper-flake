@@ -35,5 +35,6 @@
 	spotify	
 	onlyoffice-bin
 	obsidian
+	firefox
   ];
 }
