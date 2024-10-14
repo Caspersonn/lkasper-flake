@@ -38,7 +38,7 @@
   {
   
  # Casper config START
-  nixosConfigurations.casper = nixpkgs.lib.nixosSystem {
+  nixosConfigurations.lucak = nixpkgs.lib.nixosSystem {
     modules =
       let
         system = "x86_64-linux";
@@ -67,7 +67,7 @@
 
  # LINUX HOMEMANAGER START LKASPER
   # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
-  homeConfigurations.casper = home-manager.lib.homeManagerConfiguration(
+  homeConfigurations.lucak = home-manager.lib.homeManagerConfiguration(
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
