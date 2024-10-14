@@ -1,4 +1,4 @@
-{config, pkgs, ...}
+{config, pkgs, ...}: {
 
 tmux = {
 	enable = true;
@@ -17,4 +17,4 @@ run '~/.config/tmux/plugins/tpm/tpm' #keep this line at the bottom!
 	''
 	;
 };
-
+}

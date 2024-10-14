@@ -1,12 +1,12 @@
-{config, pkgs, ...}: {
+{config,pkgs,...}: {
 
 programs.zsh = {
 	enable = true;
     autosuggestions.enable = true;
-	  zsh-autoenv.enable = true;
-      syntaxHighlighting.enable = true;
+	zsh-autoenv.enable = true;
+    syntaxHighlighting.enable = true;
 	 
-	  ohMyZsh = {
+	ohMyZsh = {
         enable = true;
 		theme = "robbyrussell";
 		plugins = [
@@ -16,8 +16,8 @@ programs.zsh = {
 		  "node"
 		  "autojump"
 		  "dirhistory"
-		  ];
-        };
+	    ];
 	};
+};
 }
 
