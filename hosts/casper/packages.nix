@@ -36,5 +36,6 @@
 	onlyoffice-bin
 	obsidian
 	firefox
+	zsh
   ];
 }
