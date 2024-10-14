@@ -87,7 +87,7 @@
         modules = [
          #./home/default.nix
          ./home/linux-desktop.nix
-         #./home/firefox.nix
+         ./home/neovim.nix
          #./home/dotfiles/toggl-secret-wtoorren.nix
          linux-defaults
        ];
