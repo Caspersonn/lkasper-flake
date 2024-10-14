@@ -1,4 +1,4 @@
-{config, lib, pkgs,  agenix, toggl-cli, ... }:
+{config, lib, pkgs, agenix, toggl-cli, ... }:
 
 {
   environment.systemPackages = with pkgs; [
