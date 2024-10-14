@@ -36,7 +36,7 @@
 	onlyoffice-bin
 	obsidian
 	firefox
-	nvim
+    neovim
 	zsh
   ];
 }
