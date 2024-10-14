@@ -1,6 +1,6 @@
 {config, pkgs, ...}: {
 
-tmux = {
+programs.tmux = {
 	enable = true;
 	clock24 = true;
 	extraConfig = ''
