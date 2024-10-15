@@ -24,7 +24,6 @@
 	spotify	
 	ssm-session-manager-plugin
 	steam
-	stremio
 	tmux
 	unzip
 	vscode
