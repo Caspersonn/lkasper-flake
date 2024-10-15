@@ -43,7 +43,7 @@
       let
         system = "x86_64-linux";
         defaults = { pkgs, ... }: {
-        # nixpkgs.overlays = [(import ./overlays)];
+          nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
           _module.args.pkgs-2305 = import nixpkgs-2305 { inherit system; config = {allowUnfree = true; }; };
           _module.args.pkgs-2311 = import nixpkgs-2311 { inherit system; config = {allowUnfree = true; }; };

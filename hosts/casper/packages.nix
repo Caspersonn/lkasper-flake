@@ -26,9 +26,8 @@
 	pre-commit
 	terraform
 	pre-commit
-	python312Packages.toggl-cli
-	lua
-	z-lua
+    python311Packages.pytz
+	python311Packages.toggl-cli
 	ssm-session-manager-plugin
 	nodejs
 	tmux
@@ -38,5 +37,6 @@
 	firefox
     neovim
 	zsh
+	unzip
   ];
 }
