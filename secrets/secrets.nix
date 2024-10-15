@@ -3,7 +3,8 @@ let
   users = [ user1 ];
 
   system1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGsk6h6kDNUaLyDbImcxou/ZnIv65zSaaBqUXtP++poQ"; 
-  systems = [ system1 ];
+  system2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJW8Y4D8Q6pgoZxZ2CKGcz9K7+JWUxojouVWYKObzzHt";
+  systems = [ system1 system2 ];
 in
 {
   "secret1.age".publicKeys = [ user1 system1 ];

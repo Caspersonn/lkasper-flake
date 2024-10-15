@@ -5,38 +5,40 @@
 	agenix
 	autojump
 	awscli
+	filezilla
 	firefox
+	flatpak
 	fzf
+	gamescope
 	gh
 	git
+	home-manager
 	kdePackages.kate
 	keepass
+	lutris
 	nodejs
-	obsidian
 	onlyoffice-bin
 	pre-commit
 	pre-commit
 	python3
-	python311Packages.toggl-cli
-	slack
 	spotify	
 	ssm-session-manager-plugin
-	terraform
-	tfswitch
+	steam
+	stremio
 	tmux
 	unzip
 	vscode
+	wine
 	wl-clipboard
 	zoom-us
 	zsh
-    aws-mfa
-    gnumake42
-    go
-    granted
-    gum
-    jq
-    neovim
-    python311Packages.pytz
-    python311Packages.toggl-cli
-  ];
+   	discord
+   	gnumake42
+   	go
+   	granted
+   	gum
+   	jq
+   	neovim
+   	python311Packages.pytz
+    ];
 }

@@ -9,6 +9,7 @@
 	fzf
 	gh
 	git
+	home-manager
 	kdePackages.kate
 	keepass
 	nodejs
