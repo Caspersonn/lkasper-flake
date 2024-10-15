@@ -67,7 +67,7 @@
 
  # LINUX HOMEMANAGER START LKASPER
   # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
-  homeConfigurations.lucak = home-manager.lib.homeManagerConfiguration(
+  homeConfigurations."lucak@linuxdesktop" = home-manager.lib.homeManagerConfiguration(
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
