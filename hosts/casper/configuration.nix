@@ -87,6 +87,7 @@
     isNormalUser = true;
     description = "Luca Kasper";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
   # packages = with pkgs; [
   # ];
 };
