@@ -85,10 +85,10 @@
         # the path to your home.nix.
 
         modules = [
-         #./home/default.nix
          ./home/linux-desktop.nix
          ./home/neovim.nix
          #./home/dotfiles/toggl-secret-wtoorren.nix
+         #./home/default.nix
          linux-defaults
        ];
 

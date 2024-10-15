@@ -9,7 +9,8 @@ in
   "secret1.age".publicKeys = [ user1 system1 ];
   "secret2.age".publicKeys = users ++ systems;
   "toggl-lkasper.age".publicKeys = users ++ systems;
-#  "loboskey.age".publicKeys = users ;
   "spotify-lkasper.age".publicKeys = users ++ systems;
 #  "atticwto.age".publicKeys = users ++ systems;
+#  "loboskey.age".publicKeys = users ;
+
 }
