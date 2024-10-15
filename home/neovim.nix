@@ -1,6 +1,6 @@
 {config, pkgs, ...}: 
 let 
-   neovim-like-vscode = ./dotfiles/.nvim
+   neovim-like-vscode = ./dotfiles/.nvim;
 in
 {
    programs.neovim = {
@@ -13,5 +13,5 @@ in
 		neo-tree-nvim
 	  	tmux-nvim
 	    	];
-  }; 
+  };
 }
