@@ -84,9 +84,6 @@
   # packages = with pkgs; [
   # ];
 };
-  # Default shell to zsh
-  users.defaultUserShell = pkgs.zsh;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
