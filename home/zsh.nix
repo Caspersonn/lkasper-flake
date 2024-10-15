@@ -4,7 +4,7 @@ programs.zsh = {
 	enable = true;
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
-	interactiveShellInit = ''
+	shellInit = ''
     export SHELL=${pkgs.zsh}/bin/zsh
     ''; 
 	oh-my-zsh = {
