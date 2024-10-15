@@ -2,41 +2,42 @@
 
 {
   environment.systemPackages = with pkgs; [
-    aws-mfa
-    python311Packages.toggl-cli
-    jq
-    teams-for-linux
-    gum
-    granted
-    go
-    gnumake42
-	kdePackages.kate
-	slack
-	keepass
-	awscli
-	tfswitch
-	git
-	gh
-	zoom-us
-	wl-clipboard
-	vscode
+	agenix
 	autojump
-	fzf
-	python3
-	pre-commit
-	terraform
-	pre-commit
-    python311Packages.pytz
-	python311Packages.toggl-cli
-	ssm-session-manager-plugin
-	nodejs
-	tmux
-	spotify	
-	onlyoffice-bin
-	obsidian
+	awscli
 	firefox
-    neovim
-	zsh
+	fzf
+	gh
+	git
+	kdePackages.kate
+	keepass
+	nodejs
+	obsidian
+	onlyoffice-bin
+	pre-commit
+	pre-commit
+	python3
+	python311Packages.toggl-cli
+	slack
+	spotify	
+	ssm-session-manager-plugin
+	terraform
+	tfswitch
+	tmux
 	unzip
+	vscode
+	wl-clipboard
+	zoom-us
+	zsh
+    aws-mfa
+    gnumake42
+    go
+    granted
+    gum
+    jq
+    neovim
+    python311Packages.pytz
+    python311Packages.toggl-cli
+    teams-for-linux
   ];
 }
