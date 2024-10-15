@@ -4,5 +4,6 @@
  # programs.home-manager.enable = true;
  #};
 
+  home.shell = pkgs.zsh;
   programs.ssh.startAgent = true;
 }
