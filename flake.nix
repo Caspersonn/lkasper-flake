@@ -38,7 +38,7 @@
   {
   
  # Casper config START
-  nixosConfigurations.lucak = nixpkgs.lib.nixosSystem {
+  nixosConfigurations.casper = nixpkgs.lib.nixosSystem {
     modules =
       let
         system = "x86_64-linux";
@@ -58,14 +58,67 @@
         extraPkgs
         agenix.nixosModules.default
         ./hosts/casper/configuration.nix
-        #./modules/tnaws.nix
-        ./modules/casper-desktop.nix
+        ./modules/desktop.nix
       ];
     };
 # casper config END
 
+# lucak config START
+  nixosConfigurations.lucak = nixpkgs.lib.nixosSystem {
+    modules =
+      let
+        system = "x86_64-linux";
+        defaults = { pkgs, ... }: {
+          nixpkgs.overlays = [(import ./overlays)];
+          _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
+          _module.args.pkgs-2305 = import nixpkgs-2305 { inherit system; config = {allowUnfree = true; }; };
+          _module.args.pkgs-2311 = import nixpkgs-2311 { inherit system; config = {allowUnfree = true; }; };
+          _module.args.agenix = inputs.agenix.packages."${system}".default;
 
- # LINUX HOMEMANAGER START LKASPER
+        };
+
+        
+
+      in [
+        defaults
+        extraPkgs
+        agenix.nixosModules.default
+        ./hosts/lucak/configuration.nix
+        ./modules/desktop.nix
+      ];
+    };
+# lucak config END
+
+
+
+# casper home-manager START
+  # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
+  homeConfigurations."casper@linuxdesktop" = home-manager.lib.homeManagerConfiguration(
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+
+      linux-defaults = {pkgs,config,homeage,...}: {
+        home = { ##MAC
+        homeDirectory = "/home/casper";
+      };
+    };
+
+    in {
+      inherit pkgs;
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+
+        modules = [
+         ./home/casper-desktop.nix
+         #./home/dotfiles/conf-default.nix
+         linux-defaults
+       ];
+     });
+# casper home-manager END
+
+# lucak home-manager START
   # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
   homeConfigurations."lucak@linuxdesktop" = home-manager.lib.homeManagerConfiguration(
     let
@@ -85,16 +138,11 @@
         # the path to your home.nix.
 
         modules = [
-         ./home/linux-desktop.nix
-         ./home/neovim.nix
-         #./home/dotfiles/toggl-secret-wtoorren.nix
-         #./home/default.nix
+         ./home/lucak-desktop.nix
+         #./home/dotfiles/conf-default.nix
          linux-defaults
        ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-      });
-  ### LINUX HOMEMANAGER END LKASPER
+     });
+# lucak home-manager END
 };
 }

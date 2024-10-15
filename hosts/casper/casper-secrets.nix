@@ -3,19 +3,11 @@
 
  age = {
     identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    secrets = {
-      togglrc = {
-        file = ../../secrets/toggl-lkasper.age;
-        path = "/home/lucak/.togglrc";
-        owner = "root";
-        group = "users";
-        mode = "0760";
-      };
-         
+    secrets = {         
       spotify-test = {
         file = ../../secrets/spotify-lkasper.age;
-        path = "/home/lucak/.config/spotify/prefs";
-        owner = "lucak";
+        path = "/home/casper/.config/spotify/prefs";
+        owner = "casper";
         group = "users";
         mode = "600";
       };

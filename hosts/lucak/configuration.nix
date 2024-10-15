@@ -5,7 +5,7 @@
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./packages.nix
-    ./casper-secrets.nix.nix
+    ./lucak-secrets.nix
     ];
 
   # Bootloader.
@@ -15,7 +15,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
-  networking.hostName = "gaming-casper"; # Define your hostname.
+  networking.hostName = "technative-lucak"; # Define your hostname.
 
 
   # Enable networking
@@ -79,7 +79,7 @@
 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.casper = {
+  users.users.lucak = {
     isNormalUser = true;
     description = "Luca Kasper";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -88,7 +88,7 @@
   };
   
   users.defaultUserShell = pkgs.zsh;
-  users.users.casper = {
+  users.users.lucak = {
     shell = pkgs.zsh;
   };
 

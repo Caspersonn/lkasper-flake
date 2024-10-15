@@ -15,7 +15,7 @@ programs.firefox = {
  
  programs.home-manager.enable = true;
  home.stateVersion = "24.05";
- home.username = "lucak";
+ home.username = "casper";
  home.packages = with pkgs; [
   ];
 
@@ -34,3 +34,4 @@ home.sessionVariables = {
     };
   };
 }
+

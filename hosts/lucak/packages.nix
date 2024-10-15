@@ -38,5 +38,6 @@
     neovim
     python311Packages.pytz
     python311Packages.toggl-cli
+    teams-for-linux
   ];
 }
