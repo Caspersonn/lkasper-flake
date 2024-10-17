@@ -38,11 +38,11 @@
     gum
     jq
     neovim
+	python311Packages.toggl-cli
 	(python311.withPackages(ps: with ps; [ 
     requests
     lxml
 	pytz
-	toggl-cli
     ]))
   ];
 }
