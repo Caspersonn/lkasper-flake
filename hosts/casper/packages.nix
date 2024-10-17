@@ -39,5 +39,6 @@
    	jq
    	neovim
    	python311Packages.pytz
+	python311Packages.pip
     ];
 }

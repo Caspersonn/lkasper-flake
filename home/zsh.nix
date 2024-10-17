@@ -2,8 +2,15 @@
 
 programs.zsh = {
 	enable = true;
-    enableAutosuggestions = true;
-    syntaxHighlighting.enable = true;
+    autosuggestion.enable = true;
+	syntaxHighlighting.enable = true;
+	shellAliases = {
+    tfplan = "$HOME/bin/terraform plan";
+	tfswitch = "tfswitch -b $HOME/bin/terraform";
+	tfapply = "$HOME/git/wearetechnative/race/tfapply.sh";
+	tfinit = "$HOME/git/wearetechnative/race/tfinit";
+	tfdestroy = "$HOME/git/wearetechnative/race/tfdestroy.sh";
+	};
 	oh-my-zsh = {
         enable = true;
 		theme = "robbyrussell";

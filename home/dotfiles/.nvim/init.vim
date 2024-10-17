@@ -1,4 +1,5 @@
 " Specify a directory for plugins
+set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'dense-analysis/ale'
@@ -21,7 +22,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/indentLine' 
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'tomasiser/vim-code-dark'
-
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'ANGkeith/telescope-terraform-doc.nvim'
 " Initialize plugin system
 call plug#end()
 
@@ -82,20 +85,6 @@ noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <C-s> :w<CR>
 nnoremap <C-Q> :wq<CR>
-
-" shift+arrow selection
-nmap <S-Up> v<Up>
-nmap <S-Down> v<Down>
-nmap <S-Left> v<Left>
-nmap <S-Right> v<Right>
-vmap <S-Up> <Up>
-vmap <S-Down> <Down>
-vmap <S-Left> <Left>
-vmap <S-Right> <Right>
-imap <S-Up> <Esc>v<Up>
-imap <S-Down> <Esc>v<Down>
-imap <S-Left> <Esc>v<Left>
-imap <S-Right> <Esc>v<Right>
 
 vmap <C-c> y<Esc>i
 vmap <C-x> d<Esc>i

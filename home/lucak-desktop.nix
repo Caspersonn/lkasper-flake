@@ -1,7 +1,7 @@
 {config,pkgs,...}: {
  imports = [
   ./zsh.nix
-  ./common.nix
+  ./lucak-common.nix
   ./neovim.nix
   ./tmux.nix
   ./dotfiles/conf-default.nix

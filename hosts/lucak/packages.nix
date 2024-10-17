@@ -17,11 +17,18 @@
 	onlyoffice-bin
 	pre-commit
 	pre-commit
-	python3
-	python311Packages.toggl-cli
+	(python311.withPackages(ps: with ps; [ 
+    requests
+    buienradar
+    lxml
+    python-telegram-bot
+    pytz
+    ]))
+    python311Packages.toggl-cli
 	slack
 	spotify	
 	ssm-session-manager-plugin
+	teams-for-linux
 	terraform
 	tfswitch
 	tmux
@@ -36,9 +43,7 @@
     granted
     gum
     jq
+	terraform-docs
     neovim
-    python311Packages.pytz
-    python311Packages.toggl-cli
-    teams-for-linux
   ];
 }

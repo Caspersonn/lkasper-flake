@@ -16,8 +16,7 @@ programs.firefox = {
  programs.home-manager.enable = true;
  home.stateVersion = "24.05";
  home.username = "lucak";
- home.packages = with pkgs; [
-  ];
+ home.packages = with pkgs; [];
 
 home.sessionVariables = {
     LANG= "en_US.UTF-8";
@@ -26,6 +25,9 @@ home.sessionVariables = {
 
 #  home.file.".togglrcnew".source = "/tmp/toggl.txt";
 
+home.shellAliases = {
+  tfplan = "$HOME/git/wearetechnative/race/tfplan.sh";
+};
 
   nixpkgs = {
     config = {
