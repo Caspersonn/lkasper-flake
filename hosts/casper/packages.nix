@@ -19,7 +19,6 @@
 	nodejs
 	onlyoffice-bin
 	pre-commit
-	pre-commit
 	python3
 	spotify	
 	ssm-session-manager-plugin
@@ -38,7 +37,5 @@
    	gum
    	jq
    	neovim
-   	python311Packages.pytz
-	python311Packages.pip
     ];
 }

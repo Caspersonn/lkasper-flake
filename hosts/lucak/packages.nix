@@ -17,25 +17,19 @@
 	onlyoffice-bin
 	pre-commit
 	pre-commit
-	(python311.withPackages(ps: with ps; [ 
-    requests
-    buienradar
-    lxml
-    python-telegram-bot
-    pytz
-    ]))
-    python311Packages.toggl-cli
 	slack
 	spotify	
 	ssm-session-manager-plugin
 	teams-for-linux
 	terraform
+	terraform-docs
 	tfswitch
 	tmux
 	unzip
 	vscode
 	wl-clipboard
 	zoom-us
+	zoxide
 	zsh
     aws-mfa
     gnumake42
@@ -43,7 +37,12 @@
     granted
     gum
     jq
-	terraform-docs
     neovim
+	(python311.withPackages(ps: with ps; [ 
+    requests
+    lxml
+	pytz
+	toggl-cli
+    ]))
   ];
 }
