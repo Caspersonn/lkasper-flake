@@ -11,7 +11,6 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices."luks-9e8b0750-0a82-4fbf-b32b-1b78e8c312cc".device = "/dev/disk/by-uuid/9e8b0750-0a82-4fbf-b32b-1b78e8c312cc";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
