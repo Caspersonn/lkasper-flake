@@ -5,7 +5,7 @@
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./packages.nix
-    ./casper-secrets.nix
+#    ./casper-secrets.nix
     ];
 
   # Bootloader.
@@ -44,6 +44,14 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  hardware.opengl = {
+  enable = true;
+  driSupport = true;
+  driSupport32Bit = true;
+  };
+  hardware.opengl.extraPackages = with pkgs; [
+  amdvlk
+  ];
 
   # Configure keymap in X11
   services.xserver.xkb = {

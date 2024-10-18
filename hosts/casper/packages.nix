@@ -20,6 +20,7 @@
 	onlyoffice-bin
 	pre-commit
 	python3
+	mesa
 	spotify	
 	ssm-session-manager-plugin
 	steam
