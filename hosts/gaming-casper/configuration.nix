@@ -5,13 +5,12 @@
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./packages.nix
-    ./casper-secrets.nix
+#    ./casper-secrets.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices."luks-9e8b0750-0a82-4fbf-b32b-1b78e8c312cc".device = "/dev/disk/by-uuid/9e8b0750-0a82-4fbf-b32b-1b78e8c312cc";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
@@ -45,6 +44,14 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  hardware.opengl = {
+  enable = true;
+  driSupport = true;
+  driSupport32Bit = true;
+  };
+  hardware.opengl.extraPackages = with pkgs; [
+  amdvlk
+  ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
