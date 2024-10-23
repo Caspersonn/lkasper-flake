@@ -1,10 +1,11 @@
-{config, lib, pkgs, agenix, toggl-cli, ... }:
-
+{config, lib, pkgs, agenix, toggl-cli, unstable, ... }:
+	
 {
   environment.systemPackages = with pkgs; [
 	agenix
 	autojump
 	awscli
+	dig
 	firefox
 	fzf
 	gh
@@ -25,6 +26,8 @@
 	terraform-docs
 	tfswitch
 	tmux
+	unstable.hugo
+	ruby
 	unzip
 	vscode
 	wl-clipboard
@@ -38,6 +41,7 @@
     gum
     jq
     neovim
+    terraform-ls
 	python311Packages.toggl-cli
 	(python311.withPackages(ps: with ps; [ 
     requests

@@ -1,4 +1,8 @@
-{config,pkgs,...}: {
+{config,pkgs,...}: 
+let
+	zoxide = ./dotfiles/.zsh;
+in
+{
 
 programs.zsh = {
 	enable = true;
@@ -8,9 +12,13 @@ programs.zsh = {
     tfplan = "$HOME/git/wearetechnative/race/tfplan.sh";
 	tfswitch = "tfswitch -b $HOME/bin/terraform";
 	tfapply = "$HOME/git/wearetechnative/race/tfapply.sh";
-	tfinit = "$HOME/git/wearetechnative/race/tfinit";
 	tfdestroy = "$HOME/git/wearetechnative/race/tfdestroy.sh";
 	};
+	initExtra = '' 
+eval "$(zoxide init zsh)"
+source ${zoxide}/zoxide
+PATH=$HOME/bin:$PATH 
+	'';
 	oh-my-zsh = {
         enable = true;
 		theme = "robbyrussell";

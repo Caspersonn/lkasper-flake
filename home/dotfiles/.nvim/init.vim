@@ -1,7 +1,6 @@
 " Specify a directory for plugins
 set nocompatible
-call plug#begin('~/.vim/plugged')
-
+call plug#begin()
 Plug 'dense-analysis/ale'
 Plug 'mattn/emmet-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -25,7 +24,6 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'ANGkeith/telescope-terraform-doc.nvim'
-" Initialize plugin system
 call plug#end()
 
 inoremap jk <ESC>
@@ -76,7 +74,6 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 "let g:prettier#autoformat = 0
 "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-
 " ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -104,9 +101,9 @@ endfunction
 " file, and we're not in vimdiff
 function! SyncTree()
   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
+   NERDTreeFind
     wincmd p
-  endif
+ endif
 endfunction
 
 " Highlight currently open buffer in NERDTree

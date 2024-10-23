@@ -37,8 +37,8 @@
   in 
   {
   
- # Casper config START
-  nixosConfigurations.casper = nixpkgs.lib.nixosSystem {
+# gaming-casper config START
+  nixosConfigurations.gaming-casper = nixpkgs.lib.nixosSystem {
     modules =
       let
         system = "x86_64-linux";
@@ -57,14 +57,14 @@
         defaults
         extraPkgs
         agenix.nixosModules.default
-        ./hosts/casper/configuration.nix
+        ./hosts/gaming-casper/configuration.nix
         ./modules/desktop.nix
       ];
     };
-# casper config END
+# gaming-casper config END
 
-# lucak config START
-  nixosConfigurations.lucak = nixpkgs.lib.nixosSystem {
+# home-casper config START
+  nixosConfigurations.home-casper = nixpkgs.lib.nixosSystem {
     modules =
       let
         system = "x86_64-linux";
@@ -83,17 +83,43 @@
         defaults
         extraPkgs
         agenix.nixosModules.default
-        ./hosts/lucak/configuration.nix
+        ./hosts/home-casper/configuration.nix
         ./modules/desktop.nix
       ];
     };
-# lucak config END
+# home-casper config END
+
+# technative-lucak config START
+  nixosConfigurations.technative-lucak = nixpkgs.lib.nixosSystem {
+    modules =
+      let
+        system = "x86_64-linux";
+        defaults = { pkgs, ... }: {
+          nixpkgs.overlays = [(import ./overlays)];
+          _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
+          _module.args.pkgs-2305 = import nixpkgs-2305 { inherit system; config = {allowUnfree = true; }; };
+          _module.args.pkgs-2311 = import nixpkgs-2311 { inherit system; config = {allowUnfree = true; }; };
+          _module.args.agenix = inputs.agenix.packages."${system}".default;
+
+        };
+
+        
+
+      in [
+        defaults
+        extraPkgs
+        agenix.nixosModules.default
+        ./hosts/technative-lucak/configuration.nix
+        ./modules/desktop.nix
+      ];
+    };
+# technative-casper config END
 
 
 
-# casper home-manager START
+# gaming-casper home-manager START
   # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
-  homeConfigurations."casper@linuxdesktop" = home-manager.lib.homeManagerConfiguration(
+  homeConfigurations."gaming-casper@linuxdesktop" = home-manager.lib.homeManagerConfiguration(
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -116,11 +142,38 @@
          linux-defaults
        ];
      });
-# casper home-manager END
+# gaming-casper home-manager END
 
-# lucak home-manager START
+# home-casper home-manager START
   # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
-  homeConfigurations."lucak@linuxdesktop" = home-manager.lib.homeManagerConfiguration(
+  homeConfigurations."home-casper@linuxdesktop" = home-manager.lib.homeManagerConfiguration(
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+
+      linux-defaults = {pkgs,config,homeage,...}: {
+        home = { ##MAC
+        homeDirectory = "/home/casper";
+      };
+    };
+
+    in {
+      inherit pkgs;
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+
+        modules = [
+         ./home/casper-desktop.nix
+         #./home/dotfiles/conf-default.nix
+         linux-defaults
+       ];
+     });
+# home-casper home-manager END
+
+# technative-lucak home-manager START
+  # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
+  homeConfigurations."technative-lucak@linuxdesktop" = home-manager.lib.homeManagerConfiguration(
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -143,6 +196,6 @@
          linux-defaults
        ];
      });
-# lucak home-manager END
+# technative-lucak home-manager END
 };
 }
