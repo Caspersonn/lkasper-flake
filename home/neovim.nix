@@ -14,9 +14,7 @@ nnoremap <space>a :qa!<cr>
 nnoremap <space>t :NERDTree<cr>
         '';
             plugins = with pkgs.vimPlugins; [
-		neo-tree-nvim
-        tmux-nvim
-        vim-terraform
+        vimplug
 	    	];
   };
 }
