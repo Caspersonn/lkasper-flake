@@ -37,5 +37,6 @@
    	gum
    	jq
    	neovim
+	zoxide
     ];
 }
