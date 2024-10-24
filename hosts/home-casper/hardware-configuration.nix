@@ -14,18 +14,18 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/uuid-of-the-home-casper-device";
+    { device = "/dev/disk/by-uuid/9981e6ad-0240-4aab-badf-af02d7a18bed";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/uuid-of-the-home-casper-device";
+    { device = "/dev/disk/by-uuid/62A7-D73E";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
   
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/uuid-of-the-home-casper-device"; }
+    [ { device = "/dev/disk/by-uuid/b5215dc3-085e-4fd1-ae11-d1025e69a6a1"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
