@@ -9,12 +9,12 @@ in
 	    viAlias = true;
 	    vimAlias = true;
         extraConfig = ''
+source ${nvim}/plug.vim
 source ${nvim}/init.vim
 nnoremap <space>a :qa!<cr>
 nnoremap <space>t :NERDTree<cr>
         '';
             plugins = with pkgs.vimPlugins; [
-        vimplug
 	    	];
   };
 }
