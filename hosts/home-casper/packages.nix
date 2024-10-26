@@ -15,7 +15,7 @@
 	home-manager
 	kdePackages.kate
 	keepass
-	lutris
+	# lutris # Use flatpak version of Lutris
 	nodejs
 	onlyoffice-bin
 	pre-commit

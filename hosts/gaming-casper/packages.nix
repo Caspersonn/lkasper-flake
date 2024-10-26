@@ -15,7 +15,7 @@
 	home-manager
 	kdePackages.kate
 	keepass
-	lutris
+#	lutris # Use flatpak version of lutris
 	nodejs
 	onlyoffice-bin
 	pre-commit
@@ -23,6 +23,7 @@
 	spotify	
 	ssm-session-manager-plugin
 	steam
+	protontricks
 	tmux
 	unzip
 	vscode
