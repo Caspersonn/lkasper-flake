@@ -10,7 +10,7 @@ in
 	    vimAlias = true;
         extraConfig = ''
 source ${nvim}/plug.vim
-source ${nvim}/init.vim
+source ${nvim}/neovim.vim
 nnoremap <space>a :qa!<cr>
 nnoremap <space>t :NERDTree<cr>
         '';

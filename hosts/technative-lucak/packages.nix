@@ -26,6 +26,7 @@
 	terraform-docs
 	tfswitch
 	tmux
+  libreoffice
 	unstable.hugo
 	ruby
 	unzip
@@ -47,6 +48,7 @@
     requests
     lxml
 	pytz
+	pip
     ]))
   ];
 }
