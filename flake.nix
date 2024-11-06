@@ -11,6 +11,10 @@
     bmc.url = "github:wearetechnative/bmc";
     race.url = "github:wearetechnative/race";
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +28,7 @@
 
 
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-2305,  nixpkgs-2311, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixpkgs-2405}: 
+  outputs = inputs@{ self, nixpkgs, nixpkgs-2305,  nixpkgs-2311, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixpkgs-2405, nixos-cosmic}: 
   let 
     system = "x86_64-linux";
     extraPkgs= {
@@ -89,8 +93,8 @@
     };
 # home-casper config END
 
-# technative-lucak config START
-  nixosConfigurations.technative-lucak = nixpkgs.lib.nixosSystem {
+# server-casper config START
+  nixosConfigurations.server-casper = nixpkgs.lib.nixosSystem {
     modules =
       let
         system = "x86_64-linux";
@@ -109,13 +113,41 @@
         defaults
         extraPkgs
         agenix.nixosModules.default
+        ./hosts/server-casper/configuration.nix
+        ./modules/desktop.nix
+      ];
+    };
+# server-casper config END
+
+# technative-lucak config START
+  nixosConfigurations.technative-lucak = nixpkgs.lib.nixosSystem {
+    modules =
+      let
+        system = "x86_64-linux";
+        defaults = { pkgs, ... }: {
+          nixpkgs.overlays = [(import ./overlays)];
+          #_module.args.nixos-cosmic = import nixos-cosmic { inherit system; config = { substituters = ["https://cosmic.cachix.org/"]; trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ]; }; };
+          _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
+          _module.args.pkgs-2305 = import nixpkgs-2305 { inherit system; config = {allowUnfree = true; }; };
+          _module.args.pkgs-2311 = import nixpkgs-2311 { inherit system; config = {allowUnfree = true; }; };
+          _module.args.agenix = inputs.agenix.packages."${system}".default;
+
+        };
+
+        
+
+      in [
+        #nixos-cosmic.nixosModules.default
+        defaults
+        extraPkgs
+        agenix.nixosModules.default
         ./hosts/technative-lucak/configuration.nix
         ./modules/desktop.nix
       ];
     };
 # technative-casper config END
 
-
+## home-manager config
 
 # gaming-casper home-manager START
   # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
@@ -170,6 +202,32 @@
        ];
      });
 # home-casper home-manager END
+
+# server-casper home-manager START
+  # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
+  homeConfigurations."server-casper@linuxdesktop" = home-manager.lib.homeManagerConfiguration(
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+
+      linux-defaults = {pkgs,config,homeage,...}: {
+        home = { ##MAC
+        homeDirectory = "/home/casper";
+      };
+    };
+
+    in {
+      inherit pkgs;
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+
+        modules = [
+         ./home/casper-desktop.nix
+         linux-defaults
+       ];
+     });
+# server-casper home-manager END
 
 # technative-lucak home-manager START
   # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;

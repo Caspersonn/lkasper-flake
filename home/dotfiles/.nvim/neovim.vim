@@ -7,18 +7,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'hashivim/vim-terraform'
   Plug 'LnL7/vim-nix'
   Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
- "Plug 'ayu-theme/ayu-vim' 
   Plug 'ajmwagar/vim-deus'
- "Plug 'linden-project/linny.vim' 
   Plug 'airblade/vim-gitgutter'
+
 
 call plug#end()
 
 nmap ,, :NERDTreeFind <CR>
-nmap ,/ :Ag 
-nmap ,\ :Rg 
 nmap ,b :Buffers
-nmap ,f :Files
 nmap ,n :NERDTree <CR>
 set number
 set hlsearch    " highlight matches
@@ -89,3 +85,5 @@ let g:NERDTreeGitStatusWithFlags = 1
 "let g:linny_open_notebook_path       = $HOME . '/git/personal/LinnyNotes'
 "let g:linnycfg_path_wiki_content     = $HOME . '/git/personal/LinnyNotes/content'
 "call linny#Init()
+"nmap lo :LinnyMenuOpen <CR>
+"nmap lc :LinnyMenuClose <CR>

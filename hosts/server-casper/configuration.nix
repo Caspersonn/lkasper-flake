@@ -5,17 +5,15 @@
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./packages.nix
-    ./lucak-secrets.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices."luks-9e8b0750-0a82-4fbf-b32b-1b78e8c312cc".device = "/dev/disk/by-uuid/9e8b0750-0a82-4fbf-b32b-1b78e8c312cc";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
-  networking.hostName = "technative-lucak"; # Define your hostname.
+  networking.hostName = "server-casper"; # Define your hostname.
 
 
   # Enable networking
@@ -38,19 +36,6 @@
     LC_TELEPHONE = "nl_NL.UTF-8";
     LC_TIME = "nl_NL.UTF-8";
   };
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  # Enable the Cosmic Desktop environment.
-  #services.displayManager.cosmic-greeter.enable = true;
-  #services.desktopManager.cosmic.enable = true;
-  #environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
-
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -77,24 +62,24 @@
     #media-session.enable = true;
   };
 
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth.enable = false; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = false; # powers up the default Bluetooth controller on boot
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.lucak = {
+  users.users.casper = {
     isNormalUser = true;
-    description = "Luca Kasper";
+    description = "Server Casper";
     extraGroups = [ "networkmanager" "wheel" ];
   # packages = with pkgs; [
   # ];
   };
   
   users.defaultUserShell = pkgs.zsh;
-  users.users.lucak = {
+  users.users.casper = {
     shell = pkgs.zsh;
   };
 
@@ -116,7 +101,7 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22, 8211 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

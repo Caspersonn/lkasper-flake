@@ -6,16 +6,14 @@ programs.fzf = {
     enable = true;
     enableZshIntegration = true;
   };
-programs.firefox = {
-    enable = true;
-  };
+
  programs.jq = {
     enable = true;
   };
  
  programs.home-manager.enable = true;
  home.stateVersion = "24.05";
- home.username = "lucak";
+ home.username = "casper";
  home.packages = with pkgs; [
   ];
 

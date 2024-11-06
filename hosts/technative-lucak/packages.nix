@@ -15,6 +15,7 @@
 	keepass
 	nodejs
 	obsidian
+  obs-studio
 	onlyoffice-bin
 	pre-commit
 	pre-commit
@@ -31,6 +32,7 @@
 	ruby
 	unzip
 	vscode
+  gcc
 	wl-clipboard
 	zoom-us
 	zoxide
@@ -42,6 +44,7 @@
     gum
     jq
     neovim
+    nerdfonts
     terraform-ls
 	python311Packages.toggl-cli
 	(python311.withPackages(ps: with ps; [ 
