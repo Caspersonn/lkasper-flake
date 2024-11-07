@@ -1,6 +1,6 @@
 {config, pkgs, ...}: 
 let 
-  nvim = ./dotfiles/.nvim;
+  nvim = ./.dotfiles/.nvim;
 in
   {
     programs.neovim = {
@@ -11,7 +11,6 @@ in
         extraConfig = ''
           source ${nvim}/plug.vim
           source ${nvim}/neovim.vim
-          source ${nvim}/init.lua
           nnoremap <space>a :qa!<cr>
           nnoremap <space>t :NERDTree<cr>
         '';

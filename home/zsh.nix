@@ -1,6 +1,6 @@
 {config,pkgs,...}: 
 let
-	zoxide = ./dotfiles/.zsh;
+	zoxide = ./.dotfiles/.zsh;
 in
 {
 

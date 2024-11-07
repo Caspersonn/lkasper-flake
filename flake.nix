@@ -31,6 +31,7 @@
   outputs = inputs@{ self, nixpkgs, nixpkgs-2305,  nixpkgs-2311, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixpkgs-2405, nixos-cosmic}: 
   let 
     system = "x86_64-linux";
+    hosts = builtins.fromJSON (builtins.readFile ./hosts.json);
     extraPkgs= {
       environment.systemPackages = [ 
         bmc.packages."${system}".bmc 
@@ -62,7 +63,6 @@
         extraPkgs
         agenix.nixosModules.default
         ./hosts/gaming-casper/configuration.nix
-        ./modules/desktop.nix
       ];
     };
 # gaming-casper config END
@@ -88,7 +88,6 @@
         extraPkgs
         agenix.nixosModules.default
         ./hosts/home-casper/configuration.nix
-        ./modules/desktop.nix
       ];
     };
 # home-casper config END
@@ -114,7 +113,6 @@
         extraPkgs
         agenix.nixosModules.default
         ./hosts/server-casper/configuration.nix
-        ./modules/desktop.nix
       ];
     };
 # server-casper config END
@@ -142,7 +140,6 @@
         extraPkgs
         agenix.nixosModules.default
         ./hosts/technative-lucak/configuration.nix
-        ./modules/desktop.nix
       ];
     };
 # technative-casper config END
@@ -169,7 +166,7 @@
         # the path to your home.nix.
 
         modules = [
-         ./home/casper-desktop.nix
+         ./home/casper/casper-desktop.nix
          #./home/dotfiles/conf-default.nix
          linux-defaults
        ];
@@ -196,7 +193,7 @@
         # the path to your home.nix.
 
         modules = [
-         ./home/casper-desktop.nix
+         ./home/casper/casper-desktop.nix
          #./home/dotfiles/conf-default.nix
          linux-defaults
        ];
@@ -223,7 +220,7 @@
         # the path to your home.nix.
 
         modules = [
-         ./home/casper-desktop.nix
+         ./home/casper/casper-desktop.nix
          linux-defaults
        ];
      });
@@ -249,7 +246,7 @@
         # the path to your home.nix.
 
         modules = [
-         ./home/lucak-desktop.nix
+         ./home/lucak/lucak-desktop.nix
          #./home/dotfiles/conf-default.nix
          linux-defaults
        ];

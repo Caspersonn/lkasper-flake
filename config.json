@@ -1,0 +1,11 @@
+{
+  "gaming-casper":{
+    "hostname": "test",
+    "ssh": "help"
+  },
+  "technative-lucak":{
+    "hostname": "technative-lucak",
+    "ssh": "true"
+  }
+
+}

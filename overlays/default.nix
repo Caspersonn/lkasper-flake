@@ -15,7 +15,7 @@ final: prev: {
       src = prev.fetchPypi {
         pname = "togglCli";
         inherit version;
-        hash = "sha256-IGbd7Zgx1ovhHVheHJ1GXEYlhKxgpVRVmVpN2Xjn6mU="; # Vervang met de juiste SHA256-hash
+        hash = "sha256-IGbd7Zgx1ovhHVheHJ1GXEYlhKxgpVRVmVpN2Xjn6mU="; 
       };
     });
   };
