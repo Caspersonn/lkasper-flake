@@ -15,21 +15,21 @@
 	home-manager
 	kdePackages.kate
 	keepass
-	# lutris # Use flatpak version of Lutris
+	mesa
 	nodejs
 	onlyoffice-bin
 	pre-commit
 	python3
-	mesa
 	spotify	
 	ssm-session-manager-plugin
-	steam
+  steam
 	tmux
 	unzip
 	vscode
 	wine
 	wl-clipboard
 	zoom-us
+	zoxide
 	zsh
    	discord
    	gnumake42
@@ -38,6 +38,5 @@
    	gum
    	jq
    	neovim
-	zoxide
     ];
 }
