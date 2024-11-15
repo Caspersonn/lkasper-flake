@@ -6,7 +6,7 @@
      clock-show-weekday = true;
     };
 
-    "org/gnome/desktop" = {
+    "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
     };
@@ -14,6 +14,7 @@
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
+        "discord.desktop"
         "slack.desktop"
         "spotify.desktop"
         "org.gnome.Nautilus.desktop"
@@ -32,6 +33,7 @@
         "arcmenu@arcmenu.com"
     ];
   };
+
     "org/gnome/shell/extensions/dash-to-dock" = {
       dock-fixed = true;
       custom-theme-shrink = true;
@@ -41,6 +43,17 @@
       show-mounts = false;
       show-icons-notifications-counter = false;
       mulit-monitor = true;
+      always-center-icons = true;
+      extend-height = true;
+    };
+
+    "org/gnome/shell/extensions/unite" = {
+      show-appmenu-button = false;
+      extend-left-box = false;
+    };
+
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "appmenu:minimize,maximize,close";
     };
   };
 }

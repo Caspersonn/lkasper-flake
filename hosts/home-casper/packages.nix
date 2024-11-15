@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
 	# lutris # Use flatpak version of Lutris
+  adw-gtk3
 	agenix
 	autojump
 	awscli
@@ -12,6 +13,8 @@
 	fx-cast-bridge
 	fzf
 	gamescope
+  gnome-extension-manager 
+  gnome.gnome-tweaks
 	gh
 	git
 	home-manager

@@ -46,10 +46,9 @@
   enable = true;
   driSupport = true;
   driSupport32Bit = true;
-};
+  };
 
   hardware.i2c.enable = true;
-  };
 
   # Configure keymap in X11
   services.xserver.xkb = {

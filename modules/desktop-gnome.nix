@@ -12,6 +12,7 @@
     gnomeExtensions.arcmenu
     gnome-extension-manager 
     gnome.gnome-tweaks
+    gnome.mutter
   ];
 
   environment.gnome.excludePackages = (with pkgs; [
@@ -33,7 +34,19 @@
     # gnome-contacts
     gnome-initial-setup
   ]);
-
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-} 
+  
+  services = {
+    xserver = {
+      enable = true;
+      desktopManager.gnome = {
+        enable = true;
+        extraGSettingsOverridePackages = [pkgs.gnome.mutter];
+        extraGSettingsOverrides = ''
+          [org.gnome.mutter]
+          experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
+        '';
+      };
+      displayManager.gdm.enable = true;
+    };
+  }; 
+}
