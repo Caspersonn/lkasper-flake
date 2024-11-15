@@ -2,6 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+  adw-gtk3
 	agenix
 	autojump
 	awscli
@@ -12,31 +13,51 @@
 	gamescope
 	gh
 	git
-	home-manager
+  goverlay
+  gnome-extension-manager 
+  gnome.gnome-tweaks
+  home-manager
 	kdePackages.kate
+  kdePackages.partitionmanager
 	keepass
 	nodejs
 	onlyoffice-bin
 	pre-commit
 	protontricks
+  protonplus
 	python3
 	spotify	
+  pciutils
+  spotify	
 	ssm-session-manager-plugin
 	steam
 	tmux
 	unzip
 	vscode
+  vulkan-tools
 	wine
 	wl-clipboard
 	zoom-us
 	zoxide
 	zsh
-   	discord
-   	gnumake42
-   	go
-   	granted
-   	gum
-   	jq
-   	neovim
-    ];
+	rpcs3
+  discord
+  gamemode
+  gnumake42
+  go
+  granted
+  gum
+  jq
+  neovim
+  mangohud
+  mesa
+	zoxide
+  (python312.withPackages(ps: with ps; [ 
+  requests
+  lxml
+	pytz
+  pip
+  tkinter
+  ]))
+  ];
 }
