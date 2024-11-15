@@ -25,7 +25,7 @@
     };
     
   swapDevices =
-    [# { device = "/dev/disk/by-uuid/uuid-of-the-gaming-casper-device"; }
+    [ { device = "/dev/disk/by-uuid/7d222987-c0ce-4caa-a8de-21a7447a0d85"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
