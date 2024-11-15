@@ -2,12 +2,14 @@
 
 {
   environment.systemPackages = with pkgs; [
+	# lutris # Use flatpak version of Lutris
 	agenix
 	autojump
 	awscli
 	filezilla
 	firefox
 	flatpak
+	fx-cast-bridge
 	fzf
 	gamescope
 	gh
@@ -25,11 +27,13 @@
   steam
 	tmux
 	unzip
+  i2c-tools
 	vscode
 	wine
 	wl-clipboard
 	zoom-us
 	zoxide
+  pulseaudio
 	zsh
    	discord
    	gnumake42
