@@ -1,6 +1,6 @@
 {config, pkgs, ...}: 
 let 
-  nvim = ./.dotfiles/.nvim;
+  nvim = ./../../conf-dotfiles/nvim;
 in
   {
     programs.neovim = {

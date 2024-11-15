@@ -1,9 +1,7 @@
 {config,pkgs,...}: {
  imports = [
-  ./../zsh.nix
+  ./../_hm-modules 
   ./../common.nix
-  ./../neovim.nix
-  ./../tmux.nix
 ];
 
 }

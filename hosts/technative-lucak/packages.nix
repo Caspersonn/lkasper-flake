@@ -18,7 +18,6 @@
   obs-studio
 	onlyoffice-bin
 	pre-commit
-	pre-commit
 	slack
 	spotify	
 	ssm-session-manager-plugin
@@ -37,21 +36,21 @@
 	zoom-us
 	zoxide
 	zsh
-    aws-mfa
-    gnumake42
-    go
-    granted
-    gum
-    jq
-    neovim
-    nerdfonts
-    terraform-ls
+  aws-mfa
+  gnumake42
+  go
+  granted
+  gum
+  jq
+  neovim
+  nerdfonts
+  terraform-ls
 	python311Packages.toggl-cli
 	(python311.withPackages(ps: with ps; [ 
-    requests
-    lxml
+  requests
+  lxml
 	pytz
 	pip
-    ]))
+  ]))
   ];
 }

@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./packages.nix
     ./lucak-secrets.nix
+    ./../../modules/desktop-gnome.nix
     ];
 
   # Bootloader.
@@ -41,16 +42,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  # Enable the Cosmic Desktop environment.
-  #services.displayManager.cosmic-greeter.enable = true;
-  #services.desktopManager.cosmic.enable = true;
-  #environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
-
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -92,7 +83,7 @@
   # packages = with pkgs; [
   # ];
   };
-  
+
   users.defaultUserShell = pkgs.zsh;
   users.users.lucak = {
     shell = pkgs.zsh;

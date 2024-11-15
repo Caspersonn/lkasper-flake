@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
     ./packages.nix
     ./casper-secrets.nix
-    ./gnome.nix
+    ./../../modules/desktop-gnome.nix
     ];
 
   # Bootloader.
@@ -41,13 +41,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
-
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.opengl = {
@@ -96,26 +89,6 @@
   # packages = with pkgs; [
   # ];
   };
-  
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-    ]) ++ (with pkgs.gnome; [
-    cheese # webcam tool
-    gnome-music
-    # gedit # text editor
-    epiphany # web browser
-    geary # email reader
-    # gnome-characters
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
-    yelp # Help view
-    seahorse
-    # gnome-contacts
-    gnome-initial-setup
-  ]);
 
   users.defaultUserShell = pkgs.zsh;
   users.users.casper = {

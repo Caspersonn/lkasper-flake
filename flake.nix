@@ -31,7 +31,6 @@
   outputs = inputs@{ self, nixpkgs, nixpkgs-2305,  nixpkgs-2311, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixpkgs-2405, nixos-cosmic}: 
   let 
     system = "x86_64-linux";
-    hosts = builtins.fromJSON (builtins.readFile ./hosts.json);
     extraPkgs= {
       environment.systemPackages = [ 
         bmc.packages."${system}".bmc 
@@ -124,7 +123,6 @@
         system = "x86_64-linux";
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
-          #_module.args.nixos-cosmic = import nixos-cosmic { inherit system; config = { substituters = ["https://cosmic.cachix.org/"]; trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ]; }; };
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
           _module.args.pkgs-2305 = import nixpkgs-2305 { inherit system; config = {allowUnfree = true; }; };
           _module.args.pkgs-2311 = import nixpkgs-2311 { inherit system; config = {allowUnfree = true; }; };
@@ -135,7 +133,6 @@
         
 
       in [
-        #nixos-cosmic.nixosModules.default
         defaults
         extraPkgs
         agenix.nixosModules.default
@@ -166,7 +163,7 @@
         # the path to your home.nix.
 
         modules = [
-         ./home/casper/casper-desktop.nix
+         ./home/home-casper/casper-desktop.nix
          #./home/dotfiles/conf-default.nix
          linux-defaults
        ];
@@ -193,7 +190,7 @@
         # the path to your home.nix.
 
         modules = [
-         ./home/casper/casper-desktop.nix
+         ./home/home-casper/casper-desktop.nix
          #./home/dotfiles/conf-default.nix
          linux-defaults
        ];
@@ -220,7 +217,7 @@
         # the path to your home.nix.
 
         modules = [
-         ./home/casper/casper-desktop.nix
+         ./home/home-casper/casper-desktop.nix
          linux-defaults
        ];
      });
@@ -246,7 +243,7 @@
         # the path to your home.nix.
 
         modules = [
-         ./home/lucak/lucak-desktop.nix
+         ./home/home-lucak/lucak-desktop.nix
          #./home/dotfiles/conf-default.nix
          linux-defaults
        ];

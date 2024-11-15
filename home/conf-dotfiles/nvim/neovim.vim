@@ -9,6 +9,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
   Plug 'ajmwagar/vim-deus'
   Plug 'airblade/vim-gitgutter'
+  Plug 'dhruvasagar/vim-table-mode'
 
 
 call plug#end()

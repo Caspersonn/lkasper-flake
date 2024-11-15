@@ -2,7 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-  adw-gtk3
 	agenix
 	autojump
 	awscli
@@ -14,11 +13,7 @@
 	gh
 	git
   goverlay
-  gnome-extension-manager 
-  gnome.gnome-tweaks
   home-manager
-	kdePackages.kate
-  kdePackages.partitionmanager
 	keepass
 	nodejs
 	onlyoffice-bin
