@@ -52,6 +52,7 @@
 };
 
   hardware.i2c.enable = true;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {

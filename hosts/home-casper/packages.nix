@@ -33,7 +33,6 @@
 	wl-clipboard
 	zoom-us
 	zoxide
-  pulseaudio
 	zsh
    	discord
    	gnumake42
