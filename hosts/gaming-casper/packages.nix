@@ -43,6 +43,7 @@
   granted
   gum
   jq
+  lutris
   neovim
   mangohud
   mesa

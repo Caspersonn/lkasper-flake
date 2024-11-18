@@ -35,7 +35,8 @@
   };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
-      dock-fixed = true;
+      dock-fixed = false;
+      intellihide-mode = "MAXIMIZED_WINDOWS";
       custom-theme-shrink = true;
       apply-custom-theme = true;
       show-show-apps-button = false;
@@ -55,5 +56,10 @@
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "appmenu:minimize,maximize,close";
     };
+
+    "org/gnome/shell/extensions/nightlightsliderupdated" = {
+      enable-always = true;  
+    };
+
   };
 }
