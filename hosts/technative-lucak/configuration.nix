@@ -4,9 +4,10 @@
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./packages.nix
     ./lucak-secrets.nix
     ./../../modules/desktop-gnome.nix
+    ./../../modules/pkgs-technative.nix
+    ./../../modules/pkgs-essentials.nix
     ];
 
   # Bootloader.
