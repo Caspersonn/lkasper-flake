@@ -11,6 +11,7 @@
 	terraform
 	terraform-docs
 	tfswitch
+  slack
 	zoom-us
   aws-mfa
   granted

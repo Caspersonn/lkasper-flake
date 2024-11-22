@@ -8,7 +8,6 @@
   obs-studio
   obsidian
   onlyoffice-bin
-  slack
   spotify
   filezilla
   firejail
