@@ -27,10 +27,10 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-        "dash-to-dock@micxgx.gmail.com"
         "night-light-slider-updated@vilsbeg.codeberg.org"
         "unite@hardpixel.eu"
         "arcmenu@arcmenu.com"
+        "dash-to-panel@jderose9.github.com"
     ];
   };
 

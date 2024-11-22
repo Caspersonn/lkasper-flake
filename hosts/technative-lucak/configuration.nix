@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./lucak-secrets.nix
+    ./../../modules/secrets-lucak.nix
     ./../../modules/desktop-gnome.nix
     ./../../modules/pkgs-technative.nix
     ./../../modules/pkgs-essentials.nix

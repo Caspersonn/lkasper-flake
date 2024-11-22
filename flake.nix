@@ -11,10 +11,6 @@
     bmc.url = "github:wearetechnative/bmc";
     race.url = "github:wearetechnative/race";
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,13 +45,8 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
-          _module.args.pkgs-2305 = import nixpkgs-2305 { inherit system; config = {allowUnfree = true; }; };
-          _module.args.pkgs-2311 = import nixpkgs-2311 { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
-
         };
-
-        
 
       in [
         defaults
@@ -74,13 +65,8 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
-          _module.args.pkgs-2305 = import nixpkgs-2305 { inherit system; config = {allowUnfree = true; }; };
-          _module.args.pkgs-2311 = import nixpkgs-2311 { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
-
         };
-
-        
 
       in [
         defaults
@@ -99,13 +85,8 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
-          _module.args.pkgs-2305 = import nixpkgs-2305 { inherit system; config = {allowUnfree = true; }; };
-          _module.args.pkgs-2311 = import nixpkgs-2311 { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
-
         };
-
-        
 
       in [
         defaults
@@ -124,13 +105,8 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
-          _module.args.pkgs-2305 = import nixpkgs-2305 { inherit system; config = {allowUnfree = true; }; };
-          _module.args.pkgs-2311 = import nixpkgs-2311 { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
-
-        };
-
-        
+        };        
 
       in [
         defaults
@@ -141,7 +117,10 @@
     };
 # technative-casper config END
 
-## home-manager config
+
+#########################
+## home-manager config ##
+#########################
 
 # gaming-casper home-manager START
   # defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
@@ -151,7 +130,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
 
       linux-defaults = {pkgs,config,homeage,...}: {
-        home = { ##MAC
+        home = {
         homeDirectory = "/home/casper";
       };
     };
@@ -178,7 +157,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
 
       linux-defaults = {pkgs,config,homeage,...}: {
-        home = { ##MAC
+        home = {
         homeDirectory = "/home/casper";
       };
     };
@@ -205,7 +184,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
 
       linux-defaults = {pkgs,config,homeage,...}: {
-        home = { ##MAC
+        home = {
         homeDirectory = "/home/casper";
       };
     };
@@ -231,7 +210,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
 
       linux-defaults = {pkgs,config,homeage,...}: {
-        home = { ##MAC
+        home = {
         homeDirectory = "/home/lucak";
       };
     };

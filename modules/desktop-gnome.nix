@@ -5,6 +5,7 @@
     adw-gtk3
     gnomeExtensions.dock-from-dash
     gnomeExtensions.dash-to-dock
+    gnomeExtensions.dash-to-panel
     gnomeExtensions.date-menu-formatter
     gnomeExtensions.gsconnect
     gnomeExtensions.night-light-slider-updated
@@ -38,6 +39,7 @@
   services = {
     xserver = {
       enable = true;
+      displayManager.gdm.enable = true;
       desktopManager.gnome = {
         enable = true;
         extraGSettingsOverridePackages = [pkgs.gnome.mutter];
@@ -46,7 +48,6 @@
           experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
         '';
       };
-      displayManager.gdm.enable = true;
     };
   }; 
 }

@@ -5,8 +5,10 @@
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./packages.nix
-    ./casper-secrets.nix
+    ./../../modules/secrets-casper.nix
     ./../../modules/desktop-gnome.nix
+    ./../../modules/pkgs-essentials.nix
+    ./../../modules/pkgs-gaming.nix
     ];
 
   # Bootloader.

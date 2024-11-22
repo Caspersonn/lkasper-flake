@@ -11,6 +11,7 @@
   slack
   spotify
   filezilla
+  firejail
 
   # Essential NON-GUI applications
   agenix

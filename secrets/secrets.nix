@@ -8,8 +8,6 @@ let
   systems = [ system1 system2 system3 ];
 in
 {
-  "secret1.age".publicKeys = [ user1 system1 ];
-  "secret2.age".publicKeys = users ++ systems;
   "toggl-lkasper.age".publicKeys = users ++ systems;
   "spotify-lkasper.age".publicKeys = users ++ systems;
   "steam-casper.age".publicKeys = users ++ systems;
