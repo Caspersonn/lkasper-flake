@@ -7,6 +7,7 @@
     ./../../modules/secrets-casper.nix
     ./../../modules/pkgs-essentials.nix
     ./../../modules/pkgs-server.nix
+    ./../../modules/pkgs-gaming.nix
     ];
 
   # Bootloader.
