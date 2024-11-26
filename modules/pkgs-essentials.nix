@@ -34,5 +34,7 @@
   wl-clipboard
   zoxide
   zsh
+  f3
+  usbutils
   ];
 }

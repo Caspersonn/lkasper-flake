@@ -2,6 +2,7 @@
   "suggest.noselect": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
+    "markdown",
     "typescript",
     "python",
     "typescriptreact",

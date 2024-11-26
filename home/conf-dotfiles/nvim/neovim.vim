@@ -51,8 +51,12 @@ let g:coc_global_extensions = [
   \ 'coc-prettier', 
   \ 'coc-json', 
   \ 'coc-python',
+  \ 'coc-html',
   \ ]
 
+
+" Make code prettier
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>

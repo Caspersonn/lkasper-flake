@@ -15,6 +15,9 @@
 	zoom-us
   aws-mfa
   granted
+  nodejs_22
+  nodePackages.live-server
+  cypress
   terraform-ls
 	(python311.withPackages(ps: with ps; [ 
   requests
