@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./../../modules/secrets-casper.nix
     ./../../modules/pkgs-essentials.nix
+    ./../../modules/pkgs-gaming.nix
     ];
 
   # Bootloader.
