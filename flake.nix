@@ -196,7 +196,7 @@
         # the path to your home.nix.
 
         modules = [
-         ./home/home-casper/casper-desktop.nix
+         ./home/home-casper-server/casper-desktop.nix
          linux-defaults
        ];
      });
