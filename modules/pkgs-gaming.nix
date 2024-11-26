@@ -7,6 +7,8 @@
 	protontricks
 	rpcs3
 	steam
+	steam-tui
+  stremio
 	wine
   discord
   gamemode
