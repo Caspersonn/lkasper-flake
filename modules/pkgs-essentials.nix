@@ -11,6 +11,7 @@
   spotify
   filezilla
   firejail
+  stremio
 
   # Essential NON-GUI applications
   agenix
