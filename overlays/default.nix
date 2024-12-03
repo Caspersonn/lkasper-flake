@@ -46,4 +46,5 @@ final: prev: {
     vendorHash = null;
     #nativeCheckInputs = with pkgs; [ less ];
   };
+}
 

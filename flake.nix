@@ -5,6 +5,7 @@
     agenix.url = "github:ryantm/agenix";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-2311.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-2305.url = "github:NixOS/nixpkgs/nixos-23.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -24,7 +25,7 @@
 
 
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-2305,  nixpkgs-2311, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixpkgs-2405 }: 
+  outputs = inputs@{ self, nixpkgs, nixpkgs-2305,  nixpkgs-2311, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixpkgs-2405, nixpkgs-2411}: 
   let 
     system = "x86_64-linux";
     extraPkgs= {
@@ -45,6 +46,7 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
+          _module.args.nixpkgs-2411 = import unstable { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
         };
 
