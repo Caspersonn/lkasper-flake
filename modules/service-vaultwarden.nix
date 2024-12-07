@@ -7,10 +7,10 @@
     #config = xxx; # Needs to be changed
   }
 
-security.acme.defaults.email = "";
-security.acme.acceptTerms = true;
+  security.acme.defaults.email = "";
+  security.acme.acceptTerms = true;
 
-services.nginx = {
+  services.nginx = {
     enable = true;
     
     # Use recommended settings
@@ -23,6 +23,6 @@ services.nginx = {
         proxyPass = "http://127.0.0.1:8000";
       };
     };
-};
+  };
 
 }

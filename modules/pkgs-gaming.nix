@@ -19,5 +19,6 @@
   mesa
   protonplus
   vulkan-tools
+  ps3iso-utils
   ];
 }

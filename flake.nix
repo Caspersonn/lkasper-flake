@@ -67,6 +67,7 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
+          _module.args.nixpkgs-2411 = import unstable { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
         };
 
@@ -87,6 +88,7 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
+          _module.args.nixpkgs-2411 = import unstable { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
         };
 
@@ -107,6 +109,7 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
+          _module.args.nixpkgs-2411 = import unstable { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
         };        
 

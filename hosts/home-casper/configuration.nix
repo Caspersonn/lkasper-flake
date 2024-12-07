@@ -8,6 +8,7 @@
     ./../../modules/desktop-gnome.nix
     ./../../modules/pkgs-essentials.nix
     ./../../modules/pkgs-gaming.nix
+    ./../../modules/udev-skylanders-portal.nix
     ];
 
   # Bootloader.
@@ -60,6 +61,7 @@
   services.flatpak.enable = true; # Enable CUPS to print documents.
 
   services.printing.enable = true;
+  services.printing.drivers = with pkgs; [ epson-escpr2 epson-escpr ];
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;

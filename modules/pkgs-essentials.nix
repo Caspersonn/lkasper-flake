@@ -37,5 +37,7 @@
   zsh
   f3
   usbutils
+  epson-escpr
+  epson-escpr2
   ];
 }
