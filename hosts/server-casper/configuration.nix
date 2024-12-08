@@ -23,7 +23,6 @@
   networking.hostName = "server-casper"; # Define your hostname.
   networking.extraHosts =
     ''
-    192.168.178.95 vaultwarden.home.dev
     192.168.178.95 server-casper.local
     '';
 

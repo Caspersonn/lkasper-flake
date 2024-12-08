@@ -1,9 +1,7 @@
 {config, lib, pkgs, agenix, unstable, ... }:
 	
 {
-  services.avahi = {
+  services.resolved = {
     enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
   };
 }

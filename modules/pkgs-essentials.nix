@@ -16,6 +16,7 @@
   # Essential NON-GUI applications
   agenix
   autojump
+  lsof
   dig
   fzf
   gcc
