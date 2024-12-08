@@ -20,5 +20,6 @@
   protonplus
   vulkan-tools
   ps3iso-utils
+ unstable.multiviewer-for-f1
   ];
 }

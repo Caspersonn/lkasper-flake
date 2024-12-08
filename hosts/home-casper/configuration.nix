@@ -9,6 +9,7 @@
     ./../../modules/pkgs-essentials.nix
     ./../../modules/pkgs-gaming.nix
     ./../../modules/udev-skylanders-portal.nix
+    ./../../modules/service-avahi.nix
     ];
 
   # Bootloader.
@@ -22,6 +23,10 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.extraHosts =
+    ''
+    192.168.178.103 home-casper.local
+    '';
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
