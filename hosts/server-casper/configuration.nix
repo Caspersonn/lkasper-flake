@@ -11,7 +11,7 @@
     ./../../modules/docker-stremio.nix
     ./../../modules/docker.nix
     ./../../modules/service-vaultwarden.nix
-    ./../../modules/service-avahi.nix
+    ./../../modules/service-resolved.nix
     ];
 
   # Bootloader.

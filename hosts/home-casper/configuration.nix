@@ -9,7 +9,7 @@
     ./../../modules/pkgs-essentials.nix
     ./../../modules/pkgs-gaming.nix
     ./../../modules/udev-skylanders-portal.nix
-    ./../../modules/service-avahi.nix
+    ./../../modules/service-resolved.nix
     ];
 
   # Bootloader.

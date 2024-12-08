@@ -8,6 +8,7 @@
     ./../../modules/desktop-gnome.nix
     ./../../modules/pkgs-essentials.nix
     ./../../modules/pkgs-gaming.nix
+    ./../../modules/service-resolved.nix
     ./../../modules/udev-skylanders-portal.nix
     ];
 
