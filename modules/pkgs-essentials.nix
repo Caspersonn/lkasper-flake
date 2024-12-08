@@ -20,6 +20,7 @@
   fzf
   gcc
   git
+	gh
   gnumake42
   go
   gum
@@ -39,5 +40,6 @@
   usbutils
   epson-escpr
   epson-escpr2
+  avahi
   ];
 }

@@ -6,8 +6,12 @@
     ./hardware-configuration.nix
     ./../../modules/secrets-casper.nix
     ./../../modules/pkgs-essentials.nix
-    ./../../modules/pkgs-server.nix
+#    ./../../modules/pkgs-server.nix
     ./../../modules/pkgs-gaming.nix
+    ./../../modules/docker-stremio.nix
+    ./../../modules/docker.nix
+    ./../../modules/service-vaultwarden.nix
+    ./../../modules/service-avahi.nix
     ];
 
   # Bootloader.
@@ -17,7 +21,11 @@
 
 
   networking.hostName = "server-casper"; # Define your hostname.
-
+  networking.extraHosts =
+    ''
+    192.168.178.95 vaultwarden.home.dev
+    192.168.178.95 server-casper.local
+    '';
 
   # Enable networking
   networking.networkmanager.enable = true;

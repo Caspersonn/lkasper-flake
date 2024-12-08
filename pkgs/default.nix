@@ -2,7 +2,7 @@
 
 let
   callPackage = pkgs.newScope self;
-  self = rec {
+self = rec {
     jsonify-aws-dotfiles                  = pkgs.callPackage ./projects/jsonify-aws-dotfiles           { };
   };
 in self
