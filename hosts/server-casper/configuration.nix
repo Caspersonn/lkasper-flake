@@ -6,8 +6,7 @@
     ./hardware-configuration.nix
     ./../../modules/secrets-casper.nix
     ./../../modules/pkgs-essentials.nix
-#    ./../../modules/pkgs-server.nix
-    ./../../modules/pkgs-gaming.nix
+    ./../../modules/pkgs-server.nix
     ./../../modules/docker-stremio.nix
     ./../../modules/docker.nix
     ./../../modules/service-vaultwarden.nix

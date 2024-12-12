@@ -4,28 +4,22 @@
   services.vaultwarden = {
     enable = true;
     #environmentFile = xxx; # Needs to be changed
-    #config = xxx; # Needs to be changed
+    config = {
+      DOMAIN = "https://vaultwarden.inspiravita.com";
+      SIGNUPS_ALLOWED = false;
+      ROCKET_ADDRESS = "192.168.178.95";
+      ROCKET_PORT = 8222;
+    };
   };
 
-#  security.acme.defaults.email = "lucakasper8@gmail.com";
-#  security.acme.acceptTerms = true;
+  security.acme.defaults.email = "lucakasper8@gmail.com";
+  security.acme.acceptTerms = true;
 
-  services.nginx = {
-    enable = true;
-    
-    # Use recommended settings
-    recommendedGzipSettings = true;
-
-    virtualHosts."vaultwarden.home.dev" = {
-      #enableACME = true;
-      #forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://localhost:8222";
-      };
-      extraConfig = ''
-        allow 192.168.178.1/24;
-        allow all;
-      '';
+  services.nginx.virtualHosts."vaultwarden.inspiravita.com" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://192.168.178.95:${toString config.services.vaultwarden.config.ROCKET_PORT}";
     };
   };
 }
