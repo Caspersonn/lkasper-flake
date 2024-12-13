@@ -5,7 +5,7 @@
     identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
       spotify = {
-        file = ../secrets/spotify-lkasper.age;
+        file = ../secrets/spotify-lucak.age;
         path = "/home/lucak/.config/spotify/prefs";
         owner = "lucak";
         group = "users";
