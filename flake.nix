@@ -4,10 +4,10 @@
   inputs = {
     agenix.url = "github:ryantm/agenix";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-2311.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-2305.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs-2311.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     bmc.url = "github:wearetechnative/bmc";
     race.url = "github:wearetechnative/race";
@@ -38,6 +38,10 @@
   in 
   {
   
+##################
+## NixOs config ##
+##################
+
 # gaming-casper config START
   nixosConfigurations.gaming-casper = nixpkgs.lib.nixosSystem {
     modules =

@@ -12,11 +12,13 @@
   filezilla
   firejail
   stremio
+  bitwarden-desktop
 
   # Essential NON-GUI applications
   agenix
   autojump
   lsof
+  bitwarden-cli
   dig
   fzf
   gcc
@@ -42,5 +44,6 @@
   epson-escpr
   epson-escpr2
   avahi
+  busybox
   ];
 }

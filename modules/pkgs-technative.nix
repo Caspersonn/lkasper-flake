@@ -4,6 +4,9 @@
   environment.systemPackages = with pkgs; [
   # Essential technative applications
 	awscli
+  docker
+  neofetch
+  lynis
 	gh
 	python311Packages.toggl-cli
 	ssm-session-manager-plugin
@@ -18,6 +21,7 @@
   nodejs_22
   nodePackages.live-server
   cypress
+  google-chrome
   terraform-ls
 	(python311.withPackages(ps: with ps; [ 
   requests
