@@ -8,7 +8,7 @@
     ./../../modules/desktop-gnome.nix
     ./../../modules/pkgs-technative.nix
     ./../../modules/pkgs-essentials.nix
-    ./../../modules/service-resolved.nix.nix
+    ./../../modules/service-resolved.nix
   ];
 
   # Bootloader.
