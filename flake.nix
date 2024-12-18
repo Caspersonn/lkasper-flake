@@ -2,18 +2,15 @@
   description = "Best config";
 
   inputs = {
-    agenix.url = "github:ryantm/agenix";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-2305.url = "github:NixOS/nixpkgs/nixos-23.05";
-    nixpkgs-2311.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    agenix.url = "github:ryantm/agenix";
     bmc.url = "github:wearetechnative/bmc";
     race.url = "github:wearetechnative/race";
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     homeage = {
@@ -25,7 +22,7 @@
 
 
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-2305,  nixpkgs-2311, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixpkgs-2405, nixpkgs-2411}: 
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixpkgs-2405}: 
   let 
     system = "x86_64-linux";
     extraPkgs= {
@@ -50,7 +47,6 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
-          _module.args.nixpkgs-2411 = import unstable { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
         };
 
@@ -71,7 +67,6 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
-          _module.args.nixpkgs-2411 = import unstable { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
         };
 
@@ -92,7 +87,6 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
-          _module.args.nixpkgs-2411 = import unstable { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
         };
 
@@ -113,7 +107,6 @@
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
           _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
-          _module.args.nixpkgs-2411 = import unstable { inherit system; config = {allowUnfree = true; }; };
           _module.args.agenix = inputs.agenix.packages."${system}".default;
         };        
 

@@ -17,6 +17,7 @@
   slack
 	zoom-us
   aws-mfa
+  rbw
   granted
   nodejs_22
   nodePackages.live-server
@@ -28,6 +29,11 @@
   lxml
 	pytz
 	pip
+  openai-whisper
+  openai
+  pydub
+  python-dotenv
+  tiktoken
   ]))
   ];
 }

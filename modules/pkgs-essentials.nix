@@ -11,8 +11,8 @@
   spotify
   filezilla
   firejail
-  stremio
   bitwarden-desktop
+  video-trimmer
 
   # Essential NON-GUI applications
   agenix
