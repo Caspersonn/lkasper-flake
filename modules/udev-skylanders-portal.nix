@@ -1,4 +1,4 @@
-{config, lib, pkgs, agenix, unstable, nixpkgs-2411,... }:
+{config, lib, pkgs, agenix, unstable, ... }:
 {
   services.udev = {
     enable = true;

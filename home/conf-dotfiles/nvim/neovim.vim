@@ -10,6 +10,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'ajmwagar/vim-deus'
   Plug 'airblade/vim-gitgutter'
   Plug 'dhruvasagar/vim-table-mode'
+  Plug 'linden-project/linny.vim'
 
 
 call plug#end()
@@ -86,9 +87,10 @@ let g:NERDTreeGitStatusWithFlags = 1
 
 
 
+let g:linny_open_notebook_path       = $HOME . '/MyLinnyNotes'
+let g:linnycfg_setup_autocommands    = 1
 
-"let g:linny_open_notebook_path       = $HOME . '/git/personal/LinnyNotes'
-"let g:linnycfg_path_wiki_content     = $HOME . '/git/personal/LinnyNotes/content'
-"call linny#Init()
+
+call linny#Init()
 "nmap lo :LinnyMenuOpen <CR>
 "nmap lc :LinnyMenuClose <CR>

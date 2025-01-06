@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
     bmc.url = "github:wearetechnative/bmc";
@@ -15,14 +14,13 @@
     };
     homeage = {
       url = "github:jordanisaacs/homeage";
-      # Optional
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
 
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixpkgs-2405}: 
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles }: 
   let 
     system = "x86_64-linux";
     extraPkgs= {
@@ -106,7 +104,7 @@
         system = "x86_64-linux";
         defaults = { pkgs, ... }: {
           nixpkgs.overlays = [(import ./overlays)];
-          _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; };
+          _module.args.unstable = import unstable { inherit system; config = {allowUnfree = true; }; }; 
           _module.args.agenix = inputs.agenix.packages."${system}".default;
         };        
 

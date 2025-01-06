@@ -3,47 +3,49 @@
 {
   environment.systemPackages = with pkgs; [
   # Essential GUI applications
+  bitwarden-desktop
+  filezilla
   firefox
+  firejail
   keepass
   obs-studio
   obsidian
   onlyoffice-bin
   spotify
-  filezilla
-  firejail
-  bitwarden-desktop
   video-trimmer
 
   # Essential NON-GUI applications
+	gh
   agenix
   autojump
-  lsof
+  avahi
   bitwarden-cli
+  busybox
   dig
+  epson-escpr
+  epson-escpr2
+  f3
   fzf
   gcc
   git
-	gh
+  git-sync
   gnumake42
   go
   gum
   home-manager
   jq
+  lsof
   neovim
   nodejs
   pre-commit
   ruby
+  smug
   tmux
   unstable.hugo
   unzip
+  usbutils
   wl-clipboard
   zoxide
   zsh
-  f3
-  usbutils
-  epson-escpr
-  epson-escpr2
-  avahi
-  busybox
   ];
 }

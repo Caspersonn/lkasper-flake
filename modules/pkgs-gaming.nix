@@ -1,15 +1,13 @@
-{config, lib, pkgs, agenix, unstable, nixpkgs-2411,... }:
+{config, lib, pkgs, agenix, unstable, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-  nixpkgs-2411.cemu
 	flatpak
 	gamescope
 	protontricks
 	rpcs3
 	steam
 	steam-tui
-  stremio
 	wine
   discord
   gamemode
@@ -18,8 +16,9 @@
   mangohud
   mesa
   protonplus
-  vulkan-tools
   ps3iso-utils
+  stremio
   unstable.multiviewer-for-f1
+  vulkan-tools
   ];
 }

@@ -4,9 +4,6 @@
   environment.systemPackages = with pkgs; [
   # Essential technative applications
 	awscli
-  docker
-  neofetch
-  lynis
 	gh
 	python311Packages.toggl-cli
 	ssm-session-manager-plugin
@@ -14,25 +11,29 @@
 	terraform
 	terraform-docs
 	tfswitch
-  slack
 	zoom-us
   aws-mfa
-  rbw
-  granted
-  nodejs_22
-  nodePackages.live-server
   cypress
+  docker
   google-chrome
+  granted
+  lynis
+  nchat
+  neofetch
+  nodePackages.live-server
+  nodejs_22
+  rbw
+  slack
   terraform-ls
 	(python311.withPackages(ps: with ps; [ 
-  requests
-  lxml
-	pytz
 	pip
-  openai-whisper
+	pytz
+  lxml
   openai
+  openai-whisper
   pydub
   python-dotenv
+  requests
   tiktoken
   ]))
   ];
