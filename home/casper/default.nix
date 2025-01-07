@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./programs
-    ./services
+    ./_hm-modules
   ];
 }

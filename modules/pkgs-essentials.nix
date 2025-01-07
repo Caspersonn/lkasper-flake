@@ -1,4 +1,4 @@
-{config, lib, pkgs, agenix, unstable, ... }:
+{config, lib, pkgs, unstable, ... }:
 	
 {
   environment.systemPackages = with pkgs; [
@@ -16,7 +16,6 @@
 
   # Essential NON-GUI applications
 	gh
-  agenix
   autojump
   avahi
   bitwarden-cli

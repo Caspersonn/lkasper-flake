@@ -1,4 +1,4 @@
-{config, lib, pkgs, agenix, unstable, ... }:
+{config, lib, pkgs, unstable, ... }:
 	
 {
   environment.systemPackages = with pkgs; [

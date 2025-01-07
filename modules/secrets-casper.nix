@@ -1,4 +1,4 @@
-{config, lib, pkgs,  agenix, ... }:
+{config, lib, pkgs, agenix, ... }:
 {
 
   age = {

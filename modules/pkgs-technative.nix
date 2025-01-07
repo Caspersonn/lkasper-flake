@@ -24,6 +24,7 @@
   nodejs_22
   rbw
   slack
+  silver-searcher
   terraform-ls
 	(python311.withPackages(ps: with ps; [ 
 	pip
