@@ -1,0 +1,9 @@
+session: notes
+
+root: ~/git/personal/MyLinnyNotes
+
+windows:
+  - name: zsh
+    layout: main-horizontal
+    commmands:
+      - lin

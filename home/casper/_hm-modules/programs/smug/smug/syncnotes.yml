@@ -1,0 +1,20 @@
+session: syncnotes
+
+root: ~/git/personal/MyLinnyNotes
+startup_pane: 1
+
+stop:
+
+windows:
+  - name: mynotes
+    layout: main-horizontal
+    commands:
+      - lin
+  - name: sync
+    layout: main-horizontal
+    commands:
+      - watch -n 10 git-sync -n
+    panes:
+      - type: horizontal
+        commands:
+          - hugo server --ignoreCache --forceSyncStatic --cleanDestinationDir --disableFastRender -e private -p 1314

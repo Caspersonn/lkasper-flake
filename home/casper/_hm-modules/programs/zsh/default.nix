@@ -18,7 +18,7 @@ programs.zsh = {
 	};
 	initExtra = '' 
 eval "$(zoxide init zsh)"
-source ${zoxide}/zoxide
+source ${zoxide}
 PATH=$HOME/bin:$PATH 
 	'';
 	oh-my-zsh = {

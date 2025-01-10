@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
   # Essential technative applications
 	awscli
+  aws-nuke
 	gh
 	python311Packages.toggl-cli
 	ssm-session-manager-plugin
@@ -22,9 +23,11 @@
   neofetch
   nodePackages.live-server
   nodejs_22
+  matterbridge
   rbw
   slack
   silver-searcher
+  quarto
   terraform-ls
 	(python311.withPackages(ps: with ps; [ 
 	pip

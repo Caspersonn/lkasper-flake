@@ -15,6 +15,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 call plug#end()
 
+" General settings "
 nmap ,, :NERDTreeFind <CR>
 nmap ,b :Buffers
 nmap ,n :NERDTree <CR>
@@ -40,10 +41,10 @@ set termguicolors     " enable true colors support
 set background="dark"   " for dark
 colorscheme deus
 
-" Change update time for GitGutter
+" Change update time for GitGutter "
 set updatetime=100
 
-" coc config
+" coc config "
 let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-pairs',
@@ -56,7 +57,8 @@ let g:coc_global_extensions = [
   \ ]
 
 
-" Make code prettier
+" coc pretier "
+
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -71,6 +73,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" GIT Status "
 let g:NERDTreeGitStatusWithFlags = 1
 "let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 "let g:NERDTreeGitStatusNodeColorization = 1
@@ -86,11 +89,10 @@ let g:NERDTreeGitStatusWithFlags = 1
     "\ }                         
 
 
+" Linny config "
 
-let g:linny_open_notebook_path       = $HOME . '/MyLinnyNotes'
+let g:linny_open_notebook_path       = $HOME . '/git/personal/MyLinnyNotes'
 let g:linnycfg_setup_autocommands    = 1
-
-
 call linny#Init()
 "nmap lo :LinnyMenuOpen <CR>
 "nmap lc :LinnyMenuClose <CR>

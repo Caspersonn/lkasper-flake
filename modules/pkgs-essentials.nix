@@ -36,6 +36,7 @@
   lsof
   neovim
   nodejs
+  mailutils
   pre-commit
   ruby
   smug

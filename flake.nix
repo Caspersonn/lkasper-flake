@@ -72,6 +72,7 @@
               agenix.packages."${system}".agenix
               race.packages."${system}".race
               bmc.packages."${system}".bmc
+              jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
             ];
           };
 

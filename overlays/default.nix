@@ -28,22 +28,23 @@ final: prev: {
     });
   };
   matterbridge = prev.buildGoModule rec {
-    pname = "matterbridge";
-    version = "5b86262fddabf5536faec4e4e4b1f6a9329fa635";
-    #src = pkgs.fetchFromGitHub {
-    #  owner = "wearetechnative";
-    #  repo = "jsonify-aws-dotfiles";
-    #  rev = "${version}";
-    #  sha256 = "sha256-sL1kpWyAVLxoQRJa+m7XSIaM0kxhmE1kOLpnTZVQwB0=";
-    #};
-    src = prev.fetchgit {
-      url = "https://github.com/kolsys/matterbridge.git";
-      rev = "${version}";
-      hash = "sha256-4OJs8VOkRnuUw922/C/6C0sWyphRZ9Dn0dmKOPrzrk8=";
+    name = "matterbridge";
+    src = prev.fetchFromGitHub {
+      owner = "technative-B-V";
+      repo = "matterbridge";
+      rev = "master";
+      sha256 = "sha256-4FQapL44kx334I6W0rdpzarz/Dm4oz5uqVb05dJzY0s=";
     };
     vendorHash = null;
-    #nativeCheckInputs = with pkgs; [ less ];
   };
+  #  pname = "matterbridge";
+  #  src = prev.fetchgit {
+  #    url = "https://github.com/TechNative-B-V/matterbridge.git";
+  #    rev = "master";
+  #    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+  #  };
+  #  vendorHash = null;
+  #};
  cypress = prev.cypress.overrideAttrs (oldAttrs: rec {
     pname = "cypress";
     version = "13.16.0";
