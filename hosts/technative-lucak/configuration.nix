@@ -9,6 +9,7 @@
     ./../../modules/pkgs-technative.nix
     ./../../modules/pkgs-essentials.nix
     ./../../modules/service-resolved.nix
+    ./../../modules/docker.nix
   ];
 
   # Bootloader.

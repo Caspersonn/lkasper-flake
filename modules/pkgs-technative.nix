@@ -12,12 +12,16 @@
 	terraform
 	terraform-docs
 	tfswitch
+  tfsec
+  telegram-bot-api
+  telegram-desktop
 	zoom-us
   aws-mfa
   cypress
   docker
   google-chrome
   granted
+  gpt4all
   lynis
   nchat
   neofetch
@@ -33,12 +37,16 @@
 	pip
 	pytz
   lxml
+  langchain
+  langchain-community
   openai
   openai-whisper
   pydub
   python-dotenv
   requests
   tiktoken
+  telegram-text
+  python-telegram-bot
   ]))
   ];
 }

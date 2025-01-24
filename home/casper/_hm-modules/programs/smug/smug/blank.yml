@@ -1,0 +1,10 @@
+session: blank
+
+root: ~/
+
+windows:
+  - name: zsh
+    layout: main-horizontal
+    panes:
+      - type: horizontal
+

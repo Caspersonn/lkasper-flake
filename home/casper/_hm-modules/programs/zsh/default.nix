@@ -13,6 +13,7 @@ programs.zsh = {
 	tfswitch = "tfswitch -b $HOME/bin/terraform";
 	tfapply = "$HOME/git/wearetechnative/race/tfapply.sh";
 	tfdestroy = "$HOME/git/wearetechnative/race/tfdestroy.sh";
+  aws-switch = ". $HOME/git/wearetechnative/bmc/aws-profile-select.sh";
 	lin = "vi -c LinnyMenuOpen";
 	ner = "vi -c NERDTree";
 	};
@@ -24,6 +25,7 @@ PATH=$HOME/bin:$PATH
 	oh-my-zsh = {
         enable = true;
 		theme = "robbyrussell";
+    custom = "./custom-theme";
 		plugins = [
 		  "git"
 		  "aws"
@@ -31,6 +33,7 @@ PATH=$HOME/bin:$PATH
 		  "node"
 		  "autojump"
 		  "dirhistory"
+      "terraform"
 	    ];
 	};
 };

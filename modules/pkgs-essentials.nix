@@ -32,6 +32,7 @@
   go
   gum
   home-manager
+  htop
   jq
   lsof
   neovim
