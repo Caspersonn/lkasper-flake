@@ -150,6 +150,7 @@
     };
     nixosConfigurations.home-casper = makeNixosConf {
       hostname = "home-casper";
+      extraModules = [ nixos-cosmic.nixosModules.default ];
     };
   };
 }

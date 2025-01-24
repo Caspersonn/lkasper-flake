@@ -5,7 +5,8 @@
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./../../modules/secrets-casper.nix
-    ./../../modules/desktop-gnome.nix
+    #./../../modules/desktop-gnome.nix
+    ./../../modules/desktop-cosmic.nix
     ./../../modules/pkgs-essentials.nix
     ./../../modules/pkgs-gaming.nix
     ./../../modules/udev-skylanders-portal.nix
@@ -48,12 +49,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  hardware.opengl = {
-  enable = true;
-  driSupport = true;
-  driSupport32Bit = true;
-  };
 
   hardware.i2c.enable = true;
 

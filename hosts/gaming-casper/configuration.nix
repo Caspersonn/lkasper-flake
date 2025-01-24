@@ -45,11 +45,10 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  #services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.opengl = {
   enable = true;
   driSupport = true;
-  driSupport32Bit = true;
   };
 
   # Configure keymap in X11

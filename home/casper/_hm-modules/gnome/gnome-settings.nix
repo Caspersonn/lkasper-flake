@@ -31,6 +31,7 @@
         "unite@hardpixel.eu"
         "arcmenu@arcmenu.com"
         "dash-to-panel@jderose9.github.com"
+        "display-brightness-ddcutil@themightydeity.github.com"
     ];
   };
 
@@ -68,6 +69,8 @@
     "org/gnome/shell/extensions/dash-to-panel" = {
       panel-element-positions =  ''{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'';
       trans-use-custom-opacity = true;
+      trans-use-dynamic-opacity = true;
+      trans-dynamic-behavior = "MAXIMIZED_WINDOWS";
     };
 
   };

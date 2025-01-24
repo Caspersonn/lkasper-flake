@@ -2,6 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+  beekeeper-studio
+  cemu
 	flatpak
 	gamescope
 	protontricks
@@ -15,6 +17,7 @@
   lutris
   mangohud
   mesa
+  ns-usbloader
   protonplus
   ps3iso-utils
   stremio
