@@ -13,6 +13,7 @@ in
           source ${nvim}/neovim.vim
           nnoremap <space>a :qa!<cr>
           nnoremap <space>t :NERDTree<cr>
+          nnoremap <space>f :Ag<cr>
         '';
         plugins = with pkgs.vimPlugins; [
         ];

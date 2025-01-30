@@ -6,7 +6,7 @@
 	awscli
   aws-nuke
 	gh
-	python311Packages.toggl-cli
+  postgresql
 	ssm-session-manager-plugin
 	teams-for-linux
 	terraform
@@ -29,6 +29,7 @@
   nodejs_22
   matterbridge
   rbw
+  remmina
   slack
   silver-searcher
   quarto
@@ -36,6 +37,7 @@
 	(python311.withPackages(ps: with ps; [ 
 	pip
 	pytz
+  pyinstaller
   lxml
   langchain
   langchain-community
