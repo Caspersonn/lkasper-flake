@@ -13,11 +13,14 @@
   onlyoffice-bin
   spotify
   video-trimmer
+  winetricks
 
   # Essential NON-GUI applications
 	gh
   autojump
   avahi
+  lsof
+  libusb1
   bitwarden-cli
   busybox
   dig
@@ -38,6 +41,7 @@
   neovim
   nodejs
   mailutils
+  node2nix
   pre-commit
   ruby
   smug

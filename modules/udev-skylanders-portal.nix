@@ -19,6 +19,9 @@ KERNEL=="hidraw*", KERNELS=="*054C:05C4*", MODE="0666"
 
 # DualShock 4 Slim over Bluetooth
 KERNEL=="hidraw*", KERNELS=="*054C:09CC*", MODE="0666"
+# Sysdvr
+SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="4ee0", MODE="0666"
+
     '';
   };
 }

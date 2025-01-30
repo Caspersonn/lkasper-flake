@@ -1,6 +1,6 @@
 session: syncnotes
 
-root: ~/git/personal/MyLinnyNotes
+root: ~/git/personal/lkasper-linny
 startup_pane: 1
 
 stop:

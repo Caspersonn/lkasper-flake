@@ -91,7 +91,7 @@ let g:NERDTreeGitStatusWithFlags = 1
 
 " Linny config "
 
-let g:linny_open_notebook_path       = $HOME . '/git/personal/MyLinnyNotes'
+let g:linny_open_notebook_path       = $HOME . '/git/personal/lkasper-linny'
 let g:linnycfg_setup_autocommands    = 1
 call linny#Init()
 "nmap lo :LinnyMenuOpen <CR>
