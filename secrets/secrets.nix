@@ -14,6 +14,8 @@ in
   "spotify-casper.age".publicKeys = users ++ systems;
   "vaultwarden.age".publicKeys = users ++ systems;
   "steam-casper.age".publicKeys = users ++ systems;
+  "aws_config.age".publicKeys = users ++ systems;
+  "aws_credentials.age".publicKeys = users ++ systems;
 #  "atticwto.age".publicKeys = users ++ systems;
 #  "loboskey.age".publicKeys = users ;
 

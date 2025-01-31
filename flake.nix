@@ -9,9 +9,6 @@
     race.url = "github:wearetechnative/race";
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
 
-    # Cosmic from pop-os
-    #nixpkgs.follows = "nixos-cosmic/nixpkgs"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
-    #nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -79,13 +76,6 @@
               jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
             ];
           };
-          #cosmic = {
-          #  nix.settings = {
-          #    substituters = [ "https://cosmic.cachix.org/" ];
-          #    trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-          #  };
-          #};
-
         in [
             defaults
             #nixos-hardware.nixosModules.framework-12th-gen-intel
@@ -149,7 +139,6 @@
     };
     nixosConfigurations.home-casper = makeNixosConf {
       hostname = "home-casper";
-      extraModules = [ nixos-cosmic.nixosModules.default ];
     };
   };
 }
