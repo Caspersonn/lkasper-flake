@@ -16,7 +16,7 @@
         "firefox.desktop"
         "discord.desktop"
         "slack.desktop"
-        "spotify.desktop"
+        "spotube.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.Console.desktop"
         "obsidian.desktop"

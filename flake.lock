@@ -26,16 +26,34 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1736160463,
-        "narHash": "sha256-75WIfkVz1l0Yk3xBJCKsDen3CxCnjhJYdqEjWMIeiIc=",
+        "lastModified": 1738241752,
+        "narHash": "sha256-/qFlVt25JGh7l2yauiPiqPi4IewrNT+OXd2wRdoc23s=",
         "owner": "wearetechnative",
         "repo": "bmc",
-        "rev": "4d6b69ebdf1598ae5a82fd7f661c9b9c516fc41c",
+        "rev": "ea017eeb583c62a400ee4dcf49c3f6817bc402b8",
         "type": "github"
       },
       "original": {
         "owner": "wearetechnative",
         "repo": "bmc",
+        "type": "github"
+      }
+    },
+    "croctalk": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1738666701,
+        "narHash": "sha256-gQ1MqP50aCpFyEcIcNa0X9s/de8+z3po/0DeqY+n8lo=",
+        "owner": "wearetechnative",
+        "repo": "croctalk",
+        "rev": "ae7b4f21b4ff91a2c6cfd431fd127e4e0230b671",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wearetechnative",
+        "repo": "croctalk",
         "type": "github"
       }
     },
@@ -125,7 +143,7 @@
     },
     "jsonify-aws-dotfiles": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1724965798,
@@ -174,6 +192,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1738546358,
+        "narHash": "sha256-nLivjIygCiqLp5QcL7l56Tca/elVqM9FG1hGd9ZSsrg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c6e957d81b96751a3d5967a0fd73694f303cc914",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1724727824,
         "narHash": "sha256-0XH9MJk54imJm+RHOLTUJ7e+ponLW00tw5ke4MTVa1Y=",
         "owner": "NixOS",
@@ -187,13 +221,13 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
-        "lastModified": 1737885640,
-        "narHash": "sha256-GFzPxJzTd1rPIVD4IW+GwJlyGwBDV1Tj5FLYwDQQ9sM=",
+        "lastModified": 1738574474,
+        "narHash": "sha256-rvyfF49e/k6vkrRTV4ILrWd92W+nmBDfRYZgctOyolQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4e96537f163fad24ed9eb317798a79afc85b51b7",
+        "rev": "fecfeb86328381268e29e998ddd3ebc70bbd7f7c",
         "type": "github"
       },
       "original": {
@@ -203,7 +237,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1726447378,
         "narHash": "sha256-2yV8nmYE1p9lfmLHhOCbYwQC/W8WYfGQABoGzJOb1JQ=",
@@ -220,7 +254,7 @@
     },
     "race": {
       "inputs": {
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1734175788,
@@ -240,10 +274,11 @@
       "inputs": {
         "agenix": "agenix",
         "bmc": "bmc",
+        "croctalk": "croctalk",
         "home-manager": "home-manager_2",
         "homeage": "homeage",
         "jsonify-aws-dotfiles": "jsonify-aws-dotfiles",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "race": "race",
         "unstable": "unstable"
       }
@@ -265,11 +300,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1737885589,
-        "narHash": "sha256-Zf0hSrtzaM1DEz8//+Xs51k/wdSajticVrATqDrfQjg=",
+        "lastModified": 1738546358,
+        "narHash": "sha256-nLivjIygCiqLp5QcL7l56Tca/elVqM9FG1hGd9ZSsrg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "852ff1d9e153d8875a83602e03fdef8a63f0ecf8",
+        "rev": "c6e957d81b96751a3d5967a0fd73694f303cc914",
         "type": "github"
       },
       "original": {

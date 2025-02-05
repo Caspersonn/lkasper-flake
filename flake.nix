@@ -8,6 +8,7 @@
     bmc.url = "github:wearetechnative/bmc";
     race.url = "github:wearetechnative/race";
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
+    croctalk.url = "github:wearetechnative/croctalk";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -19,7 +20,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, croctalk }:
 
   let 
     importFromChannelForSystem = system: channel: import channel {
@@ -74,6 +75,7 @@
               race.packages."${system}".race
               bmc.packages."${system}".bmc
               jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
+              croctalk.packages."${system}".croctalk
             ];
           };
         in [

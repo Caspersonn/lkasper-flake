@@ -1,0 +1,21 @@
+session: croctalk
+
+root: ~/git/wearetechnative/croctalk
+
+before_start:
+
+stop:
+
+windows:
+  - name: croctalk-code
+    layout: main-horizontal
+    commands:
+      - ner
+  - name: croctalk-run
+    layout: main-horizontal
+    commands:
+      - python project/main.py
+    panes:
+      - type: horizontal
+        commands:
+          - htop
