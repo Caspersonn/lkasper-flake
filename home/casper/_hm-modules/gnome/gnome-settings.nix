@@ -1,6 +1,7 @@
 { ... }:
 
 {
+  home.packages = [ pkgs.dconf ]
   dconf.settings = {
     "org/gnome/desktop/interface/clock-show-weekday" = {
      clock-show-weekday = true;
