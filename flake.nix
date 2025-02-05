@@ -36,6 +36,7 @@
     hostname,
     homedir ? "/home/casper",
     system ? "x86_64-linux",
+    desktop ? true,
     ...
   }:    
   home-manager.lib.homeManagerConfiguration {
@@ -45,6 +46,7 @@
         home.stateVersion = "24.11";
         home.username = username;
         home.homeDirectory = homedir;
+        roles.desktop.enable = desktop;
       }
     ];
     pkgs = importFromChannelForSystem system nixpkgs;
@@ -109,6 +111,14 @@
         hostname = "technative-lucak";
         username = "lucak";
         homedir = "/home/lucak";
+    };
+
+    homeConfigurations."technative-server@linuxdesktop" = makeHomeConf {
+        system = "x86_64-linux";
+        hostname = "technative-lucak";
+        username = "lucak";
+        homedir = "/home/lucak";
+        desktop = false;
     };
 
     homeConfigurations."gaming-casper@linuxdesktop" = makeHomeConf {
