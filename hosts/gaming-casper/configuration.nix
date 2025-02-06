@@ -17,9 +17,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
   networking.hostName = "gaming-casper"; # Define your hostname.
-
 
   # Enable networking
   networking.networkmanager.enable = true;

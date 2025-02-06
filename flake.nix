@@ -4,11 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    mynixpkgs.url = "github:Caspersonn/nixpkgs/master";
     agenix.url = "github:ryantm/agenix";
     bmc.url = "github:wearetechnative/bmc";
     race.url = "github:wearetechnative/race";
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
-
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,9 +17,14 @@
       url = "github:jordanisaacs/homeage";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixtendo-switch = {
+      url = "github:nyawox/nixtendo-switch";
+      # Recommended to not clutter your flake.lock
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, mynixpkgs }:
 
   let 
     importFromChannelForSystem = system: channel: import channel {
@@ -66,6 +71,7 @@
           defaults = { pkgs, ... }: {
             nixpkgs.overlays = [(import ./overlays)];
             _module.args.unstable = importFromChannelForSystem system unstable;
+            _module.args.mynixpkgs = importFromChannelForSystem system mynixpkgs;
           };
 
           extraPkgs = {
@@ -124,6 +130,11 @@
         hostname = "home-casper";
     };
 
+    homeConfigurations."switch-casper@linuxdesktop" = makeHomeConf {
+        system = "x86_64-linux";
+        hostname = "switch-casper";
+    };
+
     ##################
     ## NixOs config ##
     ##################
@@ -139,6 +150,10 @@
     };
     nixosConfigurations.home-casper = makeNixosConf {
       hostname = "home-casper";
+    };
+    nixosConfigurations.switch = makeNixosConf {
+      hostname = "switch-casper";
+      extraModules = [ nixtendo-switch.nixosModules.nixtendo-switch ];
     };
   };
 }

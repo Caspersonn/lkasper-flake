@@ -18,12 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
   networking.hostName = "server-casper"; # Define your hostname.
-  networking.extraHosts =
-    ''
-    192.168.178.95 server-casper.local
-    '';
 
   # Enable networking
   networking.networkmanager.enable = true;

@@ -5,10 +5,10 @@
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./../../modules/secrets-casper.nix
-    #./../../modules/desktop-gnome.nix
-    ./../../modules/desktop-cosmic.nix
+    ./../../modules/desktop-gnome.nix
     ./../../modules/pkgs-essentials.nix
     ./../../modules/pkgs-gaming.nix
+    ./../../modules/pkgs-technative.nix
     ./../../modules/udev-skylanders-portal.nix
     ./../../modules/service-resolved.nix
     ];
@@ -18,17 +18,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
   networking.hostName = "home-casper"; # Define your hostname.
-
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.extraHosts =
-    ''
-    192.168.178.103 home-casper.local
-    '';
-
+  
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
@@ -122,7 +116,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

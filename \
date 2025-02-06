@@ -1,10 +1,10 @@
-{config, lib, pkgs, unstable, mynixpkgs, ... }:
+{config, lib, pkgs, unstable, ... }:
 
 {
   environment.systemPackages = with pkgs; [
   android-tools
   beekeeper-studio
-  mynixpkgs.cemu
+  cemu
 	flatpak
 	gamescope
 	protontricks
