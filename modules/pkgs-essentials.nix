@@ -7,11 +7,10 @@
   filezilla
   firefox
   firejail
-  keepass
   obs-studio
-  obsidian
   onlyoffice-bin
   spotify
+  unstable.spotube # Open-source replacement for spotify
   video-trimmer
   winetricks
 
