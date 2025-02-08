@@ -25,10 +25,10 @@ in
           "firefox.desktop"
           "discord.desktop"
           "slack.desktop"
-          "spotube.desktop"
+          "spotify.desktop"
+          "bitwarden.desktop"
           "org.gnome.Nautilus.desktop"
           "org.gnome.Console.desktop"
-          "obsidian.desktop"
           "org.gnome.settings.desktop"
         ];
       };
