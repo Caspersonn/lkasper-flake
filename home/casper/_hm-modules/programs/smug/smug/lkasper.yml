@@ -5,5 +5,5 @@ root: ~/lkasper-flake
 windows:
   - name: zsh
     layout: main-horizontal
-    commmands:
+    commands:
       - ner
