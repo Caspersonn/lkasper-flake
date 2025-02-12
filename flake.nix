@@ -89,17 +89,13 @@
           };
         in [
             defaults
-            #nixos-hardware.nixosModules.framework-12th-gen-intel
             (./hosts + "/${hostname}/configuration.nix")
-
             agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
             }
-           # cosmic
-            extraPkgs
-
+            extraPkgs 
           ] ++
         extraModules;
     };
@@ -128,6 +124,14 @@
         desktop = false;
     };
 
+    homeConfigurations."dreammachine-luca@linuxdesktop" = makeHomeConf {
+        system = "x86_64-linux";
+        hostname = "server-casper";
+        username = "luca";
+        homedir = "/home/luca";
+        desktop = false;
+    };
+
     homeConfigurations."gaming-casper@linuxdesktop" = makeHomeConf {
         system = "x86_64-linux";
         hostname = "gaming-casper";
@@ -136,6 +140,7 @@
     homeConfigurations."server-casper@linuxdesktop" = makeHomeConf {
         system = "x86_64-linux";
         hostname = "server-casper";
+        desktop = false;
     };
 
     homeConfigurations."home-casper@linuxdesktop" = makeHomeConf {

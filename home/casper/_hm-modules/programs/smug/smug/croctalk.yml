@@ -14,7 +14,7 @@ windows:
   - name: croctalk-run
     layout: main-horizontal
     commands:
-      - python project/main.py
+      - python -m croctalk.main
     panes:
       - type: horizontal
         commands:

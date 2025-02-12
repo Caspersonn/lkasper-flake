@@ -12,7 +12,7 @@
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
-    WorkingDirectory = "/run/agenix/";
+      WorkingDirectory = "/run/agenix/";
       ExecStart = "${config.system.path}/bin/croctalk";
       Restart = "always";
       EnvironmentFile = config.age.secrets.".env".path;

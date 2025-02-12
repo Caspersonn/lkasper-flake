@@ -1,0 +1,10 @@
+session: workloads
+
+root: ~/git/technative_b.v./technative-awsaccounts-workloads
+
+windows:
+  - name: zsh
+    layout: main-horizontal
+    panes:
+      - type: horizontal
+

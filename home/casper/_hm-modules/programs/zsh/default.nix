@@ -1,4 +1,4 @@
-{config,pkgs,...}: 
+{ config, pkgs, ...}: 
 let
   zoxide = ./zoxide;
 in
@@ -10,7 +10,7 @@ programs.zsh = {
 	syntaxHighlighting.enable = true;
 	shellAliases = {
   tfplan = "$HOME/git/wearetechnative/race/tfplan.sh";
-	tfswitch = "tfswitch -b $HOME/bin/terraform";
+	tfswitch = "mkdir -p ~/bin ; tfswitch -b $HOME/bin/terraform";
 	tfapply = "$HOME/git/wearetechnative/race/tfapply.sh";
 	tfdestroy = "$HOME/git/wearetechnative/race/tfdestroy.sh";
   aws-switch = ". $HOME/git/wearetechnative/bmc/aws-profile-select.sh";

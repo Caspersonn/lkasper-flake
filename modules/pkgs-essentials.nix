@@ -16,6 +16,7 @@
 
   # Essential NON-GUI applications
 	gh
+  android-tools
   autojump
   avahi
   lsof
@@ -41,6 +42,7 @@
   nodejs
   mailutils
   node2nix
+  open-scq30
   pre-commit
   ruby
   smug
