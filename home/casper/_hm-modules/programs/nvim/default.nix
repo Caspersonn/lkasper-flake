@@ -18,4 +18,5 @@ in
         plugins = with pkgs.vimPlugins; [
         ];
       };
+      programs.neovim.withNodeJs = true;
     }
