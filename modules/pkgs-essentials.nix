@@ -17,7 +17,6 @@
   # Essential NON-GUI applications
 	gh
   android-tools
-  autojump
   avahi
   lsof
   libusb1
@@ -27,9 +26,7 @@
   epson-escpr
   epson-escpr2
   f3
-  fzf
   gcc
-  git
   git-sync
   gnumake42
   go
@@ -51,7 +48,6 @@
   unzip
   usbutils
   wl-clipboard
-  zoxide
   zsh
   ];
 }

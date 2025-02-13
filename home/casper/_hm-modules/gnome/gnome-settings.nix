@@ -37,8 +37,6 @@ in
         disable-user-extensions = false;
         enabled-extensions = [
           "night-light-slider-updated@vilsbeg.codeberg.org"
-          "unite@hardpixel.eu"
-          "arcmenu@arcmenu.com"
           "dash-to-panel@jderose9.github.com"
           "display-brightness-ddcutil@themightydeity.github.com"
       ];
@@ -61,6 +59,8 @@ in
       "org/gnome/shell/extensions/unite" = {
         show-appmenu-button = false;
         extend-left-box = false;
+        restrict-to-primary-screen = false;
+        window-buttons-placement = "right";
       };
 
       "org/gnome/desktop/wm/preferences" = {
@@ -76,11 +76,16 @@ in
       };
 
       "org/gnome/shell/extensions/dash-to-panel" = {
-        panel-element-positions =  ''{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'';
+        panel-element-positions = ''{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"centerMonitor"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"1":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"centerMonitor"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'';
         trans-use-custom-opacity = true;
         trans-use-dynamic-opacity = true;
         trans-dynamic-behavior = "MAXIMIZED_WINDOWS";
+        panel-positions = ''{"0":"BOTTOM","1":"BOTTOM"}'';
+        dot-style-focused = "DASHES";
       };
     };
   };
 }
+
+
+

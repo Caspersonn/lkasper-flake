@@ -1,12 +1,9 @@
 { config, pkgs, ...}: 
-let
-  zoxide = ./zoxide;
-in
 {
 
 programs.zsh = {
 	enable = true;
-    autosuggestion.enable = true;
+  autosuggestion.enable = true;
 	syntaxHighlighting.enable = true;
 	shellAliases = {
   tfplan = "$HOME/git/wearetechnative/race/tfplan.sh";
@@ -18,19 +15,16 @@ programs.zsh = {
 	ner = "vi -c NERDTree";
 	};
 	initExtra = '' 
-eval "$(zoxide init zsh)"
-source ${zoxide}
 PATH=$HOME/bin:$PATH 
 	'';
 	oh-my-zsh = {
-        enable = true;
+    enable = true;
 		theme = "robbyrussell";
     custom = "./custom-theme";
 		plugins = [
 		  "git"
 		  "aws"
 		  "fzf"
-		  "node"
 		  "autojump"
 		  "dirhistory"
       "terraform"
