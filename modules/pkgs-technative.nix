@@ -32,6 +32,7 @@
   remmina
   slack
   silver-searcher
+  seafile-client
   quarto
   terraform-ls
 	(python311.withPackages(ps: with ps; [ 
@@ -45,6 +46,8 @@
   openai-whisper
   pydub
   python-dotenv
+  pylint
+  jedi
   requests
   tiktoken
   telegram-text

@@ -16,9 +16,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices."luks-9e8b0750-0a82-4fbf-b32b-1b78e8c312cc".device = "/dev/disk/by-uuid/9e8b0750-0a82-4fbf-b32b-1b78e8c312cc";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
 
   networking.hostName = "technative-lucak"; # Define your hostname.
 
@@ -46,6 +44,11 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
+  hardware.graphics = {
+  enable = true;
+  enable32Bit = true;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {

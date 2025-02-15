@@ -4,30 +4,30 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = 
+  imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/48fa2886-7d1f-455c-93b0-4ae79b873968";
+    { device = "/dev/disk/by-uuid/fc0c11d3-6aba-4115-8d00-22bbcff07044";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-e7b5fa54-a973-439a-bb4d-3d7c5afc1caa".device = "/dev/disk/by-uuid/e7b5fa54-a973-439a-bb4d-3d7c5afc1caa";
+  boot.initrd.luks.devices."luks-301debfe-a3d6-4e65-bba8-24100c355769".device = "/dev/disk/by-uuid/301debfe-a3d6-4e65-bba8-24100c355769";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/8BAE-4C36";
+    { device = "/dev/disk/by-uuid/0EA4-C81A";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/c9f2d7fd-91d1-4f0e-a78d-a3de3707394a"; }
+    [ { device = "/dev/disk/by-uuid/e6194460-30fa-467f-8dd7-ce8041117abf"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -35,9 +35,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
-

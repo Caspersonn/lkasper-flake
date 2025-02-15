@@ -7,11 +7,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'hashivim/vim-terraform'
   Plug 'LnL7/vim-nix'
   Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
-  Plug 'ajmwagar/vim-deus'
+  "Plug 'ajmwagar/vim-deus' " Old colorscheme
+  "Plug 'zenbones-theme/zenbones.nvim' " New colorscheme
+  Plug 'junegunn/seoul256.vim'
   Plug 'airblade/vim-gitgutter'
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'linden-project/linny.vim'
-
+  Plug 'rktjmp/lush.nvim'
+  Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -19,6 +22,7 @@ call plug#end()
 nmap ,, :NERDTreeFind <CR>
 nmap ,b :Buffers
 nmap ,n :NERDTree <CR>
+
 set number
 set hlsearch    " highlight matches
 set ignorecase  " searches are case insensitive...
@@ -34,12 +38,14 @@ let NERDTreeShowBookmarks=1
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['^\.DS_Store$', '\.dat.nosync', '\.swp', '\.repl_history', '\.cxx', '\.cxx_parameters' ]
 let NERDTreeChDirMode=2
-"let g:NERDTreeWinSize=50
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 0
+
+" Set color scheme
 set termguicolors     " enable true colors support
-set background="dark"   " for dark
-colorscheme deus
+set background=dark
+let g:seoul256_background = 235
+colorscheme seoul256
 
 " Change update time for GitGutter "
 set updatetime=100
@@ -52,7 +58,6 @@ let g:coc_global_extensions = [
   \ 'coc-eslint', 
   \ 'coc-prettier', 
   \ 'coc-json', 
-  \ 'coc-python',
   \ 'coc-html',
   \ ]
 

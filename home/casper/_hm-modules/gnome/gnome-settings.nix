@@ -39,6 +39,7 @@ in
           "night-light-slider-updated@vilsbeg.codeberg.org"
           "dash-to-panel@jderose9.github.com"
           "display-brightness-ddcutil@themightydeity.github.com"
+          "multi-monitor-add-on@spin83.github.com"
       ];
     };
 
@@ -69,6 +70,7 @@ in
 
       "org/gnome/shell/extensions/nightlightsliderupdated" = {
         enable-always = true;  
+        show-always = true;
       };
 
       "org/gnome/Console" = {

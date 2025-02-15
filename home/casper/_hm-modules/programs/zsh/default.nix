@@ -15,8 +15,9 @@ programs.zsh = {
 	ner = "vi -c NERDTree";
 	};
 	initExtra = '' 
-PATH=$HOME/bin:$PATH 
+    PATH=$HOME/bin:$PATH 
 	'';
+
 	oh-my-zsh = {
     enable = true;
 		theme = "robbyrussell";
