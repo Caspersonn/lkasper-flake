@@ -11,6 +11,7 @@
     ./../../modules/docker.nix
     ./../../modules/service-vaultwarden.nix
     ./../../modules/service-resolved.nix
+    ./../../modules/service-tailscale.nix
     ];
 
   # Bootloader.

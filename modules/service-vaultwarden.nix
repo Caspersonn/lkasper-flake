@@ -1,6 +1,8 @@
 {config, lib, pkgs, agenix, unstable, ... }:
 	
 {
+  services.nginx.enable = true;
+  
   services.vaultwarden = {
     enable = true;
     #environmentFile = xxx; # Needs to be changed
