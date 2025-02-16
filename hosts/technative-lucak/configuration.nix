@@ -9,7 +9,7 @@
     ./../../modules/pkgs-technative.nix
     ./../../modules/pkgs-essentials.nix
     ./../../modules/service-resolved.nix
-    #./../../modules/service-croctalk.nix
+    ./../../modules/service-tailscale.nix
     ./../../modules/docker.nix
   ];
 

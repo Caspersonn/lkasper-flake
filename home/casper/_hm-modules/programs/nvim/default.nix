@@ -8,6 +8,8 @@ in
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
+      withPython3 = true;
+      withNodeJs = true
       extraConfig = ''
           source ${nvim}/plug.vim
           source ${nvim}/neovim.vim
@@ -18,7 +20,6 @@ in
       plugins = with pkgs.vimPlugins; [
       ];
     };
-    programs.neovim.withNodeJs = true;
 
     home.packages = [
       pkgs.terraform-ls

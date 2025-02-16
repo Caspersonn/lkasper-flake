@@ -3,6 +3,12 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    nerdfonts
+    (pkgs.nerdfonts.override {
+      fonts = [
+        "IBMPlexMono"
+        "Iosevka"
+        "IosevkaTerm"
+      ];
+    })
   ];
 }

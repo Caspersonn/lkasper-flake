@@ -9,6 +9,7 @@
     ./../../modules/pkgs-essentials.nix
     ./../../modules/pkgs-gaming.nix
     ./../../modules/service-resolved.nix
+    ./../../modules/service-tailscale.nix
     ./../../modules/udev-skylanders-portal.nix
     ];
 

@@ -37,6 +37,7 @@
   lsof
   neovim
   nodejs
+  nerdfonts
   mailutils
   node2nix
   open-scq30

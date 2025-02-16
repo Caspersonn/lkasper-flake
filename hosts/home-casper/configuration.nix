@@ -11,6 +11,7 @@
     ./../../modules/pkgs-technative.nix
     ./../../modules/udev-skylanders-portal.nix
     ./../../modules/service-resolved.nix
+    ./../../modules/service-tailscale.nix
     ];
 
   # Bootloader.
@@ -22,6 +23,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  fonts.fontDir.enable = true;
   
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";

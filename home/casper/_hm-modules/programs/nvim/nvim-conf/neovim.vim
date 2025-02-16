@@ -41,6 +41,10 @@ let NERDTreeChDirMode=2
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 0
 
+set encoding=UTF-8
+let g:webdevicons_enable_nerdtree = 1
+set guifont=DroidSansMono\ Nerd\ Font\ 11
+
 " Set color scheme
 set termguicolors     " enable true colors support
 set background=dark
