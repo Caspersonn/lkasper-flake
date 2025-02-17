@@ -9,7 +9,7 @@ in
       viAlias = true;
       vimAlias = true;
       withPython3 = true;
-      withNodeJs = true
+      withNodeJs = true;
       extraConfig = ''
           source ${nvim}/plug.vim
           source ${nvim}/neovim.vim
