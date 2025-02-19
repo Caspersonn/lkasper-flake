@@ -46,9 +46,18 @@
   services.xserver.enable = true;
 
   hardware.graphics = {
-  enable = true;
-  enable32Bit = true;
+    enable = true;
+    enable32Bit = true;
   };
+
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
+  };
+
+  services.fprintd.enable = true;
+
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix-550a;
 
   # Configure keymap in X11
   services.xserver.xkb = {

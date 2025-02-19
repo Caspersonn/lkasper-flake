@@ -8,6 +8,8 @@
         "IBMPlexMono"
         "Iosevka"
         "IosevkaTerm"
+        "DroidSansMono"
+        "FiraCode"
       ];
     })
   ];

@@ -13,6 +13,7 @@ in
       extraConfig = ''
           source ${nvim}/plug.vim
           source ${nvim}/neovim.vim
+          source ${nvim}/init.lua
           nnoremap <space>a :qa!<cr>
           nnoremap <space>t :NERDTree<cr>
           nnoremap <space>f :Ag<cr>

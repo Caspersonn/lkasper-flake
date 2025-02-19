@@ -7,21 +7,31 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'hashivim/vim-terraform'
   Plug 'LnL7/vim-nix'
   Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
-  "Plug 'ajmwagar/vim-deus' " Old colorscheme
-  "Plug 'zenbones-theme/zenbones.nvim' " New colorscheme
-  Plug 'junegunn/seoul256.vim'
+  Plug 'sainnhe/gruvbox-material' " New theme
+  Plug 'junegunn/seoul256.vim' 
   Plug 'airblade/vim-gitgutter'
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'linden-project/linny.vim'
   Plug 'rktjmp/lush.nvim'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'robitx/gp.nvim'
 
 call plug#end()
 
 " General settings "
+nnoremap <space>a :qa!<CR>
+nnoremap <space>t :NERDTree<CR>
+nnoremap <space>f :Ag<CR>
 nmap ,, :NERDTreeFind <CR>
-nmap ,b :Buffers
-nmap ,n :NERDTree <CR>
+nmap ,b :Buffers <CR>
+
+" Tabs
+nmap ,n :tabnew <CR>
+nmap ,m :tabclose <CR>
+
+" AI Chats
+nmap ,g :GpChatNew popup <CR>
+nmap ,t :GpChatToggle popup <CR>
 
 set number
 set hlsearch    " highlight matches
@@ -43,13 +53,15 @@ let NERDTreeMinimalUI = 0
 
 set encoding=UTF-8
 let g:webdevicons_enable_nerdtree = 1
-set guifont=DroidSansMono\ Nerd\ Font\ 11
+set guifont=Inconsolata\ 12
+"set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 " Set color scheme
 set termguicolors     " enable true colors support
 set background=dark
-let g:seoul256_background = 235
-colorscheme seoul256
+let g:gruvbox_material_background = 'soft'
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
 
 " Change update time for GitGutter "
 set updatetime=100

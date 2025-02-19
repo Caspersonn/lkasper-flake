@@ -1,4 +1,4 @@
-{config, lib, pkgs, toggl-cli, unstable, ... }:
+{config, lib, pkgs, unstable, ... }:
 	
 {
   environment.systemPackages = with pkgs; [
@@ -51,6 +51,7 @@
   requests
   tiktoken
   telegram-text
+  toggl-cli
   python-telegram-bot
   ]))
   ];
