@@ -53,14 +53,11 @@ let NERDTreeMinimalUI = 0
 
 set encoding=UTF-8
 let g:webdevicons_enable_nerdtree = 1
-set guifont=Inconsolata\ 12
-"set guifont=DroidSansMono\ Nerd\ Font\ 11
+set guifont=DroidSansMono\ Nerd\ Font\ 11
 
-" Set color scheme
 set termguicolors     " enable true colors support
 set background=dark
 let g:gruvbox_material_background = 'soft'
-let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
 
 " Change update time for GitGutter "

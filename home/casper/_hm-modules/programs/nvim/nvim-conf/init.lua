@@ -14,12 +14,12 @@ local conf = {
     }, 
     ollama = { 
       disable = false, 
-      endpoint = "http://192.168.178.49:11434/v1/chat/completions", 
-      secret = "", 
+      endpoint = "http://ollama.ainative.eu:7070/v1/chat/completions", 
+      secret = { "cat", "/home/lucak/.config/nvim/.env" }, 
     } 
   }, 
   default_command_agent = "qwen2.5-coder",
-  default_chat_agent = "qwen2.5-coder",
+  default_chat_agent = "qwen2.5",
   agents = {
     {
 			provider = "ollama",
@@ -28,6 +28,19 @@ local conf = {
 			command = true,
 			model = {
 				model = "qwen2.5-coder:14b",
+				temperature = 0.6,
+				top_p = 1,
+				min_p = 0.05,
+			},
+			system_prompt = "You are a general Code AI assistant.",
+		},
+    {
+			provider = "ollama",
+			name = "qwen2.5",
+			chat = true,
+			command = true,
+			model = {
+				model = "qwen2.5:7b",
 				temperature = 0.6,
 				top_p = 1,
 				min_p = 0.05,
