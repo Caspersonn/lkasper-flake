@@ -1,19 +1,19 @@
 call plug#begin('~/.local/share/nvim/plugged')
   Plug 'preservim/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'ryanoasis/vim-devicons'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/fzf'
   Plug 'hashivim/vim-terraform'
   Plug 'LnL7/vim-nix'
   Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
-  Plug 'sainnhe/gruvbox-material' " New theme
+  Plug 'sainnhe/gruvbox-material'
   Plug 'junegunn/seoul256.vim' 
   Plug 'airblade/vim-gitgutter'
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'linden-project/linny.vim'
   Plug 'rktjmp/lush.nvim'
-  Plug 'ryanoasis/vim-devicons'
   Plug 'robitx/gp.nvim'
 
 call plug#end()
@@ -51,14 +51,16 @@ let NERDTreeChDirMode=2
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 0
 
-set encoding=UTF-8
-let g:webdevicons_enable_nerdtree = 1
-set guifont=DroidSansMono\ Nerd\ Font\ 11
-
+" Set colorscheme
 set termguicolors     " enable true colors support
 set background=dark
 let g:gruvbox_material_background = 'soft'
 colorscheme gruvbox-material
+
+" Set vim-devicons
+set guifont=DroidSansMono\ Nerd\ Font\ 11
+set encoding=UTF-8
+let g:webdevicons_enable_nerdtree = 1
 
 " Change update time for GitGutter "
 set updatetime=100
