@@ -10,8 +10,13 @@
 	protontricks
 	rpcs3
 	steam-tui
-	wine
+  steam
+  stremio
+  wine64Packages.unstableFull
+  wineWow64Packages.unstableFull
   discord
+  ddcutil
+  ddcui
   gamemode
   goverlay
   lutris
@@ -21,9 +26,12 @@
   protonplus
   ps3iso-utils
   heroic
+  radeontop
   unstable.multiviewer-for-f1
   vulkan-tools
+  appimage-run
   ];
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play

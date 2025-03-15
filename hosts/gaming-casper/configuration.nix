@@ -11,6 +11,8 @@
     ./../../modules/service-resolved.nix
     ./../../modules/service-tailscale.nix
     ./../../modules/udev-skylanders-portal.nix
+    ./../../modules/service-coolerd.nix
+    ./../../modules/ollama.nix
     ];
 
   # Bootloader.
@@ -43,11 +45,10 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  #services.xserver.videoDrivers = [ "amdgpu" ];
-  hardware.opengl = {
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  hardware.graphics = {
   enable = true;
-  driSupport = true;
+  enable32Bit = true;
   };
 
   # Configure keymap in X11
