@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    mynixpkgs.url = "github:Caspersonn/nixpkgs/master";
     agenix.url = "github:ryantm/agenix";
     bmc.url = "github:wearetechnative/bmc";
     race.url = "github:wearetechnative/race";
@@ -25,7 +24,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, croctalk, mynixpkgs }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, croctalk }:
 
 
   let 
@@ -75,7 +74,6 @@
           defaults = { pkgs, ... }: {
             nixpkgs.overlays = [(import ./overlays)];
             _module.args.unstable = importFromChannelForSystem system unstable;
-            _module.args.mynixpkgs = importFromChannelForSystem system mynixpkgs;
           };
 
           extraPkgs = {

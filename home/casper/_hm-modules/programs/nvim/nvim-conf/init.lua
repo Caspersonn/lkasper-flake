@@ -15,7 +15,7 @@ local conf = {
     ollama = { 
       disable = false, 
       endpoint = "http://ollama.ainative.eu:7070/v1/chat/completions", 
-      secret = { "cat", "/home/lucak/.config/nvim/.env" }, 
+      secret = { "cat", "/home/casper/.config/nvim/.env" }, 
     } 
   }, 
   default_command_agent = "qwen2.5-coder",

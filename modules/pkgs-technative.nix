@@ -26,7 +26,8 @@
   nchat
   neofetch
   nodePackages.live-server
-  nodejs_22
+  nodejs_18
+  redis
   matterbridge
   rbw
   remmina

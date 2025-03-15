@@ -176,22 +176,6 @@
         "type": "github"
       }
     },
-    "mynixpkgs": {
-      "locked": {
-        "lastModified": 1738856177,
-        "narHash": "sha256-Hev8+HftKhmCos+vae2UMnpVQYen++iGw4qlYJlwZk0=",
-        "owner": "Caspersonn",
-        "repo": "nixpkgs",
-        "rev": "e4bb5bc66dff57433f5becfe054e768399e6a0e8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Caspersonn",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1703013332,
@@ -350,7 +334,6 @@
         "home-manager": "home-manager_2",
         "homeage": "homeage",
         "jsonify-aws-dotfiles": "jsonify-aws-dotfiles",
-        "mynixpkgs": "mynixpkgs",
         "nixpkgs": "nixpkgs_5",
         "nixtendo-switch": "nixtendo-switch",
         "race": "race",

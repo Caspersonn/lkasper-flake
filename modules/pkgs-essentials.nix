@@ -7,10 +7,11 @@
   filezilla
   firefox
   firejail
+  ghostty
   obs-studio
   onlyoffice-bin
   spotify
-  unstable.spotube # Open-source replacement for spotify
+  librewolf
   video-trimmer
   winetricks
 
@@ -36,7 +37,6 @@
   jq
   lsof
   neovim
-  nodejs
   nerdfonts
   mailutils
   node2nix

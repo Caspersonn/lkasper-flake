@@ -28,7 +28,7 @@ in
           "spotify.desktop"
           "bitwarden.desktop"
           "org.gnome.Nautilus.desktop"
-          "org.gnome.Console.desktop"
+          "com.mitchellh.ghostty.desktop"
           "org.gnome.settings.desktop"
         ];
       };
@@ -71,10 +71,6 @@ in
       "org/gnome/shell/extensions/nightlightsliderupdated" = {
         enable-always = true;  
         show-always = true;
-      };
-
-      "org/gnome/Console" = {
-        font-scale = 1.1;
       };
 
       "org/gnome/shell/extensions/dash-to-panel" = {

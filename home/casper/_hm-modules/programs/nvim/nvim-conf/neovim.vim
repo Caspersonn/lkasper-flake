@@ -74,6 +74,7 @@ let g:coc_global_extensions = [
   \ 'coc-prettier', 
   \ 'coc-json', 
   \ 'coc-html',
+  \ 'coc-go',
   \ ]
 
 

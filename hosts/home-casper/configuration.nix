@@ -7,17 +7,21 @@
     ./../../modules/secrets-casper.nix
     ./../../modules/desktop-gnome.nix
     ./../../modules/pkgs-essentials.nix
-    ./../../modules/pkgs-gaming.nix
     ./../../modules/pkgs-technative.nix
     ./../../modules/udev-skylanders-portal.nix
     ./../../modules/service-resolved.nix
     ./../../modules/service-tailscale.nix
+    ./../../modules/docker.nix
+    ./../../modules/service-smb.nix
+    ./../../modules/service-redis_psql_twenty.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  boot.initrd.luks.devices."luks-a295b140-6310-4699-9853-1ad5af5747f0".device = "/dev/disk/by-uuid/a295b140-6310-4699-9853-1ad5af5747f0";
 
   networking.hostName = "home-casper"; # Define your hostname.
 
@@ -93,7 +97,7 @@
   users.users.casper = {
     isNormalUser = true;
     description = "Luca Kasper";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   # packages = with pkgs; [
   # ];
   };
@@ -125,7 +129,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

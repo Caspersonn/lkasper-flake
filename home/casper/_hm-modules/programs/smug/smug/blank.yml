@@ -2,9 +2,14 @@ session: blank
 
 root: ~/
 
-windows:
-  - name: zsh
+windows:  
+  - name: blank-1
     layout: main-horizontal
     panes:
       - type: horizontal
+  - name: blank-2
+    layout: main-horizontal
+    panes:
+      - type: horizontal
+
 
