@@ -12,7 +12,6 @@
     ./../../modules/service-tailscale.nix
     ./../../modules/udev-skylanders-portal.nix
     ./../../modules/service-coolerd.nix
-    ./../../modules/ollama.nix
     ];
 
   # Bootloader.
