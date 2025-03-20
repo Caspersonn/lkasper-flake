@@ -9,6 +9,7 @@
     race.url = "github:wearetechnative/race";
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
     croctalk.url = "github:wearetechnative/croctalk";
+    slack2zammad.url = "git+file:///home/casper/git/wearetechnative/slack2zammad";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +25,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, croctalk }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, croctalk, slack2zammad }:
 
 
   let 
@@ -83,12 +84,14 @@
               bmc.packages."${system}".bmc
               jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
               croctalk.packages."${system}".croctalk
+              slack2zammad.packages."${system}".slack2zammad
             ];
           };
         in [
             defaults
             (./hosts + "/${hostname}/configuration.nix")
             agenix.nixosModules.default
+            slack2zammad.nixosModules.${system}.slack2zammad
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -107,11 +110,11 @@
     ## HomeManager config ##
     ########################
 
-    homeConfigurations."technative-lucak@linuxdesktop" = makeHomeConf {
+    homeConfigurations."technative-casper@linuxdesktop" = makeHomeConf {
         system = "x86_64-linux";
-        hostname = "technative-lucak";
-        username = "lucak";
-        homedir = "/home/lucak";
+        hostname = "technative-casper";
+        username = "casper";
+        homedir = "/home/casper";
     };
 
     homeConfigurations."technative-server@linuxdesktop" = makeHomeConf {
@@ -155,8 +158,8 @@
     ## NixOs config ##
     ##################
 
-    nixosConfigurations.technative-lucak = makeNixosConf {
-      hostname = "technative-lucak";
+    nixosConfigurations.technative-casper = makeNixosConf {
+      hostname = "technative-casper";
     };
     nixosConfigurations.gaming-casper = makeNixosConf {
       hostname = "gaming-casper";

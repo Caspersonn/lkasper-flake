@@ -22,7 +22,7 @@ in
 
       "org/gnome/shell" = {
         favorite-apps = [
-          "librewolf.desktop"
+          "firefox.desktop"
           "discord.desktop"
           "slack.desktop"
           "spotify.desktop"

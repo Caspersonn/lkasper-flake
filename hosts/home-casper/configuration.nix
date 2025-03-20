@@ -14,6 +14,7 @@
     ./../../modules/docker.nix
     ./../../modules/service-smb.nix
     ./../../modules/service-redis_psql_twenty.nix
+    ./../../modules/service-slack2zammad.nix
     ];
 
   # Bootloader.
@@ -69,6 +70,8 @@
 
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ epson-escpr2 epson-escpr ];
+
+  services.hardware.bolt.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;

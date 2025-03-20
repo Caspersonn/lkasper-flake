@@ -258,11 +258,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1738702386,
-        "narHash": "sha256-nJj8f78AYAxl/zqLiFGXn5Im1qjFKU8yBPKoWEeZN5M=",
+        "lastModified": 1742268799,
+        "narHash": "sha256-IhnK4LhkBlf14/F8THvUy3xi/TxSQkp9hikfDZRD4Ic=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "030ba1976b7c0e1a67d9716b17308ccdab5b381e",
+        "rev": "da044451c6a70518db5b730fe277b70f494188f1",
         "type": "github"
       },
       "original": {
@@ -285,6 +285,21 @@
         "id": "nixpkgs",
         "ref": "nixos-24.05",
         "type": "indirect"
+      }
+    },
+    "nixpkgs_7": {
+      "locked": {
+        "lastModified": 1731433363,
+        "narHash": "sha256-LXEUxBNzejjF+bvqp348FCan2dfTVrVHVVGnTGVOBtw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a0292698ca0f125f1f78e3ecc9c0a2cafb870137",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixtendo-switch": {
@@ -337,7 +352,26 @@
         "nixpkgs": "nixpkgs_5",
         "nixtendo-switch": "nixtendo-switch",
         "race": "race",
+        "slack2zammad": "slack2zammad",
         "unstable": "unstable"
+      }
+    },
+    "slack2zammad": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1742373490,
+        "narHash": "sha256-rvvcIvSura1RqbqfRt4xxHnR1IepvNVNNsqF12d+/hU=",
+        "ref": "refs/heads/main",
+        "rev": "1f72f44d69a7c6832fc9f22eb2595d6bf76f4599",
+        "revCount": 11,
+        "type": "git",
+        "url": "file:///home/casper/git/wearetechnative/slack2zammad"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/casper/git/wearetechnative/slack2zammad"
       }
     },
     "systems": {

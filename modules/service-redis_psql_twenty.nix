@@ -3,12 +3,16 @@
 {
   services.postgresql = {
     enable = true;
+    package = pkgs.postgresql_15;
     enableTCPIP = true;
     ensureUsers = [ { name = "postgres"; } ]; 
     settings = {
         port = 5432;
         ssl = false;
     };
+    extensions = ps: with ps; [
+      pgvector
+    ];
     authentication = ''
     #type database DBuser origin-address auth-method
     # ipv4 from everywhere (including dockers) firewall and SG blocks real outside connections

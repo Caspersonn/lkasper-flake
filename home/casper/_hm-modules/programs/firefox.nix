@@ -3,7 +3,7 @@
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.librewolf;
+    package = pkgs.firefox;
     policies.ExtensionSettings = {
       "uBlock0@raymondhill.net" = {
         install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpl";
@@ -24,59 +24,77 @@
       preferences = {
         "browser.toolbars.bookmarks.visibility" = false;
         "browser.bookmarks.addedImportButton" = false;
+        "webgl.disabled" = false;
+        "privacy.resistFingerprinting" = false;
+        "privacy.clearOnShutdown.history" = false;
+        "privacy.clearOnShutdown.cookies" = false;
+        "network.cookie.lifetimePolicy" = 0;
+        "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
         "browser.newtabpage.pinned" = [{
           title = "YouTube";
           url = "https://youtube.com";
-        }
-        {
-          title = "Outlook";
-          url = "https://outlook.com";
         }];
       };
-      #profiles = {
-      #  personal = {
-      #    id = 1;
-      #    name = "personal";
-      #    isDefault = true;
-      #    settings = {
-      #      "browser.newtabpage.pinned" = [{
-      #        title = "YouTube";
-      #        url = "https://youtube.com";
-      #      }
-      #      {
-      #        title = "Gmail";
-      #        url = "https://gmail.com";
-      #      }];
-      #    };
-      #  };
-      #  work = {
-      #    id = 2;
-      #    name = "work";
-      #    isDefault = false;
-      #    settings = {
-      #      "browser.newtabpage.pinned" = [{
-      #        title = "YouTube";
-      #        url = "https://youtube.com";
-      #      }
-      #      {
-      #        title = "Outlook";
-      #        url = "https://outlook.com";
-      #      }];
-      #    };
-      #  };
-      #};
+      profiles = {
+        personal = {
+          id = 1;
+          name = "personal";
+          isDefault = true;
+          settings = {
+            "browser.toolbars.bookmarks.visibility" = false;
+            "browser.bookmarks.addedImportButton" = false;
+            "webgl.disabled" = false;
+            "privacy.resistFingerprinting" = false;
+            "privacy.clearOnShutdown.history" = false;
+            "privacy.clearOnShutdown.cookies" = false;
+            "network.cookie.lifetimePolicy" = 0;
+            "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+            "browser.newtabpage.pinned" = [{
+              title = "YouTube";
+              url = "https://youtube.com";
+            }
+            {
+              title = "Gmail";
+              url = "https://gmail.com";
+            }];
+          };
+        };
+        work = {
+          id = 2;
+          name = "work";
+          isDefault = false;
+          settings = {
+            "browser.toolbars.bookmarks.visibility" = false;
+            "browser.bookmarks.addedImportButton" = false;
+            "webgl.disabled" = false;
+            "privacy.resistFingerprinting" = false;
+            "privacy.clearOnShutdown.history" = false;
+            "privacy.clearOnShutdown.cookies" = false;
+            "network.cookie.lifetimePolicy" = 0;
+            "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+            "browser.newtabpage.pinned" = [{
+              title = "YouTube";
+              url = "https://youtube.com";
+            }
+            {
+              title = "Outlook";
+              url = "https://outlook.com";
+            }];
+          };
+        };
+      };
     };
   };
 
-  #programs.librewolf = {
-  #  enable = true;
-  #  # Enable WebGL, cookies and history
-  #  settings = {
-  #    "webgl.disabled" = false;
-  #    "privacy.resistFingerprinting" = false;
-  #    "privacy.clearOnShutdown.history" = false;
-  #    "privacy.clearOnShutdown.cookies" = false;
-  #    "network.cookie.lifetimePolicy" = 0;
-  #  };
-  #};
+  programs.librewolf = {
+    enable = true;
+    # Enable WebGL, cookies and history
+    settings = {
+      "webgl.disabled" = false;
+      "privacy.resistFingerprinting" = false;
+      "privacy.clearOnShutdown.history" = false;
+      "privacy.clearOnShutdown.cookies" = false;
+      "network.cookie.lifetimePolicy" = 0;
+    };
+  };
 }

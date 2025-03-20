@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./../../modules/secrets-lucak.nix
+    ./../../modules/secrets-casper.nix
     ./../../modules/desktop-gnome.nix
     ./../../modules/pkgs-technative.nix
     ./../../modules/pkgs-essentials.nix
@@ -18,7 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "technative-lucak"; # Define your hostname.
+  networking.hostName = "technative-casper"; # Define your hostname.
 
 
   # Enable networking
@@ -92,7 +92,7 @@
 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.lucak = {
+  users.users.casper = {
     isNormalUser = true;
     description = "Luca Kasper";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -101,7 +101,7 @@
   };
 
   users.defaultUserShell = pkgs.zsh;
-  users.users.lucak = {
+  users.users.casper = {
     shell = pkgs.zsh;
   };
 

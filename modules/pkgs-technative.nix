@@ -6,7 +6,7 @@
 	awscli
   aws-nuke
 	gh
-  postgresql
+  postgresql_15
 	ssm-session-manager-plugin
 	teams-for-linux
 	terraform
