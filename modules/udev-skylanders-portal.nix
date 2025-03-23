@@ -22,6 +22,11 @@ KERNEL=="hidraw*", KERNELS=="*054C:09CC*", MODE="0666"
 # Sysdvr
 SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="4ee0", MODE="0666"
 
+# ddcui
+SUBSYSTEM=="i2c-dev", KERNEL=="i2c-[0-9]*", ATTRS{class}=="0x030000", TAG+="uaccess"
+SUBSYSTEM=="dri", KERNEL=="card[0-9]*", TAG+="uaccess"
+
+
     '';
   };
 }

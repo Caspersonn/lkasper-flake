@@ -9,7 +9,9 @@
     race.url = "github:wearetechnative/race";
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
     croctalk.url = "github:wearetechnative/croctalk";
-    slack2zammad.url = "git+file:///home/casper/git/wearetechnative/slack2zammad";
+    nixpkgs-cosmic.follows = "nixos-cosmic/nixpkgs";
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    stylix.url = "github:danth/stylix/release-24.11";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,12 +22,11 @@
     };
     nixtendo-switch = {
       url = "github:nyawox/nixtendo-switch";
-      # Recommended to not clutter your flake.lock
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, croctalk, slack2zammad }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, croctalk, nixpkgs-cosmic, nixos-cosmic, stylix }:
 
 
   let 
@@ -47,7 +48,8 @@
   }:    
   home-manager.lib.homeManagerConfiguration {
     modules = [
-      (import ./home/casper)
+      stylix.homeManagerModules.stylix
+      (import ./home)
       {
         home.stateVersion = "24.11";
         home.username = username;
@@ -59,17 +61,38 @@
     extraSpecialArgs = {
       system = system;
       inputs = inputs;
+      hostname = hostname;
+      username = username;
       unstable = importFromChannelForSystem system unstable;
     };
   };
-  
+
   makeNixosConf = {
     hostname,
-    system ? "x86_64-linux",
+    system       ? "x86_64-linux",
     extraModules ? [],
+    username     ? "casper",
+    gnome        ? true,
+    hyprland     ? false,
+    cosmic       ? false,
+    kde          ? false,
     ...
     }: 
+    let 
+      lib = nixpkgs.lib;
+      desktopModules =
+        lib.optionals gnome [ ./modules/desktop-environments/gnome ] ++
+        lib.optionals hyprland [ ./modules/desktop-environments/hyprland ] ++
+        lib.optionals cosmic [ ./modules/desktop-environments/cosmic ] ++
+        lib.optionals kde [ ./modules/desktop-environments/kde ];
+    in
     nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs username hostname;
+        roles = {
+          inherit gnome hyprland cosmic kde;
+        };
+      };
       modules = 
         let
           defaults = { pkgs, ... }: {
@@ -84,21 +107,17 @@
               bmc.packages."${system}".bmc
               jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
               croctalk.packages."${system}".croctalk
-              slack2zammad.packages."${system}".slack2zammad
             ];
           };
         in [
             defaults
-            (./hosts + "/${hostname}/configuration.nix")
-            agenix.nixosModules.default
-            slack2zammad.nixosModules.${system}.slack2zammad
             home-manager.nixosModules.home-manager
+            agenix.nixosModules.default
             {
               home-manager.useGlobalPkgs = true;
             }
             extraPkgs 
-          ] ++
-        extraModules;
+          ] ++ desktopModules ++ extraModules;
     };
 
   in
@@ -111,47 +130,45 @@
     ########################
 
     homeConfigurations."technative-casper@linuxdesktop" = makeHomeConf {
-        system = "x86_64-linux";
+        system   = "x86_64-linux";
         hostname = "technative-casper";
-        username = "casper";
-        homedir = "/home/casper";
-    };
-
-    homeConfigurations."technative-server@linuxdesktop" = makeHomeConf {
-        system = "x86_64-linux";
-        hostname = "technative-lucak";
         username = "lucak";
-        homedir = "/home/lucak";
-        desktop = false;
+        homedir  = "/home/casper";
     };
 
-    homeConfigurations."dreammachine-luca@linuxdesktop" = makeHomeConf {
-        system = "x86_64-linux";
-        hostname = "server-casper";
-        username = "luca";
-        homedir = "/home/luca";
-        desktop = false;
-    };
+    # TODO: Change name to casper
+    #homeConfigurations."technative-server@linuxdesktop" = makeHomeConf {
+    #    system   = "x86_64-linux";
+    #    hostname = "technative-lucak";
+    #    username = "lucak";
+    #    homedir  = "/home/lucak";
+    #    desktop  = false;
+    #};
+
+    # TODO: Change name to casper
+    #homeConfigurations."dreammachine-luca@linuxdesktop" = makeHomeConf {
+    #    system   = "x86_64-linux";
+    #    hostname = "server-casper";
+    #    username = "luca";
+    #    homedir  = "/home/luca";
+    #    desktop  = false;
+    #};
 
     homeConfigurations."gaming-casper@linuxdesktop" = makeHomeConf {
-        system = "x86_64-linux";
+        system   = "x86_64-linux";
         hostname = "gaming-casper";
+        desktop  = true;
     };
 
     homeConfigurations."server-casper@linuxdesktop" = makeHomeConf {
-        system = "x86_64-linux";
+        system   = "x86_64-linux";
         hostname = "server-casper";
-        desktop = false;
+        desktop  = false;
     };
 
     homeConfigurations."home-casper@linuxdesktop" = makeHomeConf {
-        system = "x86_64-linux";
+        system   = "x86_64-linux";
         hostname = "home-casper";
-    };
-
-    homeConfigurations."switch-casper@linuxdesktop" = makeHomeConf {
-        system = "x86_64-linux";
-        hostname = "switch-casper";
     };
 
     ##################
@@ -160,19 +177,18 @@
 
     nixosConfigurations.technative-casper = makeNixosConf {
       hostname = "technative-casper";
+      extraModules = [ ./profiles/Work ];
     };
     nixosConfigurations.gaming-casper = makeNixosConf {
       hostname = "gaming-casper";
+      extraModules = [ ./profiles/Gaming ];
     };
     nixosConfigurations.server-casper = makeNixosConf {
       hostname = "server-casper";
     };
     nixosConfigurations.home-casper = makeNixosConf {
       hostname = "home-casper";
-    };
-    nixosConfigurations.switch = makeNixosConf {
-      hostname = "switch-casper";
-      extraModules = [ nixtendo-switch.nixosModules.nixtendo-switch ];
+      extraModules = [ ./profiles/Gaming ];
     };
   };
 }
