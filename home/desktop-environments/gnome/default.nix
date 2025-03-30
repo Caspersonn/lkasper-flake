@@ -12,7 +12,11 @@ in
   config = lib.mkIf cfg.enable {
     dconf.settings = {
       "org/gnome/desktop/interface/clock-show-weekday" = {
-       clock-show-weekday = true;
+        clock-show-weekday = true;
+      };
+
+      "org/gnome/desktop/interface" = {
+        gtk-theme = "Adwaita";
       };
 
       "org/gnome/desktop/interface" = {

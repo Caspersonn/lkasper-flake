@@ -45,7 +45,7 @@
     system ? "x86_64-linux",
     desktop ? true,
     ...
-  }:    
+  }:   
   home-manager.lib.homeManagerConfiguration {
     modules = [
       stylix.homeManagerModules.stylix
@@ -79,12 +79,11 @@
     ...
     }: 
     let 
-      lib = nixpkgs.lib;
       desktopModules =
-        lib.optionals gnome [ ./modules/desktop-environments/gnome ] ++
-        lib.optionals hyprland [ ./modules/desktop-environments/hyprland ] ++
-        lib.optionals cosmic [ ./modules/desktop-environments/cosmic ] ++
-        lib.optionals kde [ ./modules/desktop-environments/kde ];
+        nixpkgs.lib.optionals gnome [ ./modules/desktop-environments/gnome ] ++
+        nixpkgs.lib.optionals hyprland [ ./modules/desktop-environments/hyprland ] ++
+        nixpkgs.lib.optionals cosmic [ ./modules/desktop-environments/cosmic ] ++
+        nixpkgs.lib.optionals kde [ ./modules/desktop-environments/kde ];
     in
     nixpkgs.lib.nixosSystem {
       specialArgs = {
@@ -137,27 +136,26 @@
     };
 
     # TODO: Change name to casper
-    #homeConfigurations."technative-server@linuxdesktop" = makeHomeConf {
-    #    system   = "x86_64-linux";
-    #    hostname = "technative-lucak";
-    #    username = "lucak";
-    #    homedir  = "/home/lucak";
-    #    desktop  = false;
-    #};
+    homeConfigurations."technative-server@linuxdesktop" = makeHomeConf {
+        system   = "x86_64-linux";
+        hostname = "technative-lucak";
+        username = "lucak";
+        homedir  = "/home/lucak";
+        desktop  = false;
+    };
 
     # TODO: Change name to casper
-    #homeConfigurations."dreammachine-luca@linuxdesktop" = makeHomeConf {
-    #    system   = "x86_64-linux";
-    #    hostname = "server-casper";
-    #    username = "luca";
-    #    homedir  = "/home/luca";
-    #    desktop  = false;
-    #};
+    homeConfigurations."dreammachine-luca@linuxdesktop" = makeHomeConf {
+        system   = "x86_64-linux";
+        hostname = "server-casper";
+        username = "luca";
+        homedir  = "/home/luca";
+        desktop  = false;
+    };
 
     homeConfigurations."gaming-casper@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
         hostname = "gaming-casper";
-        desktop  = true;
     };
 
     homeConfigurations."server-casper@linuxdesktop" = makeHomeConf {
