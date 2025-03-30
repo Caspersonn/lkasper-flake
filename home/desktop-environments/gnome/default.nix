@@ -90,8 +90,13 @@ in
         picture-uri = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
         picture-uri-dark = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
       };
+
       "org/gnome/desktop/screensaver" = {
         picture-uri = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
+      };
+
+      "org/gnome/settings-daemon/plugins/power" = {
+        sleep-inactive-ac-type = "nothing";
       };
     };
   };

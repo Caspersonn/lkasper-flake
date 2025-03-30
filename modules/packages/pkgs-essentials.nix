@@ -42,6 +42,7 @@
   node2nix
   open-scq30
   pre-commit
+  sof-firmware
   ruby
   smug
   tmux
