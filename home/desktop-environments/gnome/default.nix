@@ -1,4 +1,4 @@
-{ config, lib, hostname, ... }:
+{ config, lib, hostname, username, ... }:
 
 let
   cfg = config.roles.desktop;
@@ -44,8 +44,8 @@ in
           "dash-to-panel@jderose9.github.com"
           "display-brightness-ddcutil@themightydeity.github.com"
           "multi-monitor-add-on@spin83.github.com"
-      ];
-    };
+        ];
+      };
 
       "org/gnome/shell/extensions/dash-to-dock" = {
         dock-fixed = false;
@@ -86,11 +86,13 @@ in
         dot-style-focused = "DASHES";
       };
 
-      # TODO: background working with image from internet (https://mjones.network/articles/declarative-desktop-env-config-with-nix.html)
-      #"org/gnome/desktop/background" = {
-      #  picture-uri      = "file:///home/casper/.local/share/backgrounds/2025-03-23-16-41-11-wallpaper.jpg";
-      #  picture-uri-dark = "file:///home/casper/.local/share/backgrounds/2025-03-23-16-41-11-wallpaper.jpg";
-      #};
+      "org/gnome/desktop/background" = {
+        picture-uri = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
+        picture-uri-dark = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
+      };
+      "org/gnome/desktop/screensaver" = {
+        picture-uri = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
+      };
     };
   };
 }
