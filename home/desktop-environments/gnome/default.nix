@@ -1,4 +1,4 @@
-{ config, lib, hostname, username, ... }:
+{ config, lib, hostname, username, pkgs, ... }:
 
 let
   cfg = config.roles.desktop;
@@ -10,6 +10,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
+    # Path for ddcutil
+    home.file.".local/share/ddcutil/bin/ddcutil".source = "${pkgs.ddcutil}/bin/ddcutil";
+
+    # Gnome settings
     dconf.settings = {
       "org/gnome/desktop/interface/clock-show-weekday" = {
         clock-show-weekday = true;
@@ -34,6 +39,7 @@ in
           "org.gnome.Nautilus.desktop"
           "com.mitchellh.ghostty.desktop"
           "org.gnome.settings.desktop"
+          "appindicatorsupport@rgcjonas.gmail.com"
         ];
       };
 
@@ -44,6 +50,8 @@ in
           "dash-to-panel@jderose9.github.com"
           "display-brightness-ddcutil@themightydeity.github.com"
           "multi-monitor-add-on@spin83.github.com"
+          "display-brightness-ddcutil@themightydeity.github.com"
+          "appindicatorsupport@rgcjonas.gmail.com"
         ];
       };
 
@@ -78,11 +86,11 @@ in
       };
 
       "org/gnome/shell/extensions/dash-to-panel" = {
-        panel-element-positions = ''{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"centerMonitor"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"1":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"centerMonitor"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'';
+        panel-element-positions = ''{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"centerMonitor"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"1":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"centerMonitor"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'';
         trans-use-custom-opacity = true;
         trans-use-dynamic-opacity = true;
         trans-dynamic-behavior = "MAXIMIZED_WINDOWS";
-        panel-positions = ''{"0":"BOTTOM","1":"BOTTOM"}'';
+        panel-positions = ''{"0":"TOP","1":"TOP"}'';
         dot-style-focused = "DASHES";
       };
 
@@ -92,6 +100,11 @@ in
       };
       "org/gnome/desktop/screensaver" = {
         picture-uri = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
+      };
+      "org/gnome/shell/extensions/display-brightness-ddcutil" = {
+        button-location = 1;
+        ddcutil-binary-path =  "/home/${username}/.local/share/ddcutil/bin/ddcutil";
+        tray-pos = "right";
       };
     };
   };

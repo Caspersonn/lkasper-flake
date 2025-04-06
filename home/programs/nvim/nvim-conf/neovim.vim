@@ -15,6 +15,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'linden-project/linny.vim'
   Plug 'rktjmp/lush.nvim'
   Plug 'robitx/gp.nvim'
+  Plug 'MeanderingProgrammer/render-markdown.nvim'
 
 call plug#end()
 

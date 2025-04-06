@@ -16,14 +16,11 @@ in
 {
   environment.systemPackages = with pkgs; [
     adw-gtk3
-    gnomeExtensions.dock-from-dash
-    gnomeExtensions.dash-to-dock
     gnomeExtensions.dash-to-panel
     gnomeExtensions.date-menu-formatter
-    gnomeExtensions.gsconnect
     gnomeExtensions.night-light-slider-updated
-    gnomeExtensions.unite
-    gnomeExtensions.arcmenu
+    gnomeExtensions.brightness-control-using-ddcutil
+    gnomeExtensions.appindicator
     gnome-extension-manager 
     gnome-tweaks
     mutter
@@ -58,7 +55,7 @@ in
         extraGSettingsOverridePackages = [pkgs.mutter];
         extraGSettingsOverrides = ''
           [org.gnome.mutter]
-          experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
+          experimental-features=['scale-monitor-framebuffer']
         '';
       };
     };
