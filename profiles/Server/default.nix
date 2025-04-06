@@ -4,9 +4,7 @@
     ../../hosts/${hostname}
 
     # Core 
-    ../../modules/packages/pkgs-gaming.nix
     ../../modules/packages/pkgs-essentials.nix
-    ../../modules/packages/steam.nix
 
     # Services
     ../../modules/services/service-resolved.nix

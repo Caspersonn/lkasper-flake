@@ -8,10 +8,15 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "snd-hda-intel" ];
   boot.initrd.kernelModules = [ ];
+  hardware.enableAllFirmware = true;
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.extraModprobeConfig = ''
+    options snd-hda-intel
+  '';
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/5f163714-3f7a-405f-8291-7708d36e2d25";

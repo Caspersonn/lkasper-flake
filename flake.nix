@@ -161,7 +161,7 @@
     homeConfigurations."server-casper@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
         hostname = "server-casper";
-        desktop  = false;
+        desktop  = true;
     };
 
     homeConfigurations."home-casper@linuxdesktop" = makeHomeConf {
@@ -182,7 +182,9 @@
       extraModules = [ ./profiles/Gaming ];
     };
     nixosConfigurations.server-casper = makeNixosConf {
-      hostname = "server-casper";
+      hostname     = "server-casper";
+      extraModules = [ ./profiles/Server ./modules/services/service-bluetooth_reciever.nix ];
+      gnome        = true;
     };
     nixosConfigurations.home-casper = makeNixosConf {
       hostname = "home-casper";

@@ -98,13 +98,19 @@ in
         picture-uri = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
         picture-uri-dark = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
       };
+
       "org/gnome/desktop/screensaver" = {
         picture-uri = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
       };
+
       "org/gnome/shell/extensions/display-brightness-ddcutil" = {
         button-location = 1;
         ddcutil-binary-path =  "/home/${username}/.local/share/ddcutil/bin/ddcutil";
         tray-pos = "right";
+      };
+
+      "org/gnome/settings-daemon/plugins/power" = {
+        sleep-inactive-ac-type = "nothing";
       };
     };
   };
