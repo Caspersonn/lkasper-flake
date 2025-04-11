@@ -7,6 +7,7 @@
     ../../modules/packages/pkgs-gaming.nix
     ../../modules/packages/pkgs-essentials.nix
     ../../modules/packages/steam.nix
+    ../../modules/packages/retroarch.nix
 
     # Services
     ../../modules/services/service-coolerd.nix

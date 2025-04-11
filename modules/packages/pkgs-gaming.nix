@@ -21,12 +21,13 @@
   mangohud
   mesa
   ns-usbloader
+  prismlauncher
   protonplus
   ps3iso-utils
-  prismlauncher
   radeontop
   steam
   stremio
+  torzu
   unstable.cemu
   unstable.multiviewer-for-f1
   vulkan-tools

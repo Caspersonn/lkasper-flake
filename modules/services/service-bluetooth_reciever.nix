@@ -9,7 +9,6 @@
         DiscoverableTimeout = "0";
         Enable = "Source,Sink,Media,Socket";
         AlwaysPairable = true;
-        Experimental = "true";
       };
     };
   };

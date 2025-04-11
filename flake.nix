@@ -131,7 +131,7 @@
     homeConfigurations."technative-casper@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
         hostname = "technative-casper";
-        username = "lucak";
+        username = "casper";
         homedir  = "/home/casper";
     };
 

@@ -12,6 +12,7 @@
   onlyoffice-bin
   spotify
   librewolf
+  google-chrome
   video-trimmer
   winetricks
 
