@@ -7,18 +7,20 @@
     dataDir = "/home/${username}/.config/syncthing";
     configDir = "/home/${username}/.config/syncthing";
 
-    devices = {
-      server.id = "DEVICE-ID-SERVER";
-    };
-
-    folders = {
-      "retroarch-saves" = {
-        path = "/home/${username}/.config/retroarch/save";
-        devices = [ "server" ];
+    settings = {
+      devices = {
+        server.id = "U72AHTO-3SBUUYX-CIYNDMF-VSSXYAS-YAV6V56-LQ4LSKP-7J3RGLV-DNVCZQ5";
       };
-      "retroarch-states" = {
-        path = "/home/${username}/.config/retroarch/state";
-        devices = [ "server" ];
+
+      folders = {
+        "retroarch-saves" = {
+          path = "/home/${username}/.config/retroarch/save";
+          devices = [ "server" ];
+        };
+        "retroarch-states" = {
+          path = "/home/${username}/.config/retroarch/state";
+          devices = [ "server" ];
+        };
       };
     };
   };
