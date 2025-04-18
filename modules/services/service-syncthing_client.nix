@@ -14,11 +14,11 @@
 
       folders = {
         "retroarch-saves" = {
-          path = "/home/${username}/.config/retroarch/save";
+          path = "/home/${username}/.config/retroarch/saves";
           devices = [ "server" ];
         };
         "retroarch-states" = {
-          path = "/home/${username}/.config/retroarch/state";
+          path = "/home/${username}/.config/retroarch/states";
           devices = [ "server" ];
         };
       };
