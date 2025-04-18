@@ -5,6 +5,8 @@
       cores = with libretro; [
         snes9x
         citra
+        desmume
+        melonds
       ];
     })
   ];

@@ -13,6 +13,7 @@
     ../../modules/services/service-coolerd.nix
     ../../modules/services/service-resolved.nix
     ../../modules/services/service-tailscale.nix
+    ../../modules/services/service-docker.nix
 
     # Etc
     ../../modules/udev-skylanders-portal.nix

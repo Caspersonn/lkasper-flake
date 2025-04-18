@@ -13,6 +13,7 @@
   ddcui
   ddcutil
   discord
+  docker
   gamemode
   goverlay
   heroic
@@ -25,6 +26,10 @@
   protonplus
   ps3iso-utils
   radeontop
+  rocmPackages.clr
+  rocmPackages.rocminfo
+  rocmPackages.rocm-smi
+  torzu
   steam
   stremio
   torzu

@@ -36,7 +36,7 @@
 
   # Enable the X11 windowing system.
 #  services.xserver.enable = true;
-#  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -78,7 +78,7 @@
   users.users.casper = {
     isNormalUser = true;
     description = "Luca Kasper";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   # packages = with pkgs; [
   # ];
   };
