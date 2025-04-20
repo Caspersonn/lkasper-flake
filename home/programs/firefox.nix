@@ -21,80 +21,59 @@
         install_url = "https://addons.mozilla.org/firefox/downloads/latest/return-youtube-dislikes/latest.xpl";
         installation_mode = "force_installed";
       };
-      preferences = {
-        "browser.toolbars.bookmarks.visibility" = false;
-        "browser.bookmarks.addedImportButton" = false;
-        "webgl.disabled" = false;
-        "privacy.resistFingerprinting" = false;
-        "privacy.clearOnShutdown.history" = false;
-        "privacy.clearOnShutdown.cookies" = false;
-        "network.cookie.lifetimePolicy" = 0;
-        "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
-        "browser.newtabpage.pinned" = [{
-          title = "YouTube";
-          url = "https://youtube.com";
-        }];
-      };
-      profiles = {
-        personal = {
-          id = 1;
-          name = "personal";
-          isDefault = true;
-          settings = {
-            "browser.toolbars.bookmarks.visibility" = false;
-            "browser.bookmarks.addedImportButton" = false;
-            "webgl.disabled" = false;
-            "privacy.resistFingerprinting" = false;
-            "privacy.clearOnShutdown.history" = false;
-            "privacy.clearOnShutdown.cookies" = false;
-            "network.cookie.lifetimePolicy" = 0;
-            "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
-            "browser.newtabpage.pinned" = [{
-              title = "YouTube";
-              url = "https://youtube.com";
-            }
-            {
-              title = "Gmail";
-              url = "https://gmail.com";
-            }];
-          };
-        };
-        work = {
-          id = 2;
-          name = "work";
-          isDefault = false;
-          settings = {
-            "browser.toolbars.bookmarks.visibility" = false;
-            "browser.bookmarks.addedImportButton" = false;
-            "webgl.disabled" = false;
-            "privacy.resistFingerprinting" = false;
-            "privacy.clearOnShutdown.history" = false;
-            "privacy.clearOnShutdown.cookies" = false;
-            "network.cookie.lifetimePolicy" = 0;
-            "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
-            "browser.newtabpage.pinned" = [{
-              title = "YouTube";
-              url = "https://youtube.com";
-            }
-            {
-              title = "Outlook";
-              url = "https://outlook.com";
-            }];
-          };
-        };
-      };
     };
-  };
+    profiles = {
+      personal = {
+        id = 0;
+        name = "personal";
+        isDefault = true;
+        search.default = "DuckDuckGo";
+        settings = {
+          "browser.toolbars.bookmarks.visibility" = "never";
+          "browser.bookmarks.addedImportButton" = false;
+          "webgl.disabled" = false;
+          "privacy.resistFingerprinting" = false;
+          "privacy.clearOnShutdown.history" = false;
+          "privacy.clearOnShutdown.cookies" = false;
+          "network.cookie.lifetimePolicy" = "0";
+          
+          "browser.startup.homepage" = "https://search.nixos.org";
+          "browser.startup.page" = 3;
+          "browser.newtabpage.pinned" = [{
+            title = "YouTube";
+            url = "https://youtube.com";
+          }
+          {
+            title = "Gmail";
+            url = "https://gmail.com";
+          }];
+        };
+      };
+      work = {
+        id = 1;
+        name = "work";
+        isDefault = false;
+        settings = {
+          "browser.toolbars.bookmarks.visibility" = "never";
+          "browser.bookmarks.addedImportButton" = false;
+          "webgl.disabled" = false;
+          "privacy.resistFingerprinting" = false;
+          "privacy.clearOnShutdown.history" = false;
+          "privacy.clearOnShutdown.cookies" = false;
+          "network.cookie.lifetimePolicy" = "0";
 
-  programs.librewolf = {
-    enable = true;
-    # Enable WebGL, cookies and history
-    settings = {
-      "webgl.disabled" = false;
-      "privacy.resistFingerprinting" = false;
-      "privacy.clearOnShutdown.history" = false;
-      "privacy.clearOnShutdown.cookies" = false;
-      "network.cookie.lifetimePolicy" = 0;
+          "browser.startup.homepage" = "https://search.nixos.org";
+          "browser.startup.page" = 3;
+          "browser.newtabpage.pinned" = [{
+            title = "YouTube";
+            url = "https://youtube.com";
+          }
+          {
+            title = "Outlook";
+            url = "https://outlook.com";
+          }];
+        };
+      };
     };
   };
 }
