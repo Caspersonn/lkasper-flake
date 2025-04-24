@@ -83,6 +83,7 @@ in
       "org/gnome/shell/extensions/nightlightsliderupdated" = {
         enable-always = true;  
         show-always = true;
+        show-status-icon = false;
       };
 
       "org/gnome/shell/extensions/dash-to-panel" = {
@@ -107,6 +108,7 @@ in
         button-location = 1;
         ddcutil-binary-path =  "/home/${username}/.local/share/ddcutil/bin/ddcutil";
         tray-pos = "right";
+        hide-system-indicator = true;
       };
 
       "org/gnome/settings-daemon/plugins/power" = {
