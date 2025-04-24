@@ -17,8 +17,16 @@
           path = "/home/${username}/.config/retroarch/saves";
           devices = [ "server" ];
         };
-        "retroarch-states" = {
-          path = "/home/${username}/.config/retroarch/states";
+        "retroarch-roms" = {
+          path = "/home/${username}/.config/retroarch/roms";
+          devices = [ "server" ];
+        };
+        "retroarch-thumbnails" = {
+          path = "/home/${username}/.config/retroarch/thumbnails";
+          devices = [ "server" ];
+        };
+        "retroarch-system" = {
+          path = "/home/${username}/.config/retroarch/system";
           devices = [ "server" ];
         };
       };
