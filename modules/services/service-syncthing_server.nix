@@ -16,14 +16,25 @@
       };
 
       folders = {
+
+        # Retroarch
         "retroarch-saves" = {
           path = "/home/${username}/syncthing/retroarch/saves";
           devices = [ "gaming-casper" "home-casper" ];
         };
-        "retroarch-states" = {
-          path = "/home/${username}/syncthing/retroarch/states";
+        "retroarch-roms" = {
+          path = "/home/${username}/syncthing/retroarch/roms";
           devices = [ "gaming-casper" "home-casper" ];
         };
+        "retroarch-thumbnails" = {
+          path = "/home/${username}/syncthing/retroarch/thumbnails";
+          devices = [ "gaming-casper" "home-casper" ];
+        };
+        "retroarch-system" = {
+          path = "/home/${username}/syncthing/retroarch/system";
+          devices = [ "gaming-casper" "home-casper" ];
+        };
+
         "macbook-desktop" = {
           path = "/home/${username}/syncthing/macbook/desktop";
           devices = [ "macbook-pro" ];
