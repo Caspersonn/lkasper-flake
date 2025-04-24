@@ -2,16 +2,13 @@
 	
 {
   services.nginx.enable = true;
-  
+
+  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  age.secrets.vaultwarden.file = ../../secrets/vaultwarden.age;
+
   services.vaultwarden = {
     enable = true;
-    #environmentFile = xxx; # Needs to be changed
-    config = {
-      DOMAIN = "https://vaultwarden.inspiravita.com";
-      SIGNUPS_ALLOWED = false;
-      ROCKET_ADDRESS = "192.168.178.95";
-      ROCKET_PORT = 8222;
-    };
+    environmentFile = config.age.secrets.vaultwarden.path;
   };
 
   security.acme.defaults.email = "lucakasper8@gmail.com";

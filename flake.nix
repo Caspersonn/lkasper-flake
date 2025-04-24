@@ -105,7 +105,7 @@
               race.packages."${system}".race
               bmc.packages."${system}".bmc
               jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
-              croctalk.packages."${system}".croctalk
+#              croctalk.packages."${system}".croctalk
             ];
           };
         in [
@@ -159,7 +159,7 @@
     };
 
     homeConfigurations."server-casper@linuxdesktop" = makeHomeConf {
-        system   = "x86_64-linux";
+        system   = "aarch64-linux";
         hostname = "server-casper";
         desktop  = true;
     };
@@ -184,6 +184,7 @@
     nixosConfigurations.server-casper = makeNixosConf {
       hostname     = "server-casper";
       extraModules = [ ./profiles/Server ./modules/services/service-bluetooth_reciever.nix ];
+      system       = "aarch64-linux";
       gnome        = true;
     };
     nixosConfigurations.home-casper = makeNixosConf {

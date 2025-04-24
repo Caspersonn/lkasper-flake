@@ -8,7 +8,8 @@ let
   system4 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRNFsCGiDVk/isN+bAfndANYjmIG7hfDD2azki93h4V";
   system5 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALR+WREWcS6d2lf8OH59yWSLGdv3PI5R6AOGobXB8a6";
   system6 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA81Jmm0LADyGRv5aURGvi8aoRCtQEjdD21AdQozqCqY";
-  systems = [ system1 system2 system3 system4 system5 system6 ];
+  raspberrypi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+MBgCQO3KqMF20ljvce+pFhViExVD91iEiFvd4dq0h";
+  systems = [ system1 system2 system3 system4 system5 system6 raspberrypi ];
 in
 {
   "toggl-lkasper.age".publicKeys = users ++ systems;
