@@ -1,6 +1,7 @@
 {config, lib, pkgs, ...}:
 {
-  programs.hyprlock = {
+  programs.waybar = {
     enable = true;
+    systemd.enable = true;
   };
 }
