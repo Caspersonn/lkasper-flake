@@ -21,13 +21,17 @@
         install_url = "https://addons.mozilla.org/firefox/downloads/latest/return-youtube-dislikes/latest.xpl";
         installation_mode = "force_installed";
       };
+      "{b5e0e8de-ebfe-4306-9528-bcc18241a490}" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/granted/latest.xpl";
+        installation_mode = "force_installed";
+      };
     };
     profiles = {
       personal = {
         id = 0;
         name = "personal";
         isDefault = true;
-        search.default = "DuckDuckGo";
+        #search.default = "DuckDuckGo";
         settings = {
           "browser.toolbars.bookmarks.visibility" = "never";
           "browser.bookmarks.addedImportButton" = false;

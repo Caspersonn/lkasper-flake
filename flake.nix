@@ -8,10 +8,12 @@
     bmc.url = "github:wearetechnative/bmc";
     race.url = "github:wearetechnative/race";
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
-    croctalk.url = "github:wearetechnative/croctalk";
     nixpkgs-cosmic.follows = "nixos-cosmic/nixpkgs";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     stylix.url = "github:danth/stylix/release-24.11";
+    croctalk.url = "github:wearetechnative/croctalk";
+    slack2zammad.url = "github:wearetechnative/slack2zammad";
+    #croctalk.url = "git+file:///home/casper/git/02_wearetechnative/croctalk";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,10 +28,10 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, croctalk, nixpkgs-cosmic, nixos-cosmic, stylix }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad }:
 
 
-  let 
+  let
     importFromChannelForSystem = system: channel: import channel {
       overlays = [
         (import ./overlays)
@@ -45,7 +47,7 @@
     system ? "x86_64-linux",
     desktop ? true,
     ...
-  }:   
+  }:
   home-manager.lib.homeManagerConfiguration {
     modules = [
       stylix.homeManagerModules.stylix
@@ -77,8 +79,8 @@
     cosmic       ? false,
     kde          ? false,
     ...
-    }: 
-    let 
+    }:
+    let
       desktopModules =
         nixpkgs.lib.optionals gnome [ ./modules/desktop-environments/gnome ] ++
         nixpkgs.lib.optionals hyprland [ ./modules/desktop-environments/hyprland ] ++
@@ -92,7 +94,7 @@
           inherit gnome hyprland cosmic kde;
         };
       };
-      modules = 
+      modules =
         let
           defaults = { pkgs, ... }: {
             nixpkgs.overlays = [(import ./overlays)];
@@ -105,23 +107,22 @@
               race.packages."${system}".race
               bmc.packages."${system}".bmc
               jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
-#              croctalk.packages."${system}".croctalk
+              #slack2zammad.packages."${system}".slack2zammad
+              #croctalk.packages."${system}".croctalk
+              #croctalk.nixosModules."${system}".croctalk
             ];
           };
         in [
             defaults
             home-manager.nixosModules.home-manager
             agenix.nixosModules.default
-            {
-              home-manager.useGlobalPkgs = true;
-            }
-            extraPkgs 
-          ] ++ desktopModules ++ extraModules;
+            extraPkgs
+            { home-manager.useGlobalPkgs = true; }
+           ] ++ desktopModules ++ extraModules;
     };
 
   in
-    rec {
-      
+  {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-classic;
 
     ########################
@@ -129,10 +130,8 @@
     ########################
 
     homeConfigurations."technative-casper@linuxdesktop" = makeHomeConf {
-        system   = "x86_64-linux";
-        hostname = "technative-casper";
-        username = "casper";
-        homedir  = "/home/casper";
+      system   = "x86_64-linux";
+      hostname = "technative-casper";
     };
 
     # TODO: Change name to casper
@@ -174,8 +173,10 @@
     ##################
 
     nixosConfigurations.technative-casper = makeNixosConf {
-      hostname = "technative-casper";
+      hostname     = "technative-casper";
       extraModules = [ ./profiles/Work ];
+      gnome        = true;
+      hyprland     = false;
     };
     nixosConfigurations.gaming-casper = makeNixosConf {
       hostname = "gaming-casper";

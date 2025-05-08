@@ -9,6 +9,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.luks.devices."luks-f7326c24-daa8-457b-80b6-a47a0fe8f82c".device = "/dev/disk/by-uuid/f7326c24-daa8-457b-80b6-a47a0fe8f82c";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "technative-casper"; # Define your hostname.
@@ -87,7 +88,7 @@
   users.users.casper = {
     isNormalUser = true;
     description = "Luca Kasper";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   # packages = with pkgs; [
   # ];
   };
@@ -110,7 +111,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

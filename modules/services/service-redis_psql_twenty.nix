@@ -3,11 +3,11 @@
 {
   services.postgresql = {
     enable = true;
-    package = pkgs.postgresql_15;
+    package = pkgs.postgresql_16_jit;
     enableTCPIP = true;
     ensureUsers = [ { name = "postgres"; } ]; 
     settings = {
-        port = 5432;
+        port = 5433;
         ssl = false;
     };
     extensions = ps: with ps; [
@@ -27,5 +27,6 @@
 
   services.redis.servers."" = {
     enable = true;
+    port = 6380;
   };
 }

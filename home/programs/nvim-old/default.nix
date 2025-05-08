@@ -1,6 +1,6 @@
-{config, pkgs, ...}: 
-let 
-  nvim = ./nvim-conf;
+{config, pkgs, ...}:
+let
+  nvim = ./nvim;
 in
   {
     programs.neovim = {
@@ -14,13 +14,17 @@ in
           source ${nvim}/plug.vim
           source ${nvim}/neovim.vim
           source ${nvim}/init.lua
-          nnoremap <space>a :qa!<cr>
-          nnoremap <space>t :NERDTree<cr>
-          nnoremap <space>f :Ag<cr>
+
       '';
       plugins = with pkgs.vimPlugins; [
+        lazy-nvim
+        vim-plug
       ];
+      extraLuaPackages = ps: [ ps.magick ];
+      extraPackages = [ pkgs.imagemagick ];
     };
+
+
 
     home.packages = [
       pkgs.terraform-ls
@@ -30,6 +34,6 @@ in
       ".config/nvim/coc-settings.json" = {
         source = "${nvim}/coc-settings.json";
         recursive = false;
-      }; 
+      };
     };
   }

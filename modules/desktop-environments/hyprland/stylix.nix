@@ -3,10 +3,10 @@
   hostname,
   inputs,
   ...
-}: let
+}: 
+let
   inherit (import ../hosts/${hostname}/variables.nix) stylixImage;
 in {
-  imports = [inputs.stylix.nixosModules.stylix];
   # Styling Options
   stylix = {
     enable = true;

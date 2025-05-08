@@ -3,7 +3,7 @@
 
     ../../hosts/${hostname}
 
-    # Core 
+    # Core
     ../../modules/packages/pkgs-gaming.nix
     ../../modules/packages/pkgs-essentials.nix
     ../../modules/packages/steam.nix

@@ -34,3 +34,4 @@
   # Enable Thunar GUI File Manager
   thunarEnable = false;
 }
+

@@ -1,4 +1,4 @@
-session: syncnotes
+session: notes
 
 root: ~/git/personal/lkasper-linny
 startup_pane: 1
@@ -6,10 +6,6 @@ startup_pane: 1
 stop:
 
 windows:
-  - name: mynotes
-    layout: main-horizontal
-    commands:
-      - lin
   - name: sync
     layout: main-horizontal
     commands:
@@ -18,3 +14,7 @@ windows:
       - type: horizontal
         commands:
           - hugo server --ignoreCache --forceSyncStatic --cleanDestinationDir --disableFastRender -e private -p 1314
+  - name: notes
+    layout: main-horizontal
+    commands:
+      - lin
