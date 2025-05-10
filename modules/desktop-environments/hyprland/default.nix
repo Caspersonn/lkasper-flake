@@ -2,8 +2,8 @@
 {
   imports = [
     ./desktop-hyprland.nix
-    ./stylix.nix
-    inputs.stylix.nixosModules.stylix
+    #./stylix.nix
+    #inputs.stylix.nixosModules.stylix
   ];
 }
 

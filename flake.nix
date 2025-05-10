@@ -191,6 +191,8 @@
     nixosConfigurations.home-casper = makeNixosConf {
       hostname = "home-casper";
       extraModules = [ ./profiles/Gaming ];
+      hyprland = true;
+      gnome = false;
     };
   };
 }
