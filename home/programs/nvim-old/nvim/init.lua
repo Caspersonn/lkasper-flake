@@ -1,4 +1,3 @@
--- AI setup
 local conf = {
   openai_api_key = os.getenv("OPENAI_API_KEY"),
   providers = { 
@@ -49,5 +48,9 @@ local conf = {
 		}
   }
 }
+
 require("gp").setup(conf)
+
+
+require('csvview').setup()
 

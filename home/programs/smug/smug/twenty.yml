@@ -1,0 +1,16 @@
+session: twenty
+
+root: ~/git/technative_b.v./twenty
+
+windows:  
+  - name: Twenty code
+    layout: main-horizontal
+    panes:
+      - type: horizontal
+
+  - name: Twenty run
+    layout: main-horizontal
+    panes:
+      - type: horizontal
+
+

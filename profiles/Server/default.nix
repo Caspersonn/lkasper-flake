@@ -3,7 +3,7 @@
 
     ../../hosts/${hostname}
 
-    # Core 
+    # Core
     ../../modules/packages/pkgs-essentials.nix
 
     # Services

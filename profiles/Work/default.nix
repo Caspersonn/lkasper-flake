@@ -10,9 +10,11 @@
     # Services
     ../../modules/services/service-resolved.nix
     ../../modules/services/service-tailscale.nix
+    ../../modules/services/service-docker.nix
 
     # Etc
     ../../modules/secrets-casper.nix
+    ../../modules/udev-ddcutil.nix
   ];
 }
 

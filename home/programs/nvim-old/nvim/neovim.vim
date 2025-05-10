@@ -9,13 +9,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'LnL7/vim-nix'
   Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
   Plug 'sainnhe/gruvbox-material'
-  Plug 'junegunn/seoul256.vim' 
+  Plug 'junegunn/seoul256.vim'
   Plug 'airblade/vim-gitgutter'
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'linden-project/linny.vim'
   Plug 'rktjmp/lush.nvim'
   Plug 'robitx/gp.nvim'
+  Plug 'linden-project/linny-wikitag-jira'
   Plug 'MeanderingProgrammer/render-markdown.nvim'
+  Plug 'hat0uma/csvview.nvim'
 
 call plug#end()
 
@@ -25,6 +27,12 @@ nnoremap <space>t :NERDTree<CR>
 nnoremap <space>f :Ag<CR>
 nmap ,, :NERDTreeFind <CR>
 nmap ,b :Buffers <CR>
+map <S-ScrollWheelUp> zH
+map <S-ScrollWheelDown> zL
+
+" Horizantel scrolling
+set nowrap
+
 
 " Tabs
 nmap ,n :tabnew <CR>
@@ -71,8 +79,6 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-pairs',
   \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier', 
   \ 'coc-json', 
   \ 'coc-html',
   \ 'coc-go',
@@ -112,9 +118,9 @@ let g:NERDTreeGitStatusWithFlags = 1
 
 
 " Linny config "
-
 let g:linny_open_notebook_path       = $HOME . '/git/personal/lkasper-linny'
 let g:linnycfg_setup_autocommands    = 1
 call linny#Init()
+let g:linny_wikitag_jira_baseurl     = "https://technative.atlassian.net/browse/"
 "nmap lo :LinnyMenuOpen <CR>
 "nmap lc :LinnyMenuClose <CR>

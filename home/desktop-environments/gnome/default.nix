@@ -4,7 +4,7 @@ let
   cfg = config.roles.desktop;
 in
 
-{ 
+{
   options.roles.desktop = {
     enable = lib.mkEnableOption "Configure as desktop computer";
   };
@@ -18,10 +18,6 @@ in
     dconf.settings = {
       "org/gnome/desktop/interface/clock-show-weekday" = {
         clock-show-weekday = true;
-      };
-
-      "org/gnome/desktop/interface" = {
-        gtk-theme = "Adwaita";
       };
 
       "org/gnome/desktop/interface" = {
@@ -81,7 +77,7 @@ in
       };
 
       "org/gnome/shell/extensions/nightlightsliderupdated" = {
-        enable-always = true;  
+        enable-always = true;
         show-always = true;
         show-status-icon = false;
       };
@@ -96,7 +92,7 @@ in
       };
 
       "org/gnome/desktop/background" = {
-        picture-uri = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
+        picture-uri      = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
         picture-uri-dark = "file:///home/${username}/lkasper-flake/wallpapers/wallpaper.jpg";
       };
 
