@@ -40,7 +40,7 @@
           "privacy.clearOnShutdown.history" = false;
           "privacy.clearOnShutdown.cookies" = false;
           "network.cookie.lifetimePolicy" = "0";
-          
+
           "browser.startup.homepage" = "https://search.nixos.org";
           "browser.startup.page" = 3;
           "browser.newtabpage.pinned" = [{

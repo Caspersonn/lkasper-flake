@@ -2,53 +2,58 @@
 
 {
   environment.systemPackages = with pkgs; [
-  # Essential GUI applications
+  # GUI Applications - Browsers
+  firefox
+  librewolf
+  chromium
+  google-chrome
+
+  # GUI Applications - Office & Productivity
+  libreoffice-qt6-fresh
+  onlyoffice-bin
+
+  # GUI Applications - Media & Entertainment
+  obs-studio
+  spotify
+  video-trimmer
+
+  # GUI Applications - Development
+  pgadmin4-desktopmode
+  cypress
+  ghostty
+
+  # GUI Applications - Security & Utilities
   bitwarden-desktop
+  firejail
+  filezilla
   discord
   ddcutil
-  chromium
-  cypress
-  filezilla
-  firefox
-  firejail
-  ghostty
-  librewolf
-  libreoffice-qt6-fresh
-  obs-studio
-  onlyoffice-bin
-  pgadmin4-desktopmode
-  spotify
-  librewolf
-  google-chrome
-  video-trimmer
   winetricks
 
-  # Essential NON-GUI applications
+  # TUI Applications
+  tmux
+  htop
+  neovim
+  gum
+
+  # Development Tools - Version Control
   gh
-  android-tools
-  avahi
-  ddcui
-  lsof
-  libusb1
-  bitwarden-cli
-  #busybox
-  wget
-  csvtool
-  dig
-  epson-escpr
-  epson-escpr2
-  f3
-  gcc
   git-sync
+
+  # Development Tools - Build & Languages
+  gcc
   gnumake42
   go
-  gum
+  nodejs
+  ruby
+  cargo
+  rustc
   home-manager
-  htop
-  jq
-  lsof
+  node2nix
+  pre-commit
+  hugo
 
-  # language servers
+  # Language Servers & IDE Tools
   sqls
   gopls
   nixd
@@ -56,37 +61,44 @@
   terraform-ls
   nodePackages.bash-language-server
   sumneko-lua-language-server
-  neovim
   nil
-  tree-sitter
-  nerdfonts
-  mailutils
-  marksman
   rust-analyzer
-  cargo
-  rustc
   vscode-langservers-extracted
-  nodejs
+  tree-sitter
 
-  mods
-  node2nix
-  open-scq30
-  pre-commit
-  sof-firmware
-  ruby
-  smug
-  tmux
-  hugo
-  unzip
-  usbutils
-  wl-clipboard
-  zsh
-  markdownlint-cli
-
-  # Formatters
+  # Formatters & Linters
   nixfmt-classic
   rustfmt
   nodePackages.prettier
-  ruby
+  markdownlint-cli
+
+  # System Utilities - Hardware & Device Management
+  android-tools
+  ddcui
+  libusb1
+  usbutils
+  sof-firmware
+  open-scq30
+  epson-escpr
+  epson-escpr2
+
+  # System Utilities - Network & File Management
+  wget
+  avahi
+  dig
+  unzip
+  csvtool
+  f3
+  jq
+  wl-clipboard
+
+  # System Utilities - Misc
+  lsof
+  bitwarden-cli
+  smug
+  zsh
+  mailutils
+  mods
+  nerdfonts
   ];
 }

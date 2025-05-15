@@ -18,7 +18,7 @@
         "path" = "/home/casper/smb";
         "browseable" = "yes";
         "read only" = "no";
-        "guest ok" = "yes";
+        "guest ok" = "no";
         "create mask" = "0644";
         "directory mask" = "0755";
         "force user" = "casper";

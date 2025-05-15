@@ -15,6 +15,9 @@
     };
     initExtra = ''
       PATH=$HOME/bin:$PATH
+      set -o allexport
+      source /tmp/avante-bedrock
+      set +o allexport
     '';
 
     oh-my-zsh = {

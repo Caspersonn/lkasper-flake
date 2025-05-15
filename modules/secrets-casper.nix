@@ -1,16 +1,28 @@
 {config, lib, pkgs, agenix, username, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    age
+  ];
 
-  age = {
-    identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    secrets = {
-      spotify = {
-        file = ../secrets/spotify.age;
-        path = "/home/${username}/.config/spotify/prefs";
-        owner = "casper";
-        group = "users";
-        mode = "644";
-      };
+  age.secrets = let
+    keyconf = keyname: {
+      file = ../secrets/${keyname}.age;
+      path = "/tmp/${keyname}";
+      owner = "casper";
+      group = "users";
+      mode = "600";
     };
+
+    keyconf_root = keyname: {
+      file = ../secrets/${keyname}.age;
+      path = "/tmp/${keyname}";
+      owner = "root";
+      group = "root";
+      mode = "600";
+    };
+  in
+    {
+      avante-bedrock = keyconf "avante-bedrock";
+      spotify = keyconf "spotify";
   };
 }

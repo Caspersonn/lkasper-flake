@@ -16,6 +16,7 @@
     tfsec
     telegram-bot-api
     telegram-desktop
+    typescript
     zoom-us
     aws-mfa
     cypress

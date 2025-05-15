@@ -1,4 +1,4 @@
-{ pkgs,unstable, ... }:
+{ pkgs, unstable, ... }:
 
 {
   programs.neovim = {
@@ -14,21 +14,24 @@
     };
   };
 
+  # Development tools and language servers
   home.packages = [
-    #    pkgs.lua51Packages.lua
-    #    pkgs.luajitPackages.magick
-    #    pkgs.lua51Packages.luarocks
+    # Build tools
     pkgs.gnumake
     pkgs.gcc
     pkgs.pkg-config
-    pkgs.smug
+
+    # Language servers
     pkgs.typescript-language-server
     pkgs.lua-language-server
-
-    pkgs.nil
+    pkgs.nil                      # Nix language server
     pkgs.terraform-ls
+    pkgs.pyright
+
+    # Search and navigation tools
     pkgs.silver-searcher
     pkgs.fzf
     pkgs.ripgrep
+    pkgs.smug
   ];
 }
