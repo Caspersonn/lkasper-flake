@@ -17,12 +17,14 @@
     brightnessctl # This program allows you read and control device brightness
     greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette
+    gruvbox-plus-icons # Icon pack for Linux desktops based on the Gruvbox color scheme
     hyprlock # Hyprland's GPU-accelerated screen locking utility
     hyprpaper # Blazing fast wayland wallpaper utility
     hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse
     kitty # Terminal
     libnotify # Sends notication to deamon
     nautilus # File manager
+    networkmanagerapplet # NetworkManager control applet for GNOME
     nwg-bar # GTK3-based button bar for sway and other wlroots-based compositors
     nwg-displays  #configure monitor configs via GUI
     pavucontrol # For Editing Audio Levels & Devices

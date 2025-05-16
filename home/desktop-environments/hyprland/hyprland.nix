@@ -58,10 +58,9 @@
         gaps_out = 8;
         border_size = 2;
 
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = "rgba(a89984cc) rgba(7c6f64cc) 45deg";
+        "col.inactive_border" = "rgba(282828aa)";
 
-        # Set to true enable resizing windows by clicking and dragging on borders and gaps
         resize_on_border = false;
 
         allow_tearing = false;

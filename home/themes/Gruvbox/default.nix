@@ -8,9 +8,7 @@ config,
   sizeVariants = ["standard"];
   themeVariants = ["yellow"];
   tweakVariants = ["black"];
-  iconVariants = ["Dark"];
-  gruvbox-gtk-theme = pkgs.gruvbox-gtk-theme.override {inherit sizeVariants colorVariants themeVariants tweakVariants iconVariants;};
-  # The actual theme name is "Gruvbox-Dark" based on the package contents
+  gruvbox-gtk-theme = pkgs.gruvbox-gtk-theme.override {inherit sizeVariants colorVariants themeVariants tweakVariants;};
   gruvbox = "Gruvbox-Dark";
 in {
   home.packages = [gruvbox-gtk-theme];
@@ -29,13 +27,12 @@ in {
         sizeVariants = sizeVariants;
         themeVariants = themeVariants;
         tweakVariants = tweakVariants;
-        iconVariants = iconVariants;
       };
     };
-      #iconTheme = {
-      #  package = pkgs.papirus-icon-theme;
-      #  name = "Papirus-Dark";
-      #};
+    iconTheme = {
+      package = pkgs.gruvbox-plus-icons;
+      name = "Gruvbox-Plus-Dark";
+    };
     gtk3.extraConfig = {
       Settings = ''
       gtk-application-prefer-dark-theme=1
@@ -75,6 +72,5 @@ in {
     "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
     "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
     "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-    # Remove Kvantum configuration as Gruvbox doesn't include Kvantum themes
   };
 }
