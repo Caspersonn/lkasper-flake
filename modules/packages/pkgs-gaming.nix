@@ -2,11 +2,11 @@
 
 {
   environment.systemPackages = with pkgs; [
-	flatpak
-	gamescope
-	protontricks
-	rpcs3
-	steam-tui
+  flatpak
+  gamescope
+  protontricks
+  rpcs3
+  steam-tui
   android-tools
   appimage-run
   beekeeper-studio
@@ -26,9 +26,6 @@
   protonplus
   ps3iso-utils
   radeontop
-  rocmPackages.clr
-  rocmPackages.rocminfo
-  rocmPackages.rocm-smi
   torzu
   steam
   stremio

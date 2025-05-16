@@ -73,7 +73,7 @@ in
       };
 
       "org/gnome/desktop/wm/preferences" = {
-        button-layout = "appmenu:minimize,maximize,close";
+        button-layout = "appmenu:close";
       };
 
       "org/gnome/shell/extensions/nightlightsliderupdated" = {

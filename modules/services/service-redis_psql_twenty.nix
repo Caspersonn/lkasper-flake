@@ -7,7 +7,7 @@
     enableTCPIP = true;
     ensureUsers = [ { name = "postgres"; } ]; 
     settings = {
-        port = 5433;
+        port = 5432;
         ssl = false;
     };
     extensions = ps: with ps; [

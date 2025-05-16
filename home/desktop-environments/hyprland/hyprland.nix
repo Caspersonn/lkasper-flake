@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, username, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -9,7 +9,8 @@
       ################
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor = ",preferred,auto,auto";
+      # Monitor config is done by nwg-displays
+      source = "/home/${username}/.config/hypr/monitors.conf";
 
       ###################
       ### MY PROGRAMS ###
@@ -20,63 +21,56 @@
       # Set programs that you use
       "$terminal" = "ghostty";
       "$fileManager" = "nautilus";
-      "$menu" = "rofi -show drun";
+      "$menu" = "wofi --show drun";
       "$browser" = "firefox";
+      "$music" = "spotify";
 
       #################
       ### AUTOSTART ###
       #################
 
-      # Autostart necessary processes (like notifications daemons, status bars, etc.)
-      # Or execute your favorite apps at launch like this:
       exec-once = [
-        "killall -q waybar;sleep .5 && waybar"
-        "hyprpaper"
+        "waybar"  # Start Waybar directly
         "[workspace 1 silent] $terminal"
         "[workspace 2 silent] $browser"
-        "[workspace 3 silent] spotify"
+        "[workspace 3 silent] $music"
+        "swayosd-server"
+        "swayosd-libinput-backend"
+        "swaync"
       ];
 
       #############################
       ### ENVIRONMENT VARIABLES ###
       #############################
 
-      # See https://wiki.hyprland.org/Configuring/Environment-variables/
-      env = [
-        "XCURSOR_SIZE,104"
-        "HYPRCURSOR_SIZE,24"
-      ];
-
+      #      env = [
+      #        "XCURSOR_SIZE,104"
+      #        "HYPRCURSOR_SIZE,24"
+      #      ];
+      #
       #####################
       ### LOOK AND FEEL ###
       #####################
 
-      # Refer to https://wiki.hyprland.org/Configuring/Variables/
 
       general = {
-        # https://wiki.hyprland.org/Configuring/Variables/#general
         gaps_in = 5;
-        gaps_out = 20;
+        gaps_out = 8;
         border_size = 2;
 
-        # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
 
         # Set to true enable resizing windows by clicking and dragging on borders and gaps
         resize_on_border = false;
 
-        # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
         allow_tearing = false;
 
         layout = "dwindle";
       };
 
       decoration = {
-        # https://wiki.hyprland.org/Configuring/Variables/#decoration
         rounding = 10;
-
-        # Change transparency of focused and unfocused windows
         active_opacity = 1.0;
         inactive_opacity = 1.0;
 
@@ -88,7 +82,6 @@
         };
 
         blur = {
-          # https://wiki.hyprland.org/Configuring/Variables/#blur
           enabled = true;
           size = 3;
           passes = 1;
@@ -97,10 +90,8 @@
       };
 
       animations = {
-        # https://wiki.hyprland.org/Configuring/Variables/#animations
         enabled = "yes, please :)";
 
-        # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
         bezier = [
           "easeOutQuint,0.23,1,0.32,1"
           "easeInOutCubic,0.65,0.05,0.36,1"
@@ -130,18 +121,15 @@
       };
 
       dwindle = {
-        # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = true; # You probably want this
       };
 
       master = {
-        # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
         new_status = "master";
       };
 
       misc = {
-        # https://wiki.hyprland.org/Configuring/Variables/#misc
         force_default_wallpaper = -1; # Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo = true; # If true disables the random hyprland logo / anime girl background. :(
       };
@@ -155,7 +143,6 @@
       #############
 
       input = {
-        # https://wiki.hyprland.org/Configuring/Variables/#input
         kb_layout = "us";
         kb_variant = "";
         kb_model = "";
@@ -172,14 +159,11 @@
       };
 
       gestures = {
-        # https://wiki.hyprland.org/Configuring/Variables/#gestures
         workspace_swipe = true;
         workspace_swipe_distance = 1000;
       };
 
       device = {
-        # Example per-device config
-        # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
         name = "epic-mouse-v1";
         sensitivity = -0.5;
       };
@@ -193,16 +177,21 @@
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         "$mainMod, T, exec, $terminal"
-        "$mainMod, F, exec, $browser"
+        "$mainMod, B, exec, $browser"
         "$mainMod, E, exec, $fileManager"
-        "$mainMod, R, exec, $menu"
+        "$mainMod, L, exec, hyprlock"
+        "$mainMod, space, exec, $menu"
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, V, togglefloating,"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
+        "$mainMod, F, fullscreen"
 
-        # 
+        "$mainMod ALT, S, exec, hyprshot -m window"
+        "$mainMod SHIFT, S, exec, hyprshot -m region"
+
+        # Focus to other window
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
@@ -243,12 +232,13 @@
       ];
 
       bindel = [
-        ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ",XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise 0"
+        ",XF86AudioLowerVolume, exec, swayosd-client --output-volume lower 0"
+        ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
         ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+        #"Caps_Lock, exec, swayosd-client --caps-lock"
       ];
 
       bindl = [
@@ -258,15 +248,15 @@
         ",XF86AudioPrev, exec, playerctl previous"
       ];
 
-      ##############################
-      ### WINDOWS AND WORKSPACES ###
-      ##############################
-
-      # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-      # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "float, class:org.gnome.Nautilus"
+        "float, class:org.pulseaudio.pavucontrol"
+        "float, class:nwg-displays, title:nwg-displays"
+        "float, class:ddcui"
+        "float, class:blueberry.py"
+        "size 50% 50%, class:nwg-displays, title:nwg-displays"
       ];
     };
   };

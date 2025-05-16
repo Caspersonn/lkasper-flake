@@ -180,7 +180,9 @@
     };
     nixosConfigurations.gaming-casper = makeNixosConf {
       hostname = "gaming-casper";
-      extraModules = [ ./profiles/Gaming ];
+      extraModules = [ ./profiles/Gaming ./modules/services/service-mysql.nix ];
+      hyprland = true;
+      gnome = false;
     };
     nixosConfigurations.server-casper = makeNixosConf {
       hostname     = "server-casper";

@@ -6,16 +6,33 @@
     xwayland.enable = true;
   };
 
-  # Packages
-  environment.systemPackages = with pkgs; [    
-    nautilus # File manager
-    rofi-wayland # app launcher
-    waybar # Status bar
-    kitty # Terminal
-    brightnessctl # This program allows you read and control device brightness 
-    hyprpaper # Blazing fast wayland wallpaper utility 
-    hyprlock # Hyprland's GPU-accelerated screen locking utility
+  # Force wayland on xwayland apps for better scaling
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
+  # Packages
+  environment.systemPackages = with pkgs; [
+    blueberry # Bluetooth configuration tool
+    brightnessctl # This program allows you read and control device brightness
+    greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
+    hyprlock # Hyprland's GPU-accelerated screen locking utility
+    hyprpaper # Blazing fast wayland wallpaper utility
+    hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse
+    kitty # Terminal
+    libnotify # Sends notication to deamon
+    nautilus # File manager
+    nwg-bar # GTK3-based button bar for sway and other wlroots-based compositors
+    nwg-displays  #configure monitor configs via GUI
+    pavucontrol # For Editing Audio Levels & Devices
+    sway # I3-compatible tiling Wayland compositor
+    swaynotificationcenter # Simple notification daemon with a GUI built for Sway
+    swayosd # GTK based on screen display for keyboard shortcuts
+    waybar # Status bar
+    wlogout # Wayland based logout menu
+    wofi # Launcher/menu program for wlroots based wayland compositors such as sway
+
+    #rofi-wayland # app launcher
     #swayidle # Idle management daemon for Wayland
     #amfora # Fancy Terminal Browser For Gemini Protocol
     #appimage-run # Needed For AppImage Support
@@ -29,22 +46,18 @@
     #file-roller # Archive Manager
     #gedit # Simple Graphical Text Editor
     #gimp # Great Photo Editor
-    greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     #htop # Simple Terminal Based System Monitor
     #hyprpicker # Color Picker
     #eog # For Image Viewing
     #inxi # CLI System Information Tool
     #killall # For Killing All Instances Of Programs
-    #libnotify # For Notifications
     #lm_sensors # Used For Getting Hardware Temps
     #lolcat # Add Colors To Your Terminal Command Output
     #lshw # Detailed Hardware Information
     #mpv # Incredible Video Player
     #ncdu # Disk Usage Analyzer With Ncurses Interface
     #nixfmt-rfc-style # Nix Formatter
-    #nwg-displays  #configure monitor configs via GUI
     #onefetch #provides zsaneyos build info on current system
-    #pavucontrol # For Editing Audio Levels & Devices
     #pciutils # Collection Of Tools For Inspecting PCI Devices
     #picard # For Changing Music Metadata & Getting Cover Art
     #pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
