@@ -16,6 +16,7 @@
     blueberry # Bluetooth configuration tool
     brightnessctl # This program allows you read and control device brightness
     greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
+    gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette
     hyprlock # Hyprland's GPU-accelerated screen locking utility
     hyprpaper # Blazing fast wayland wallpaper utility
     hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse
