@@ -15,7 +15,6 @@
 
         "hyprland/workspaces" = {
           disable-scroll = true;
-          all-outputs = true;
           format = "{icon}";
           format-icons = {
             "1" = "";

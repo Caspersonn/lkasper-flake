@@ -13,7 +13,6 @@
     stylix.url = "github:danth/stylix/release-24.11";
     croctalk.url = "github:wearetechnative/croctalk";
     slack2zammad.url = "github:wearetechnative/slack2zammad";
-    hyprland.url = "github:hyprwm/Hyprland";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,13 +25,9 @@
       url = "github:nyawox/nixtendo-switch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    split-monitor-workspaces = {
-      url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland"; # <- make sure this line is present for the plugin to work as intended
-    };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, split-monitor-workspaces, hyprland }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad }:
 
 
   let
