@@ -17,11 +17,17 @@
           disable-scroll = true;
           format = "{icon}";
           format-icons = {
+            # Monitor 1
             "1" = "";
             "2" = "󰈹";
             "3" = "";
             "4" = "󰌨";
             "5" = "";
+            # Monitor 2
+            "11" = "";
+            "12" = "󰈹";
+            "13" = "";
+            "14" = "";
             active = "";
             default = "";
           };
