@@ -2,6 +2,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = true;
 
     settings = {
       ################
@@ -30,7 +31,6 @@
       #################
 
       exec-once = [
-        "waybar"  # Start Waybar directly
         "[workspace 1 silent] $terminal"
         "[workspace 2 silent] $browser"
         "[workspace 3 silent] $music"

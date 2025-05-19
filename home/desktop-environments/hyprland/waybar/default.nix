@@ -2,7 +2,8 @@
 {
   programs.waybar = {
     enable = true;
-    systemd.enable = false;
+    systemd.enable = true;
+    systemd.target = "hyprland-session.target";
     settings = {
       mainBar = {
         layer = "top";
@@ -14,26 +15,24 @@
 
         "hyprland/workspaces" = {
           disable-scroll = true;
+          all-outputs = true;
           format = "{icon}";
           format-icons = {
             "1" = "";
             "2" = "󰈹";
             "3" = "";
-            "4" = "";
+            "4" = "󰌨";
             "5" = "";
             active = "";
             default = "";
-            #persistent-workspaces = {
-            #  "*" = 5;
-            #};
           };
         };
 
         network = {
           # interface: "wlp2s0", // (Optional) To force the use of this interface
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "{ifname}: {ipaddr}/{cidr} ";
-          format-disconnected = "Disconnected ⚠";
+          format-wifi = "   {essid} ({signalStrength}%)";
+          format-ethernet = "   {ifname}";
+          format-disconnected = "⚠  Disconnected";
           on-click = "nm-connection-editor";
         };
 
