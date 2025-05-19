@@ -1,8 +1,9 @@
-{ config, lib, pkgs, username, ... }:
+{ config, lib, pkgs, username, inputs, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
+    plugins = [ inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces ];
 
     settings = {
       ################
