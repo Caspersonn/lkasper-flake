@@ -17,6 +17,8 @@
       PATH=$HOME/bin:$PATH
       set -o allexport
       source /tmp/avante-bedrock
+      source /tmp/google-bedrock
+      source /tmp/google-engine-bedrock
       set +o allexport
     '';
 

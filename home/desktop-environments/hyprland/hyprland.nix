@@ -197,6 +197,11 @@
         "$mainMod ALT, S, exec, hyprshot -m window"
         "$mainMod SHIFT, S, exec, hyprshot -m region"
 
+        # power-profiles-daemon
+        "$mainMod+Ctrl+Shift, W, exec, powerprofilesctl set power-saver"
+        "$mainMod+Ctrl+Shift, E, exec, powerprofilesctl set balanced"
+        "$mainMod+Ctrl+Shift, R, exec, powerprofilesctl set performance"
+
         # Focus to other window
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
@@ -244,9 +249,9 @@
         ",XF86AudioLowerVolume, exec, swayosd-client --output-volume lower 0"
         ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
-        #"Caps_Lock, exec, swayosd-client --caps-lock"
+        ",XF86MonBrightnessUp, exec, swayosd-client --brightness=raise 10"
+        ",XF86MonBrightnessDown, exec, swayosd-client --brightness=lower 10"
+        ",Caps_Lock, exec, swayosd-client --caps-lock"
       ];
 
       bindl = [

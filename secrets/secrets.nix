@@ -20,6 +20,8 @@ in
   "aws_config.age".publicKeys = users ++ systems;
   "aws_credentials.age".publicKeys = users ++ systems;
   "avante-bedrock.age".publicKeys = users ++ systems;
+  "google-bedrock.age".publicKeys = users ++ systems;
+  "google-engine-bedrock.age".publicKeys = users ++ systems;
 #  "atticwto.age".publicKeys = users ++ systems;
 #  "loboskey.age".publicKeys = users ;
 

@@ -11,11 +11,11 @@
         spacing = 10;
         modules-left = ["clock" "hyprland/workspaces"];
         modules-center = ["hyprland/window"];
-        modules-right =["tray" "pulseaudio" "bluetooth" "network" "battery"];
+        modules-right =["tray" "pulseaudio" "bluetooth" "network" "battery" "power-profiles-daemon"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
-          format = "{icon}";
+          format = "{icon} ";
           format-icons = {
             # Monitor 1
             "1" = "";
@@ -28,7 +28,7 @@
             "12" = "󰈹";
             "13" = "";
             "14" = "";
-            active = "";
+            #active = "";
             default = "";
           };
         };
@@ -79,6 +79,18 @@
             "good" = 90;
             "warning" = 30;
             "critical" = 15;
+          };
+        };
+
+        power-profiles-daemon = {
+          format = "{icon} ";
+          tooltip-format = "Power profile: {profile}\nDriver: {driver}";
+          tooltip = true;
+          format-icons = {
+            default = "";
+            performance = "";
+            balanced = "";
+            power-saver = "";
           };
         };
 
@@ -144,6 +156,10 @@
         border-radius: 6px;
         margin: 5px 5px;
         padding: 0 6px;
+      }
+
+      #workspaces button.active {
+        color: @green;
       }
 
       #workspaces button {
@@ -212,6 +228,14 @@
       }
 
       #battery {
+        background: @aqua;
+        color: @bg0_h;
+        margin: 5px 0 5px 0;
+        padding: 0 10px;
+        border-radius: 6px;
+      }
+
+      #power-profiles-daemon {
         background: @aqua;
         color: @bg0_h;
         margin: 5px 5px 5px 0;

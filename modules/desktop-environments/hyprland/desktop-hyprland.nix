@@ -6,6 +6,12 @@
     xwayland.enable = true;
   };
 
+  # Enable power-profiles-daemon
+  services.power-profiles-daemon.enable = true;
+
+  # Enable playerctl daemon
+  services.playerctld.enable = true;
+
   # Force wayland on xwayland apps for better scaling
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -21,6 +27,7 @@
     hyprlock # Hyprland's GPU-accelerated screen locking utility
     hyprpaper # Blazing fast wayland wallpaper utility
     hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse
+    hyprsunset # Application to enable a blue-light filter on Hyprland
     kitty # Terminal
     libnotify # Sends notication to deamon
     nautilus # File manager
@@ -28,6 +35,8 @@
     nwg-bar # GTK3-based button bar for sway and other wlroots-based compositors
     nwg-displays  #configure monitor configs via GUI
     pavucontrol # For Editing Audio Levels & Devices
+    playerctl # Allows Changing Media Volume Through Scripts
+    power-profiles-daemon # Makes user-selected power profiles handling available over D-Bus
     sway # I3-compatible tiling Wayland compositor
     swaynotificationcenter # Simple notification daemon with a GUI built for Sway
     swayosd # GTK based on screen display for keyboard shortcuts
@@ -64,7 +73,6 @@
     #pciutils # Collection Of Tools For Inspecting PCI Devices
     #picard # For Changing Music Metadata & Getting Cover Art
     #pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
-    #playerctl # Allows Changing Media Volume Through Scripts
     #rhythmbox
     #ripgrep # Improved Grep
     #socat # Needed For Screenshots

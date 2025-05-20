@@ -174,8 +174,8 @@
     nixosConfigurations.technative-casper = makeNixosConf {
       hostname     = "technative-casper";
       extraModules = [ ./profiles/Work ];
-      gnome        = true;
-      hyprland     = false;
+      gnome        = false;
+      hyprland     = true;
     };
     nixosConfigurations.gaming-casper = makeNixosConf {
       hostname = "gaming-casper";

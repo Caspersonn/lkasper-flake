@@ -100,5 +100,6 @@
   mailutils
   mods
   nerdfonts
+  unstable.aider-chat-full
   ];
 }
