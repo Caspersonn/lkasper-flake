@@ -15,22 +15,22 @@
 
         "hyprland/workspaces" = {
           disable-scroll = true;
-          format = "{icon} ";
-          format-icons = {
-            # Monitor 1
-            "1" = "";
-            "2" = "󰈹";
-            "3" = "";
-            "4" = "󰌨";
-            "5" = "";
-            # Monitor 2
-            "11" = "";
-            "12" = "󰈹";
-            "13" = "";
-            "14" = "";
-            #active = "";
-            default = "";
-          };
+          format = "{icon}";
+          #  format-icons = {
+          #    # Monitor 1
+          #    "1" = "";
+          #    "2" = "󰈹";
+          #    "3" = "";
+          #    "4" = "󰌨";
+          #    "5" = "";
+          #    # Monitor 2
+          #    "11" = "";
+          #    "12" = "󰈹";
+          #    "13" = "";
+          #    "14" = "";
+          #    #active = "";
+          #    default = "";
+          #  };
         };
 
         network = {
@@ -83,14 +83,14 @@
         };
 
         power-profiles-daemon = {
-          format = "{icon} ";
+          format = "{icon}";
           tooltip-format = "Power profile: {profile}\nDriver: {driver}";
           tooltip = true;
           format-icons = {
             default = "";
             performance = "";
-            balanced = "";
-            power-saver = "";
+            balanced = " ";
+            power-saver = " ";
           };
         };
 

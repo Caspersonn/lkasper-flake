@@ -3,6 +3,9 @@
   programs.hyprlock = {
     enable = true;
     settings = {
+      auth = {
+        "fingerprint:enabled" = true;
+      };
       background = {
         color = "rgba(25, 20, 20, 1.0)";
         blur_passes = 2;

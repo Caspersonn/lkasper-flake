@@ -13,6 +13,7 @@
     stylix.url = "github:danth/stylix/release-24.11";
     croctalk.url = "github:wearetechnative/croctalk";
     slack2zammad.url = "github:wearetechnative/slack2zammad";
+    dirtygit.url = "github:mipmip/dirtygit";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +28,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit }:
 
 
   let

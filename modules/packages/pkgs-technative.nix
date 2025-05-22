@@ -17,7 +17,7 @@
     telegram-bot-api
     telegram-desktop
     typescript
-    zoom-us
+    unstable.zoom-us
     aws-mfa
     cypress
     docker
