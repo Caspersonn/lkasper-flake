@@ -11,7 +11,7 @@
         spacing = 10;
         modules-left = ["clock" "hyprland/workspaces"];
         modules-center = ["hyprland/window"];
-        modules-right =["tray" "pulseaudio" "bluetooth" "network" "battery" "power-profiles-daemon"];
+        modules-right =["tray" "pulseaudio" "bluetooth" "network" "battery" "power-profiles-daemon" "custom/power"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -100,6 +100,11 @@
 
         tray = {
           spacing = 10;
+        };
+        "custom/power" = {
+          format = " ";
+          tooltip = false;
+          on-click = "wlogout";
         };
       };
     };
@@ -236,9 +241,9 @@
       }
 
       #power-profiles-daemon {
-        background: @aqua;
+        background: @purple;
         color: @bg0_h;
-        margin: 5px 5px 5px 0;
+        margin: 5px 0 5px 0;
         padding: 0 10px;
         border-radius: 6px;
       }
@@ -259,6 +264,13 @@
         background: @orange;
         color: @bg0_h;
         margin: 5px 0 5px 5px;
+        padding: 0 10px;
+        border-radius: 6px;
+      }
+      #custom-power {
+        background: @green;
+        color: @bg0_h;
+        margin: 5px 10px 5px 0;
         padding: 0 10px;
         border-radius: 6px;
       }
