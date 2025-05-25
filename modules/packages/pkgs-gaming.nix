@@ -9,7 +9,6 @@
   steam-tui
   android-tools
   appimage-run
-  beekeeper-studio
   ddcui
   ddcutil
   discord
@@ -26,10 +25,8 @@
   protonplus
   ps3iso-utils
   radeontop
-  torzu
   steam
   stremio
-  torzu
   unstable.cemu
   unstable.multiviewer-for-f1
   vulkan-tools

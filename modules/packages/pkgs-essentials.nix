@@ -99,7 +99,10 @@
   zsh
   mailutils
   mods
-  nerdfonts
+  nerd-fonts.fira-code
+  nerd-fonts.jetbrains-mono
+  nerd-fonts.droid-sans-mono
+  nerd-fonts.symbols-only
   unstable.aider-chat-full
   ];
 }

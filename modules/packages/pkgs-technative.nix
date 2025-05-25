@@ -29,7 +29,6 @@
     nchat
     neofetch
     nodePackages.live-server
-    nodejs_18
     redis
     rbw
     remmina

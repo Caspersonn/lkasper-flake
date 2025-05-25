@@ -2,7 +2,7 @@
   description = "Best config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
     bmc.url = "github:wearetechnative/bmc";
@@ -10,12 +10,12 @@
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
     nixpkgs-cosmic.follows = "nixos-cosmic/nixpkgs";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-    stylix.url = "github:danth/stylix/release-24.11";
+    stylix.url = "github:danth/stylix/release-25.05";
     croctalk.url = "github:wearetechnative/croctalk";
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirtygit.url = "github:mipmip/dirtygit";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     homeage = {
@@ -50,7 +50,7 @@
   }:
   home-manager.lib.homeManagerConfiguration {
     modules = [
-      stylix.homeManagerModules.stylix
+      stylix.homeModules.stylix
       (import ./home)
       {
         home.stateVersion = "24.11";

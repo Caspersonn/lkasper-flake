@@ -45,13 +45,13 @@ final: prev: {
   #  };
   #  vendorHash = null;
   #};
- cypress = prev.cypress.overrideAttrs (oldAttrs: rec {
-    pname = "cypress";
-    version = "13.16.0";
-    src = prev.fetchzip {
-      url = "https://cdn.cypress.io/desktop/${version}/linux-x64/cypress.zip";
-      sha256 = "sha256-D1pzxq7yNzSDA1ZNYfdJVz3vLare/y8IbC7tN5tAff4=";
-    };
-  });
+  #cypress = prev.cypress.overrideAttrs (oldAttrs: rec {
+  #   pname = "cypress";
+  #   version = "13.16.0";
+  #   src = prev.fetchzip {
+  #     url = "https://cdn.cypress.io/desktop/${version}/linux-x64/cypress.zip";
+  #     sha256 = "sha256-D1pzxq7yNzSDA1ZNYfdJVz3vLare/y8IbC7tN5tAff4=";
+  #   };
+  # });
 }
 

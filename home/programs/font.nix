@@ -3,7 +3,9 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    nerdfonts
-    fira-code-nerdfont
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.symbols-only
   ];
 }
