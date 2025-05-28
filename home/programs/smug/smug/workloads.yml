@@ -1,14 +1,19 @@
 session: workloads
 
-root: ~/git/technative_b.v./technative-awsaccounts-workloads 
+root: ~/git/technative_b.v./technative-awsaccounts-workloads
 
 windows:
-  - name: zsh
+  - name: workloads
     layout: main-horizontal
     commands:
       - ner
-  - name: ssh
+
+  - name: non-prod
     layout: main-horizontal
     panes:
       - type: horizontal
 
+  - name: prod
+    layout: main-horizontal
+    panes:
+      - type: horizontal

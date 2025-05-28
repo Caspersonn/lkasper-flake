@@ -38,7 +38,7 @@
           format-wifi = "   {essid} ({signalStrength}%)";
           format-ethernet = "   {ifname}";
           format-disconnected = "⚠  Disconnected";
-          on-click = "nm-connection-editor";
+          on-click = "kitty -e nmtui";
         };
 
         pulseaudio = {
@@ -90,7 +90,7 @@
             default = "";
             performance = "";
             balanced = " ";
-            power-saver = " ";
+            power-saver = "";
           };
         };
 

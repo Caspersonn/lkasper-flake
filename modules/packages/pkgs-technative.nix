@@ -46,8 +46,6 @@
       lxml
       langchain
       langchain-community
-      openai
-      openai-whisper
       pydub
       python-dotenv
       pylint

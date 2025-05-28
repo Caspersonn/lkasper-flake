@@ -11,6 +11,7 @@
   # GUI Applications - Office & Productivity
   libreoffice-qt6-fresh
   onlyoffice-bin
+  signal-desktop
 
   # GUI Applications - Media & Entertainment
   obs-studio
