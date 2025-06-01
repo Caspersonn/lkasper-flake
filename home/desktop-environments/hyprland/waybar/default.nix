@@ -9,8 +9,8 @@
         layer = "top";
         height = 25;
         spacing = 10;
-        modules-left = ["clock" "hyprland/workspaces"];
-        modules-center = ["hyprland/window"];
+        modules-left = ["hyprland/workspaces"];
+        modules-center = ["clock" "custom/weather"];
         modules-right =["tray" "pulseaudio" "bluetooth" "network" "battery" "power-profiles-daemon" "custom/power"];
 
         "hyprland/workspaces" = {
@@ -95,7 +95,17 @@
         };
 
         clock = {
-          format-alt = "{:%a, %d. %b  %H:%M}";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          #format-alt = "{:%a, %d. %b  %H:%M}";
+          format = "{:%a; %d %b, %I:%M %p}";
+        };
+
+        "custom/weather" = {
+          format = "{}";
+          tooltip = true;
+          interval = 1800;
+          exec = "wttrbar";
+          return-type = "json";
         };
 
         tray = {
@@ -142,7 +152,6 @@
       window#waybar {
         background: @bg0;
         color: @fg1;
-        border-bottom: 2px solid @bg1;
         padding: 0 10px; /* Add horizontal padding to the entire bar */
       }
 
@@ -154,6 +163,26 @@
 
       tooltip label {
         color: @fg1;
+      }
+
+      #custom-weather {
+        margin-right: 5px;
+        padding-right: 5px;
+        padding-left: 6px;
+        border-radius: 0px 6px 6px 0px;
+        transition: none;
+        color: @fg3;
+        background: @bg1;
+      }
+
+      #clock {
+        margin-left: 5px;
+        padding-left: 5px;
+        padding-right: 6px;
+        border-radius: 6px 0px 0px 6px;
+        transition: none;
+        color: @fg3;
+        background: @bg1;
       }
 
       #workspaces {
@@ -260,13 +289,6 @@
         background: @green;
       }
 
-      #clock {
-        background: @orange;
-        color: @bg0_h;
-        margin: 5px 0 5px 5px;
-        padding: 0 10px;
-        border-radius: 6px;
-      }
       #custom-power {
         background: @green;
         color: @bg0_h;

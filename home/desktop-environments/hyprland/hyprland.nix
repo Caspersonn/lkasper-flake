@@ -38,17 +38,18 @@
         "swayosd-server"
         "swayosd-libinput-backend"
         "swaync"
+        "hyprsunset -t 5000"
       ];
 
       #############################
       ### ENVIRONMENT VARIABLES ###
       #############################
 
-      #      env = [
-      #        "XCURSOR_SIZE,104"
-      #        "HYPRCURSOR_SIZE,24"
-      #      ];
-      #
+      env = [
+        "WLR_DRM_NO_ATOMIC,1"
+        "PULSE_LATENCY_MSEC,60"
+      ];
+
       #####################
       ### LOOK AND FEEL ###
       #####################

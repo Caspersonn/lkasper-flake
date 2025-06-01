@@ -11,7 +11,8 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" "coretemp" "nct6687" "zenpower" "i2c-dev" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
   #boot.extraModulePackages = let
   #kernel = config.boot.kernelPackages.kernel;
   #nct6687d = pkgs.stdenv.mkDerivation {
@@ -40,7 +41,7 @@
   #  config.boot.kernelPackages.zenpower
   #  nct6687d
   #];
-  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_14.nct6687d ];
+  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_6.nct6687d ];
   boot.supportedFilesystems = [ "ntfs" ];
 
 
