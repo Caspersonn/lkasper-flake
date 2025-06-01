@@ -47,7 +47,6 @@
 
       env = [
         "WLR_DRM_NO_ATOMIC,1"
-        "PULSE_LATENCY_MSEC,60"
       ];
 
       #####################
