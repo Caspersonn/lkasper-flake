@@ -7,7 +7,7 @@
     settings = {
       mainBar = {
         layer = "top";
-        height = 25;
+        height = 40;
         #spacing = 10;
         modules-left = ["hyprland/workspaces"];
         modules-center = ["clock" "custom/weather"];
@@ -48,15 +48,15 @@
         network = {
           # interface: "wlp2s0", // (Optional) To force the use of this interface
           format-wifi = "  ({signalStrength}%)";
-          format-ethernet = "";
+          format-ethernet = "󰛳";
           format-disconnected = "⚠";
           on-click = "kitty -e nmtui";
         };
 
         pulseaudio = {
-          format = "{icon}   {volume}%";
-          format-bluetooth = "{icon}   {volume}%";
-          format-muted = " ";
+          format = "{icon}";
+          format-bluetooth = "{icon}";
+          format-muted = "";
           format-icons = {
               default = ["" ""];
           };
@@ -179,11 +179,11 @@
 
       #clock {
         padding-left: 16px;
-        padding-right: 16px;
         border-radius: 10px 0px 0px 10px;
         transition: none;
         color: @fg3;
         background: @bg1;
+        margin: 6px 0 0 0;
     }
 
     #custom-weather {
@@ -192,12 +192,14 @@
         transition: none;
         color: @fg3;
         background: @bg1;
+        margin: 6px 0 0 0;
+        padding: 0 10px;
     }
 
       #workspaces {
         background: @bg1;
-        border-radius: 6px;
-        margin: 5px 5px;
+        border-radius: 10px;
+        margin: 6px 0 0 8px;
         padding: 0 6px;
       }
 
@@ -217,27 +219,19 @@
         color: @fg1;
       }
 
-      #window {
-        margin: 0 5px;
-        padding: 0 10px;
-        border-radius: 6px;
-        background: @bg1;
-        color: @fg1;
-      }
-
       #tray {
         background: @bg1;
-        margin: 5px 5px;
+        margin: 6px 0 0 0;
         padding: 0 10px;
-        border-radius: 6px;
+        border-radius: 10px;
       }
 
       #pulseaudio {
         background: @bg1;
         color: @fg3;
-        margin: 5px 0;
+        margin: 6px 0 0 10px;
         padding: 0 10px;
-        border-radius: 6px;
+        border-radius: 10px 0px 0px 10px;
       }
 
       #pulseaudio.muted, #pulseaudio.source-muted {
@@ -248,9 +242,9 @@
       #bluetooth {
         background: @bg1;
         color: @fg3;
-        margin: 5px 0;
+        margin: 6px 0 0 0;
         padding: 0 10px;
-        border-radius: 6px;
+        border-radius: 0px 0px 0px 0px;
       }
 
       #bluetooth.off, #bluetooth.disabled {
@@ -261,9 +255,9 @@
       #network {
         background: @bg1;
         color: @fg3;
-        margin: 5px 0;
+        margin: 6px 0 0 0;
         padding: 0 10px;
-        border-radius: 6px;
+        border-radius: 0px 10px 10px 0px;
       }
 
       #network.disconnected {
@@ -274,33 +268,36 @@
       #cpu {
         background: @bg1;
         color: @fg3;
-        margin: 5px 0;
+        margin: 6px 0 0 10px;
+        padding-right: 16px;
         padding: 0 10px;
-        border-radius: 6px;
+        border-radius: 10px 0px 0px 10px;
       }
 
       #memory {
         background: @bg1;
         color: @fg3;
-        margin: 5px 0;
+        margin: 6px 0 0 0;
+        padding-left: 16px;
         padding: 0 10px;
-        border-radius: 6px;
+        border-radius: 0px 10px 10px 0px;
       }
 
       #battery {
         background: @bg1;
         color: @fg3;
-        margin: 5px 0 5px 0;
+        margin: 6px 0 0 0;
         padding: 0 10px;
-        border-radius: 6px;
+        border-radius: 10px;
       }
 
       #power-profiles-daemon {
         background: @bg1;
         color: @fg3;
-        margin: 5px 0 5px 0;
+        margin: 6px 0 0 10px;
+        padding-left: 16px;
         padding: 0 10px;
-        border-radius: 6px;
+        border-radius: 10px 0px 0px 10px;
       }
 
       #battery.warning {
@@ -318,9 +315,10 @@
       #custom-power {
         background: @bg1;
         color: @fg3;
-        margin: 5px 10px 5px 0;
+        margin: 6px 8px 0 0;
+        padding-right: 16px;
         padding: 0 10px;
-        border-radius: 6px;
+        border-radius: 0px 10px 10px 0px;
       }
     '';
   };
