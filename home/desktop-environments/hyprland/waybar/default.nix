@@ -8,10 +8,10 @@
       mainBar = {
         layer = "top";
         height = 25;
-        spacing = 10;
+        #spacing = 10;
         modules-left = ["hyprland/workspaces"];
         modules-center = ["clock" "custom/weather"];
-        modules-right =["tray" "pulseaudio" "bluetooth" "network" "battery" "power-profiles-daemon" "custom/power"];
+        modules-right =["tray" "pulseaudio" "bluetooth" "network" "cpu" "memory" "battery" "power-profiles-daemon" "custom/power"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -33,11 +33,23 @@
           #  };
         };
 
+        cpu = {
+          interval = 10;
+          format = "{}% ";
+          max-length = 10;
+        };
+
+        memory = {
+          interval = 30;
+          format = "{}% ";
+          max-length = 10;
+        };
+
         network = {
           # interface: "wlp2s0", // (Optional) To force the use of this interface
-          format-wifi = "   {essid} ({signalStrength}%)";
-          format-ethernet = "   {ifname}";
-          format-disconnected = "⚠  Disconnected";
+          format-wifi = "  ({signalStrength}%)";
+          format-ethernet = "";
+          format-disconnected = "⚠";
           on-click = "kitty -e nmtui";
         };
 
@@ -89,7 +101,7 @@
           format-icons = {
             default = "";
             performance = "";
-            balanced = " ";
+            balanced = "";
             power-saver = "";
           };
         };
@@ -112,7 +124,7 @@
           spacing = 10;
         };
         "custom/power" = {
-          format = " ";
+          format = "";
           tooltip = false;
           on-click = "wlogout";
         };
@@ -150,7 +162,7 @@
       }
 
       window#waybar {
-        background: @bg0;
+        background: transparent;
         color: @fg1;
         padding: 0 10px; /* Add horizontal padding to the entire bar */
       }
@@ -165,25 +177,22 @@
         color: @fg1;
       }
 
-      #custom-weather {
-        margin-right: 5px;
-        padding-right: 5px;
-        padding-left: 6px;
-        border-radius: 0px 6px 6px 0px;
-        transition: none;
-        color: @fg3;
-        background: @bg1;
-      }
-
       #clock {
-        margin-left: 5px;
-        padding-left: 5px;
-        padding-right: 6px;
-        border-radius: 6px 0px 0px 6px;
+        padding-left: 16px;
+        padding-right: 16px;
+        border-radius: 10px 0px 0px 10px;
         transition: none;
         color: @fg3;
         background: @bg1;
-      }
+    }
+
+    #custom-weather {
+        padding-right: 16px;
+        border-radius: 0px 10px 10px 0px;
+        transition: none;
+        color: @fg3;
+        background: @bg1;
+    }
 
       #workspaces {
         background: @bg1;
@@ -224,8 +233,8 @@
       }
 
       #pulseaudio {
-        background: @blue;
-        color: @bg0_h;
+        background: @bg1;
+        color: @fg3;
         margin: 5px 0;
         padding: 0 10px;
         border-radius: 6px;
@@ -237,8 +246,8 @@
       }
 
       #bluetooth {
-        background: @purple;
-        color: @bg0_h;
+        background: @bg1;
+        color: @fg3;
         margin: 5px 0;
         padding: 0 10px;
         border-radius: 6px;
@@ -250,48 +259,65 @@
       }
 
       #network {
-        background: @green;
-        color: @bg0_h;
+        background: @bg1;
+        color: @fg3;
         margin: 5px 0;
         padding: 0 10px;
         border-radius: 6px;
       }
 
       #network.disconnected {
-        background: @red;
+        background: @bg1;
+        color: @red;
+      }
+
+      #cpu {
+        background: @bg1;
+        color: @fg3;
+        margin: 5px 0;
+        padding: 0 10px;
+        border-radius: 6px;
+      }
+
+      #memory {
+        background: @bg1;
+        color: @fg3;
+        margin: 5px 0;
+        padding: 0 10px;
+        border-radius: 6px;
       }
 
       #battery {
-        background: @aqua;
-        color: @bg0_h;
+        background: @bg1;
+        color: @fg3;
         margin: 5px 0 5px 0;
         padding: 0 10px;
         border-radius: 6px;
       }
 
       #power-profiles-daemon {
-        background: @purple;
-        color: @bg0_h;
+        background: @bg1;
+        color: @fg3;
         margin: 5px 0 5px 0;
         padding: 0 10px;
         border-radius: 6px;
       }
 
       #battery.warning {
-        background: @yellow;
+        color: @yellow;
       }
 
       #battery.critical {
-        background: @red;
+        color: @red;
       }
 
       #battery.charging {
-        background: @green;
+        color: @green;
       }
 
       #custom-power {
-        background: @green;
-        color: @bg0_h;
+        background: @bg1;
+        color: @fg3;
         margin: 5px 10px 5px 0;
         padding: 0 10px;
         border-radius: 6px;

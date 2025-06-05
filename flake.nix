@@ -26,9 +26,13 @@
       url = "github:nyawox/nixtendo-switch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-healthchecks = {
+      url = "github:mrvandalo/nixos-healthchecks";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, nixos-healthchecks }:
 
 
   let
@@ -107,6 +111,7 @@
               race.packages."${system}".race
               bmc.packages."${system}".bmc
               jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
+              nixos-healthchecks.packages.${system}.healthchecks
               #slack2zammad.packages."${system}".slack2zammad
               #croctalk.packages."${system}".croctalk
               #croctalk.nixosModules."${system}".croctalk
@@ -116,6 +121,8 @@
             defaults
             home-manager.nixosModules.home-manager
             agenix.nixosModules.default
+            nixos-healthchecks.nixosModules.default
+                  #nixos-healthchecks.flakeModule
             extraPkgs
             { home-manager.useGlobalPkgs = true; }
            ] ++ desktopModules ++ extraModules;

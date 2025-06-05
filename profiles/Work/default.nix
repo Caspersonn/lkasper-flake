@@ -12,6 +12,8 @@
     ../../modules/services/service-tailscale.nix
     ../../modules/services/service-docker.nix
     ../../modules/services/service-smb.nix
+    ../../modules/services/service-nix-healthchecks.nix
+    ../../modules/services/service-redis_psql_twenty.nix
 
     # Etc
     ../../modules/secrets-casper.nix

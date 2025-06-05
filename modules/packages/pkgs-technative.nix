@@ -6,6 +6,8 @@
     awscli
     aws-nuke
     attic-client
+    beam27Packages.elixir
+    erlang_28
     gh
     postgresql_15
     ssm-session-manager-plugin
