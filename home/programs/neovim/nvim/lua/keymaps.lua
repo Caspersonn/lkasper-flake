@@ -19,5 +19,7 @@ map("", "<S-ScrollWheelDown>", "zL", {})
 vim.o.wrap = false
 
 -- Tabs
-map("n", ",n", ":tabnew<CR>", opts)
-map("n", ",m", ":tabclose<CR>", opts)
+map("n", ",tn", ":tabnew<CR>", opts)
+map("n", ",tc", ":tabclose<CR>", opts)
+map("n", ",to", ":tabnext<CR>", opts)
+map("n", ",tp", ":tabprevious<CR>", opts)

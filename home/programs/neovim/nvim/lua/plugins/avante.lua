@@ -6,12 +6,16 @@ return {
     -- add any opts here
     -- for example
     provider = "bedrock",
-    bedrock = {
-      model = "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
-      -- model = "anthropic.claude-3-5-sonnet-20240620-v1:0",
-      timeout = 30000, -- Timeout in milliseconds
-      temperature = 0,
-      max_tokens = 8000,
+    providers = {
+      bedrock = {
+        model = "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        -- model = "anthropic.claude-3-5-sonnet-20240620-v1:0",
+        extra_request_body = {
+          timeout = 30000, -- Timeout in milliseconds
+          temperature = 0,
+          max_tokens = 8000,
+        },
+      },
     },
     web_search_engine = {
       provider = "google", -- tavily, serpapi, searchapi, google or kagi

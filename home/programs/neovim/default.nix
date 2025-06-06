@@ -5,6 +5,10 @@
     enable = true;
     package = unstable.neovim-unwrapped;
     defaultEditor = true;
+
+    # Image nvim
+    extraLuaPackages = ps: [ ps.magick ];
+    extraPackages = [ pkgs.imagemagick ];
   };
 
   home.file = {
@@ -27,6 +31,7 @@
     pkgs.nil                      # Nix language server
     pkgs.terraform-ls
     pkgs.pyright
+    pkgs.typst
 
     # Search and navigation tools
     pkgs.silver-searcher

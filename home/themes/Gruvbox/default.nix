@@ -8,7 +8,8 @@ config,
   sizeVariants = ["standard"];
   themeVariants = ["yellow"];
   tweakVariants = ["black"];
-  gruvbox-gtk-theme = pkgs.gruvbox-gtk-theme.override {inherit sizeVariants colorVariants themeVariants tweakVariants;};
+  iconVariants = ["Dark"];
+  gruvbox-gtk-theme = pkgs.gruvbox-gtk-theme.override {inherit sizeVariants colorVariants themeVariants tweakVariants iconVariants;};
   gruvbox = "Gruvbox-Dark";
 in {
   home.packages = [gruvbox-gtk-theme];
@@ -27,6 +28,7 @@ in {
         sizeVariants = sizeVariants;
         themeVariants = themeVariants;
         tweakVariants = tweakVariants;
+        iconVariants = iconVariants;
       };
     };
     iconTheme = {

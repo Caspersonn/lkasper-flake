@@ -40,14 +40,14 @@
         };
 
         memory = {
-          interval = 30;
+          interval = 10;
           format = "{}% ";
           max-length = 10;
         };
 
         network = {
           # interface: "wlp2s0", // (Optional) To force the use of this interface
-          format-wifi = "  ({signalStrength}%)";
+          format-wifi = "   ({signalStrength}%)";
           format-ethernet = "󰛳";
           format-disconnected = "⚠";
           on-click = "kitty -e nmtui";
@@ -67,7 +67,7 @@
           format-on = "󰂯";
           format-off = "󰂲";
           format-disabled = "󰂲";
-          format-connected-battery = "{device_battery_percentage}% 󰂯";
+          format-connected-battery = "󰂯  {device_battery_percentage}%";
           #format-alt = "{device_alias} 󰂯";
           tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
           tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
@@ -204,7 +204,9 @@
       }
 
       #workspaces button.active {
-        color: @green;
+          color: @brgreen;
+          font-weight: bold;
+          text-shadow: 0px 0px 3px @brgreen;
       }
 
       #workspaces button {
