@@ -286,7 +286,7 @@
       #battery {
         background: @bg1;
         color: @fg3;
-        margin: 6px 0 0 0;
+        margin: 6px 0 0 10px;
         padding: 0 10px;
         border-radius: 10px;
       }
