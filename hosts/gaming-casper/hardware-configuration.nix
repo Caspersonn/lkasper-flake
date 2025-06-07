@@ -55,10 +55,22 @@
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
-    
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/7d222987-c0ce-4caa-a8de-21a7447a0d85"; }
     ];
+
+  # Other drives
+  fileSystems."/mnt/windows-drive" = {
+    device = "/dev/disk/by-uuid/8CBA4522BA4509E2";
+    fsType = "ntfs";
+    options = [ "gid=100" "uid=1000" ];
+  };
+
+  fileSystems."/mnt/second-partition" = {
+    device = "/dev/disk/by-uuid/966c43da-65ac-479a-9e16-14ebd7669c3a";
+    fsType = "ext4";
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

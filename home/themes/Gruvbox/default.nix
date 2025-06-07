@@ -10,7 +10,7 @@ config,
   tweakVariants = ["black"];
   iconVariants = ["Dark"];
   gruvbox-gtk-theme = pkgs.gruvbox-gtk-theme.override {inherit sizeVariants colorVariants themeVariants tweakVariants iconVariants;};
-  gruvbox = "Gruvbox-Dark";
+  gruvbox = "Gruvbox-Yellow-Dark";
 in {
   home.packages = [gruvbox-gtk-theme];
 
