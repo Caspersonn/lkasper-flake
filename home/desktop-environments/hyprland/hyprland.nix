@@ -269,7 +269,9 @@
         "float, class:nwg-displays, title:nwg-displays"
         "float, class:ddcui"
         "float, class:blueberry.py"
+        "float, class:kitty"
         "size 50% 50%, class:nwg-displays, title:nwg-displays"
+        "size 50% 50%, class:kitty"
         "size 50% 50%, class:org.pulseaudio.pavucontrol"
       ];
     };
