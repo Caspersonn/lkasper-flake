@@ -11,7 +11,7 @@
   appimage-run
   ddcui
   ddcutil
-  discord
+  unstable.discord
   docker
   gamemode
   goverlay
