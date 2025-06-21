@@ -6,15 +6,25 @@ return {
     -- add any opts here
     -- for example
     provider = "bedrock",
+
     providers = {
       bedrock = {
         model = "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
-        -- model = "anthropic.claude-3-5-sonnet-20240620-v1:0",
         extra_request_body = {
           timeout = 30000, -- Timeout in milliseconds
           temperature = 0,
           max_tokens = 8000,
         },
+      },
+      openai = {
+        endpoint = "https://api.openai.com/v1",
+        model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+        timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+        extra_request_body = {
+          temperature = 0,
+          --max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+          --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+        };
       },
     },
     web_search_engine = {

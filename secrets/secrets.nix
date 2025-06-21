@@ -22,6 +22,7 @@ in
   "avante-bedrock.age".publicKeys = users ++ systems;
   "google-bedrock.age".publicKeys = users ++ systems;
   "google-engine-bedrock.age".publicKeys = users ++ systems;
+  "avante-openai.age".publicKeys = users ++ systems;
 #  "atticwto.age".publicKeys = users ++ systems;
 #  "loboskey.age".publicKeys = users ;
 

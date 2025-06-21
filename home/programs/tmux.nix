@@ -4,6 +4,11 @@
   programs.tmux = {
     enable = true;
     clock24 = true;
+    plugins = [
+      pkgs.tmuxPlugins.gruvbox
+      pkgs.tmuxPlugins.sensible
+      pkgs.tmuxPlugins.yank
+    ];
     extraConfig = ''
       unbind r
       bind r source-file ~/.config/tmux/tmux.conf
@@ -12,6 +17,13 @@
       set -g @plugin 'tmux-plugins/tpm
       set -g @plugin 'tmux-plugins/tmux-sensible
       set -g @plugin 'tmux-plugins/tmux-yank'
+
+      # Tmux theming
+      set -g @plugin 'tmux-plugins/tmux-sensible' # optional recommended
+      set -g @plugin 'egel/tmux-gruvbox'
+      set -g @tmux-gruvbox 'dark' # or 'dark256', 'light', 'light256'
+      set -g @tmux-gruvbox-statusbar-alpha 'true'
+
       set -g @yank_selection_mouse 'clipboard'
       set -g @yank_with_mouse on
       set -gq allow-passthrough on

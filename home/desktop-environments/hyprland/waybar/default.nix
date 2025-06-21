@@ -237,7 +237,7 @@
       }
 
       #pulseaudio.muted, #pulseaudio.source-muted {
-        background: @bg2;
+        background: @bg1;
         color: @fg3;
       }
 
@@ -250,7 +250,7 @@
       }
 
       #bluetooth.off, #bluetooth.disabled {
-        background: @bg2;
+        background: @bg1;
         color: @fg3;
       }
 

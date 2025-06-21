@@ -7,6 +7,7 @@
     aws-nuke
     attic-client
     beam27Packages.elixir
+    bruno
     erlang_28
     gh
     postgresql_15
@@ -40,24 +41,24 @@
     hedgedoc
     quarto
     terraform-ls
-    #    python312Packages.distutils
-    #    (python311.withPackages(ps: with ps; [ 
-    #      pip
-    #      pytz
-    #      pyinstaller
-    #      lxml
-    #      langchain
-    #      langchain-community
-    #      pydub
-    #      python-dotenv
-    #      pylint
-    #      jedi
-    #      requests
-    #      tiktoken
-    #      telegram-text
-    #      toggl-cli
-    #      python-telegram-bot
-    #    ]))
+    python312Packages.distutils
+    (python311.withPackages(ps: with ps; [
+      pip
+      pytz
+      pyinstaller
+      lxml
+      langchain
+      langchain-community
+      pydub
+      python-dotenv
+      pylint
+      jedi
+      requests
+      tiktoken
+      telegram-text
+      toggl-cli
+      python-telegram-bot
+    ]))
   ];
 }
 
