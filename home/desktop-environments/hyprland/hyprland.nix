@@ -32,7 +32,7 @@
       #################
 
       exec-once = [
-        "[workspace 1 silent] $terminal"
+        "[workspace 1 silent] $terminal --command='smug lkasper'"
         "[workspace 2 silent] $browser"
         "[workspace 3 silent] $music"
         "swayosd-server"
