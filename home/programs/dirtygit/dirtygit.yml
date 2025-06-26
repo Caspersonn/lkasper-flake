@@ -40,4 +40,4 @@ gitignore:
 # will traverse directories pointed to be symlinks
 followsymlinks: false
 
-edit_command: ghostty -e cd %WORKING_DIRECTORY && vi -c :Neotree
+edit_command: ghostty --working-directory=%WORKING_DIRECTORY

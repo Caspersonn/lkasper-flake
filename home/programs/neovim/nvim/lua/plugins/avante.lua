@@ -14,7 +14,7 @@ return {
           timeout = 30000, -- Timeout in milliseconds
           temperature = 0,
           max_tokens = 8000,
-        },
+        }
       },
       openai = {
         endpoint = "https://api.openai.com/v1",
