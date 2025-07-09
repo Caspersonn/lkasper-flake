@@ -13,7 +13,7 @@
 
   boot.initrd.luks.devices."luks-a295b140-6310-4699-9853-1ad5af5747f0".device = "/dev/disk/by-uuid/a295b140-6310-4699-9853-1ad5af5747f0";
 
-  networking.hostName = "home-casper"; # Define your hostname.
+  networking.hostName = "personal-casper"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;

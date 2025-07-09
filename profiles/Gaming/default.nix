@@ -6,7 +6,7 @@
     # Core
     ../../modules/packages/pkgs-gaming.nix
     ../../modules/packages/pkgs-essentials.nix
-    ../../modules/packages/pkgs-technative.nix
+    #    ../../modules/packages/pkgs-technative.nix
     ../../modules/packages/steam.nix
 
     # Services
@@ -18,7 +18,7 @@
 
     # Etc
     ../../modules/udev-skylanders-portal.nix
-    ../../modules/secrets-casper.nix
+    ../../modules/secrets.nix
   ];
 }
 

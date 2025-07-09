@@ -170,9 +170,9 @@
         desktop  = true;
     };
 
-    homeConfigurations."home-casper@linuxdesktop" = makeHomeConf {
+    homeConfigurations."personal-casper@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
-        hostname = "home-casper";
+        hostname = "personal-casper";
     };
 
     ##################
@@ -197,9 +197,9 @@
       system       = "aarch64-linux";
       gnome        = true;
     };
-    nixosConfigurations.home-casper = makeNixosConf {
-      hostname = "home-casper";
-      extraModules = [ ./profiles/Gaming ];
+    nixosConfigurations.personal-casper = makeNixosConf {
+      hostname = "personal-casper";
+      extraModules = [ ./profiles/Personal ];
       hyprland = true;
       gnome = false;
     };

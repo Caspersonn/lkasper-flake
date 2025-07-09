@@ -5,7 +5,7 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "bedrock",
+    provider = "openai",
 
     providers = {
       bedrock = {

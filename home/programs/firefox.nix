@@ -31,7 +31,7 @@
         id = 0;
         name = "personal";
         isDefault = true;
-        #search.default = "DuckDuckGo";
+        search.default = "ddg";
         settings = {
           "browser.toolbars.bookmarks.visibility" = "never";
           "browser.bookmarks.addedImportButton" = false;
@@ -57,6 +57,7 @@
         id = 1;
         name = "work";
         isDefault = false;
+        search.default = "ddg";
         settings = {
           "browser.toolbars.bookmarks.visibility" = "never";
           "browser.bookmarks.addedImportButton" = false;

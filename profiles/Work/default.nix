@@ -16,7 +16,7 @@
     ../../modules/services/service-redis_psql_twenty.nix
 
     # Etc
-    ../../modules/secrets-casper.nix
+    ../../modules/secrets.nix
     ../../modules/udev-ddcutil.nix
   ];
 }

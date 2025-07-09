@@ -3,7 +3,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
-    plugins = [ pkgs.hyprlandPlugins.hyprsplit ];
+    plugins = [ pkgs.hyprlandPlugins.hyprsplit pkgs.hyprlandPlugins.hyprspace ];
 
     settings = {
       ################
