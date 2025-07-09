@@ -48,13 +48,13 @@ in {
   };
 
   # Set wallpaper
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      preload = ["/home/casper/lkasper-flake/wallpapers/studio-ghibli.jpg"];
-      wallpaper = [", /home/casper/lkasper-flake/wallpapers/studio-ghibli.jpg"];
-    };
-  };
+    #services.hyprpaper = {
+    #  enable = true;
+    #  settings = {
+    #    preload = ["/home/casper/lkasper-flake/wallpapers/studio-ghibli.jpg"];
+    #    wallpaper = [", /home/casper/lkasper-flake/wallpapers/studio-ghibli.jpg"];
+    #  };
+    #};
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {

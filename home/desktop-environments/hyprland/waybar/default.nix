@@ -231,7 +231,7 @@
       #pulseaudio {
         background: @bg1;
         color: @fg3;
-        margin: 6px 0 0 10px;
+        margin: 6px 0 0 8px;
         padding: 0 10px;
         border-radius: 10px 0px 0px 10px;
       }
@@ -270,7 +270,7 @@
       #cpu {
         background: @bg1;
         color: @fg3;
-        margin: 6px 0 0 10px;
+        margin: 6px 0 0 8px;
         padding-right: 16px;
         padding: 0 10px;
         border-radius: 10px 0px 0px 10px;
@@ -296,7 +296,7 @@
       #power-profiles-daemon {
         background: @bg1;
         color: @fg3;
-        margin: 6px 0 0 10px;
+        margin: 6px 0 0 8px;
         padding-left: 16px;
         padding: 0 10px;
         border-radius: 10px 0px 0px 10px;

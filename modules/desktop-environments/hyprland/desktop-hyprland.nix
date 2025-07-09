@@ -1,4 +1,4 @@
-{config, lib, pkgs, ...}:
+{config, lib, pkgs, inputs, ...}:
 
 {
   programs.hyprland = {
@@ -40,6 +40,7 @@
     sway # I3-compatible tiling Wayland compositor
     swaynotificationcenter # Simple notification daemon with a GUI built for Sway
     swayosd # GTK based on screen display for keyboard shortcuts
+    inputs.swww.packages.${pkgs.system}.swww
     waybar # Status bar
     wlogout # Wayland based logout menu
     wofi # Launcher/menu program for wlroots based wayland compositors such as sway

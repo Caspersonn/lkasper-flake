@@ -39,6 +39,7 @@
         "swayosd-libinput-backend"
         "swaync"
         "hyprsunset -t 5000"
+        "swww-daemon"
       ];
 
       #############################
@@ -186,6 +187,7 @@
         "$mainMod, B, exec, $browser"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, L, exec, hyprlock"
+        "$mainMod, D, exec, nwg-displays"
         "$mainMod, space, exec, $menu"
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"
@@ -201,6 +203,12 @@
         "$mainMod+Ctrl+Shift, W, exec, powerprofilesctl set power-saver"
         "$mainMod+Ctrl+Shift, E, exec, powerprofilesctl set balanced"
         "$mainMod+Ctrl+Shift, R, exec, powerprofilesctl set performance"
+
+
+        # Change wallpapers
+        "$mainMod ALT, C, exec, swww img /home/${username}/lkasper-flake/wallpapers/wallpaper-woods.gif --transition-type wipe --transition-angle 45"
+        "$mainMod ALT, V, exec, swww img /home/${username}/lkasper-flake/wallpapers/wallpaper-gaming.png --transition-type wipe --transition-angle 45"
+        "$mainMod ALT, B, exec, swww img /home/${username}/lkasper-flake/wallpapers/studio-ghibli.jpg --transition-type wipe --transition-angle 45"
 
         # Focus to other window
         "$mainMod, left, movefocus, l"
