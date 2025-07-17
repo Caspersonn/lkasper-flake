@@ -16,10 +16,18 @@
     initExtra = ''
       PATH=$HOME/bin:$PATH
       set -o allexport
-      source /tmp/avante-bedrock
-      source /tmp/avante-openai
-      source /tmp/google-bedrock
-      source /tmp/google-engine-bedrock
+      if [ -f /tmp/avante-bedrock ]; then
+        source /tmp/avante-bedrock
+      fi
+      if [ -f /tmp/avante-openai ]; then
+        source /tmp/avante-openai
+      fi
+      if [ -f /tmp/google-bedrock ]; then
+        source /tmp/google-bedrock
+      fi
+      if [ -f /tmp/google-engine-bedrock ]; then
+        source /tmp/google-engine-bedrock
+      fi
       set +o allexport
     '';
 
