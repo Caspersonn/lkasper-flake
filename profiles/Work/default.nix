@@ -14,6 +14,7 @@
     ../../modules/services/service-smb.nix
     ../../modules/services/service-nix-healthchecks.nix
     ../../modules/services/service-redis_psql_twenty.nix
+    ../../modules/services/service-openvpn.nix
 
     # Etc
     ../../modules/secrets.nix

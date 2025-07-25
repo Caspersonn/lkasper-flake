@@ -240,7 +240,7 @@
         "$mainMod SHIFT, 9, split:movetoworkspacesilent, 9"
         "$mainMod SHIFT, 0, split:movetoworkspacesilent, 10"
 
-        "$mainMod, D, split:swapactiveworkspaces, current +1"
+        "$mainMod, S, split:swapactiveworkspaces, current +1"
         "$mainMod, G, split:grabroguewindows"
         #
         "$mainMod, mouse_down, workspace, e+1"

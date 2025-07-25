@@ -3,61 +3,63 @@
 {
   environment.systemPackages = with pkgs; [
     # Essential technative applications
-    awscli
-    aws-nuke
     attic-client
+    aws-mfa
+    aws-nuke
+    awscli
     beam27Packages.elixir
     bruno
-    erlang_28
-    gh
-    postgresql_15
-    ssm-session-manager-plugin
-    teams-for-linux
-    terraform
-    terraform-docs
-    tfswitch
-    tfsec
-    telegram-bot-api
-    telegram-desktop
-    typescript
-    unstable.zoom-us
-    aws-mfa
     cypress
     docker
-    google-chrome
-    granted
-    gpt4all
+    erlang_28
+    gh
     git-remote-codecommit
+    google-chrome
+    gpt4all
+    granted
+    hedgedoc
+    inotify-tools
     lynis
     nchat
     neofetch
     nodePackages.live-server
-    redis
-    rbw
-    remmina
-    slack
-    silver-searcher
-    seafile-client
-    hedgedoc
-    quarto
-    terraform-ls
+    postgresql_15
     python312Packages.distutils
+    quarto
+    rbw
+    redis
+    remmina
+    seafile-client
+    silver-searcher
+    slack
+    ssm-session-manager-plugin
+    teams-for-linux
+    telegram-bot-api
+    telegram-desktop
+    terraform
+    terraform-docs
+    terraform-ls
+    pritunl-client
+    tfsec
+    tfswitch
+    typescript
+    unstable.zoom-us
     (python311.withPackages(ps: with ps; [
-      pip
-      pytz
-      pyinstaller
-      lxml
+      jedi
       langchain
       langchain-community
+      lxml
+      pip
       pydub
-      python-dotenv
+      pyinstaller
       pylint
-      jedi
-      requests
-      tiktoken
-      telegram-text
-      toggl-cli
+      python-dotenv
       python-telegram-bot
+      pytz
+      requests
+      telegram-text
+      tiktoken
+      toggl-cli
     ]))
   ];
 }

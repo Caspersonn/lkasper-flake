@@ -12,6 +12,7 @@
   libreoffice-qt6-fresh
   onlyoffice-bin
   signal-desktop
+  jan
 
   # GUI Applications - Media & Entertainment
   obs-studio
@@ -93,6 +94,7 @@
   f3
   jq
   wl-clipboard
+  nmap
 
   # System Utilities - Misc
   lsof
