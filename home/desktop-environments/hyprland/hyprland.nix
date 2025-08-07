@@ -23,7 +23,7 @@
       # Set programs that you use
       "$terminal" = "ghostty";
       "$fileManager" = "nautilus";
-      "$menu" = "wofi --show drun";
+      "$menu" = "walker";
       "$browser" = "firefox";
       "$music" = "spotify";
 
@@ -40,6 +40,7 @@
         "swaync"
         "hyprsunset -t 5000"
         "swww-daemon"
+        "walker --gapplication-service"
       ];
 
       #############################

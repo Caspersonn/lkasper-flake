@@ -15,6 +15,7 @@
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirtygit.url = "github:mipmip/dirtygit";
     swww.url = "github:LGFae/swww";
+    walker.url = "github:abenz1267/walker";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +34,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, nixos-healthchecks, swww }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, nixos-healthchecks, swww, walker }:
 
 
   let
@@ -113,6 +114,7 @@
               bmc.packages."${system}".bmc
               jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
               nixos-healthchecks.packages.${system}.healthchecks
+              walker.packages.${system}.default
               #slack2zammad.packages."${system}".slack2zammad
               #croctalk.packages."${system}".croctalk
               #croctalk.nixosModules."${system}".croctalk

@@ -1,5 +1,11 @@
 { config, pkgs, ...}:
 {
+  home.file = {
+    ".ohmyzsh-casper" = {
+      source = ./ohmyzsh-casper;
+      recursive = true;
+    };
+  };
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -9,7 +15,7 @@
       tfswitch = "mkdir -p ~/bin ; tfswitch -b $HOME/bin/terraform";
       tfapply = "$HOME/git/wearetechnative/race/tfapply.sh";
       tfdestroy = "$HOME/git/wearetechnative/race/tfdestroy.sh";
-      aws-switch = ". $HOME/git/wearetechnative/bmc/aws-profile-select.sh";
+      aws-switch = ". bmc profsel";
       lin = "vi -c LinnyMenuOpen";
       ner = "vi -c Neotree";
     };
@@ -33,8 +39,10 @@
 
     oh-my-zsh = {
       enable = true;
-      theme = "robbyrussell";
-      custom = "./custom-theme";
+      theme = "casper";
+      custom = "${config.home.homeDirectory}/.ohmyzsh-casper";
+      #theme = "robbyrussell";
+      #custom = "./custom-theme";
       plugins = [
         "git"
         "aws"
