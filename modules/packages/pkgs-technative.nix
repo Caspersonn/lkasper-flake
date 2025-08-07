@@ -54,7 +54,6 @@
       pyinstaller
       pylint
       python-dotenv
-      python-telegram-bot
       pytz
       requests
       telegram-text
