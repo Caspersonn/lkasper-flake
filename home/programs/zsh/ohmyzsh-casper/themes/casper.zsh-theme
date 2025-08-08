@@ -24,8 +24,11 @@ PROMPT="%(:%{$fg_bold[green]%}:%{$fg_bold[red]%}) "
 # Show AWS and Terraform state in the right prompt
 RPROMPT='$(aws_prompt_info)$(tfbackend_prompt_info)'
 
+# Show user, host, and current directory
+PROMPT+='%F{blue}%n%f%{$fg[blue]%}@%M %{$fg[cyan]%}%c%{$reset_color%} '
+
 # Show only current directory
-PROMPT+='%{$fg[cyan]%}%c%{$reset_color%} '
+#PROMPT+='%{$fg[cyan]%}%c%{$reset_color%} '
 
 # Show Git info
 PROMPT+='$(git_prompt_info)'
