@@ -13,6 +13,7 @@
     ../../modules/services/service-smb.nix
     ../../modules/services/service-vaultwarden.nix
     ../../modules/services/service-syncthing_server.nix
+    ../../modules/services/service-atuin.nix
 
     # Etc
     ../../modules/secrets.nix
