@@ -9,11 +9,13 @@
     rocmOverrideGfx = "10.3.1";
     host = "0.0.0.0";
     acceleration = "rocm";
-    loadModels = [ "codellama:13b" ];
+    openFirewall = true;
   };
 
   services.open-webui = {
     enable = true;
     host   = "0.0.0.0";
+    package = pkgs.open-webui;
+    openFirewall = true;
   };
 }

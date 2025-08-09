@@ -107,6 +107,10 @@
   nerd-fonts.jetbrains-mono
   nerd-fonts.droid-sans-mono
   nerd-fonts.symbols-only
-  unstable.aider-chat-full
+  aider-chat-full
+  (python313.withPackages(ps: with ps; [
+    tkinter
+    sv-ttk
+  ]))
   ];
 }

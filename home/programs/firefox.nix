@@ -1,4 +1,4 @@
-{config, pkgs, lib, ...}: 
+{config, pkgs, lib, ...}:
 
 {
   programs.firefox = {
@@ -40,6 +40,7 @@
           "privacy.clearOnShutdown.history" = false;
           "privacy.clearOnShutdown.cookies" = false;
           "network.cookie.lifetimePolicy" = "0";
+          "sidebar.verticalTabs" = true;
 
           "browser.startup.homepage" = "https://search.nixos.org";
           "browser.startup.page" = 3;
@@ -66,6 +67,7 @@
           "privacy.clearOnShutdown.history" = false;
           "privacy.clearOnShutdown.cookies" = false;
           "network.cookie.lifetimePolicy" = "0";
+          "sidebar.verticalTabs" = true;
 
           "browser.startup.homepage" = "https://search.nixos.org";
           "browser.startup.page" = 3;

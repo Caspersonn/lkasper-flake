@@ -7,41 +7,11 @@
   imports = 
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
-
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" "coretemp" "nct6687" "zenpower" "i2c-dev" ];
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
-  #boot.extraModulePackages = let
-  #kernel = config.boot.kernelPackages.kernel;
-  #nct6687d = pkgs.stdenv.mkDerivation {
-  #  pname = "nct6687d";
-  #  version = kernel.version;
-
-  #  src = pkgs.fetchFromGitHub {
-  #    owner = "Fred78290";
-  #    repo = "nct6687d";
-  #    rev = "df1565ad8e9689ca7d9614d656836b32656de0ae";
-  #    hash = "sha256-B59M29d2K0qn6O+KTL4e5+sGmFJonAmjz9C2xbyGbUw=";
-  #  };
-
-  #  nativeBuildInputs = kernel.moduleBuildDependencies;
-  #  makeFlags = kernel.makeFlags ++ [
-  #    "-C"
-  #    "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
-  #    "M=$(PWD)"
-  #  ];
-
-  #  buildFlags = [ "modules" ];
-  #  installFlags = [ "INSTALL_MOD_PATH=$(out)" ];
-  #  installTargets = [ "modules_install" ];
-  #};
-  #in [
-  #  config.boot.kernelPackages.zenpower
-  #  nct6687d
-  #];
-  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_6.nct6687d ];
+  boot.kernelPackages = pkgs.linuxPackages_6_13;
+  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_13.nct6687d ];
   boot.supportedFilesystems = [ "ntfs" ];
 
 

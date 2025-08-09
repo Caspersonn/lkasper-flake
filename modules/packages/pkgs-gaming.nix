@@ -1,4 +1,4 @@
-{config, lib, pkgs, unstable, ... }:
+{config, lib, pkgs, unstable, nixpkgs_24, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -25,6 +25,7 @@
   protonplus
   ps3iso-utils
   radeontop
+  ryujinx
   steam
   stremio
   unstable.cemu

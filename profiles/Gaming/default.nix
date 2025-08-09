@@ -6,7 +6,6 @@
     # Core
     ../../modules/packages/pkgs-gaming.nix
     ../../modules/packages/pkgs-essentials.nix
-    #    ../../modules/packages/pkgs-technative.nix
     ../../modules/packages/steam.nix
 
     # Services
