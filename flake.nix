@@ -119,7 +119,6 @@
                   defaults
                   home-manager.nixosModules.home-manager
                   agenix.nixosModules.default
-                  #nixos-healthchecks.flakeModule
                   extraPkgs
                   { home-manager.useGlobalPkgs = true; }
                 ] ++ desktopModules ++ extraModules;
