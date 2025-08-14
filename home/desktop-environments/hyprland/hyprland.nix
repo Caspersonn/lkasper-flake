@@ -272,7 +272,7 @@
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ",XF86MonBrightnessUp, exec, swayosd-client --brightness=raise 10"
         ",XF86MonBrightnessDown, exec, swayosd-client --brightness=lower 10"
-        ",Caps_Lock, exec, swayosd-client --caps-lock"
+        ",Caps_Lock, exec, sleep 0.1 && swayosd-client --caps-lock-led input19::capslock"
       ];
 
       bindl = [
