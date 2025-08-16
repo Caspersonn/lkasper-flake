@@ -12,8 +12,10 @@
     cypress
     docker
     erlang_28
+    entr
     gh
     git-remote-codecommit
+    gimp3
     google-chrome
     gpt4all
     granted
@@ -40,6 +42,9 @@
     terraform-docs
     terraform-ls
     pritunl-client
+    (texlive.combine {
+      inherit (texlive) scheme-full datetime fmtcount textpos makecell lipsum footmisc background ; 
+    })
     tfsec
     tfswitch
     typescript

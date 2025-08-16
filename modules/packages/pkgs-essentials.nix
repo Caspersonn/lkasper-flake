@@ -12,7 +12,7 @@
   libreoffice-qt6-fresh
   onlyoffice-bin
   signal-desktop
-  jan
+  unstable.jan
 
   # GUI Applications - Media & Entertainment
   obs-studio
