@@ -11,7 +11,7 @@
         #spacing = 10;
         modules-left = ["hyprland/workspaces"];
         modules-center = ["clock" "custom/weather"];
-        modules-right =["tray" "pulseaudio" "bluetooth" "network" "cpu" "memory" "battery" "power-profiles-daemon" "custom/power"];
+        modules-right =["tray" "pulseaudio" "bluetooth" "network" "cpu" "memory" "battery" "power-profiles-daemon" "custom/power" "custom/notification"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -31,6 +31,27 @@
           #    #active = "";
           #    default = "";
           #  };
+        };
+
+        "custom/notification" = {
+          tooltip = false;
+          format = "{icon}";
+          format-icons = {
+            notification = "";
+            none = "";
+            dnd-notification = "";
+            dnd-none = "";
+            inhibited-notification = "";
+            inhibited-none = "";
+            dnd-inhibited-notification = "";
+            dnd-inhibited-none = "";
+          };
+          return-type = "json";
+          exec-if = "which swaync-client";
+          exec = "swaync-client -swb";
+          on-click = "swaync-client -t -sw";
+          on-click-right = "swaync-client -d -sw";
+          escape = true;
         };
 
         cpu = {
@@ -321,6 +342,13 @@
         padding-right: 16px;
         padding: 0 10px;
         border-radius: 0px 10px 10px 0px;
+      }
+
+      #custom-notification {
+        background: @bg1;
+        margin: 6px 8px 0 0;
+        padding: 0 10px;
+        border-radius: 10px;
       }
     '';
   };

@@ -1,6 +1,23 @@
 { config, lib, pkgs, ... }:
+let
+  hyprlockDir = "$HOME/.config/hyprlock";
+  music = "${hyprlockDir}/scripts/playerlock.sh";
+in
 
 {
+  home.file = {
+    ".config/hypr/Scripts/playerlock.sh" = {
+      source = ./playerlock.sh;
+      recursive = true;
+      executable = true;
+    };
+  };
+
+  home.sessionVariables = {
+    hyprlockDir = "$HOME/.config/hyprlock";
+    music = "${hyprlockDir}/scripts/playerlock.sh";
+  };
+
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -94,13 +111,14 @@
         }
         {
           monitor = "";
-          text = ''cmd[update:1000] echo "$(~/.config/hypr/Scripts/songdetail.sh)"'';
-          color = "rgba(255, 255, 255, 0.6)";
-          font_size = 18;
-          font_family = "JetBrains Mono Nerd, SF Pro Display Bold";
-          position = "0, 50";
-          halign = "center";
-          valign = "bottom";
+          text = ''cmd[update:1000] echo "$(${music} --length)"'';
+          color = "rgba(255, 255, 255, 1)";
+          font_size = 14;
+          font_family = "JetBrains Mono Nerd Font Mono";
+          position = "-730, -310";
+          halign = "right";
+          valign = "center";
+          zindex = 5;
         }
       ];
 
