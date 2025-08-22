@@ -9,7 +9,7 @@
     awscli
     beam27Packages.elixir
     bruno
-    cypress
+    unstable.cypress
     docker
     erlang_28
     entr

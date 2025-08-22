@@ -36,6 +36,7 @@
   # TUI Applications
   tmux
   htop
+  btop
   neovim
   gum
 
