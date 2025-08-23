@@ -30,7 +30,7 @@
     hyprsunset # Application to enable a blue-light filter on Hyprland
     kitty # Terminal
     libnotify # Sends notication to deamon
-    nautilus # File manager
+    nemo # File manager
     networkmanagerapplet # NetworkManager control applet for GNOME
     nwg-bar # GTK3-based button bar for sway and other wlroots-based compositors
     nwg-displays  #configure monitor configs via GUI

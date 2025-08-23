@@ -34,7 +34,7 @@
 
       # Set programs that you use
       "$terminal" = "ghostty";
-      "$fileManager" = "nautilus";
+      "$fileManager" = "nemo";
       "$menu" = "walker";
       "$browser" = "firefox";
       "$music" = "spotify";
@@ -285,7 +285,7 @@
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-        "float, class:org.gnome.Nautilus"
+        "float, class:nemo"
         "float, class:org.pulseaudio.pavucontrol"
         "float, class:nwg-displays, title:nwg-displays"
         "float, class:ddcui"
