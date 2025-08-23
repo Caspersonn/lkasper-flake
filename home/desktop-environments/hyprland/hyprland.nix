@@ -11,6 +11,8 @@
     WLR_NO_HARDWARE_CURSORS = "1";
   };
 
+  programs.swaylock.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;

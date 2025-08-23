@@ -98,6 +98,9 @@
   nmap
 
   # System Utilities - Misc
+  polkit_gnome
+  gnome-disk-utility
+  gparted
   lsof
   bitwarden-cli
   smug

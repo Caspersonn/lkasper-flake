@@ -45,22 +45,25 @@
       makeHomeConf = {
         username ? "casper",
         hostname,
-        homedir ? "/home/casper",
-        system ? "x86_64-linux",
-        gnome ? true,
+        homedir  ? "/home/casper",
+        system   ? "x86_64-linux",
+        gnome    ? false,
+        hyprland ? false,
         ...
         }:
         home-manager.lib.homeManagerConfiguration {
           modules = [
             stylix.homeModules.stylix
+
             (import ./home)
             {
               home.stateVersion = "24.11";
               home.username = username;
               home.homeDirectory = homedir;
               roles.gnome.enable = gnome;
+              roles.hyprland.enable = hyprland;
             }
-          ];
+          ] ++ [ inputs.walker.homeManagerModules.default ];
           pkgs = importFromChannelForSystem system nixpkgs;
           extraSpecialArgs = {
             system = system;
@@ -76,7 +79,7 @@
         system       ? "x86_64-linux",
         extraModules ? [],
         username     ? "casper",
-        gnome        ? true,
+        gnome        ? false,
         hyprland     ? false,
         cosmic       ? false,
         kde          ? false,
@@ -135,7 +138,9 @@
       homeConfigurations."technative-casper@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
         hostname = "technative-casper";
-        gnome  = false;
+
+        gnome    = false;
+        hyprland = true;
       };
 
       # TODO: Change name to casper
@@ -144,7 +149,9 @@
         hostname = "technative-lucak";
         username = "lucak";
         homedir  = "/home/lucak";
-        gnome  = false;
+
+        gnome    = false;
+        hyprland = false;
       };
 
       # TODO: Change name to casper
@@ -153,25 +160,32 @@
         hostname = "server-casper";
         username = "luca";
         homedir  = "/home/luca";
-        gnome  = false;
+        gnome    = false;
+        hyprland = false;
       };
 
       homeConfigurations."gaming-casper@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
         hostname = "gaming-casper";
-        gnome  = false;
+
+        gnome    = false;
+        hyprland = true;
       };
 
       homeConfigurations."server-casper@linuxdesktop" = makeHomeConf {
         system   = "aarch64-linux";
         hostname = "server-casper";
-        gnome  = true;
+
+        gnome    = false;
+        hyprland = false;
       };
 
       homeConfigurations."personal-casper@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
         hostname = "personal-casper";
-        gnome  = false;
+
+        gnome    = false;
+        hyprland = true;
       };
 
       ##################
@@ -181,26 +195,31 @@
       nixosConfigurations.technative-casper = makeNixosConf {
         hostname     = "technative-casper";
         extraModules = [ ./profiles/Work ];
+
         gnome        = false;
         hyprland     = true;
       };
       nixosConfigurations.gaming-casper = makeNixosConf {
-        hostname = "gaming-casper";
+        hostname     = "gaming-casper";
         extraModules = [ ./profiles/Gaming ./modules/services/service-mysql.nix ];
-        hyprland = true;
-        gnome = false;
+
+        gnome        = false;
+        hyprland     = true;
       };
       nixosConfigurations.server-casper = makeNixosConf {
         hostname     = "server-casper";
-        extraModules = [ ./profiles/Server ./modules/services/service-bluetooth_reciever.nix ];
         system       = "aarch64-linux";
-        gnome        = true;
+        extraModules = [ ./profiles/Server ./modules/services/service-bluetooth_reciever.nix ];
+
+        gnome        = false;
+        hyprland     = false;
       };
       nixosConfigurations.personal-casper = makeNixosConf {
-        hostname = "personal-casper";
+        hostname     = "personal-casper";
         extraModules = [ ./profiles/Personal ];
-        hyprland = true;
-        gnome = false;
+
+        gnome        = false;
+        hyprland     = true;
       };
     };
 }

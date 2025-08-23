@@ -31,13 +31,7 @@
     ];
 
   # Other drives
-  fileSystems."/mnt/windows-drive" = {
-    device = "/dev/disk/by-uuid/8CBA4522BA4509E2";
-    fsType = "ntfs";
-    options = [ "gid=100" "uid=1000" ];
-  };
-
-  fileSystems."/mnt/second-partition" = {
+  fileSystems."/mnt/Second Drive" = {
     device = "/dev/disk/by-uuid/966c43da-65ac-479a-9e16-14ebd7669c3a";
     fsType = "ext4";
   };

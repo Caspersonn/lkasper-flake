@@ -13,6 +13,10 @@
 
   networking.hostName = "gaming-casper"; # Define your hostname.
 
+  services.udisks2.enable = true;
+
+  security.polkit.enable = true;
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -78,7 +82,7 @@
   users.users.casper = {
     isNormalUser = true;
     description = "Luca Kasper";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "storage" ];
   # packages = with pkgs; [
   # ];
   };
