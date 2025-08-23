@@ -3,7 +3,7 @@
   imports = [
     ./hyprland.nix
     ./waybar
-    ./hyprlock.nix
+    ./hyprlock
     ./hypridle.nix
     ./walker.nix
   ];

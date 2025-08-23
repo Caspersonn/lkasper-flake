@@ -26,6 +26,7 @@
   ps3iso-utils
   radeontop
   ryujinx
+  oversteer
   steam
   stremio
   unstable.cemu
@@ -33,5 +34,9 @@
   vulkan-tools
   wine64Packages.unstableFull
   wineWow64Packages.unstableFull
+  cmake
+  libgcc
+  perl
+  vcpkg
   ];
 }
