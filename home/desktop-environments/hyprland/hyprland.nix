@@ -1,4 +1,4 @@
-{ config, lib, pkgs, username, ... }:
+{ pkgs, username, ... }:
 {
   home.sessionVariables = {
     GDK_BACKEND = "wayland,x11";

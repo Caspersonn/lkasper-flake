@@ -1,4 +1,4 @@
-{config, pkgs, lib, username, ...}:
+{pkgs, ...}:
 let
   retroarchAssets = "${pkgs.retroarch-assets}/share/retroarch/assets";
   joypadAutoconfig = "${pkgs.retroarch-joypad-autoconfig}/share/libretro/autoconfig";

@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ config, ...}:
 {
   home.file = {
     ".ohmyzsh-casper" = {

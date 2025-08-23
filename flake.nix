@@ -47,7 +47,7 @@
         hostname,
         homedir ? "/home/casper",
         system ? "x86_64-linux",
-        desktop ? true,
+        gnome ? true,
         ...
         }:
         home-manager.lib.homeManagerConfiguration {
@@ -58,7 +58,7 @@
               home.stateVersion = "24.11";
               home.username = username;
               home.homeDirectory = homedir;
-              roles.desktop.enable = desktop;
+              roles.gnome.enable = gnome;
             }
           ];
           pkgs = importFromChannelForSystem system nixpkgs;
@@ -135,7 +135,7 @@
       homeConfigurations."technative-casper@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
         hostname = "technative-casper";
-        desktop  = false;
+        gnome  = false;
       };
 
       # TODO: Change name to casper
@@ -144,7 +144,7 @@
         hostname = "technative-lucak";
         username = "lucak";
         homedir  = "/home/lucak";
-        desktop  = false;
+        gnome  = false;
       };
 
       # TODO: Change name to casper
@@ -153,25 +153,25 @@
         hostname = "server-casper";
         username = "luca";
         homedir  = "/home/luca";
-        desktop  = false;
+        gnome  = false;
       };
 
       homeConfigurations."gaming-casper@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
         hostname = "gaming-casper";
-        desktop  = false;
+        gnome  = false;
       };
 
       homeConfigurations."server-casper@linuxdesktop" = makeHomeConf {
         system   = "aarch64-linux";
         hostname = "server-casper";
-        desktop  = true;
+        gnome  = true;
       };
 
       homeConfigurations."personal-casper@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
         hostname = "personal-casper";
-        desktop  = false;
+        gnome  = false;
       };
 
       ##################

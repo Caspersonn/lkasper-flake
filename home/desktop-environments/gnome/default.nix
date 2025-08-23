@@ -1,12 +1,12 @@
 { config, lib, hostname, username, pkgs, ... }:
 
 let
-  cfg = config.roles.desktop;
+  cfg = config.roles.gnome;
 in
 
 {
-  options.roles.desktop = {
-    enable = lib.mkEnableOption "Configure as desktop computer";
+  options.roles.gnome = {
+    enable = lib.mkEnableOption "Enable gnome preferences";
   };
 
   config = lib.mkIf cfg.enable {
