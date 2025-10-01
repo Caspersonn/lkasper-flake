@@ -162,9 +162,8 @@
       # TODO: Change name to casper
       homeConfigurations."dreammachine-luca@linuxdesktop" = makeHomeConf {
         system   = "x86_64-linux";
-        hostname = "server-casper";
-        username = "luca";
-        homedir  = "/home/luca";
+        hostname = "dreammachine";
+
         gnome    = false;
         hyprland = false;
       };
