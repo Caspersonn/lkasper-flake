@@ -3,11 +3,11 @@ session: blank
 root: ~/
 
 windows:  
-  - name: blank-1
+  - name: blank-0
     layout: main-horizontal
     panes:
       - type: horizontal
-  - name: blank-2
+  - name: blank-1
     layout: main-horizontal
     panes:
       - type: horizontal

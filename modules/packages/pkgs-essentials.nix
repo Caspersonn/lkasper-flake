@@ -13,6 +13,7 @@
   onlyoffice-bin
   signal-desktop
   unstable.jan
+  unstable.newelle
 
   # GUI Applications - Media & Entertainment
   obs-studio
@@ -48,8 +49,8 @@
   gcc
   gnumake42
   go
-  nodejs
   ruby
+  nodejs_24
   cargo
   rustc
   home-manager
@@ -96,8 +97,11 @@
   jq
   wl-clipboard
   nmap
+  whois
 
   # System Utilities - Misc
+  libffi
+  libffi_3_3
   polkit_gnome
   gnome-disk-utility
   gparted
@@ -111,8 +115,9 @@
   nerd-fonts.jetbrains-mono
   nerd-fonts.droid-sans-mono
   nerd-fonts.symbols-only
-  aider-chat-full
+  unstable.aider-chat-full
   (python313.withPackages(ps: with ps; [
+    openpyxl
     tkinter
     sv-ttk
   ]))

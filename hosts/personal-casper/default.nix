@@ -55,8 +55,6 @@
     variant = "";
   };
 
-  services.flatpak.enable = true; # Enable CUPS to print documents.
-
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ epson-escpr2 epson-escpr ];
 

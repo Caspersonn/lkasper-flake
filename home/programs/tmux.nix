@@ -12,6 +12,7 @@
     extraConfig = ''
       unbind r
       bind r source-file ~/.config/tmux/tmux.conf
+      bind C-x send-prefix
       set -g prefix C-x
       set -g mouse on
       set -g @plugin 'tmux-plugins/tpm

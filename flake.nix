@@ -16,6 +16,9 @@
     dirtygit.url = "github:mipmip/dirtygit";
     swww.url = "github:LGFae/swww";
     walker.url = "github:abenz1267/walker";
+    vicinae.url = "github:vicinaehq/vicinae";
+    rapid7.url = "github:technative-mcs/rapid7-improvementIt-nixos";
+    pontifex.url = "git+file:/home/casper/git/technative_b.v./pontifex";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +33,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, swww, walker }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, swww, walker, vicinae, rapid7, pontifex }:
 
 
     let
@@ -113,15 +116,17 @@
                     bmc.packages."${system}".bmc
                     jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
                     walker.packages.${system}.default
-                    #slack2zammad.packages."${system}".slack2zammad
-                    #croctalk.packages."${system}".croctalk
-                    #croctalk.nixosModules."${system}".croctalk
+                    vicinae.packages.${system}.default
+                    rapid7.packages.${system}.default
+                    pontifex.packages.${system}.pontifex
                   ];
                 };
               in [
                   defaults
                   home-manager.nixosModules.home-manager
                   agenix.nixosModules.default
+                  rapid7.nixosModules.${system}.default
+                  pontifex.nixosModules.${system}.pontifex
                   extraPkgs
                   { home-manager.useGlobalPkgs = true; }
                 ] ++ desktopModules ++ extraModules;

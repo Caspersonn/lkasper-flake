@@ -7,6 +7,8 @@ in
   services.openvpn.servers = {
     client = {
       autoStart = false;
+      authUserPass.username = "luca";
+      authUserPass.password = ""; # Check credentials in secrets `openvpn-improvement-it.age`
       config = ''
       client
       dev tun

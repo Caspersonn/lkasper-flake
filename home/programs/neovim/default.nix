@@ -32,6 +32,7 @@
     pkgs.terraform-ls
     pkgs.pyright
     pkgs.typst
+    pkgs.beamMinimal27Packages.elixir-ls
 
     # Search and navigation tools
     pkgs.silver-searcher

@@ -6,18 +6,16 @@
     attic-client
     aws-mfa
     aws-nuke
+    aws-sam-cli
     awscli
     beam27Packages.elixir
     bruno
-    unstable.cypress
     docker
     erlang_28
     entr
     gh
     git-remote-codecommit
     gimp3
-    google-chrome
-    gpt4all
     granted
     hedgedoc
     inotify-tools
@@ -29,15 +27,14 @@
     python312Packages.distutils
     quarto
     rbw
+    yarn
     redis
-    remmina
-    seafile-client
-    silver-searcher
     slack
     ssm-session-manager-plugin
     teams-for-linux
     telegram-bot-api
     telegram-desktop
+    fastfetch
     terraform
     terraform-docs
     terraform-ls
@@ -49,7 +46,7 @@
     tfswitch
     typescript
     unstable.zoom-us
-    (python311.withPackages(ps: with ps; [
+    (python313.withPackages(ps: with ps; [
       jedi
       langchain
       langchain-community
@@ -64,6 +61,7 @@
       telegram-text
       tiktoken
       toggl-cli
+      boto3
     ]))
   ];
 }

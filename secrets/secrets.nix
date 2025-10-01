@@ -23,6 +23,8 @@ in
   "google-bedrock.age".publicKeys = users ++ systems;
   "google-engine-bedrock.age".publicKeys = users ++ systems;
   "avante-openai.age".publicKeys = users ++ systems;
+  "pontifex.age".publicKeys = users ++ systems;
+  "openvpn-improvement-it.age".publicKeys = users ++ systems;
 #  "atticwto.age".publicKeys = users ++ systems;
 #  "loboskey.age".publicKeys = users ;
 

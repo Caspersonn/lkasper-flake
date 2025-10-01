@@ -8,7 +8,7 @@ return {
   config = function()
     local config = require("nvim-treesitter.configs")
     config.setup({
-      ensure_installed = { "markdown", "lua", "vim", "vimdoc", "nix" },
+      ensure_installed = { "markdown", "lua", "vim", "vimdoc", "nix", "elixir", "eex", "heex"  },
       incremental_selection = {
         enable = true,
         keymaps = {
