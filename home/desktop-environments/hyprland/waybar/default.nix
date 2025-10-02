@@ -137,7 +137,7 @@
           format = "{}";
           tooltip = true;
           interval = 1800;
-          exec = "wttrbar";
+          exec = "wttrbar --date-format '%m/%d' --location zwolle --hide-conditions";
           return-type = "json";
         };
 
