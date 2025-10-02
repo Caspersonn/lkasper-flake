@@ -1,12 +1,12 @@
 {...}:
 let
-  hyprlockDir = "$HOME/.config/hyprlock";
+  hyprlockDir = "$HOME/.config/hypr";
   music = "${hyprlockDir}/scripts/playerlock.sh";
 in
 
 {
   home.file = {
-    ".config/hypr/Scripts/playerlock.sh" = {
+    ".config/hypr/scripts/playerlock.sh" = {
       source = ./playerlock.sh;
       recursive = true;
       executable = true;
@@ -14,8 +14,8 @@ in
   };
 
   home.sessionVariables = {
-    hyprlockDir = "$HOME/.config/hyprlock";
-    music = "${hyprlockDir}/scripts/playerlock.sh";
+    hyprlockDir = hyprlockDir;
+    music = music;
   };
 
   programs.hyprlock = {
@@ -27,7 +27,7 @@ in
 
       background = {
         monitor = "";
-        path = "/home/casper/lkasper-flake/wallpapers/studio-ghibli.jpg";
+        path = "/home/casper/lkasper-flake/wallpapers/wallpaper-gaming.png";
         blur_passes = 3;
         contrast = 0.8916;
         brightness = 0.8172;
@@ -97,7 +97,7 @@ in
         }
         {
           monitor = "";
-          text = "    $USER";
+          text = "  $USER";
           color = "rgba(216, 222, 233, 0.80)";
           outline_thickness = 2;
           dots_size = 0.2;
@@ -111,13 +111,13 @@ in
         }
         {
           monitor = "";
-          text = ''cmd[update:1000] echo "$(${music} --length)"'';
+          text = ''cmd[update:1000] echo "$(${music})"'';
           color = "rgba(255, 255, 255, 1)";
           font_size = 14;
           font_family = "JetBrains Mono Nerd Font Mono";
-          position = "-730, -310";
-          halign = "right";
-          valign = "center";
+          position = "0, 100";
+          halign = "center";
+          valign = "bottom";
           zindex = 5;
         }
       ];
