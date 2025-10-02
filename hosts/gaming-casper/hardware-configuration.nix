@@ -10,8 +10,8 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" "coretemp" "nct6687" "zenpower" "i2c-dev" ];
-  boot.kernelPackages = pkgs.linuxPackages_6_13;
-  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_13.nct6687d ];
+  boot.kernelPackages = pkgs.linuxPackages_6_16;
+  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_16.nct6687d ];
   boot.supportedFilesystems = [ "ntfs" ];
 
 

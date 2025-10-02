@@ -16,6 +16,7 @@
     dirtygit.url = "github:mipmip/dirtygit";
     swww.url = "github:LGFae/swww";
     walker.url = "github:abenz1267/walker";
+    elephant.url = "github:abenz1267/elephant";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +31,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, swww, walker }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, swww, walker, elephant }:
 
 
     let
@@ -113,6 +114,7 @@
                     bmc.packages."${system}".bmc
                     jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
                     walker.packages.${system}.default
+                    elephant.packages.${system}.default
                   ];
                 };
               in [

@@ -21,6 +21,7 @@
   environment.systemPackages = with pkgs; [
     blueberry # Bluetooth configuration tool
     brightnessctl # This program allows you read and control device brightness
+    cava # Console-based Audio Visualizer for Alsa
     greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette
     gruvbox-plus-icons # Icon pack for Linux desktops based on the Gruvbox color scheme

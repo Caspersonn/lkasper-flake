@@ -9,6 +9,7 @@
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
     WLR_NO_HARDWARE_CURSORS = "1";
+    HYPRSHOT_DIR =  "$HOME/${username}/Pictures";
   };
 
   programs.swaylock.enable = true;
@@ -55,6 +56,7 @@
         "hyprsunset -t 5000"
         "swww-daemon"
         "walker --gapplication-service"
+        "elephant"
       ];
 
       #############################
@@ -243,8 +245,10 @@
         "$mainMod, 8, split:workspace, 8"
         "$mainMod, 9, split:workspace, 9"
         "$mainMod, 0, split:workspace, 10"
+        "$mainMod, tab, workspace, m+1"
+        "$mainMod SHIFT, tab, workspace, m-1"
 
-        # Move application to workspace
+        # Move application silently to workspace
         "$mainMod SHIFT, 1, split:movetoworkspacesilent, 1"
         "$mainMod SHIFT, 2, split:movetoworkspacesilent, 2"
         "$mainMod SHIFT, 3, split:movetoworkspacesilent, 3"
@@ -255,6 +259,18 @@
         "$mainMod SHIFT, 8, split:movetoworkspacesilent, 8"
         "$mainMod SHIFT, 9, split:movetoworkspacesilent, 9"
         "$mainMod SHIFT, 0, split:movetoworkspacesilent, 10"
+
+        # Move application and follow to workspace
+        "$mainMod CTRL, 1, split:movetoworkspace, 1"
+        "$mainMod CTRL, 2, split:movetoworkspace, 2"
+        "$mainMod CTRL, 3, split:movetoworkspace, 3"
+        "$mainMod CTRL, 4, split:movetoworkspace, 4"
+        "$mainMod CTRL, 5, split:movetoworkspace, 5"
+        "$mainMod CTRL, 6, split:movetoworkspace, 6"
+        "$mainMod CTRL, 7, split:movetoworkspace, 7"
+        "$mainMod CTRL, 8, split:movetoworkspace, 8"
+        "$mainMod CTRL, 9, split:movetoworkspace, 9"
+        "$mainMod CTRL, 0, split:movetoworkspace, 10"
 
         "$mainMod, S, split:swapactiveworkspaces, current +1"
         "$mainMod, G, split:grabroguewindows"
@@ -296,7 +312,7 @@
         "float, class:kitty"
         "size 50% 50%, class:nwg-displays, title:nwg-displays"
         "size 50% 50%, class:kitty"
-        "size 50% 50%, class:org.gnome.Nautilus"
+        "size 40% 40%, class:org.gnome.Nautilus"
         "size 50% 50%, class:org.pulseaudio.pavucontrol"
       ];
     };
