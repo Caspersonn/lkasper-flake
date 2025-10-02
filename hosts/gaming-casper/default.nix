@@ -1,4 +1,4 @@
-{ config, lib, pkgs, agenix, ... }:
+{ modulesPath, config, lib, pkgs, agenix, ... }:
 
 {
   imports =

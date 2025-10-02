@@ -19,6 +19,7 @@
   lutris
   mangohud
   mesa
+  steamcmd
   ns-usbloader
   prismlauncher
   protonplus
@@ -37,5 +38,6 @@
   libgcc
   perl
   vcpkg
+  xdg-user-dirs
   ];
 }
