@@ -87,7 +87,7 @@ in
         }
         {
           monitor = "";
-          text = ''cmd[update:1000] echo $(date +"%I:%M")'';
+          text = ''cmd[update:1000] echo $(date +"%H:%M")'';
           color = "rgba(216, 222, 233, 0.70)";
           font_size = 120;
           font_family = "SF Pro Display Bold";
