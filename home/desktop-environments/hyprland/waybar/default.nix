@@ -128,9 +128,29 @@
         };
 
         clock = {
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          #format-alt = "{:%a, %d. %b  %H:%M}";
-          format = "{:%a; %d %b, %I:%M %p}";
+          tooltip-format = "<tt><small>{calendar}</small></tt>";
+          format = "{:%d %b, %H:%M}";
+          calendar = {
+            mode          = "year";
+            mode-mon-col  = 3;
+            weeks-pos     = "right";
+            on-scroll     = 1;
+            on-click-right= "mode";
+            format = {
+              months =     "<span color='#ffead3'><b>{}</b></span>";
+              days =       "<span color='#bdae93'><b>{}</b></span>";
+              weeks =      "<span color='#cc241d'><b>W{}</b></span>";
+              weekdays =   "<span color='#928374'><b>{}</b></span>";
+              today =      "<span color='#98971a'><b><u>{}</u></b></span>";
+            };
+          };
+          actions = {
+            on-click-right = "mode";
+            on-click-forward = "tz_up";
+            on-click-backward = "tz_down";
+            on-scroll-up = "shift_up";
+            on-scroll-down = "shift_down";
+          };
         };
 
         "custom/weather" = {
