@@ -14,7 +14,6 @@
     ../../modules/services/service-docker.nix
     ../../modules/services/service-redis_psql_twenty.nix
     ../../modules/services/service-openvpn.nix
-    ../../modules/services/service-pontifex.nix
 
     # Etc
     ../../modules/secrets.nix
