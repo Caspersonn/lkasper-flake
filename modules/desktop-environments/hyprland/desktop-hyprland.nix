@@ -30,7 +30,9 @@
     hyprpaper # Blazing fast wayland wallpaper utility
     hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse
     hyprsunset # Application to enable a blue-light filter on Hyprland
+    inputs.elephant.packages.${system}.default
     inputs.swww.packages.${pkgs.system}.swww
+    inputs.walker.packages.${system}.default
     kitty # Terminal
     libnotify # Sends notication to deamon
     mpvpaper # Video wallpaper program for wlroots based wayland compositors
