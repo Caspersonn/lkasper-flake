@@ -19,6 +19,7 @@
 
   # Packages
   environment.systemPackages = with pkgs; [
+    bc # GNU software calculator
     blueberry # Bluetooth configuration tool
     brightnessctl # This program allows you read and control device brightness
     cava # Console-based Audio Visualizer for Alsa
@@ -29,8 +30,10 @@
     hyprpaper # Blazing fast wayland wallpaper utility
     hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse
     hyprsunset # Application to enable a blue-light filter on Hyprland
+    inputs.swww.packages.${pkgs.system}.swww
     kitty # Terminal
     libnotify # Sends notication to deamon
+    mpvpaper # Video wallpaper program for wlroots based wayland compositors
     nautilus # File manager
     networkmanagerapplet # NetworkManager control applet for GNOME
     nwg-bar # GTK3-based button bar for sway and other wlroots-based compositors
@@ -38,55 +41,14 @@
     pavucontrol # For Editing Audio Levels & Devices
     playerctl # Allows Changing Media Volume Through Scripts
     power-profiles-daemon # Makes user-selected power profiles handling available over D-Bus
+    rofi # Window switcher, run dialog and dmenu replacement
     sway # I3-compatible tiling Wayland compositor
     swaynotificationcenter # Simple notification daemon with a GUI built for Sway
     swayosd # GTK based on screen display for keyboard shortcuts
-    inputs.swww.packages.${pkgs.system}.swww
     waybar # Status bar
     wlogout # Wayland based logout menu
     wofi # Launcher/menu program for wlroots based wayland compositors such as sway
     wttrbar # Simple but detailed weather indicator for Waybar using wttr.in
-
-    #rofi-wayland # app launcher
-    #swayidle # Idle management daemon for Wayland
-    #amfora # Fancy Terminal Browser For Gemini Protocol
-    #appimage-run # Needed For AppImage Support
-    #brave # Brave Browser
-    #cmatrix # Matrix Movie Effect In Terminal
-    #cowsay # Great Fun Terminal Program
-    #docker-compose # Allows Controlling Docker From A Single File
-    #duf # Utility For Viewing Disk Usage In Terminal
-    #eza # Beautiful ls Replacement
-    #ffmpeg # Terminal Video / Audio Editing
-    #file-roller # Archive Manager
-    #gedit # Simple Graphical Text Editor
-    #gimp # Great Photo Editor
-    #htop # Simple Terminal Based System Monitor
-    #hyprpicker # Color Picker
-    #eog # For Image Viewing
-    #inxi # CLI System Information Tool
-    #killall # For Killing All Instances Of Programs
-    #lm_sensors # Used For Getting Hardware Temps
-    #lolcat # Add Colors To Your Terminal Command Output
-    #lshw # Detailed Hardware Information
-    #mpv # Incredible Video Player
-    #ncdu # Disk Usage Analyzer With Ncurses Interface
-    #nixfmt-rfc-style # Nix Formatter
-    #onefetch #provides zsaneyos build info on current system
-    #pciutils # Collection Of Tools For Inspecting PCI Devices
-    #picard # For Changing Music Metadata & Getting Cover Art
-    #pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
-    #rhythmbox
-    #ripgrep # Improved Grep
-    #socat # Needed For Screenshots
-    #unrar # Tool For Handling .rar Files
-    #unzip # Tool For Handling .zip Files
-    #usbutils # Good Tools For USB Devices
-    #v4l-utils # Used For Things Like OBS Virtual Camera
-    #wget # Tool For Fetching Files With Links
-    #yazi #TUI File Manager
-    #ytmdl # Tool For Downloading Audio From YouTube
-
   ];
 
   # Login

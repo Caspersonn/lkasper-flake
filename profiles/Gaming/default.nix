@@ -15,10 +15,10 @@
     ../../modules/services/service-syncthing_client.nix
 
     # Etc
-    ../../modules/udev-skylanders-portal.nix
-    ../../modules/secrets.nix
-    ../../modules/udev-ddcutil.nix
-    ../../modules/udev-steering-logitech.nix
+    ../../modules/etc/udev-skylanders-portal.nix
+    ../../modules/etc/secrets.nix
+    ../../modules/etc/udev-ddcutil.nix
+    ../../modules/etc/udev-steering-logitech.nix
   ];
 }
 

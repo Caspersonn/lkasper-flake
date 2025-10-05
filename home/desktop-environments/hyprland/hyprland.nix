@@ -1,4 +1,9 @@
-{ pkgs, username, ... }:
+{ hostname, pkgs, username, ... }:
+let
+  hypr_scripts = "/home/${username}/.config/hypr/scripts";
+  inherit (import ../../../../hosts/${hostname}/variables.nix) browser terminal file_manager;
+
+in
 {
   home.sessionVariables = {
     GDK_BACKEND = "wayland,x11";
@@ -36,10 +41,10 @@
       # See https://wiki.hyprland.org/Configuring/Keywords/
 
       # Set programs that you use
-      "$terminal" = "ghostty";
-      "$fileManager" = "nautilus";
+      "$terminal" = terminal;
+      "$fileManager" = file_manager;
       "$menu" = "walker";
-      "$browser" = "firefox";
+      "$browser" = browser;
       "$music" = "spotify";
 
       #################
@@ -223,10 +228,7 @@
 
 
         # Change wallpapers
-        "$mainMod ALT, C, exec, swww img /home/${username}/lkasper-flake/wallpapers/wallpaper-woods.gif --transition-type wipe --transition-angle 45"
-        "$mainMod ALT, V, exec, swww img /home/${username}/lkasper-flake/wallpapers/wallpaper-gaming.png --transition-type wipe --transition-angle 45"
-        "$mainMod ALT, B, exec, swww img /home/${username}/lkasper-flake/wallpapers/studio-ghibli.jpg --transition-type wipe --transition-angle 45"
-        "$mainMod ALT, N, exec, swww img /home/${username}/lkasper-flake/wallpapers/Plant.jpg --transition-type wipe --transition-angle 45"
+        "$mainMod ALT, C, exec, ${hypr_scripts}/wallpaperselect.sh"
 
         # Focus to other window
         "$mainMod, left, movefocus, l"

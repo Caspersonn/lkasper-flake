@@ -15,7 +15,7 @@
     ../../modules/services/service-syncthing_client.nix
 
     # Etc
-    ../../modules/secrets.nix
+    ../../modules/etc/secrets.nix
   ];
 }
 

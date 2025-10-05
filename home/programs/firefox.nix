@@ -48,10 +48,10 @@
             title = "YouTube";
             url = "https://youtube.com";
           }
-          {
-            title = "Gmail";
-            url = "https://gmail.com";
-          }];
+            {
+              title = "Gmail";
+              url = "https://gmail.com";
+            }];
         };
       };
       work = {
@@ -75,10 +75,10 @@
             title = "YouTube";
             url = "https://youtube.com";
           }
-          {
-            title = "Outlook";
-            url = "https://outlook.com";
-          }];
+            {
+              title = "Outlook";
+              url = "https://outlook.com";
+            }];
         };
       };
     };

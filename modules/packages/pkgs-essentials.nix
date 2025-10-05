@@ -1,124 +1,90 @@
-{config, lib, pkgs, unstable, ... }:
+{ pkgs, unstable, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-  # GUI Applications - Browsers
-  firefox
-  librewolf
-  chromium
-  google-chrome
+    # TUI Applications
+    htop
+    gum
 
-  # GUI Applications - Office & Productivity
-  libreoffice-qt6-fresh
-  onlyoffice-bin
-  signal-desktop
-  unstable.jan
-  unstable.newelle
+    # Development Tools - Version Control
+    gh
+    git-sync
 
-  # GUI Applications - Media & Entertainment
-  obs-studio
-  spotify
-  video-trimmer
+    # Development Tools - Build & Languages
+    gcc
+    gnumake42
+    go
+    ruby
+    nodejs_24
+    cargo
+    rustc
+    home-manager
+    node2nix
+    pre-commit
+    hugo
 
-  # GUI Applications - Development
-  pgadmin4-desktopmode
-  cypress
-  ghostty
+    # Language Servers & IDE Tools
+    sqls
+    gopls
+    nixd
+    marksman
+    terraform-ls
+    nodePackages.bash-language-server
+    sumneko-lua-language-server
+    nil
+    rust-analyzer
+    vscode-langservers-extracted
+    tree-sitter
 
-  # GUI Applications - Security & Utilities
-  bitwarden-desktop
-  firejail
-  filezilla
-  discord
-  ddcutil
-  winetricks
+    # Formatters & Linters
+    nixfmt-classic
+    rustfmt
+    nodePackages.prettier
+    markdownlint-cli
 
-  # TUI Applications
-  tmux
-  htop
-  btop
-  neovim
-  gum
+    # System Utilities - Hardware & Device Management
+    android-tools
+    ddcui
+    libusb1
+    usbutils
+    sof-firmware
+    open-scq30
+    epson-escpr
+    epson-escpr2
 
-  # Development Tools - Version Control
-  gh
-  git-sync
+    # System Utilities - Network & File Management
+    wget
+    avahi
+    dig
+    unzip
+    csvtool
+    f3
+    jq
+    wl-clipboard
+    nmap
+    whois
 
-  # Development Tools - Build & Languages
-  gcc
-  gnumake42
-  go
-  ruby
-  nodejs_24
-  cargo
-  rustc
-  home-manager
-  node2nix
-  pre-commit
-  hugo
-
-  # Language Servers & IDE Tools
-  sqls
-  gopls
-  nixd
-  marksman
-  terraform-ls
-  nodePackages.bash-language-server
-  sumneko-lua-language-server
-  nil
-  rust-analyzer
-  vscode-langservers-extracted
-  tree-sitter
-
-  # Formatters & Linters
-  nixfmt-classic
-  rustfmt
-  nodePackages.prettier
-  markdownlint-cli
-
-  # System Utilities - Hardware & Device Management
-  android-tools
-  ddcui
-  libusb1
-  usbutils
-  sof-firmware
-  open-scq30
-  epson-escpr
-  epson-escpr2
-
-  # System Utilities - Network & File Management
-  wget
-  avahi
-  dig
-  unzip
-  csvtool
-  f3
-  jq
-  wl-clipboard
-  nmap
-  whois
-
-  # System Utilities - Misc
-  libffi
-  libffi_3_3
-  polkit_gnome
-  gnome-disk-utility
-  gparted
-  lsof
-  bitwarden-cli
-  smug
-  zsh
-  mailutils
-  mods
-  nerd-fonts.fira-code
-  nerd-fonts.jetbrains-mono
-  nerd-fonts.droid-sans-mono
-  nerd-fonts.symbols-only
-  unstable.aider-chat-full
-  (python313.withPackages(ps: with ps; [
-    openpyxl
-    tkinter
-    sv-ttk
-  ]))
+    # System Utilities - Misc
+    libffi
+    libffi_3_3
+    polkit_gnome
+    gnome-disk-utility
+    gparted
+    lsof
+    bitwarden-cli
+    smug
+    zsh
+    mailutils
+    mods
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.symbols-only
+    unstable.aider-chat-full
+    (python313.withPackages(ps: with ps; [
+      openpyxl
+      tkinter
+      sv-ttk
+    ]))
   ];
 }

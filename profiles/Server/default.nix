@@ -17,7 +17,7 @@
     ../../modules/services/service-mailserver.nix
 
     # Etc
-    ../../modules/secrets.nix
+    ../../modules/etc/secrets.nix
   ];
 }
 

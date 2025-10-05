@@ -16,8 +16,8 @@
     ../../modules/services/service-openvpn.nix
 
     # Etc
-    ../../modules/secrets.nix
-    ../../modules/udev-ddcutil.nix
+    ../../modules/etc/secrets.nix
+    ../../modules/etc/udev-ddcutil.nix
   ];
 }
 
