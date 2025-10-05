@@ -1,7 +1,7 @@
 { hostname, pkgs, username, ... }:
 let
   hypr_scripts = "/home/${username}/.config/hypr/scripts";
-  inherit (import ../../../../hosts/${hostname}/variables.nix) browser terminal file_manager;
+  inherit (import ../../../hosts/${hostname}/variables.nix) browser terminal file_manager;
 
 in
 {
