@@ -19,7 +19,6 @@
   obs-studio
   spotify
   video-trimmer
-  easyeffects
 
   # GUI Applications - Development
   pgadmin4-desktopmode
@@ -30,7 +29,7 @@
   bitwarden-desktop
   firejail
   filezilla
-  unstable.discord
+  discord
   ddcutil
   winetricks
 

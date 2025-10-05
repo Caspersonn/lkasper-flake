@@ -10,6 +10,7 @@
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
 
   networking.hostName = "server-casper"; # Define your hostname.
 
@@ -73,7 +74,7 @@
   users.users.casper = {
     isNormalUser = true;
     description = "Server Casper";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   # packages = with pkgs; [
   # ];
   };

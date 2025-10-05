@@ -11,7 +11,7 @@
     environmentFile = config.age.secrets.vaultwarden.path;
   };
 
-  security.acme.defaults.email = "lucakasper8@gmail.com";
+  security.acme.defaults.email = "security@inspiravita.com";
   security.acme.acceptTerms = true;
 
   services.nginx.virtualHosts."vaultwarden.inspiravita.com" = {

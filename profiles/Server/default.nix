@@ -14,6 +14,7 @@
     ../../modules/services/service-vaultwarden.nix
     ../../modules/services/service-syncthing_server.nix
     ../../modules/services/service-atuin.nix
+    ../../modules/services/service-mailserver.nix
 
     # Etc
     ../../modules/secrets.nix
