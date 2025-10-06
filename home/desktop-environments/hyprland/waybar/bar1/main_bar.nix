@@ -25,6 +25,20 @@
     };
   };
 
+  battery = {
+    interval = 15;
+    format = "{capacity}% {icon}";
+    format-icons = ["󰁺" "󰁽" "󰁿" "󰂀" "󰁹"];
+    format-charging = "{capacity}% 󰂄";
+    format-plugged = "{capacity}% 󰂅";
+    full-at = 95;
+    states = {
+      "good" = 90;
+      "warning" = 30;
+      "critical" = 15;
+    };
+  };
+
   tray = {
     icon-size = 16;
     spacing = 10;
