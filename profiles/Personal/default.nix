@@ -7,6 +7,7 @@
     ../../modules/packages/pkgs-gaming.nix
     ../../modules/packages/pkgs-essentials.nix
     ../../modules/packages/pkgs-technative.nix
+    ../../modules/packages/pkgs-gui.nix
     ../../modules/packages/steam.nix
 
     # Services

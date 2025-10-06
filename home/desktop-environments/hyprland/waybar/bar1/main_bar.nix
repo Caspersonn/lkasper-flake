@@ -7,7 +7,6 @@
   modules-right = [
     "pulseaudio"
     "custom/uptime"
-    "backlight"
     "battery"
     "network"
     "cpu"

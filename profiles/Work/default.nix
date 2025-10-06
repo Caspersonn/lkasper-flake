@@ -6,6 +6,7 @@
     # Core
     ../../modules/packages/pkgs-essentials.nix
     ../../modules/packages/pkgs-technative.nix
+    ../../modules/packages/pkgs-gui.nix
     ../../modules/packages/bambu-labs.nix
 
     # Services
