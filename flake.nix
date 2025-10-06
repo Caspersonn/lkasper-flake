@@ -113,8 +113,6 @@
                     race.packages."${system}".race
                     bmc.packages."${system}".bmc
                     jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
-                    walker.packages.${system}.default
-                    elephant.packages.${system}.default
                   ];
                 };
               in [
