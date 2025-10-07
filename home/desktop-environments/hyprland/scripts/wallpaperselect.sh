@@ -60,11 +60,12 @@ main() {
 
   if [[ "$selected_file" =~ \.(mp4|mkv|mov|webm)$ ]]; then
     pkill swww || true
-    mpvpaper '*' -o "load-scripts=no no-audio --loop" "$selected_file" &
+    mpvpaper '*' -o "load-scripts=no no-audio --loop --vf='lavfi=[scale=1920:1200:force_original_aspect_ratio=increase,crop=1920:1200]'" "$selected_file" &
   else
     if ! pgrep -x "swww-daemon" >/dev/null; then
       swww-daemon --format xrgb &
     fi
+    pkill mpvpaper || true
     swww img "$selected_file" $SWWW_PARAMS
   fi
 }

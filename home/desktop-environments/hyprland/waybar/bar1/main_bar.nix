@@ -87,6 +87,7 @@
     format-disconnected = "󰤠 No Network";
     interval = 5;
     tooltip = false;
+    on-click = "kitty -e nmtui";
   };
 
   cpu = {
