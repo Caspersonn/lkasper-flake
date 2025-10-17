@@ -63,6 +63,7 @@
     wl-clipboard
     nmap
     whois
+    wireguard-tools
 
     # System Utilities - Misc
     libffi
