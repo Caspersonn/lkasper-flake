@@ -64,6 +64,7 @@
     nmap
     whois
     ethtool
+    wireguard-tools
 
     # System Utilities - Misc
     libffi
