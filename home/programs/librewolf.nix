@@ -38,6 +38,7 @@
       "browser.toolbars.bookmarks.visibility" = "never";
       "browser.bookmarks.addedImportButton" = false;
       "sidebar.verticalTabs" = true;
+      "browser.startup.page" = 3;
     };
   };
 }

@@ -241,6 +241,9 @@ in
         # Change wallpapers
         "$mainMod ALT, C, exec, ${hypr_scripts}/wallpaperselect.sh"
 
+        # Monitor manager
+        "$mainMod ALT, M, exec, ${hypr_scripts}/monitorctl.sh"
+
         # Focus to other window
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"

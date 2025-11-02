@@ -63,6 +63,7 @@
     wl-clipboard
     nmap
     whois
+    ethtool
 
     # System Utilities - Misc
     libffi

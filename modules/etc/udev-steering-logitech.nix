@@ -1,19 +1,6 @@
 {config, lib, pkgs, agenix, unstable, ... }:
 {
 
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-    };
-  };
-
-  environment.systemPackages = [
-    pkgs.distrobox
-    # pkgs.podman-tui # optional
-    # pkgs.distrobox-tui # optional 
-  ];
-
   services.udev = {
     enable = true;
     extraRules =

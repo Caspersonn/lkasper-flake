@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
 # WALLPAPERS PATH
-terminal=kitty
 wallDIR="$HOME/lkasper-flake/wallpapers"
-SCRIPTSDIR="$HOME/.config/hypr/scripts"
-wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
-
-# Directory for swaync
-iDIR="$HOME/.config/swaync/images"
 
 # swww transition config
 FPS=60
@@ -37,7 +31,7 @@ menu() {
 
 # Main
 main() {
-  choice=$(menu | walker --dmenu)
+  choice=$(menu | walker --dmenu -H)
   choice=$(echo "$choice" | xargs)
 
   if [[ -z "$choice" ]]; then
@@ -60,12 +54,12 @@ main() {
 
   if [[ "$selected_file" =~ \.(mp4|mkv|mov|webm)$ ]]; then
     pkill swww || true
-    mpvpaper '*' -o "load-scripts=no no-audio --loop --vf='lavfi=[scale=1920:1200:force_original_aspect_ratio=increase,crop=1920:1200]'" "$selected_file" &
+    mpvpaper '*' -o "load-scripts=no no-audio --loop" "$selected_file" &
   else
     if ! pgrep -x "swww-daemon" >/dev/null; then
       swww-daemon --format xrgb &
     fi
-    pkill mpvpaper || true
+    pkill mpvpaper
     swww img "$selected_file" $SWWW_PARAMS
   fi
 }
