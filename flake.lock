@@ -478,6 +478,22 @@
         "type": "github"
       }
     },
+    "nixpkgs2405": {
+      "locked": {
+        "lastModified": 1735563628,
+        "narHash": "sha256-OnSAY7XDSx7CtDoqNh8jwVwh4xNL/2HaJxGjryLWzX8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b134951a4c9f3c995fd7be05f3243f8ecd65d798",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_10": {
       "locked": {
         "lastModified": 1731433363,
@@ -717,11 +733,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1757945958,
-        "narHash": "sha256-901DgcpWlcJG3JfG+hKSXM5oib5Wq3JxEFD0dZlY2hw=",
+        "lastModified": 1760535074,
+        "narHash": "sha256-1bpx8kLwnFbWVczfqtunSNOpmWfonjLe3gTNPXHmkGY=",
         "owner": "wearetechnative",
         "repo": "race",
-        "rev": "668d34369c86686c177a4a418a5963768d95307a",
+        "rev": "8ad8e3e30cbbae24ae90d267807b071065acb752",
         "type": "github"
       },
       "original": {
@@ -746,6 +762,7 @@
           "nixos-cosmic",
           "nixpkgs"
         ],
+        "nixpkgs2405": "nixpkgs2405",
         "nixtendo-switch": "nixtendo-switch",
         "race": "race",
         "slack2zammad": "slack2zammad",

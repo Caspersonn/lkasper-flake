@@ -18,6 +18,7 @@
       aws-switch = ". bmc profsel";
       lin = "vi -c LinnyMenuOpen";
       ner = "vi -c Neotree";
+      runbg = "$HOME/.config/hypr/scripts/runbg.sh";
     };
     initExtra = ''
       PATH=$HOME/bin:$PATH

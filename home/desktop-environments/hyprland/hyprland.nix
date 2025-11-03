@@ -54,7 +54,7 @@ in
       # Set programs that you use
       "$terminal" = terminal;
       "$fileManager" = file_manager;
-      "$menu" = "walker";
+      "$menu" = "walker -H";
       "$browser" = browser;
       "$music" = "spotify";
 

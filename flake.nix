@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs2405.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
     bmc.url = "github:wearetechnative/bmc";
@@ -31,7 +32,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, swww, walker, elephant }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, swww, walker, elephant, nixpkgs2405 }:
 
 
     let
@@ -105,6 +106,7 @@
                 defaults = { pkgs, ... }: {
                   nixpkgs.overlays = [(import ./overlays)];
                   _module.args.unstable = importFromChannelForSystem system unstable;
+                  _module.args.pkgs2405 = importFromChannelForSystem system nixpkgs2405;
                 };
 
                 extraPkgs = {
@@ -136,7 +138,7 @@
         system   = "x86_64-linux";
         hostname = "technative-casper";
 
-        gnome    = false;
+        gnome    = true;
         hyprland = true;
       };
 
