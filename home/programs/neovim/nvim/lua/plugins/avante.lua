@@ -5,7 +5,7 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "bedrock",
+    provider = "openai",
 
     providers = {
       bedrock = {
@@ -18,10 +18,10 @@ return {
       },
       openai = {
         endpoint = "https://api.openai.com/v1",
-        model = "gpt-5-mini", -- your desired model (or use gpt-4o, etc.)
+        model = "gpt-5", -- your desired model (or use gpt-4o, etc.)
         timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
         extra_request_body = {
-          temperature = 1,
+          temperature = 0,
         };
       },
     },

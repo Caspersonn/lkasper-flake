@@ -13,6 +13,7 @@
   boot.kernelModules = [ "kvm-amd" "i2c-dev" ];
   boot.extraModulePackages = [ ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  hardware.framework.amd-7040.preventWakeOnAC = true;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/4c322854-c1a1-42cb-a3d7-321e963b3d24";

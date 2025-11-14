@@ -8,6 +8,8 @@
     ../../modules/packages/pkgs-technative.nix
     ../../modules/packages/pkgs-gui.nix
     ../../modules/packages/bambu-labs.nix
+    ../../modules/packages/nix-ld.nix
+    ../../modules/packages/chromium.nix
 
     # Services
     ../../modules/services/service-resolved.nix
@@ -15,7 +17,8 @@
     ../../modules/services/service-docker.nix
     ../../modules/services/service-redis_psql_twenty.nix
     ../../modules/services/service-openvpn.nix
-    #../../modules/services/service-wireguard.nix
+    ../../modules/services/service-wireguard.nix
+    ../../modules/services/service-neo4j.nix
 
     # Etc
     ../../modules/etc/secrets.nix

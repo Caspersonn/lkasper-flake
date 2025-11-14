@@ -25,7 +25,6 @@ in
   "avante-openai.age".publicKeys = users ++ systems;
   "pontifex.age".publicKeys = users ++ systems;
   "openvpn-improvement-it.age".publicKeys = users ++ systems;
-#  "atticwto.age".publicKeys = users ++ systems;
-#  "loboskey.age".publicKeys = users ;
-
+  "wireguard-private.age".publicKeys = users ++ systems;
+  "wireguard-public.age".publicKeys = users ++ systems;
 }

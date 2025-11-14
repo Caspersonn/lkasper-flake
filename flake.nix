@@ -18,6 +18,7 @@
     swww.url = "github:LGFae/swww";
     walker.url = "github:abenz1267/walker";
     elephant.url = "github:abenz1267/elephant";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +33,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, swww, walker, elephant, nixpkgs2405 }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, swww, walker, elephant, nixpkgs2405, nixos-hardware }:
 
 
     let
@@ -120,6 +121,7 @@
               in [
                   defaults
                   home-manager.nixosModules.home-manager
+                  nixos-hardware.nixosModules.framework-13-7040-amd
                   agenix.nixosModules.default
                   extraPkgs
                   { home-manager.useGlobalPkgs = true; }

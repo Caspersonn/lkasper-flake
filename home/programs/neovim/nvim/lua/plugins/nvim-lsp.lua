@@ -20,30 +20,33 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-
-      local lspconfig = require("lspconfig")
-      lspconfig.elixirls.setup({
+      vim.lsp.config('elixirls', {
         cmd = { "elixir-ls" },
         capabilities = capabilities,
       })
+      vim.lsp.enable('elixirls')
 
-      lspconfig.ts_ls.setup({
+      vim.lsp.config('ts_ls',{
         capabilities = capabilities,
       })
+      vim.lsp.enable('ts_ls')
 
-      lspconfig.html.setup({
+      vim.lsp.config('html',{
         capabilities = capabilities,
       })
+      vim.lsp.enable('html')
 
-      lspconfig.jsonls.setup({
+      vim.lsp.config('jsonls',{
         capabilities = capabilities,
       })
+      vim.lsp.enable('jsonls')
 
-      lspconfig.pyright.setup({
+      vim.lsp.config('pyright',{
         capabilities = capabilities,
       })
+      vim.lsp.enable('pyright')
 
-      lspconfig.lua_ls.setup({
+      vim.lsp.config('lua_ls',{
         settings = {
           Lua = {
             diagnostics = {
@@ -58,8 +61,9 @@ return {
         },
         capabilities = capabilities,
       })
+      vim.lsp.enable('lua_ls')
 
-      lspconfig.nil_ls.setup({
+      vim.lsp.config('nil_ls',{
         capabilities = capabilities,
         cmd = { nilcmd },
         filetypes = { 'nix' },
@@ -69,7 +73,9 @@ return {
           autoArchive = true,
         },
       })
-      lspconfig.marksman.setup({
+      vim.lsp.enable('nil_ls')
+
+      vim.lsp.config('marksman',{
         capabilities = capabilities,
         cmd = {
           "sh",
@@ -80,18 +86,22 @@ return {
           ["textDocument/publishDiagnostics"] = function() end,
         },
       })
+      vim.lsp.enable('marksman')
 
-      lspconfig.terraformls.setup({
+      vim.lsp.config('terraformls',{
         capabilities = capabilities,
       })
+      vim.lsp.enable('terraformls')
 
-      lspconfig.crystalline.setup({
+      vim.lsp.config('crystalline',{
         capabilities = capabilities,
       })
+      vim.lsp.enable('crystalline')
 
-      lspconfig.bashls.setup({
+      vim.lsp.config('bashls',{
         capabilities = capabilities,
       })
+      vim.lsp.enable('bashls')
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
