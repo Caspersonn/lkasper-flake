@@ -2,7 +2,7 @@
   description = "Best config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs2405.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
@@ -11,7 +11,7 @@
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";
     nixpkgs-cosmic.follows = "nixos-cosmic/nixpkgs";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-    stylix.url = "github:danth/stylix/release-25.05";
+    stylix.url = "github:danth/stylix/release-25.11";
     croctalk.url = "github:wearetechnative/croctalk";
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirtygit.url = "github:mipmip/dirtygit";
@@ -20,7 +20,7 @@
     elephant.url = "github:abenz1267/elephant";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     homeage = {

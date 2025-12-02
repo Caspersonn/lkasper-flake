@@ -127,13 +127,29 @@ in
         enable = true;
         settings = {
 
-            #"technative" = {
-            #    aws_account_id = "technativebv";
-            #    account_id = "technativebv";
-            #    region = "eu-central-1";
-            #    output = "table";
-            #    group = "Technative";
-            #};
+            "technative" = {
+                aws_account_id = "technativebv";
+                account_id = "technativebv";
+                region = "eu-central-1";
+                output = "table";
+                group = "Technative";
+            };
+
+            "profile docr-nonprod" = {
+                group = "DocRevolution";
+                output = "json";
+                region = "eu-central-1";
+                role_arn = "arn:aws:iam::255217714588:role/landing_zone_devops_administrator";
+                source_profile = "technative";
+            };
+
+            "profile docr-man" = {
+                group = "DocRevolution";
+                output = "json";
+                region = "eu-central-1";
+                role_arn = "arn:aws:iam::353319268640:role/landing_zone_devops_administrator";
+                source_profile = "technative";
+            };
 
             #"profile ActiFlow" = {
             #    role_arn = "arn:aws:iam::337810061405:role/TechnativeFullAccessRole";

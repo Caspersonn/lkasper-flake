@@ -28,9 +28,8 @@
     gopls
     nixd
     marksman
-    terraform-ls
     nodePackages.bash-language-server
-    sumneko-lua-language-server
+    lua-language-server
     nil
     rust-analyzer
     vscode-langservers-extracted

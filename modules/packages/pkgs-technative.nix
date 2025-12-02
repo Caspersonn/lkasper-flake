@@ -1,12 +1,14 @@
 {config, lib, pkgs, unstable, ... }:
 
 {
+  fonts.packages = with pkgs; [
+    lato
+  ];
   environment.systemPackages = with pkgs; [
     # Essential technative applications
     attic-client
     aws-mfa
     aws-nuke
-    aws-sam-cli
     awscli
     beam27Packages.elixir
     bruno
@@ -22,7 +24,6 @@
     lynis
     nchat
     neofetch
-    nodePackages.live-server
     postgresql_15
     python312Packages.distutils
     quarto
@@ -35,12 +36,11 @@
     telegram-bot-api
     telegram-desktop
     fastfetch
-    terraform
     terraform-docs
     terraform-ls
     pritunl-client
     (texlive.combine {
-      inherit (texlive) scheme-full datetime fmtcount textpos makecell lipsum footmisc background ; 
+      inherit (texlive) scheme-full datetime fmtcount textpos makecell lipsum footmisc background lato ; 
     })
     tfsec
     tfswitch

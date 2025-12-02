@@ -5,7 +5,7 @@
 
     # GUI Applications - Office & Productivity
     libreoffice-qt6-fresh
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     signal-desktop
     unstable.jan
     unstable.newelle
@@ -31,7 +31,7 @@
     bitwarden-desktop
     firejail
     filezilla
-    discord
+    vesktop
     ddcutil
     winetricks
   ];

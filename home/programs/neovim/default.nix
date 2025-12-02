@@ -33,6 +33,7 @@
     pkgs.pyright
     pkgs.typst
     pkgs.beamMinimal27Packages.elixir-ls
+    pkgs.crystalline
 
     # Search and navigation tools
     pkgs.silver-searcher

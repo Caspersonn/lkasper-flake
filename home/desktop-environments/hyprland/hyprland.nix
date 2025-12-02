@@ -15,6 +15,7 @@ in
     XDG_SESSION_DESKTOP = "Hyprland";
     WLR_NO_HARDWARE_CURSORS = "1";
     HYPRSHOT_DIR =  "$HOME/${username}/Pictures";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
 
   xdg.mimeApps = {

@@ -23,7 +23,7 @@
     blueberry # Bluetooth configuration tool
     brightnessctl # This program allows you read and control device brightness
     cava # Console-based Audio Visualizer for Alsa
-    greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
+    tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette
     gruvbox-plus-icons # Icon pack for Linux desktops based on the Gruvbox color scheme
     hyprlock # Hyprland's GPU-accelerated screen locking utility
@@ -56,11 +56,10 @@
   # Login
   services.greetd = {
     enable = true;
-    vt = 3;
     settings = {
       default_session = {
         user = "casper";
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
       };
     };
   };
