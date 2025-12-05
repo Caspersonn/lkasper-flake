@@ -19,6 +19,7 @@
     walker.url = "github:abenz1267/walker";
     elephant.url = "github:abenz1267/elephant";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    vogix16.url = "github:i-am-logger/vogix16";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +34,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, swww, walker, elephant, nixpkgs2405, nixos-hardware }:
+  outputs = inputs@{ self, nixpkgs, unstable, home-manager, agenix, bmc, homeage, race, jsonify-aws-dotfiles, nixtendo-switch, nixpkgs-cosmic, nixos-cosmic, stylix, croctalk, slack2zammad, dirtygit, swww, walker, elephant, nixpkgs2405, nixos-hardware, vogix16 }:
 
 
     let
@@ -66,7 +67,7 @@
               roles.gnome.enable = gnome;
               roles.hyprland.enable = hyprland;
             }
-          ] ++ [ inputs.walker.homeManagerModules.default ];
+          ] ++ [ inputs.walker.homeManagerModules.default inputs.vogix16.homeManagerModules.default ];
           pkgs = importFromChannelForSystem system nixpkgs;
           extraSpecialArgs = {
             system = system;

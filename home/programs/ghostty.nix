@@ -4,7 +4,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      theme = "GruvboxDark";
+      theme = "Gruvbox Dark";
       background-opacity = 0.9;
     };
   };

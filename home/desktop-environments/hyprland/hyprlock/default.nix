@@ -19,7 +19,7 @@ in
 
       background = {
         monitor = "";
-        path = "/home/casper/lkasper-flake/wallpapers/Wood Dark.png";
+        path = "$HOME/.cache/current-wallpaper";
         blur_passes = 3;
         contrast = 0.8916;
         brightness = 0.8172;
@@ -36,7 +36,7 @@ in
       image = [
         {
           monitor = "";
-          path = "/home/casper/lkasper-flake/home/desktop-environments/hyprland/hyprlock/Profile Picture.jpg";
+          path = "$HOME/lkasper-flake/home/desktop-environments/hyprland/hyprlock/Profile Picture.jpg";
           border_size = 2;
           border_color = "rgba(255, 255, 255, 0)";
           size = 150;

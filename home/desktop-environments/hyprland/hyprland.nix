@@ -67,8 +67,7 @@ in
         "[workspace 1 silent] $terminal --command='smug lkasper'"
         "[workspace 2 silent] $browser"
         "[workspace 3 silent] $music"
-        "swayosd-server"
-        "swayosd-libinput-backend"
+        "avizo-service"
         "swaync"
         "hyprsunset -t 5000"
         "swww-daemon"
@@ -82,6 +81,9 @@ in
 
       env = [
         "WLR_DRM_NO_ATOMIC,1"
+        "GDK_SCALE,2"
+        "XCURSOR_SIZE,24"
+        "QT_SCALE_FACTOR,1.3"
       ];
 
       #####################
@@ -94,7 +96,7 @@ in
         gaps_out = 6;
         border_size = 2;
 
-        "col.active_border" = "rgba(a89984cc) rgba(7c6f64cc) 45deg";
+        "col.active_border" = "rgb(968996) rgb(968e96) 45deg";
         "col.inactive_border" = "rgba(282828aa)";
 
         resize_on_border = false;
@@ -170,7 +172,8 @@ in
       };
 
       xwayland = {
-        force_zero_scaling = false;
+        force_zero_scaling = true;
+        #use_nearest_neighbor = false;
       };
 
       #############
@@ -194,7 +197,7 @@ in
       };
 
       gestures = {
-        workspace_swipe = true;
+        #workspace_swipe = true;
         workspace_swipe_distance = 1000;
       };
 
@@ -289,6 +292,11 @@ in
         "$mainMod CTRL, 9, split:movetoworkspace, 9"
         "$mainMod CTRL, 0, split:movetoworkspace, 10"
 
+        "$mainMod SHIFT, right, resizeactive, 50 0"
+        "$mainMod SHIFT, left, resizeactive, -50 0"
+        "$mainMod SHIFT, up, resizeactive, 0 -50"
+        "$mainMod SHIFT, down, resizeactive, 0 50"
+
         "$mainMod, S, split:swapactiveworkspaces, current +1"
         "$mainMod, G, split:grabroguewindows"
         #
@@ -302,12 +310,12 @@ in
       ];
 
       bindel = [
-        ",XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise 0"
-        ",XF86AudioLowerVolume, exec, swayosd-client --output-volume lower 0"
-        ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
-        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ",XF86MonBrightnessUp, exec, swayosd-client --brightness=raise 10"
-        ",XF86MonBrightnessDown, exec, swayosd-client --brightness=lower 10"
+        ",XF86AudioRaiseVolume, exec, volumectl -u up"
+        ",XF86AudioLowerVolume, exec, volumectl -u down"
+        ",XF86AudioMute, exec, volumectl toggle-mute"
+        ",XF86AudioMicMute, exec, volumectl -m toggle-mute"
+        ",XF86MonBrightnessUp, exec, lightctl up"
+        ",XF86MonBrightnessDown, exec, lightctl down"
         ",Caps_Lock, exec, sleep 0.1 && swayosd-client --caps-lock-led input19::capslock"
       ];
 

@@ -2,12 +2,13 @@
   programs.eww = {
     enable = true;
     enableZshIntegration = true;
+    #configDir = ./bar;
   };
-  home.file = {
-    ".config/eww" = {
-      source = ./empty_workspace;
-      recursive = true;
-      executable = true;
-    };
-  };
+  #home.file = {
+  #  ".config/eww" = {
+  #    source = ./bar;
+  #    recursive = true;
+  #    executable = true;
+  #  };
+  #};
 }

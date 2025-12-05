@@ -25,6 +25,8 @@ in
       (import ./script.nix args)
       (import ./swaync.nix args)
       (import ./eww args)
+      (import ./vogix.nix args)
+      (import ./avizo.nix args)
     ]
   );
 }

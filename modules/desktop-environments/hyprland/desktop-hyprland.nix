@@ -19,6 +19,7 @@
 
   # Packages
   environment.systemPackages = with pkgs; [
+    avizo # Neat notification daemon for Wayland
     bc # GNU software calculator
     blueberry # Bluetooth configuration tool
     brightnessctl # This program allows you read and control device brightness

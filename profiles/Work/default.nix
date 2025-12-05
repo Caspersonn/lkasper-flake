@@ -1,4 +1,5 @@
 {hostname, ...}: {
+  config.bambuStudio.enable = true;
   imports = [
 
     ../../hosts/${hostname}
