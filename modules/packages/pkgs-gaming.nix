@@ -21,14 +21,14 @@
   mesa
   steamcmd
   ns-usbloader
-  prismlauncher
+    #prismlauncher
   protonplus
   ps3iso-utils
   radeontop
-  ryujinx
+  ryubing
   oversteer
   steam
-  stremio
+    #stremio
   unstable.cemu
   unstable.multiviewer-for-f1
   vulkan-tools

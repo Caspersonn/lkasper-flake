@@ -19,6 +19,7 @@
       lin = "vi -c LinnyMenuOpen";
       ner = "vi -c Neotree";
       runbg = "$HOME/.config/hypr/scripts/runbg.sh";
+      tses = "$HOME/lkasper-flake/home/programs/tmux/script/sessionizer.sh";
     };
     initExtra = ''
       PATH=$HOME/bin:$PATH

@@ -1,0 +1,17 @@
+session: vr
+
+root: ~/
+
+before_start:
+
+stop:
+
+windows:
+  - name: wivrn-server
+    layout: main-horizontal
+    commands:
+      - wivrn-server
+  - name: envision
+    layout: main-horizontal
+    commands:
+      - runbg envision

@@ -16,6 +16,9 @@
     ../../modules/services/service-tailscale.nix
     ../../modules/services/service-syncthing_client.nix
     ../../modules/services/service-ollama.nix
+    ../../modules/services/service-wivrn.nix
+    ../../modules/services/service-flatpak.nix
+    ../../modules/services/service-redis_psql_twenty.nix
 
     # Etc
     ../../modules/etc/udev-skylanders-portal.nix

@@ -63,5 +63,14 @@ final: prev: {
   #     sha256 = "sha256-D1pzxq7yNzSDA1ZNYfdJVz3vLare/y8IbC7tN5tAff4=";
   #   };
   # });
+  #wivrn = prev.wivrn.overrideAttrs (old: {
+  #  version = "25.05";
+  #  src = prev.fetchFromGitHub {
+  #    owner = "wivrn";
+  #    repo = "wivrn";
+  #    rev = "v${old.version}";
+  #    hash = "sha256-XP0bpXgtira2QIlS0fNEteNP48WnEjBYFM1Xmt2sm5I=";
+  #  };
+  #});
 }
 

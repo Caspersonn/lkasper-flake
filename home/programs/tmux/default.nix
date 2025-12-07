@@ -8,6 +8,7 @@
       pkgs.tmuxPlugins.gruvbox
       pkgs.tmuxPlugins.sensible
       pkgs.tmuxPlugins.yank
+      pkgs.tmuxPlugins.tmux-fzf
     ];
     extraConfig = ''
       unbind r
@@ -18,6 +19,7 @@
       set -g @plugin 'tmux-plugins/tpm
       set -g @plugin 'tmux-plugins/tmux-sensible
       set -g @plugin 'tmux-plugins/tmux-yank'
+      set -g @plugin 'sainnhe/tmux-fzf'
 
       # Tmux theming
       set -g @plugin 'tmux-plugins/tmux-sensible' # optional recommended
@@ -33,4 +35,8 @@
     ''
     ;
   };
+
+  home.packages = [
+    pkgs.tmux-sessionizer
+  ];
 }

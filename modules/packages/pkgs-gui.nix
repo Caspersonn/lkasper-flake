@@ -14,14 +14,14 @@
     obs-studio
     spotify
     video-trimmer
-    (ungoogled-chromium.override {
-      enableWideVine = true;
-      commandLineArgs = [
-        "--enable-features=AcceleratedVideoEncoder"
-        "--ignore-gpu-blocklist"
-        "--enable-zero-copy"
-      ];
-    })
+    #(ungoogled-chromium.override {
+    #  enableWideVine = true;
+    #  commandLineArgs = [
+    #    "--enable-features=AcceleratedVideoEncoder"
+    #    "--ignore-gpu-blocklist"
+    #    "--enable-zero-copy"
+    #  ];
+    #})
 
     # GUI Applications - Development
     pgadmin4-desktopmode
