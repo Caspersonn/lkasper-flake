@@ -7,6 +7,8 @@ windows:
     layout: main-horizontal
     commands:
       - ner
+    panes:
+      - type: horizontal
 
   - name: non-prod
     layout: main-horizontal

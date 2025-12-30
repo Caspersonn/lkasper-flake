@@ -248,6 +248,9 @@ in
         # Monitor manager
         "$mainMod ALT, M, exec, ${hypr_scripts}/monitorctl.sh"
 
+        # Monitor manager
+        "$mainMod SHIFT, O, exec, tses open"
+
         # Focus to other window
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"

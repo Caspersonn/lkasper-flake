@@ -135,19 +135,19 @@ in
                 group = "Technative";
             };
 
-            "profile docr-nonprod" = {
+            "profile DocRevolution-nonprod" = {
                 group = "DocRevolution";
                 output = "json";
-                region = "eu-central-1";
+                region = "eu-west-1";
                 role_arn = "arn:aws:iam::255217714588:role/landing_zone_devops_administrator";
                 source_profile = "technative";
             };
 
-            "profile docr-man" = {
+            "profile DocRevolution-readonly" = {
                 group = "DocRevolution";
                 output = "json";
-                region = "eu-central-1";
-                role_arn = "arn:aws:iam::353319268640:role/landing_zone_devops_administrator";
+                region = "eu-west-1";
+                role_arn = "arn:aws:iam::267166554494:role/TechnativeRole";
                 source_profile = "technative";
             };
 

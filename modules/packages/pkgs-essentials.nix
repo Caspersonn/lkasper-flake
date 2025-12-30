@@ -22,6 +22,7 @@
     node2nix
     pre-commit
     hugo
+    claude-code
 
     # Language Servers & IDE Tools
     sqls

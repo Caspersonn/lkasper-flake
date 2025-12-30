@@ -21,6 +21,7 @@
     granted
     hedgedoc
     inotify-tools
+    inkscape-with-extensions
     lynis
     nchat
     neofetch

@@ -1,5 +1,6 @@
-{...}:
+{inputs, ...}:
 {
+    home.packages = [inputs.walker.packages.x86_64-linux.default];
     programs.walker = {
         enable = true;
         runAsService = true;

@@ -1,11 +1,11 @@
-{ unstable, ... }:
+{ pkgs, ... }:
 
 
 {
 
   programs.librewolf = {
-    enable = true;
-    package = unstable.librewolf; # use unstable librewolf
+    enable = false;
+    package = pkgs.librewolf; # use unstable librewolf
     policies.ExtensionSettings = {
       "uBlock0@raymondhill.net" = {
         install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpl";

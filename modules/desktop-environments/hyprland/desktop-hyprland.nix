@@ -17,6 +17,16 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      #pkgs.xdg-desktop-portal-gtk
+    ];
+  };
+
+
   # Packages
   environment.systemPackages = with pkgs; [
     avizo # Neat notification daemon for Wayland
@@ -52,6 +62,8 @@
     wlogout # Wayland based logout menu
     wofi # Launcher/menu program for wlroots based wayland compositors such as sway
     wttrbar # Simple but detailed weather indicator for Waybar using wttr.in
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
   ];
 
   # Login
