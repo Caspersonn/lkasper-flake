@@ -1,6 +1,5 @@
-{ hostname, ...}: {
+{hostname, ...}: {
   imports = [
-
     ../../hosts/${hostname}
 
     # Core
@@ -27,5 +26,3 @@
     ../../modules/etc/udev-steering-logitech.nix
   ];
 }
-
-
