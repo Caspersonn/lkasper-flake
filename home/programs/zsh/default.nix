@@ -1,5 +1,4 @@
-{ config, ...}:
-{
+{config, ...}: {
   home.file = {
     ".ohmyzsh-casper" = {
       source = ./ohmyzsh-casper;
@@ -56,4 +55,3 @@
     };
   };
 }
-
