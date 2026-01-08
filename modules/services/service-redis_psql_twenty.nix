@@ -1,4 +1,4 @@
-{ lib, pkgs, ...}:
+{ pkgs, ...}:
 
 {
   services.postgresql = {
@@ -18,9 +18,9 @@
     # IPv6 local connections:
     host    all             all             ::1/128                 md5
     '';
-    #initialScript = pkgs.writeText "backend-initScript" ''
-    #  alter user postgres with password 'postgres';
-    #'';
+    initialScript = pkgs.writeText "backend-initScript" ''
+      alter user postgres with password 'postgres';
+    '';
   };
 
   services.redis.servers."" = {

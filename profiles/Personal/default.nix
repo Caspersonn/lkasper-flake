@@ -14,6 +14,7 @@
     ../../modules/services/service-resolved.nix
     ../../modules/services/service-tailscale.nix
     ../../modules/services/service-syncthing_client.nix
+    ../../modules/services/service-redis_psql_twenty.nix
 
     # Etc
     ../../modules/etc/secrets.nix
