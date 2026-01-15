@@ -93,7 +93,7 @@ in
 
       general = {
         gaps_in = 5;
-        gaps_out = 6;
+        gaps_out = 10;
         border_size = 2;
 
         "col.active_border" = "rgb(968996) rgb(968e96) 45deg";
