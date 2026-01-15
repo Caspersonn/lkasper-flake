@@ -7,10 +7,12 @@
     initialDatabases = [
       { name = "tokenserver_rs"; }
       { name = "syncstorage_rs"; }
+      { name = "kimai"; }
     ];
     ensureDatabases = [
       "tokenserver_rs"
       "syncstorage_rs"
+      "kimai"
     ];
   };
 

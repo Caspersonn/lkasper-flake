@@ -20,6 +20,7 @@
     ../../modules/services/service-openvpn.nix
     ../../modules/services/service-wireguard.nix
     ../../modules/services/service-neo4j.nix
+    ../../modules/services/service-printing.nix
 
     # Etc
     ../../modules/etc/secrets.nix

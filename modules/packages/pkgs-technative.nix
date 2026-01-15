@@ -4,6 +4,9 @@
   fonts.packages = with pkgs; [
     lato
   ];
+  security.acme.defaults.email = "lucakasper8@gmail.com";
+  security.acme.acceptTerms = true;
+
   environment.systemPackages = with pkgs; [
     # Essential technative applications
     attic-client
@@ -33,6 +36,7 @@
     redis
     slack
     ssm-session-manager-plugin
+    solidtime-desktop
     teams-for-linux
     telegram-bot-api
     telegram-desktop
