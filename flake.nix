@@ -17,8 +17,9 @@
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirtygit.url = "github:mipmip/dirtygit";
     swww.url = "github:LGFae/swww";
-    nixvim.url = "github:caspersonn/nixvim";
-    openspec.url = "github:mipmip/OpenSpec";
+    nixvim.url = "/home/casper/git/personal/nixvim";
+    openspec.url = "github:Fission-AI/OpenSpec";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     walker = {
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";

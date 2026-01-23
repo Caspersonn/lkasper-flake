@@ -30,12 +30,12 @@ in
       general = {
         no_fade_in = false;
         grace = 0;
-        disable_loading_bar = false;
+        disable_loading_bar = true;
       };
 
       image = [
         {
-          monitor = "";
+          monitor = "eDP-1";
           path = "$HOME/lkasper-flake/home/desktop-environments/hyprland/hyprlock/Profile Picture.jpg";
           border_size = 2;
           border_color = "rgba(255, 255, 255, 0)";
@@ -52,7 +52,7 @@ in
 
       shape = [
         {
-          monitor = "";
+          monitor = "eDP-1";
           size = "300, 60";
           color = "rgba(255, 255, 255, .1)";
           rounding = -1;
@@ -68,7 +68,7 @@ in
 
       label = [
         {
-          monitor = "";
+          monitor = "eDP-1";
           text = ''cmd[update:1000] echo -e "$(date +"%A, %B %d")"'';
           color = "rgba(216, 222, 233, 0.70)";
           font_size = 25;
@@ -78,7 +78,7 @@ in
           valign = "center";
         }
         {
-          monitor = "";
+          monitor = "eDP-1";
           text = ''cmd[update:1000] echo $(date +"%H:%M")'';
           color = "rgba(216, 222, 233, 0.70)";
           font_size = 120;
@@ -88,7 +88,7 @@ in
           valign = "center";
         }
         {
-          monitor = "";
+          monitor = "eDP-1";
           text = "  $USER";
           color = "rgba(216, 222, 233, 0.80)";
           outline_thickness = 2;
@@ -102,7 +102,7 @@ in
           valign = "center";
         }
         {
-          monitor = "";
+          monitor = "eDP-1";
           text = ''cmd[update:1000] echo "$(${music})"'';
           color = "rgba(255, 255, 255, 1)";
           font_size = 14;
@@ -116,7 +116,7 @@ in
 
       input-field = [
         {
-          monitor = "";
+          monitor = "eDP-1";
           size = "300, 60";
           outline_thickness = 2;
           dots_size = 0.2;

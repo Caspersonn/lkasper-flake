@@ -17,6 +17,9 @@
     host    all             all             127.0.0.1/32            md5
     # IPv6 local connections:
     host    all             all             ::1/128                 md5
+
+    host    all     all     172.17.0.0/16     md5
+    host    all     all     172.18.0.0/16     md5
     '';
     initialScript = pkgs.writeText "backend-initScript" ''
       alter user postgres with password 'postgres';
@@ -25,6 +28,8 @@
 
   services.redis.servers."" = {
     enable = true;
-    port = 6380;
+    port = 6379;
+    bind = "127.0.0.1 172.17.0.1";
+    openFirewall = true;
   };
 }

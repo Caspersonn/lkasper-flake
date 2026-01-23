@@ -5,13 +5,14 @@ Personal NixOS configuration repository managing multiple machines using flakes 
 
 ## Tech Stack
 - **NixOS** with flakes (following latest stable nixos)
+- **flake-parts** for modular flake organization
 - **home-manager** (following latest stable nixos) for dotfiles and user environment management
 - **agenix** for encrypted secrets management
 - **Desktop Environments**: Hyprland (primary), GNOME, KDE Plasma, Cosmic
 - **Hyprland** as primary desktop environment.
     - **stylix** for system-wide theming
 - **Multiple nixpkgs channels**: stable (25.11), 24.05, and unstable
-- **Custom packages**: Integration with custom tools 
+- **Custom packages**: Integration with custom tools
     - bmc and race (AWS IAC tools from TechNative
 - **OpenSpec** for change management and proposals
 - **Terminal emulators:**
@@ -38,6 +39,12 @@ Personal NixOS configuration repository managing multiple machines using flakes 
 - **Allow unfree packages**: Enabled globally in overlays
 
 ### Architecture Patterns
+- **flake-parts modular architecture**: Flake outputs organized into composable modules in `parts/`
+  - `parts/systems.nix`: Supported system architectures
+  - `parts/formatter.nix`: Code formatter configuration
+  - `parts/overlays.nix`: Overlay helper functions
+  - `parts/nixos.nix`: NixOS configuration definitions
+  - `parts/home-manager.nix`: Home-manager configuration definitions
 - **Modular structure**: Reusable modules organized by category
   - `modules/services/`: System services (Docker, Tailscale, OpenVPN, etc.)
   - `modules/packages/`: Package collections and custom builds

@@ -11,6 +11,7 @@
     ../../modules/packages/bambu-labs.nix
     ../../modules/packages/nix-ld.nix
     ../../modules/packages/chromium.nix
+    ../../modules/packages/spotify.nix
 
     # Services
     ../../modules/services/service-resolved.nix

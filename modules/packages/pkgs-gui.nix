@@ -12,7 +12,6 @@
 
     # GUI Applications - Media & Entertainment
     obs-studio
-    spotify
     video-trimmer
     #(ungoogled-chromium.override {
     #  enableWideVine = true;

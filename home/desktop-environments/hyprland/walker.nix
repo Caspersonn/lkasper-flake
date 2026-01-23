@@ -1,26 +1,41 @@
 {inputs, ...}:
 {
-    home.packages = [inputs.walker.packages.x86_64-linux.default];
-    programs.walker = {
-        enable = true;
-        runAsService = true;
+  programs.elephant = {
+    enable = true;
+    debug = false;
 
-        # All options from the config.json can be used here.
-        config = {
-            search.placeholder = "Example";
-            ui.fullscreen = true;
-            list = {
-                height = 200;
-            };
-            websearch.prefix = "?";
-            switcher.prefix = "/";
+    # Select specific providers
+    providers = [
+      #"files"
+      "desktopapplications"
+      "calc"
+      "runner"
+      "clipboard"
+      "symbols"
+      "websearch"
+      "menus"
+      "providerlist"
+    ];
+
+    # Custom elephant configuration
+    settings = {
+      providers = {
+        files = {
+          min_score = 50;
+          icon = "folder";
         };
-
-        # If this is not set the default styling is used.
-        #theme.style = ''
-        #* {
-        #  color: #dcd7ba;
-        #}
-        #'';
+        desktopapplications = {
+          launch_prefix = "uwsm app --";
+          min_score = 60;
+        };
+        calc = {
+          icon = "accessories-calculator";
+        };
+      };
     };
+  };
+  programs.walker = {
+    enable = true;
+    runAsService = true;
+  };
 }

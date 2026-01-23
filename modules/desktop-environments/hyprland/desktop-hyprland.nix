@@ -22,7 +22,6 @@
     wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-hyprland
-      #pkgs.xdg-desktop-portal-gtk
     ];
   };
 
@@ -34,9 +33,10 @@
     blueberry # Bluetooth configuration tool
     brightnessctl # This program allows you read and control device brightness
     cava # Console-based Audio Visualizer for Alsa
-    tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
+    glib # C library of programming buildings blocks
     gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette
     gruvbox-plus-icons # Icon pack for Linux desktops based on the Gruvbox color scheme
+    gsettings-desktop-schemas # Collection of GSettings schemas for settings shared by various components of a desktop
     hyprlock # Hyprland's GPU-accelerated screen locking utility
     hyprpaper # Blazing fast wayland wallpaper utility
     hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse
@@ -58,6 +58,8 @@
     sway # I3-compatible tiling Wayland compositor
     swaynotificationcenter # Simple notification daemon with a GUI built for Sway
     swayosd # GTK based on screen display for keyboard shortcuts
+    tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
+    uwsm # Universal wayland session manager
     waybar # Status bar
     wlogout # Wayland based logout menu
     wofi # Launcher/menu program for wlroots based wayland compositors such as sway
@@ -67,14 +69,19 @@
   ];
 
   # Login
-  services.greetd = {
+  #services.greetd = {
+  #  enable = true;
+  #  settings = {
+  #    default_session = {
+  #      user = "casper";
+  #      command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+  #    };
+  #  };
+  #};
+
+  services.displayManager.sddm = {
     enable = true;
-    settings = {
-      default_session = {
-        user = "casper";
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-      };
-    };
+    wayland.enable = true;
   };
 
   # OpenGL

@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  inherit (inputs) nixpkgs nixpkgs2405 unstable home-manager agenix nixos-hardware monitoring bmc race jsonify-aws-dotfiles openspec;
+  inherit (inputs) nixpkgs nixpkgs2405 unstable home-manager agenix nixos-hardware monitoring bmc race jsonify-aws-dotfiles openspec spicetify-nix;
 
   # Import helper from overlays module
   importFromChannelForSystem = inputs.self.lib.importFromChannelForSystem;
@@ -60,6 +60,7 @@
           nixos-hardware.nixosModules.framework-13-7040-amd
           agenix.nixosModules.default
           monitoring.nixosModules.monitoring
+          spicetify-nix.nixosModules.spicetify
           extraPkgs
           {home-manager.useGlobalPkgs = true;}
         ]

@@ -223,7 +223,11 @@ in
         "$mainMod, T, exec, $terminal"
         "$mainMod, B, exec, $browser"
         "$mainMod, E, exec, $fileManager"
+
+        # Lock and Suspend
         "$mainMod, L, exec, hyprlock"
+        "$mainMod SHIFT, L, exec, hyprlock && systemctl suspend"
+
         "$mainMod, D, exec, nwg-displays"
         "$mainMod, space, exec, $menu"
         "$mainMod, Q, killactive,"
@@ -250,6 +254,10 @@ in
 
         # Monitor manager
         "$mainMod SHIFT, O, exec, tses open"
+
+        # Dark/Light mode
+        "$mainMod, D, exec, gsettings set org.gnome.desktop.interface color-scheme prefer-dark"   # for GTK4 apps
+        "$mainMod SHIFT, D, exec, gsettings set org.gnome.desktop.interface color-scheme prefer-light"   # for GTK4 apps
 
         # Focus to other window
         "$mainMod, left, movefocus, l"

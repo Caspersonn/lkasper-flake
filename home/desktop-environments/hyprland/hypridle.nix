@@ -16,10 +16,10 @@
           on-timeout = "brightnessctl -s set 10";
           on-resume = "brightnessctl -r";
         }
-        #        {
-        #          timeout = 300;
-        #          on-timeout = "hyprlock";
-        #        }
+        {
+          timeout = 300;
+          on-timeout = "hyprlock";
+        }
         {
           timeout = 330;
           on-timeout = "hyprctl dispatch dpms off";

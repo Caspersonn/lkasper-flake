@@ -26,6 +26,6 @@
       avante-openai = keyconf "avante-openai";
       google-bedrock = keyconf "google-bedrock";
       google-engine-bedrock = keyconf "google-engine-bedrock";
-      spotify = keyconf "spotify";
+    #spotify = keyconf "spotify";
   };
 }
