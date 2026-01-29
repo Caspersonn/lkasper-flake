@@ -76,6 +76,8 @@
     bitwarden-cli
     smug
     zsh
+    rbw
+    pinentry-tty
     mailutils
     mods
     nerd-fonts.fira-code

@@ -9,6 +9,7 @@
       theme = "opencode";
       autoshare = false;
       autoupdate = true;
+      plugin = ["@tarquinen/opencode-dcp@latest"];
       provider = {
         amazon-bedrock = {
           options = {

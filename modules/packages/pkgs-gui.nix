@@ -30,7 +30,6 @@
     bitwarden-desktop
     firejail
     filezilla
-    vesktop
     ddcutil
     winetricks
   ];

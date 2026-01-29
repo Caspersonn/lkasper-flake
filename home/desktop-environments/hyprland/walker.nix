@@ -3,6 +3,7 @@
   programs.elephant = {
     enable = true;
     debug = false;
+    installService = false;
 
     # Select specific providers
     providers = [

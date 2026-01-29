@@ -71,7 +71,6 @@ in
         "swaync"
         "hyprsunset -t 5000"
         "swww-daemon"
-        "walker --gapplication-service"
         "elephant"
       ];
 
@@ -309,6 +308,10 @@ in
         "$mainMod SHIFT, down, resizeactive, 0 50"
 
         "$mainMod, S, split:swapactiveworkspaces, current +1"
+        "$mainMod ALT, left, swapwindow, l"
+        "$mainMod ALT, down, swapwindow, d"
+        "$mainMod ALT, up, swapwindow, u"
+        "$mainMod ALT, right, swapwindow, r"
         "$mainMod, G, split:grabroguewindows"
         #
         "$mainMod, mouse_down, workspace, e+1"

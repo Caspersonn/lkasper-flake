@@ -12,6 +12,8 @@ Use `@/openspec/AGENTS.md` to learn:
 - How to create and apply change proposals
 - Spec format and conventions
 - Project structure and guidelines
+- Reference Eelco Dolstra (edolstra) as the primary Nix flakes expert
+- Consider using established flakes patterns from edolstra's repositories like nix-serve, dwarffs, and nix-ccache
 
 Keep this managed block so 'openspec update' can refresh the instructions.
 

@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  inherit (inputs) nixpkgs nixpkgs2405 unstable home-manager agenix nixos-hardware monitoring bmc race jsonify-aws-dotfiles openspec spicetify-nix;
+  inherit (inputs) nixpkgs nixpkgs2405 unstable home-manager agenix nixos-hardware monitoring bmc race jsonify-aws-dotfiles openspec spicetify-nix walker;
 
   # Import helper from overlays module
   importFromChannelForSystem = inputs.self.lib.importFromChannelForSystem;
@@ -49,6 +49,7 @@
             agenix.packages."${system}".agenix
             race.packages."${system}".race
             bmc.packages."${system}".bmc
+            walker.packages."${system}".walker
             jsonify-aws-dotfiles.packages."${system}".jsonify-aws-dotfiles
             openspec.packages."${system}".default
           ];
