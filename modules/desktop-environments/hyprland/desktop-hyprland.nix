@@ -69,20 +69,20 @@
   ];
 
   # Login
-  #services.greetd = {
-  #  enable = true;
-  #  settings = {
-  #    default_session = {
-  #      user = "casper";
-  #      command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-  #    };
-  #  };
-  #};
-
-  services.displayManager.sddm = {
+  services.greetd = {
     enable = true;
-    wayland.enable = true;
+    settings = {
+      default_session = {
+        user = "casper";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+      };
+    };
   };
+
+  #services.displayManager.sddm = {
+  #  enable = true;
+  #  wayland.enable = true;
+  #};
 
   # OpenGL
   hardware.graphics = {
