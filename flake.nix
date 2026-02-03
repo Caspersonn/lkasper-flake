@@ -40,17 +40,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     monitoring.url = "/home/casper/git/wearetechnative/monitoring";
+    # Dendritic tools
+    import-tree.url = "github:vic/import-tree";
   };
 
-  outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs = inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       # Import all flake-parts modules
       imports = [
-        ./parts/systems.nix
-        ./parts/formatter.nix
-        ./parts/overlays.nix
-        ./parts/nixos.nix
-        ./parts/home-manager.nix
+        # Enable flake.modules support
+        flake-parts.flakeModules.modules
+        # Automatically import all dendritic modules from modules/
+        (inputs.import-tree ./modules)
+        # Keep home-manager configuration for now
+        #./parts/home-manager.nix
       ];
+
+      systems = [ "x86_64-linux" "aarch64-linux" ];
     };
 }

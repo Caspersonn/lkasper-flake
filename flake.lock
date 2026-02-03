@@ -1177,6 +1177,21 @@
         "type": "github"
       }
     },
+    "import-tree_2": {
+      "locked": {
+        "lastModified": 1763762820,
+        "narHash": "sha256-ZvYKbFib3AEwiNMLsejb/CWs/OL/srFQ8AogkebEPF0=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "3c23749d8013ec6daa1d7255057590e9ca726646",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
     "ixx": {
       "inputs": {
         "flake-utils": [
@@ -1230,8 +1245,8 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1767619453,
-        "narHash": "sha256-c0dor+gBxHjH94YySesKwu9YtVm5yIqjzSwfHZWaZuw=",
+        "lastModified": 1768811626,
+        "narHash": "sha256-QgIEPuXLiNhZm1wmDNCKmIN+9/tXVatye5XPN7cPBMk=",
         "path": "/home/casper/git/wearetechnative/monitoring",
         "type": "path"
       },
@@ -1848,7 +1863,7 @@
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_3",
-        "import-tree": "import-tree",
+        "import-tree": "import-tree_2",
         "nixpkgs": "nixpkgs_10",
         "nixvim": "nixvim_2"
       },
@@ -2088,6 +2103,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",
         "homeage": "homeage",
+        "import-tree": "import-tree",
         "jsonify-aws-dotfiles": "jsonify-aws-dotfiles",
         "monitoring": "monitoring",
         "nixos-cosmic": "nixos-cosmic",

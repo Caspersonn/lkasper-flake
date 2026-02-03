@@ -1,0 +1,41 @@
+{ inputs, ... }: {
+  flake.modules.nixos.gaming = { pkgs, unstable, ... }: {
+    environment.systemPackages = with pkgs; [
+      gamescope
+      protontricks
+      rpcs3
+      steam-tui
+      android-tools
+      appimage-run
+      ddcui
+      ddcutil
+      unstable.discord
+      docker
+      gamemode
+      goverlay
+      heroic
+      libGL
+      lutris
+      mangohud
+      mesa
+      steamcmd
+      ns-usbloader
+      protonplus
+      ps3iso-utils
+      radeontop
+      ryubing
+      oversteer
+      steam
+      unstable.cemu
+      unstable.multiviewer-for-f1
+      vulkan-tools
+      wine64Packages.unstableFull
+      wineWow64Packages.unstableFull
+      cmake
+      libgcc
+      perl
+      vcpkg
+      xdg-user-dirs
+    ];
+  };
+}

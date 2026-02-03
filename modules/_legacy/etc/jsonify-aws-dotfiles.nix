@@ -11,7 +11,7 @@ in pkgs.stdenv.mkDerivation rec {
     owner = "niko-dunixi";
     repo = pname;
     rev = "HEAD"; # Je kunt een specifieke commit hash of tag opgeven als je niet HEAD wilt gebruiken.
-    sha256 = lib.fakeSha256; # Vervang dit door de echte SHA-256 hash na het bouwen.
+    sha256 = "sha256-i9V0LUWJ1uiRSwZnFPanrY1aoie+n3vEmQ8030Lwq84="; # Vervang dit door de echte SHA-256 hash na het bouwen.
   };
 
   nativeBuildInputs = [ pkgs.go ];
