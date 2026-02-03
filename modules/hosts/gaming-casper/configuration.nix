@@ -38,6 +38,12 @@ in {
       steam
       retroarch
 
+      # Programs - dev
+      dev-git
+      dev-postgres
+      dev-lsp
+      dev-languages
+
       # Programs - GUI Apps
       gui-apps
       spotify
