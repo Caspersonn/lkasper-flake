@@ -3,7 +3,7 @@
 {
   programs.tmux = {
     enable = true;
-    clock24 = true;
+    clock24 = false;
     plugins = [
       pkgs.tmuxPlugins.gruvbox
       pkgs.tmuxPlugins.sensible

@@ -113,7 +113,7 @@
     format-icons = {
       default = [ "" "" " " ];
     };
-    on-click = "pavucontrol";
+    on-click = "ghostty -e wiremix";
   };
 
   "custom/power" = {

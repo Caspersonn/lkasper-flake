@@ -1,36 +1,28 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   inherit (inputs) nixpkgs unstable home-manager stylix walker vogix16;
 
   # Import helper from overlays module
   importFromChannelForSystem = inputs.self.lib.importFromChannelForSystem;
 
-  makeHomeConf = {
-    username ? "casper",
-    hostname,
-    homedir ? "/home/casper",
-    system ? "x86_64-linux",
-    gnome ? false,
-    hyprland ? false,
-    ...
-  }:
+  makeHomeConf = { username ? "casper", hostname, homedir ? "/home/casper"
+    , system ? "x86_64-linux", gnome ? false, hyprland ? false, ... }:
     home-manager.lib.homeManagerConfiguration {
-      modules =
-        [
-          stylix.homeModules.stylix
+      modules = [
+        stylix.homeModules.stylix
 
-          (import ../home)
-          {
-            home.stateVersion = "24.11";
-            home.username = username;
-            home.homeDirectory = homedir;
-            roles.gnome.enable = gnome;
-            roles.hyprland.enable = hyprland;
-          }
-        ]
-        ++ [
-          walker.homeManagerModules.default
-          vogix16.homeManagerModules.default
-        ];
+        (import ../home)
+        {
+          home.stateVersion = "25.11";
+          home.username = username;
+          home.homeDirectory = homedir;
+          roles.gnome.enable = gnome;
+          roles.hyprland.enable = hyprland;
+        }
+      ] ++ [
+        walker.homeManagerModules.default
+        vogix16.homeManagerModules.default
+      ];
       pkgs = importFromChannelForSystem system nixpkgs;
       extraSpecialArgs = {
         inherit system inputs hostname username;

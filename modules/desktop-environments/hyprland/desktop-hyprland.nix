@@ -61,6 +61,7 @@
     tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     uwsm # Universal wayland session manager
     waybar # Status bar
+    wiremix # Simple TUI mixer for PipeWire
     wlogout # Wayland based logout menu
     wofi # Launcher/menu program for wlroots based wayland compositors such as sway
     wttrbar # Simple but detailed weather indicator for Waybar using wttr.in
