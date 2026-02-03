@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.gaming = { pkgs, unstable, ... }: {
+  flake.modules.nixos.gaming = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       gamescope
       protontricks
@@ -9,7 +9,7 @@
       appimage-run
       ddcui
       ddcutil
-      unstable.discord
+      pkgs.unstable.discord
       docker
       gamemode
       goverlay
@@ -26,8 +26,8 @@
       ryubing
       oversteer
       steam
-      unstable.cemu
-      unstable.multiviewer-for-f1
+      pkgs.unstable.cemu
+      pkgs.unstable.multiviewer-for-f1
       vulkan-tools
       wine64Packages.unstableFull
       wineWow64Packages.unstableFull

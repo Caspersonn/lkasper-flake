@@ -40,6 +40,7 @@ in {
 
       # Programs - GUI Apps
       gui-apps
+      spotify
 
       # Programs - System
       hardware-utils
