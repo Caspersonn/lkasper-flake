@@ -22,6 +22,9 @@
       filezilla
       ddcutil
       winetricks
+
+      # 3D printing
+      orca-slicer
     ];
   };
 }
