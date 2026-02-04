@@ -11,6 +11,13 @@ in {
     };
   };
 
+  flake.homeConfigurations = {
+    "casper@${hostname}" = self.lib.makeHomeConf {
+      inherit hostname;
+      imports = with inputs.self.modules.homeManager; [ casper ];
+    };
+  };
+
   flake.modules.nixos.server-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       # System Configuration (Note: no boot/graphics - ARM server has custom bootloader)

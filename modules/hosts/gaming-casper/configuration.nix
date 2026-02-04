@@ -10,6 +10,13 @@ in {
     };
   };
 
+  flake.homeConfigurations = {
+    "casper@${hostname}" = self.lib.makeHomeConf {
+      inherit hostname;
+      imports = with inputs.self.modules.homeManager; [ casper ];
+    };
+  };
+
   flake.modules.nixos.gaming-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default

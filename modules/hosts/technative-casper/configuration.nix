@@ -8,16 +8,9 @@ in {
   };
 
   flake.homeConfigurations = {
-
-    "casper@technative-casper" = self.lib.makeHomeConf {
+    "casper@${hostname}" = self.lib.makeHomeConf {
       inherit hostname;
-      #secondbrain = true;
-      #awscontrol = true;
-      #desktop = true;
-      imports = with inputs.self.modules.homeManager; [
-        casper
-      ];
-
+      imports = with inputs.self.modules.homeManager; [ casper ];
     };
   };
 
