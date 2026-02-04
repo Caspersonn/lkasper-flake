@@ -27,6 +27,8 @@ in {
       casper
       system-default
       age
+      hm-nixos
+
 
       # Desktop Environment
       hyprland

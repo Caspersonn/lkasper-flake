@@ -22,6 +22,7 @@ in {
       casper
       system-default
       age
+      hm-nixos
 
       # Programs - CLI Tools
       cli-tools
