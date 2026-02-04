@@ -80,9 +80,9 @@ in
 
       env = [
         "WLR_DRM_NO_ATOMIC,1"
-        "GDK_SCALE,2"
+        "GDK_SCALE,1"
         "XCURSOR_SIZE,24"
-        "QT_SCALE_FACTOR,1.3"
+        "QT_SCALE_FACTOR,1"
       ];
 
       #####################

@@ -1,0 +1,12 @@
+session: lkasper
+
+root: ~/lkasper-flake
+
+windows:
+  - name: zsh
+    layout: main-horizontal
+    commands:
+      - ner
+    panes:
+      - type: horizontal
+

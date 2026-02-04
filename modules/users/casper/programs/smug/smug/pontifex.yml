@@ -1,0 +1,14 @@
+session: pontifex
+
+root: /home/casper/git/technative_b.v./pontifex
+
+windows:
+  - name: pontifex
+    layout: main-horizontal
+    commands:
+      - ner
+    panes:
+      - type: horizontal
+        commands:
+
+

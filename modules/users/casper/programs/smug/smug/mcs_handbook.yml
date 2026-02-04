@@ -1,0 +1,19 @@
+session: MCS Handbook
+
+root: /home/wtoorren/data/git/technative/technative-docs-managed-services-handbook
+startup_pane: 2
+
+stop:
+
+windows:
+  - name: sync
+    layout: main-horizontal
+    commands:
+      - hugo server --ignoreCache --forceSyncStatic --cleanDestinationDir --disableFastRender -e private -p 1312
+  - name: infra
+    layout: main-horizontal
+    commands:
+      - xdg-open http://localhost:1312
+      - vim -c NERDTree
+  - name: cmd
+    layout: main-horizontal

@@ -128,9 +128,9 @@ let
         groups.default.color;
     };
 in {
-  imports = [ ./awscli-custom.nix ];
+  #imports = [ ./awscli-custom.nix ];
 
-  programs.awscli_custom = {
+  programs.awscli = {
     package = unstable.awscli2;
     enable = true;
     settings = {

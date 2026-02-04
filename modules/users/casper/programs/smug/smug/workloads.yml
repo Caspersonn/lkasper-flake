@@ -1,0 +1,21 @@
+session: workloads
+
+root: ~/git/technative_mcs/technative-awsaccounts-workloads
+
+windows:
+  - name: workloads
+    layout: main-horizontal
+    commands:
+      - ner
+    panes:
+      - type: horizontal
+
+  - name: non-prod
+    layout: main-horizontal
+    panes:
+      - type: horizontal
+
+  - name: prod
+    layout: main-horizontal
+    panes:
+      - type: horizontal

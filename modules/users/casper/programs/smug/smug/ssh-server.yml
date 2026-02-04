@@ -1,0 +1,21 @@
+session: ssh-server
+
+root: ~/git/personal/MyLinnyNotes
+startup_pane: 1
+
+stop:
+
+windows:
+  - name: ssh-server
+    layout: main-horizontal
+    commands:
+      - ssh casper@server-casper.local
+      # - name: sync
+      #   layout: main-horizontal
+      #   commands:
+      #     - 
+      #   panes:
+      #     - type: horizontal
+      #       commands:
+      #         - 
+

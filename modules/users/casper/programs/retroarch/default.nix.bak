@@ -1,0 +1,13 @@
+{ ... }: {
+  flake.modules.homeManager.casper-retroarch =
+    { username, pkgs, config, lib, ... }@args: {
+      imports = [ (import ./retroarch.nix args) ];
+
+      home.file = {
+        ".config/retroarch/config" = {
+          source = ./config;
+          recursive = true;
+        };
+      };
+    };
+}

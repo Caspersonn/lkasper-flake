@@ -1,0 +1,23 @@
+session: quiqr
+
+root: ~/git/personal/quiqr-desktop
+
+before_start:
+
+stop:
+
+windows:
+  - name: quiqr-code
+    layout: main-horizontal
+    commands:
+      - ner
+  - name: quiqr-dev
+    layout: main-horizontal
+    commands:
+      - nix develop
+      - npm run _electron-dev
+    panes:
+      - type: horizontal
+        commands:
+          - nix develop
+          - NODE_OPTIONS=--openssl-legacy-provider npm run _react-dev
