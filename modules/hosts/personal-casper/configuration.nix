@@ -9,6 +9,7 @@ in {
       stdenv.hostPlatform.system = "x86_64-linux";
     };
   };
+
   flake.modules.nixos.personal-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default

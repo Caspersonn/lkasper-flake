@@ -1,12 +1,26 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 let hostname = "technative-casper";
 
 in {
-  flake.nixosConfigurations.${hostname} =
-    inputs.self.lib.makeNixos {
+  flake.nixosConfigurations.${hostname} = inputs.self.lib.makeNixos {
+    inherit hostname;
+    stdenv.hostPlatform.system = "x86_64-linux";
+  };
+
+  flake.homeConfigurations = {
+
+    "casper@technative-casper" = self.lib.makeHomeConf {
       inherit hostname;
-      stdenv.hostPlatform.system = "x86_64-linux";
+      #secondbrain = true;
+      #awscontrol = true;
+      #desktop = true;
+      imports = with inputs.self.modules.homeManager; [
+        casper
+      ];
+
     };
+  };
+
   flake.modules.nixos.technative-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.nixos-hardware.nixosModules.framework-13-7040-amd
@@ -27,6 +41,7 @@ in {
       framework-fingerprint
       system-default
       age
+      hm-nixos
 
       # Desktop Environment
       hyprland

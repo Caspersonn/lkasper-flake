@@ -10,6 +10,7 @@ in {
       enableFrameworkHardware = false;
     };
   };
+
   flake.modules.nixos.server-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       # System Configuration (Note: no boot/graphics - ARM server has custom bootloader)

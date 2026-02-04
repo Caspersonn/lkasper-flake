@@ -1,0 +1,11 @@
+session: docs
+
+root: ~/git/technative_b.v./technative-docs-managed-services-handbook
+
+windows:
+  - name: zsh
+    layout: main-horizontal
+    commands:
+      - ner
+
+

@@ -1,0 +1,18 @@
+;; Minimal empty workspace overlay
+(defwindow empty_dashboard
+  :monitor 0
+  :stacking "fg"
+  :focusable "false"
+  :geometry (geometry :x 600 :y 300 :width 720 :height 400)
+  (box :orientation "v" :halign "center" :valign "center" :spacing 20
+    ;; Song info
+    (label :class "song" :text "Now Playing: $(playerctl metadata --format '{{ artist }} - {{ title }}')")
+    
+    ;; CPU / RAM
+    (label :class "sysinfo" :text "CPU: $(scripts/sys_info --cpu)% RAM: $(scripts/sys_info --mem)%")
+    
+    ;; Clock
+    (label :class "clock" :text "$(date +'%H:%M:%S')")
+
+    ;; Optional quote
+    (label :class "quote" :text "$(fortune | head -n 1)")))

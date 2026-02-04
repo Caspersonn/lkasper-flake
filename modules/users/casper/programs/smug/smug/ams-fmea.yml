@@ -1,0 +1,25 @@
+session: ams-fmea
+
+root: ~/
+
+windows:
+  - name: blank-1
+    layout: main-horizontal
+    commands:
+      - cd /home/casper/git/customers/ams/delles-fmea-onsteroids
+      - ner
+    panes:
+      - type: horizontal
+        commands:
+          - cd /home/casper/git/customers/ams/delles-fmea-onsteroids
+  - name: blank-2
+    layout: main-horizontal
+    commands:
+      - cd /home/casper/git/customers/ams/fosbe
+      - ner
+    panes:
+      - type: horizontal
+        commands:
+          - cd /home/casper/git/customers/ams/fosbe
+
+

@@ -1,0 +1,9 @@
+session: cemu
+
+root: ~/
+
+windows:
+  - name: zsh
+    layout: main-horizontal
+    commands:
+      - cemu

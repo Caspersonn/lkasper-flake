@@ -50,9 +50,10 @@
       imports = [
         # Enable flake.modules support
         flake-parts.flakeModules.modules
+	inputs.home-manager.flakeModules.home-manager
         # Automatically import all dendritic modules from modules/
         (inputs.import-tree ./modules)
-        # Keep home-manager configuration for now
+        # Centralized home-manager configurations
         #./parts/home-manager.nix
       ];
 

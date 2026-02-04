@@ -4,7 +4,7 @@
     users.users.casper = {
       isNormalUser = true;
       description = "Luca Kasper";
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "docker" "disk" ];
       shell = pkgs.zsh;
     };
     users.defaultUserShell = pkgs.zsh;

@@ -1,0 +1,17 @@
+session: matterbridge
+
+root: ~/git/technative_b.v./matterbridgeconfig
+
+before_start:
+
+stop:
+
+windows:
+  - name: matterbridgerun
+    layout: main-horizontal
+    commands:
+      - matterbridge
+    panes:
+      - type: horizontal
+        commands:
+          - ner
