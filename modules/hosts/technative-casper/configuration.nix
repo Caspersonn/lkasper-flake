@@ -78,6 +78,7 @@ in {
       wireguard
       neo4j
       printing
+      postgres
 
       # System
       secrets
