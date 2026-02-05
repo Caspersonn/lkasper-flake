@@ -351,8 +351,10 @@
             "float, class:ddcui"
             "float, class:blueberry.py"
             "float, class:kitty"
+            "float, class:com.mitchellh.ghostty, title:wiremix"
             "size 50% 50%, class:nwg-displays, title:nwg-displays"
             "size 50% 50%, class:kitty"
+            "size 50% 50%, class:com.mitchellh.ghostty, title:wiremix"
             "size 40% 40%, class:org.gnome.Nautilus"
             "size 50% 50%, class:org.pulseaudio.pavucontrol"
           ];

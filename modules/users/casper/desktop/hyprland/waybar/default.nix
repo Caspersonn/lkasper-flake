@@ -83,7 +83,7 @@
               format-icons = {
                 default = ["" ""];
               };
-              on-click = "ghostty -e wiremix";
+              on-click = "ghostty --title=wiremix -e wiremix";
             };
 
             bluetooth = {

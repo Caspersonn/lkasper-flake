@@ -18,6 +18,7 @@
       whois
       ethtool
       wireguard-tools
+      file
 
       # System Utilities
       lsof
