@@ -35,6 +35,7 @@ in {
       system-default
       age
       hm-nixos
+      remote_builder
 
       # Desktop Environment
       hyprland

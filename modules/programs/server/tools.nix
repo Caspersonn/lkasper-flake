@@ -4,7 +4,6 @@
       acme-sh
       openssl
       invidious
-      stremio
     ];
   };
 }

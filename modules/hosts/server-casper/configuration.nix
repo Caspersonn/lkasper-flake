@@ -6,7 +6,7 @@ in {
   flake.nixosConfigurations = {
     server-casper = self.lib.makeNixos {
       inherit hostname;
-      stdenv.hostPlatform.system = "aarch64-linux";
+      system = "aarch64-linux";
       enableFrameworkHardware = false;
     };
   };
@@ -45,7 +45,6 @@ in {
       syncthing-server
       atuin
       bluetooth-receiver
-      printing
 
       # System
       secrets
