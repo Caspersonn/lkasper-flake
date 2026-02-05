@@ -21,8 +21,8 @@
         ner = "vi -c Neotree";
         runbg = "$HOME/.config/hypr/scripts/runbg.sh";
         tses = "$HOME/lkasper-flake/home/programs/tmux/script/sessionizer.sh";
-        aws-mfa =
-          "$HOME/lkasper-flake/home/desktop-environments/hyprland/scripts/aws-mfa-auto.sh";
+        #        aws-mfa =
+        #          "$HOME/lkasper-flake/home/desktop-environments/hyprland/scripts/aws-mfa-auto.sh";
         bcd =
           "export AWS_PROFILE='TEC-playground-student14' && export CLAUDE_CODE_USE_BEDROCK=1 && export ANTHROPIC_MODEL='arn:aws:bedrock:eu-central-1:939665396134:inference-profile/eu.anthropic.claude-sonnet-4-5-20250929-v1:0' && export AWS_REGION=eu-central-1 && claude";
         bcdc =

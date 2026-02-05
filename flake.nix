@@ -42,6 +42,7 @@
     monitoring.url = "/home/casper/git/wearetechnative/monitoring";
     # Dendritic tools
     import-tree.url = "github:vic/import-tree";
+    pokemon-tracker.url = "/home/casper/git/personal/pokemon-tracker";
   };
 
   outputs = inputs@{ flake-parts, ... }:
