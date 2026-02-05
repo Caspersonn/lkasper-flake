@@ -49,7 +49,6 @@ in {
 
       # Programs - dev
       dev-git
-      dev-postgres
       dev-lsp
       dev-languages
 
@@ -70,6 +69,7 @@ in {
       ollama
       flatpak
       mysql
+      postgres
 
       # System
       secrets

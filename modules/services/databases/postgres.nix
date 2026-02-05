@@ -1,7 +1,5 @@
 { inputs, ... }: {
   flake.modules.nixos.postgres = { config, pkgs, ... }: {
-
-
     services.postgresql = {
       enable = true;
       package = pkgs.postgresql_16_jit;
