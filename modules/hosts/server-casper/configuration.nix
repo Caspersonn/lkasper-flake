@@ -48,6 +48,10 @@ in {
 
       # System
       secrets
+
+      # Tools
+      pokemon-tracker
+      acme
     ];
 
     # State version
