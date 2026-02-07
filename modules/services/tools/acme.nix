@@ -2,6 +2,7 @@
   flake.modules.nixos.acme = { config, pkgs, ... }: {
 
     environment.systemPackages = with pkgs; [
+      minica
       acme
       lego
     ];
