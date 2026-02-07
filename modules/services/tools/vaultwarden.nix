@@ -18,12 +18,15 @@
         };
       };
 
-      security.acme.defaults.email = "security@inspiravita.com";
-      security.acme.acceptTerms = true;
+      security.acme.certs."vaultwarden.inspiravita.com" = {
+        webroot = "/var/lib/acme/acme-challenge";
+        group = "nginx";
+      };
 
       services.nginx.virtualHosts."vaultwarden.inspiravita.com" = {
         enableACME = true;
-        forceSSL = true;
+        forceSSL = false;
+        locations."/.well-known/".root = "/var/lib/acme/acme-challenge/";
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString port}";
         };

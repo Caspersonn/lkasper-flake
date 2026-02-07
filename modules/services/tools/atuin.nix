@@ -8,9 +8,15 @@
       port = 8888;
     };
 
+    security.acme.certs."atuin.inspiravita.com" = {
+      webroot = "/var/lib/acme/acme-challenge";
+      group = "nginx";
+    };
+
     services.nginx.virtualHosts."atuin.inspiravita.com" = {
       enableACME = true;
-      forceSSL = true;
+      forceSSL = false;
+      locations."/.well-known/".root = "/var/lib/acme/acme-challenge/";
       locations = { "/" = { proxyPass = "http://127.0.0.1:8888"; }; };
     };
   };
