@@ -30,6 +30,7 @@
       webroot = "/var/lib/acme/acme-challenge";
       group = "nginx";
     };
+    security.acme.defaults.server = "https://acme-staging-v02.api.letsencrypt.org/directory";
 
     services.nginx = {
       enable = true;
@@ -40,6 +41,7 @@
         "pokemon-tracker.inspiravita.com" = {
           forceSSL = true;
           enableACME = true;
+          locations."/.well-known/".root = "/var/lib/acme/acme-challenge/";
           locations."/" = { proxyPass = "http://127.0.0.1:2864"; };
         };
       };
