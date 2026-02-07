@@ -51,9 +51,9 @@ in {
       secrets
 
       # Tools
-      pokemon-tracker
-      acme
-      vaultwarden
+      #pokemon-tracker
+      #acme
+      #vaultwarden
     ];
 
     # State version
