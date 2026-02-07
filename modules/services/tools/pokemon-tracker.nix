@@ -39,7 +39,7 @@
       recommendedTlsSettings = true;
       virtualHosts = {
         "pokemon-tracker.inspiravita.com" = {
-          forceSSL = true;
+          forceSSL = false;
           enableACME = true;
           locations."/.well-known/".root = "/var/lib/acme/acme-challenge/";
           locations."/" = { proxyPass = "http://127.0.0.1:2864"; };
