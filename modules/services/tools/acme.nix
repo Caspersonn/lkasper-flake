@@ -1,8 +1,10 @@
 { inputs, ... }: {
   flake.modules.nixos.acme = { config, pkgs, ... }: {
-
-  security.acme.acceptTerms = true;
-  security.acme.defaults.email = "security@inspiravita.com";
+    security.acme = {
+      enable = true;
+      acceptTerms = true;
+      defaults.email = "security@inspiravita.com";
+    };
   };
 }
 
