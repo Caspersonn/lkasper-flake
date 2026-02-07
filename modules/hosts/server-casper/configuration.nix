@@ -43,7 +43,7 @@ in {
       docker
       smb
       syncthing-server
-      atuin
+      #atuin
       bluetooth-receiver
       postgres
 
