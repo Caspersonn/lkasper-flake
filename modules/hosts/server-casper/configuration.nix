@@ -43,7 +43,7 @@ in {
       docker
       smb
       syncthing-server
-      #atuin
+      atuin
       bluetooth-receiver
       postgres
 
@@ -51,9 +51,9 @@ in {
       secrets
 
       # Tools
-      #pokemon-tracker
-      #acme
-      #vaultwarden
+      pokemon-tracker
+      acme
+      vaultwarden
     ];
 
     # State version
