@@ -8,7 +8,7 @@
 
     security.acme = {
       acceptTerms = true;
-      defaults.email = "security@inspiravita.com";
+      defaults.email = "acme@inspiravita.com";
     };
   };
 }
