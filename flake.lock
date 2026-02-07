@@ -1990,11 +1990,11 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1770270988,
-        "narHash": "sha256-z531wuPIq8BuwKBmTJYygSKq0Bwqez0EKMzWB8NOeek=",
+        "lastModified": 1770479194,
+        "narHash": "sha256-c0W05Y5cJ5WdqN3Vf5jWcErBgpeMBAA/mGTdYmG3eYU=",
         "owner": "Caspersonn",
         "repo": "pokemon-tracker",
-        "rev": "3a61e01f552ebc228aa874bed1ffe1dabd563dae",
+        "rev": "c863af2fcdf7e0226a4aa6b9c35b1e4032bb77f6",
         "type": "github"
       },
       "original": {

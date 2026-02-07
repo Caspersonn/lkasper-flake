@@ -45,6 +45,7 @@ in {
       syncthing-server
       atuin
       bluetooth-receiver
+      postgres
 
       # System
       secrets
