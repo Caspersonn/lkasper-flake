@@ -15,6 +15,7 @@
       database = {
         name = "pokemon_tracker";
         user = "pokemon_tracker";
+        createLocally = false;
       };
 
       nextauth.secretFile = config.age.secrets."pokemon_tracker_nextauth".path;
