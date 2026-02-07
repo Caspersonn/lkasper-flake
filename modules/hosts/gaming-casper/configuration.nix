@@ -36,6 +36,7 @@ in {
       age
       hm-nixos
       remote_builder
+      binary-cache-signing
 
       # Desktop Environment
       hyprland

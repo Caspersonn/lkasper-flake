@@ -52,6 +52,7 @@ in {
       # Tools
       pokemon-tracker
       acme
+      vaultwarden
     ];
 
     # State version
