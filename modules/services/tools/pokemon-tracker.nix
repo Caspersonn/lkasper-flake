@@ -26,6 +26,11 @@
 
     networking.firewall.allowedTCPPorts = [ 80 443 2864 ];
 
+    security.acme.certs."pokemon-tracker.inspiravita.com" = {
+      webroot = "/var/lib/acme/acme-challenge";
+      group = "nginx";
+    };
+
     services.nginx = {
       enable = true;
       additionalModules = [ pkgs.nginxModules.pam ];
