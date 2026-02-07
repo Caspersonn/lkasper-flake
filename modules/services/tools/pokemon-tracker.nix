@@ -24,7 +24,7 @@
       ];
     };
 
-    networking.firewall.allowedTCPPorts = [ 2864 ];
+    networking.firewall.allowedTCPPorts = [ 80 443 2864 ];
 
     services.nginx = {
       enable = true;
