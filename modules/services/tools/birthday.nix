@@ -19,6 +19,12 @@
       };
     };
 
+    security.acme.certs."birthday.inspiravita.com" = {
+      webroot = "/var/lib/acme/acme-challenge";
+      group = "nginx";
+    };
+
+
     services.nginx = {
       enable = true;
       additionalModules = [ pkgs.nginxModules.pam ];
@@ -28,7 +34,8 @@
       virtualHosts = {
         "birthday.inspiravita.com" = {
           forceSSL = true;
-          enableACME = false;
+          enableACME = true;
+          locations."/.well-known/".root = "/var/lib/acme/acme-challenge/";
           locations."/" = { proxyPass = "http://127.0.0.1:3000"; };
         };
       };
