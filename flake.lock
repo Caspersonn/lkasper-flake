@@ -1990,14 +1990,17 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1770237296,
-        "narHash": "sha256-l82r38sNXEhgxGPkDXTbDWj/UsNSzMw5l+VHAQK4qU0=",
-        "path": "/home/casper/git/personal/pokemon-tracker",
-        "type": "path"
+        "lastModified": 1770270988,
+        "narHash": "sha256-z531wuPIq8BuwKBmTJYygSKq0Bwqez0EKMzWB8NOeek=",
+        "owner": "Caspersonn",
+        "repo": "pokemon-tracker",
+        "rev": "3a61e01f552ebc228aa874bed1ffe1dabd563dae",
+        "type": "github"
       },
       "original": {
-        "path": "/home/casper/git/personal/pokemon-tracker",
-        "type": "path"
+        "owner": "Caspersonn",
+        "repo": "pokemon-tracker",
+        "type": "github"
       }
     },
     "pre-commit-hooks": {
