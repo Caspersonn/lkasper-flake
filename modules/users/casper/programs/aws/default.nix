@@ -4,9 +4,7 @@
 
       ## NOTE RUN aws --nrofile=web_dns s3 cp s3://docs-mcs.technative.eu-longhorn/managed_service_accounts.json ~/.aws/
 
-      #  technative_profiles = import ./dotfiles/managed_service_accounts.nix;
-      technative_profiles =
-        "${config.home.homeDirectory}/.aws/managed_service_accounts.json";
+      technative_profiles = "${config.home.homeDirectory}/.aws/managed_service_accounts.json";
       aws_accounts = builtins.fromJSON (builtins.readFile technative_profiles);
 
       groups = {

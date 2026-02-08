@@ -53,6 +53,7 @@ in {
       pokemon-tracker
       acme
       vaultwarden
+      nextcloud
 
       # System
       secrets

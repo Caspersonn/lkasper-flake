@@ -77,9 +77,6 @@ in {
       mysql
       postgres
 
-      # Tools
-      nextcloud
-
       # System
       secrets
       udev-skylanders

@@ -8,7 +8,14 @@
       casper-fzf
       casper-zoxide
       casper-autojump
+      casper-nextcloud
 
+      ## Development
+      casper-git
+      casper-neovim
+
+      ## Desktop
+      casper-hyprland
       hypridle
       hyprlock
       scripts
@@ -19,15 +26,6 @@
       swaync
       vogix
       avizo
-
-      ## Development
-      casper-git
-      casper-neovim
-
-      ## Desktop - TEMPORARILY DISABLED
-      ## TODO: Fix waybar configuration structure
-      casper-hyprland
-      ##casper-gnome
 
       ## Terminal
       casper-kitty
@@ -48,13 +46,12 @@
       casper-opencode
       casper-jq
       casper-font
-      casper-aws  # TODO: Fix home attribute missing error
+      casper-aws
+      casper-age
 
-      ## Theme (choose one)
+      ## Theme
       casper-gruvbox
-      # casper-catppuccin
     ];
-
     nixpkgs.config.allowUnfree = true;
   };
 }

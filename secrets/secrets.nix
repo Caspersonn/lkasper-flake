@@ -31,5 +31,9 @@ in
   "twenty_worker_environment.age".publicKeys = users ++ systems;
   "pokemon_tracker_nextauth.age".publicKeys = users ++ systems;
   "gaming-casper-signing-key.age".publicKeys = users ++ systems;
+
+  # Nextcloud
   "nextcloud-admin-passwd.age".publicKeys = users ++ systems;
+  "nextcloud-casper-passwd.age".publicKeys = users ++ systems;
+  "nextcloud-casper-netrc.age".publicKeys = users ++ systems;
 }
