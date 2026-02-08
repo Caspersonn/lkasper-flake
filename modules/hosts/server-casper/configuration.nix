@@ -21,15 +21,17 @@ in {
   flake.modules.nixos.server-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       # System Configuration (Note: no boot/graphics - ARM server has custom bootloader)
+      system-default
       locale
       networking
       audio
       openssh
       nixpkgs
-      casper
-      system-default
       age
+
+      # Home Manager
       hm-nixos
+      casper
 
       # Programs - CLI Tools
       cli-tools
@@ -47,13 +49,13 @@ in {
       bluetooth-receiver
       postgres
 
-      # System
-      secrets
-
       # Tools
       pokemon-tracker
       acme
       vaultwarden
+
+      # System
+      secrets
     ];
 
     # State version

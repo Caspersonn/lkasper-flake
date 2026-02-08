@@ -20,6 +20,7 @@ in {
       inputs.spicetify-nix.nixosModules.default
 
       # System Configuration
+      system-default
       locale
       boot
       networking
@@ -29,12 +30,15 @@ in {
       xserver
       openssh
       nixpkgs
-      casper
+      age
+
+      # Hardware
       framework-misc
       framework-fingerprint
-      system-default
-      age
+
+      # Home manager
       hm-nixos
+      casper
 
       # Desktop Environment
       hyprland

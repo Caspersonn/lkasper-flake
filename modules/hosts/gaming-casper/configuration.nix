@@ -22,6 +22,7 @@ in {
       inputs.spicetify-nix.nixosModules.default
 
       # System Configuration
+      system-default
       locale
       boot
       networking
@@ -31,10 +32,13 @@ in {
       xserver
       openssh
       nixpkgs
-      casper
-      system-default
       age
+
+      # Home manager
       hm-nixos
+      casper
+
+      # Remote building
       remote_builder
       binary-cache-signing
 
@@ -72,6 +76,9 @@ in {
       flatpak
       mysql
       postgres
+
+      # Tools
+      nextcloud
 
       # System
       secrets
