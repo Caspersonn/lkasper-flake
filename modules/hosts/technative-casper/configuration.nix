@@ -38,7 +38,7 @@ in {
 
       # Home manager
       hm-nixos
-      casper
+      hm-users
 
       # Desktop Environment
       hyprland

@@ -36,7 +36,7 @@ in {
 
       # Home manager
       hm-nixos
-      casper
+      hm-users
 
       # Remote building
       remote_builder

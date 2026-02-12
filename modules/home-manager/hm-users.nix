@@ -1,6 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.casper = { config, pkgs, ... }: {
-    # User account for casper
+  flake.modules.nixos.hm-users = { config, pkgs, ... }: {
     users.users.casper = {
       isNormalUser = true;
       description = "Luca Kasper";
