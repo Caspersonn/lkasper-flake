@@ -71,7 +71,6 @@ in {
       coolerd
       resolved
       tailscale
-      syncthing
       ollama
       flatpak
       mysql

@@ -44,7 +44,6 @@ in {
       tailscale
       docker
       smb
-      syncthing-server
       atuin
       bluetooth-receiver
       postgres
