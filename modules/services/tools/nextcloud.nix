@@ -12,12 +12,12 @@
       };
       extraAppsEnable = true;
 
-      ensureUsers = {
-        Caspersonn = {
-          email = "lucakasper8@hotmail.com";
-          passwordFile = config.age.secrets."nextcloud-casper-passwd".path;
-        };
-      };
+      #ensureUsers = {
+      #  Caspersonn = {
+      #    email = "lucakasper8@hotmail.com";
+      #    passwordFile = config.age.secrets."nextcloud-casper-passwd".path;
+      #  };
+      #};
     };
 
     age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
