@@ -63,6 +63,7 @@ in {
       resolved
       tailscale
       mysql
+      flatpak
 
       # System
       secrets
