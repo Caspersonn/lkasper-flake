@@ -24,6 +24,7 @@ in {
       system-default
       locale
       boot
+      graphics
       networking
       audio
       openssh
