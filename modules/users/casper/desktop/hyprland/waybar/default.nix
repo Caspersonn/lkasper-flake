@@ -173,7 +173,7 @@
             };
           };
         };
-        style = ./bar2/style.css;
+        style = ./bar1/style.css;
       };
     };
 }
