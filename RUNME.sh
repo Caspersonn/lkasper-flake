@@ -67,7 +67,7 @@ up_home(){
     echo "Unrise first (hmrice unrice), then run again"
   else
     check_untracked
-    home-manager switch --impure --flake .\#$USER@$(hostname) -b backup
+    home-manager switch -b $(date --iso-8601=minutes) --impure --flake .\#$USER@$(hostname)
   fi
 
   # Only sync if home-manager succeeded

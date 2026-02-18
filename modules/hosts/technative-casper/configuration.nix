@@ -18,7 +18,11 @@ in {
     imports = with inputs.self.modules.nixos; [
       inputs.nixos-hardware.nixosModules.framework-13-7040-amd
       inputs.spicetify-nix.nixosModules.default
-      inputs.omarchy-nix.nixosModules.default
+
+      # lkasper-hyprland
+      inputs.omarchy-nix.nixosModules.omarchy-system
+      inputs.omarchy-nix.nixosModules.omarchy-hyprland
+
 
 
       # System Configuration

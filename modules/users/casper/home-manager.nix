@@ -1,7 +1,24 @@
 { inputs, self, ... }: {
   flake.modules.homeManager.casper = {
-    imports = with inputs.self.modules.homeManager; [
-      inputs.omarchy-nix.homeManagerModules.default
+
+    imports = with inputs.self.modules.homeManager; (with inputs.omarchy-nix.homeManagerModules; [
+      omarchy-themes
+      omarchy-hyprland
+      omarchy-ghostty
+      omarchy-waybar
+      omarchy-wofi
+      omarchy-mako
+      omarchy-hyprlock
+      omarchy-hyprpaper
+      omarchy-hypridle
+      omarchy-btop
+      omarchy-git
+      omarchy-zsh
+      omarchy-starship
+      omarchy-direnv
+      omarchy-fonts
+      omarchy-vscode
+      omarchy-zoxide
 
       # Shell programs
       casper-zsh
@@ -53,7 +70,7 @@
 
       ## Theme
       #casper-gruvbox
-    ];
+    ]);
 
     omarchy = {
       full_name = "caspersonn";
