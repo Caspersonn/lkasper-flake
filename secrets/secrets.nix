@@ -27,6 +27,7 @@ in
   "openvpn-improvement-it.age".publicKeys = users ++ systems;
   "wireguard-private.age".publicKeys = users ++ systems;
   "wireguard-public.age".publicKeys = users ++ systems;
+  "wireguard-server-private.age".publicKeys = users ++ systems;
   "twenty_server_environment.age".publicKeys = users ++ systems;
   "twenty_worker_environment.age".publicKeys = users ++ systems;
   "pokemon_tracker_nextauth.age".publicKeys = users ++ systems;

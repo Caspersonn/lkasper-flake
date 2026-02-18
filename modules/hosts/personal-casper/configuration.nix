@@ -20,6 +20,7 @@ in {
   flake.modules.nixos.personal-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default
+      inputs.omarchy-nix.nixosModules.default
 
       # System Configuration
       system-default

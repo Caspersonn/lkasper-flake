@@ -1,6 +1,8 @@
 { inputs, self, ... }: {
   flake.modules.homeManager.casper = {
     imports = with inputs.self.modules.homeManager; [
+      inputs.omarchy-nix.homeManagerModules.default
+
       # Shell programs
       casper-zsh
       casper-tmux
@@ -15,17 +17,17 @@
       casper-neovim
 
       ## Desktop
-      casper-hyprland
-      hypridle
-      hyprlock
-      scripts
-      hyprland
-      walker
-      waybar
-      eww
-      swaync
-      vogix
-      avizo
+      #casper-hyprland
+      #hypridle
+      #hyprlock
+      #scripts
+      #hyprland
+      #walker
+      #waybar
+      #eww
+      #swaync
+      #vogix
+      #avizo
 
       ## Terminal
       casper-kitty
@@ -50,8 +52,14 @@
       casper-age
 
       ## Theme
-      casper-gruvbox
+      #casper-gruvbox
     ];
     nixpkgs.config.allowUnfree = true;
+
+    # Omarchy required options (normally inherited from osConfig.omarchy
+    # via NixOS, but must be set explicitly for standalone home-manager)
+    omarchy.full_name = "Caspersonn";
+    omarchy.email_address = "lucakasper8@gmail.com";
+    omarchy.theme = "gruvbox";
   };
 }

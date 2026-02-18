@@ -24,6 +24,11 @@
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";
     };
+    omarchy-nix = {
+      url = "github:henrysipp/omarchy-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     elephant.url = "github:abenz1267/elephant";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     vogix16.url = "github:i-am-logger/vogix16";

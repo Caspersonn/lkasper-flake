@@ -73,6 +73,17 @@
             home.username = username;
             home.homeDirectory = homedir;
           }
+
+          # When running home-manager standalone (not via NixOS rebuild),
+          # osConfig defaults to null, which crashes modules that access
+          # osConfig attributes (e.g. omarchy-nix). Provide a stub so
+          # attribute lookups like osConfig.omarchy don't fail.
+          ({ lib, ... }: {
+            _module.args.osConfig = lib.mkForce {
+              omarchy = {};
+              services.xserver.videoDrivers = [];
+            };
+          })
         ] ++ imports;
 
         pkgs = import nixpkgs-channel {
