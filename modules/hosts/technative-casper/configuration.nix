@@ -18,6 +18,8 @@ in {
     imports = with inputs.self.modules.nixos; [
       inputs.nixos-hardware.nixosModules.framework-13-7040-amd
       inputs.spicetify-nix.nixosModules.default
+      inputs.omarchy-nix.nixosModules.default
+
 
       # System Configuration
       system-default
