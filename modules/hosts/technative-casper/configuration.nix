@@ -19,6 +19,12 @@ in {
       inputs.nixos-hardware.nixosModules.framework-13-7040-amd
       inputs.spicetify-nix.nixosModules.default
 
+      # lkasper-hyprland
+      inputs.omarchy-nix.nixosModules.omarchy-system
+      inputs.omarchy-nix.nixosModules.omarchy-hyprland
+
+
+
       # System Configuration
       system-default
       locale

@@ -48,6 +48,11 @@
     # Dendritic tools
     import-tree.url = "github:vic/import-tree";
     pokemon-tracker.url = "github:Caspersonn/pokemon-tracker";
+    omarchy-nix = {
+      url = "github:caspersonn/lkasper-hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = inputs@{ flake-parts, ... }:
