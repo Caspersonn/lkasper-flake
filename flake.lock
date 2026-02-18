@@ -2452,11 +2452,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771434241,
-        "narHash": "sha256-9wwS3e3lduqaAImH1rIKSnpyus4Cmh9w0y/rlD9GDCM=",
+        "lastModified": 1771439892,
+        "narHash": "sha256-3NkzrVWTHB8ffRfBOcKP1qZa7EeI2pAG3hqqMYaVqL4=",
         "owner": "caspersonn",
         "repo": "lkasper-hyprland",
-        "rev": "bc5479937a27da785b00e7479b550cb6c899c56f",
+        "rev": "8a2939cd90d0ce07ffe6961b0b27624a527b8207",
         "type": "github"
       },
       "original": {
