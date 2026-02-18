@@ -1,12 +1,12 @@
 { inputs, self, ... }:
 
-let hostname = "server-casper";
+let hostname = "neko";
 
 in {
   flake.nixosConfigurations = {
-    server-casper = self.lib.makeNixos {
+    neko = self.lib.makeNixos {
       inherit hostname;
-      system = "aarch64-linux";
+      system = "x86_64-linux";
       enableFrameworkHardware = false;
     };
   };
@@ -18,9 +18,9 @@ in {
     };
   };
 
-  flake.modules.nixos.server-casper = { config, pkgs, lib, ... }: {
+  flake.modules.nixos.neko = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
-      # System Configuration (Note: no boot/graphics - ARM server has custom bootloader)
+      # System Configuration
       system-default
       locale
       networking
@@ -61,24 +61,14 @@ in {
     # State version
     system.stateVersion = "25.11";
 
-    # Host-specific configuration
-    networking.hostName = "server-casper";
+    networking.hostName = "neko";
 
-    # ARM Raspberry Pi bootloader (host-specific - no standard boot module)
-    boot.loader.grub.enable = false;
-    boot.loader.generic-extlinux-compatible.enable = true;
-
-    # Emulation support for x86_64 (host-specific)
-    boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
-
-    # Disable automatic suspend (server should stay awake)
     services.xserver.displayManager.gdm.autoSuspend = false;
     systemd.targets.sleep.enable = false;
     systemd.targets.suspend.enable = false;
     systemd.targets.hibernate.enable = false;
     systemd.targets.hybrid-sleep.enable = false;
 
-    # Enable JACK for audio (server-specific)
     services.pipewire.jack.enable = true;
   };
 }

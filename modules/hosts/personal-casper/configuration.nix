@@ -62,7 +62,6 @@ in {
       # Services
       resolved
       tailscale
-      syncthing
       mysql
 
       # System
