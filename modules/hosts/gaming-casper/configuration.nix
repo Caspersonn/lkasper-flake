@@ -21,6 +21,10 @@ in {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default
 
+      # lkasper-hyprland
+      inputs.omarchy-nix.nixosModules.omarchy-system
+      inputs.omarchy-nix.nixosModules.omarchy-hyprland
+
       # System Configuration
       system-default
       locale
