@@ -32,15 +32,10 @@ in {
       xserver
       openssh
       nixpkgs
-      age
 
       # Home manager
       hm-nixos
       hm-users
-
-      # Remote building
-      remote_builder
-      binary-cache-signing
 
       # Desktop Environment
       kde
@@ -73,7 +68,6 @@ in {
       flatpak
 
       # System
-      secrets
       udev-ddcutil
     ];
 
