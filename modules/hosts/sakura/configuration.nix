@@ -13,6 +13,8 @@ in {
   flake.homeConfigurations = {
     "antonia@${hostname}" = self.lib.makeHomeConf {
       inherit hostname;
+      username = "antonia";
+      homedir = "/home/antonia";
       imports = with inputs.self.modules.homeManager; [ antonia ];
     };
   };
