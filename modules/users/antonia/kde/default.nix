@@ -207,16 +207,7 @@
           command = "firefox";
         };
       };
-      window-rules = [{
-        description = "Remove borders for maximized windows";
-        match = { window-types = [ "normal" ]; };
-        apply = {
-          noborder = {
-            value = true;
-            apply = "force";
-          };
-        };
-      }];
+      window-rules = [ ];
       powerdevil = {
         AC = {
           autoSuspend = {
