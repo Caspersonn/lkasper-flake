@@ -125,6 +125,6 @@
       jetbrains-mono
       kdePackages.qtstyleplugin-kvantum
     ];
-    home.fonts.fontconfig.enable = true;
+    fonts.fontconfig.enable = true;
   };
 }
