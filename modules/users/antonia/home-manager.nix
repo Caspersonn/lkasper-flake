@@ -8,6 +8,7 @@
       antonia-firefox
       antonia-zsh
       antonia-neovim
+      antonia-git
     ]);
 
     nixpkgs.config.allowUnfree = true;
