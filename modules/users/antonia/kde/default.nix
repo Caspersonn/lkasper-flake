@@ -108,7 +108,7 @@
           height = 58;
           lengthMode = "fit";
           alignment = "center";
-          hiding = "windowsgobelow";
+          hiding = "autohide";
           floating = true;
           widgets = [{
             iconTasks = {
@@ -274,6 +274,8 @@
         kwinrc."org.kde.kdecoration2" = {
           ButtonsOnLeft = "XIA";
           ButtonsOnRight = "HIAX";
+          library = "org.kde.breeze";
+          theme = "SierraBreezeEnhanced";
         };
         kwinrc.Desktops.Number = 4;
         kwinrc.Windows = {
@@ -311,6 +313,8 @@
       kdePackages.filelight
       kdePackages.spectacle
       kdePackages.gwenview
+      kdePackages.sierra-breeze-enhanced
+      kdePackages.sierra-breeze-enhanced
     ];
     fonts.fontconfig.enable = true;
   };
