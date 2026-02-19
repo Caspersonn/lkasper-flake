@@ -273,7 +273,7 @@
         baloofilerc."Basic Settings"."Indexing-Enabled" = false;
         kwinrc."org.kde.kdecoration2" = {
           ButtonsOnLeft = "XIA";
-          ButtonsOnRight = "HIAX";
+          ButtonsOnRight = "";
           library = "org.kde.breeze";
           theme = "Breeze";
         };
@@ -304,15 +304,11 @@
       };
     };
     home.packages = with pkgs; [
-      inter
-      jetbrains-mono
-      papirus-icon-theme
-      bibata-cursors
-      kdePackages.plasma-browser-integration
-      kdePackages.kdeconnect-kde
       kdePackages.filelight
       kdePackages.spectacle
       kdePackages.gwenview
+      inter
+      jetbrains-mono
     ];
     fonts.fontconfig.enable = true;
   };
