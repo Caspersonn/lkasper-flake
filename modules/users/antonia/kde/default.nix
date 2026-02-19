@@ -108,7 +108,7 @@
           height = 58;
           lengthMode = "fit";
           alignment = "center";
-          hiding = "dodgewindows";
+          hiding = "windowsgobelow";
           floating = true;
           widgets = [{
             iconTasks = {
@@ -273,8 +273,9 @@
         baloofilerc."Basic Settings"."Indexing-Enabled" = false;
         kwinrc."org.kde.kdecoration2" = {
           ButtonsOnLeft = "XIA";
-          ButtonsOnRight = "";
+          ButtonsOnRight = "HIAX";
         };
+        kwinrc.Desktops.Number = 4;
         kwinrc.Windows = {
           BorderlessMaximizedWindows = true;
           RollOverDesktops = true;
