@@ -3,37 +3,25 @@
     imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
     # Boot configuration
-    boot.initrd.availableKernelModules =
-      [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-    boot.initrd.kernelModules = [ "amdgpu" ];
-    boot.kernelModules =
-      [ "kvm-amd" "coretemp" "nct6687" "zenpower" "i2c-dev" ];
-    boot.kernelPackages = pkgs.linuxPackages_6_12;
-    boot.extraModulePackages =
-      [ pkgs.linuxKernel.packages.linux_6_12.nct6687d ];
-    boot.supportedFilesystems = [ "ntfs" ];
+    boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+    boot.initrd.kernelModules = [ ];
+    boot.kernelModules = [ ];
+    boot.extraModulePackages = [ ];
 
-    # File systems
-    fileSystems."/" = {
-      device = "/dev/disk/by-uuid/28f48a79-46a9-4530-a584-1666b40b7c5f";
-      fsType = "ext4";
-    };
+    fileSystems."/" =
+      { device = "/dev/disk/by-uuid/ad738b33-65d3-4fdc-b8e3-e2c919105988";
+        fsType = "ext4";
+      };
 
-    fileSystems."/boot" = {
-      device = "/dev/disk/by-uuid/332C-4D51";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+    fileSystems."/boot" =
+      { device = "/dev/disk/by-uuid/2AA8-DC15";
+        fsType = "vfat";
+        options = [ "fmask=0077" "dmask=0077" ];
+      };
 
-    # Other drives
-    fileSystems."/mnt/Second Drive" = {
-      device = "/dev/disk/by-uuid/966c43da-65ac-479a-9e16-14ebd7669c3a";
-      fsType = "ext4";
-    };
-
-    # Swap
     swapDevices =
-      [{ device = "/dev/disk/by-uuid/7d222987-c0ce-4caa-a8de-21a7447a0d85"; }];
+      [ { device = "/dev/disk/by-uuid/bf3d0b17-b4b3-44b1-ac5d-b7f02d5a03c7"; }
+      ];
 
     # Networking
     networking.useDHCP = lib.mkDefault true;
