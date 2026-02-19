@@ -327,7 +327,7 @@
         powerdevil = {
           AC = {
             autoSuspend = {
-              action = "nothing";
+              action = "sleep";
               idleTimeout = 1800; # 30 minutes
             };
             turnOffDisplay = {
