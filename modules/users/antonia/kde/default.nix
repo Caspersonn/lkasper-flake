@@ -275,7 +275,7 @@
           ButtonsOnLeft = "XIA";
           ButtonsOnRight = "HIAX";
           library = "org.kde.breeze";
-          theme = "SierraBreezeEnhanced";
+          theme = "Breeze";
         };
         kwinrc.Desktops.Number = 4;
         kwinrc.Windows = {
@@ -313,8 +313,6 @@
       kdePackages.filelight
       kdePackages.spectacle
       kdePackages.gwenview
-      kdePackages.sierra-breeze-enhanced
-      kdePackages.sierra-breeze-enhanced
     ];
     fonts.fontconfig.enable = true;
   };
