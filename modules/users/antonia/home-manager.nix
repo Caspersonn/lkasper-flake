@@ -1,15 +1,15 @@
 { inputs, self, ... }: {
   flake.modules.homeManager.antonia = {
 
-    imports = with inputs.self.modules.homeManager; (with inputs.omarchy-nix.homeManagerModules; [
+    imports = (with inputs.self.modules.homeManager; [
       inputs.plasma-manager.homeModules.plasma-manager
+
       kde
-      casper-firefox
-      casper-zsh
-      casper-neovim
+      antonia-firefox
+      antonia-zsh
+      antonia-neovim
     ]);
 
     nixpkgs.config.allowUnfree = true;
-
   };
 }
