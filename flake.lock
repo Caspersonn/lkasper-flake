@@ -2452,14 +2452,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1771452670,
-        "narHash": "sha256-6X6iQqOn2vnx67mOgIlZdS1r9AJY4axdouaKLmzSDpI=",
-        "path": "/home/casper/git/personal/lkasper-hyprland",
-        "type": "path"
+        "lastModified": 1771506552,
+        "narHash": "sha256-RR/EO5mHurZrOD05DL4UvveeWnn9f3VpAiot55wB9tg=",
+        "owner": "caspersonn",
+        "repo": "lkasper-hyprland",
+        "rev": "43c01d6822fa373dd096a70a2ab32a4150476f39",
+        "type": "github"
       },
       "original": {
-        "path": "/home/casper/git/personal/lkasper-hyprland",
-        "type": "path"
+        "owner": "caspersonn",
+        "repo": "lkasper-hyprland",
+        "type": "github"
       }
     },
     "openspec": {
