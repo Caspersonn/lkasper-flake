@@ -9,6 +9,15 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOtpGyC5u8+T71Oo+QL9ym+hWaNSiisskL43ElmpWiEr"
       ];
     };
+
+
+    users.users.antonia = {
+      isNormalUser = true;
+      description = "Antonia Gosker";
+      extraGroups = [ "networkmanager" "wheel" "docker" "disk" ];
+      shell = pkgs.zsh;
+    };
+
     users.defaultUserShell = pkgs.zsh;
     programs.zsh.enable = true;
 
