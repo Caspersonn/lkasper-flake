@@ -95,7 +95,7 @@
           clock-menu-position = 1;
           window-demands-attention-focus = true;
           startup-status = 0;
-          animation = 3;
+          animation = 1;
         };
         "org/gnome/desktop/background" = {
           picture-uri =
