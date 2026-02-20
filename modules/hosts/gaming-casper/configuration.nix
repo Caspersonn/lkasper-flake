@@ -18,8 +18,6 @@ in {
   };
 
   flake.modules.nixos.gaming-casper = { config, pkgs, lib, ... }: {
-    nix.settings.substituters = [ "https://attic.xuyh0120.win/lantian" ];
-    nix.settings.trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default
 
