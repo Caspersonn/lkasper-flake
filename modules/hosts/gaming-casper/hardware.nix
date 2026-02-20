@@ -3,15 +3,18 @@
     imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
     # Boot configuration
+    boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"];
     boot.initrd.availableKernelModules =
       [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
     boot.initrd.kernelModules = [ "amdgpu" ];
     boot.kernelModules =
       [ "kvm-amd" "coretemp" "nct6687" "zenpower" "i2c-dev" ];
-    boot.kernelPackages = pkgs.linuxPackages_6_12;
-    boot.extraModulePackages =
-      [ pkgs.linuxKernel.packages.linux_6_12.nct6687d ];
+    #boot.kernelPackages = pkgs.linuxPackages_6_12;
+    boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+    #boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_19.nct6687d ];
     boot.supportedFilesystems = [ "ntfs" ];
+
+    hardware.amdgpu.overdrive.enable = true;
 
     # File systems
     fileSystems."/" = {

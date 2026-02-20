@@ -10,6 +10,7 @@
       nixpkgs.overlays = [
 
         inputs.self.overlays.apps
+        inputs.nix-cachyos-kernel.overlays.pinned
 
         (final: _prev: {
           unstable = initChannel inputs.unstable final;

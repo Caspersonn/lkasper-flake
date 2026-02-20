@@ -15,6 +15,7 @@
       gamemode
       goverlay
       heroic
+      lact
       libGL
       lutris
       mangohud
