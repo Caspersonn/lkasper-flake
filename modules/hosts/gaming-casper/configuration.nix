@@ -81,6 +81,7 @@ in {
       flatpak
       mysql
       postgres
+      lact
 
       # System
       secrets
