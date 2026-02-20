@@ -40,7 +40,7 @@ in {
       hm-users
 
       # Desktop Environment
-      kde
+      gnome
 
       # Programs - CLI Tools
       cli-tools
