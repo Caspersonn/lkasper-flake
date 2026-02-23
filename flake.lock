@@ -2572,8 +2572,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1771831710,
-        "narHash": "sha256-ZB6GCjJfJHUKP35b28eI+2Orr4HOGAASjwPt3mnb1xs=",
+        "lastModified": 1771831872,
+        "narHash": "sha256-kY8boFafFcQqd60yScdimLhB0xlVlEN21LNYE+K8wn0=",
         "path": "/home/casper/git/personal/lkasper-hyprland",
         "type": "path"
       },
