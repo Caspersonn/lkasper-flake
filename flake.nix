@@ -17,7 +17,7 @@
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirtygit.url = "github:mipmip/dirtygit";
     swww.url = "github:LGFae/swww";
-    nixvim.url = "/home/casper/git/personal/nixvim";
+    nixvim.url = "github:Caspersonn/nixvim";
     openspec.url = "github:Fission-AI/OpenSpec";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     walker = {
