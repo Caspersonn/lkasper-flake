@@ -1,0 +1,48 @@
+schema: spec-driven
+
+context: |
+  Tech stack: NixOS with flakes (stable nixos), flake-parts, vic/import-tree, home-manager, agenix
+  Desktop: Hyprland (primary), GNOME, KDE Plasma, Cosmic; themed with stylix
+  Terminal: ghostty (primary), zsh, tmux (heavily customized, smug for sessions)
+  Nixpkgs channels: stable (25.11), 24.05, unstable
+  Custom packages: bmc, race (AWS IAC tools from TechNative)
+
+  Architecture: Dendritic Pattern (bottom-up feature composition)
+  - Features are simple NixOS modules enabled by importing, not by option flags
+  - Automatic discovery via vic/import-tree; all modules must be git-tracked
+  - Module files wrapped with `{ inputs, ... }:` for import-tree compatibility
+  - Import-based composition: `imports = with inputs.self.modules.nixos; [feature1 feature2 ...]`
+  - Self-contained hosts declare their own nixosConfiguration
+  - 68 reusable feature modules in modules/ (nix, system, hardware, programs, services, hosts, users)
+  - home/ manages home-manager config (not yet migrated to dendritic pattern)
+
+  Managed hosts:
+  - gaming-casper: Personal gaming PC (x86_64)
+  - personal-casper: Laptop personal use (x86_64)
+  - technative-casper: Work laptop (x86_64, Framework 13 7040 AMD)
+  - server-casper: Raspberry Pi 4 (aarch64)
+
+  Constraints:
+  - All configuration must be valid Nix expressions with pure flake evaluation
+  - Secrets use agenix, never plain text
+  - Unfree packages allowed (configured in overlays)
+  - Configurations must be deterministic and reproducible
+
+rules:
+  proposal:
+    - Consider impact across all 4 managed hosts
+    - Evaluate whether change fits dendritic pattern (import-based, no mkEnableOption flags)
+    - Note if home-manager migration is affected
+  specs:
+    - Be explicit about which modules/ subdirectory new features belong in
+    - Specify whether feature is NixOS module, home-manager config, or overlay
+    - Use kebab-case for file names with descriptive prefixes (service-, pkgs-, desktop-)
+  design:
+    - Prefer flat .nix files in categorized subdirectories, no nested directory markers
+    - Use existing helper functions (makeNixos) for DRY host configuration
+    - New modules must follow import-tree conventions ({ inputs, ... }: wrapper)
+    - Document cross-host applicability (x86_64 vs aarch64)
+  tasks:
+    - Include manual hardware testing as a task for host-specific changes
+    - Build configurations before deployment (nix build / flake check)
+    - Test changes on non-critical machines first

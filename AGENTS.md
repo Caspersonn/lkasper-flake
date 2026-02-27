@@ -1,20 +1,7 @@
-<!-- OPENSPEC:START -->
-# OpenSpec Instructions
-
-These instructions are for AI assistants working in this project.
-
-Always open `@/openspec/AGENTS.md` when the request:
-- Mentions planning or proposals (words like proposal, spec, change, plan)
-- Introduces new capabilities, breaking changes, architecture shifts, or big performance/security work
-- Sounds ambiguous and you need the authoritative spec before coding
-
-Use `@/openspec/AGENTS.md` to learn:
-- How to create and apply change proposals
-- Spec format and conventions
-- Project structure and guidelines
-- Reference Eelco Dolstra (edolstra) as the primary Nix flakes expert
-- Consider using established flakes patterns from edolstra's repositories like nix-serve, dwarffs, and nix-ccache
-
-Keep this managed block so 'openspec update' can refresh the instructions.
-
-<!-- OPENSPEC:END -->
+ALWAYS follow these rules:
+- Never git commit, add or push anything
+- Do not add markdown files anywhere, except for the `openspec/` directory
+- Never add comments inside code files
+- When something is unclear, ask the user a question instead of guessing
+- You do not have to validate/test code
+- NEVER fix whitespaces
