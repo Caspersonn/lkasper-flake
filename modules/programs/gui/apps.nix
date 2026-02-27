@@ -5,6 +5,7 @@
       libreoffice-qt6-fresh
       onlyoffice-desktopeditors
       signal-desktop
+      pkgs.unstable.discord
       pkgs.unstable.jan
       pkgs.unstable.newelle
 
