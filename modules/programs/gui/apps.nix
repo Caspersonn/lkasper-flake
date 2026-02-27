@@ -6,8 +6,6 @@
       onlyoffice-desktopeditors
       signal-desktop
       pkgs.unstable.discord
-      pkgs.unstable.jan
-      pkgs.unstable.newelle
 
       # Media & Entertainment
       obs-studio
@@ -15,11 +13,9 @@
 
       # Development
       pgadmin4-desktopmode
-      cypress
 
       # Security & Utilities
       bitwarden-desktop
-      firejail
       filezilla
       ddcutil
       winetricks

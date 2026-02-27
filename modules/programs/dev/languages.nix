@@ -25,9 +25,6 @@
 
       # Python with packages
       (python313.withPackages (ps: with ps; [ openpyxl tkinter sv-ttk ]))
-
-      # From unstable
-      pkgs.unstable.aider-chat-full
     ];
   };
 }
