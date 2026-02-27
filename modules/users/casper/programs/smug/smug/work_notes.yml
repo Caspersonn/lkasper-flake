@@ -17,4 +17,4 @@ windows:
   - name: notes
     layout: main-horizontal
     commands:
-      - lin
+      - vi -c "LinnyOpenNotebook /home/casper/git/technative_b.v./technative-linny"
