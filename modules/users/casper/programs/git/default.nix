@@ -17,5 +17,11 @@
         merge = { tool = "splice"; };
       };
     };
+    programs.gh = {
+      enable = true;
+      gitCredentialHelper = {
+        enable = true;
+      };
+    };
   };
 }

@@ -46,10 +46,6 @@
             "network.cookie.lifetimePolicy" = "0";
             "sidebar.verticalTabs" = true;
 
-            # Dark mode preferences
-            "ui.systemUsesDarkTheme" = 1;
-            "layout.css.prefers-color-scheme.content-override" = 0;
-
             "browser.startup.homepage" = "https://search.nixos.org";
             "browser.startup.page" = 3;
             "browser.newtabpage.pinned" = [
@@ -78,10 +74,6 @@
             "privacy.clearOnShutdown.cookies" = false;
             "network.cookie.lifetimePolicy" = "0";
             "sidebar.verticalTabs" = true;
-
-            # Dark mode preferences
-            "ui.systemUsesDarkTheme" = 1;
-            "layout.css.prefers-color-scheme.content-override" = 0;
 
             "browser.startup.homepage" = "https://search.nixos.org";
             "browser.startup.page" = 3;

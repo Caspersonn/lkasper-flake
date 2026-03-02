@@ -72,9 +72,6 @@
     hardware.graphics.extraPackages = with pkgs; [ libva libva-utils ];
 
     omarchy = {
-      full_name = "Caspersonn";
-      email_address = "lucakasper8@gmail.com";
-      theme = "gruvbox";
     };
   };
 }
