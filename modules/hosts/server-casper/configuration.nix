@@ -54,6 +54,8 @@ in {
       acme
       vaultwarden
       nextcloud
+      invidious
+      materialious
 
       # System
       secrets

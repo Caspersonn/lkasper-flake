@@ -37,6 +37,7 @@ in {
       openssh
       nixpkgs
       age
+      docker
 
       # Home manager
       hm-nixos
@@ -80,6 +81,9 @@ in {
       mysql
       postgres
       lact
+      invidious
+      acme
+      materialious
 
       # System
       secrets
