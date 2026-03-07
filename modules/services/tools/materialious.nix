@@ -13,7 +13,7 @@
         PUBLIC_REGISTRATION_ALLOWED = "false";
         PUBLIC_CAPTCHA_DISABLED = "false";
         WHITELIST_BASE_DOMAIN = "inspiravita.com";
-        PUBLIC_DANGEROUS_ALLOW_ANY_PROXY = "false";
+        PUBLIC_DANGEROUS_ALLOW_ANY_PROXY = "true";
         PUBLIC_DEFAULT_INVIDIOUS_INSTANCE = "https://invidious.inspiravita.com";
         PUBLIC_DEFAULT_RETURNYTDISLIKES_INSTANCE =
           "https://returnyoutubedislikeapi.com";
