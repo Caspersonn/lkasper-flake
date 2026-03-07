@@ -47,7 +47,6 @@ in {
       atuin
       bluetooth-receiver
       postgres
-      wireguard-server
 
       # Tools
       pokemon-tracker
