@@ -30,6 +30,8 @@
           user = "invidious";
         };
         check_tables = true;
+        https_only = true;
+        external_port = 443;
         hmac_key = "aed6Oap9ezud2Tho";
         invidious_companion = [{
           private_url = "http://127.0.0.1:8282/companion";
