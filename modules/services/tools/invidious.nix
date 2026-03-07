@@ -34,7 +34,7 @@
         external_port = lib.mkForce 443;
         hmac_key = "aed6Oap9ezud2Tho";
         invidious_companion = [{
-          private_url = "http://127.0.0.1:8282";
+          private_url = "http://127.0.0.1:8282/companion";
           public_url = "https://invidious.inspiravita.com/companion";
         }];
         invidious_companion_key = "ahyie0ooSh1quaiL";
@@ -53,7 +53,7 @@
         forceSSL = true;
         enableACME = true;
         locations."/companion/" = {
-          proxyPass = "http://127.0.0.1:8282/";
+          proxyPass = "http://127.0.0.1:8282/companion/";
           proxyWebsockets = true;
           extraConfig = ''
             auth_basic off;
