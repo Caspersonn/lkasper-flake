@@ -52,7 +52,6 @@
       virtualHosts."invidious.inspiravita.com" = {
         forceSSL = true;
         enableACME = true;
-        basicAuth = { casper = "test12345"; };
         locations."/companion" = {
           proxyPass = "http://127.0.0.1:8282";
           proxyWebsockets = true;
