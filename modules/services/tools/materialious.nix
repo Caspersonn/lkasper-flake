@@ -10,8 +10,8 @@
         PUBLIC_PLAYER_ID = "";
         PUBLIC_INTERNAL_AUTH = "true";
         PUBLIC_REQUIRE_AUTH = "true";
-        PUBLIC_REGISTRATION_ALLOWED = "true";
-        PUBLIC_CAPTCHA_DISABLED = "true";
+        PUBLIC_REGISTRATION_ALLOWED = "false";
+        PUBLIC_CAPTCHA_DISABLED = "false";
         WHITELIST_BASE_DOMAIN = "inspiravita.com";
         PUBLIC_DANGEROUS_ALLOW_ANY_PROXY = "false";
         PUBLIC_DEFAULT_INVIDIOUS_INSTANCE = "https://invidious.inspiravita.com";
