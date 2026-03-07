@@ -56,6 +56,21 @@
           proxyWebsockets = true;
           extraConfig = ''
             auth_basic off;
+
+            add_header 'Access-Control-Allow-Origin' 'https://materialious.inspiravita.com' always;
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+            add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization' always;
+            add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
+
+            if ($request_method = 'OPTIONS') {
+              add_header 'Access-Control-Allow-Origin' 'https://materialious.inspiravita.com';
+              add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+              add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+              add_header 'Access-Control-Max-Age' 1728000;
+              add_header 'Content-Type' 'text/plain; charset=utf-8';
+              add_header 'Content-Length' 0;
+              return 204;
+            }
           '';
         };
       };
