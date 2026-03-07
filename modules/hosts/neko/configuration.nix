@@ -23,6 +23,8 @@ in {
       # System Configuration
       system-default
       locale
+      boot
+      graphics
       networking
       audio
       openssh
@@ -62,6 +64,7 @@ in {
     system.stateVersion = "25.11";
 
     networking.hostName = "neko";
+    programs.dconf.enable = true;
 
     services.xserver.displayManager.gdm.autoSuspend = false;
     systemd.targets.sleep.enable = false;
