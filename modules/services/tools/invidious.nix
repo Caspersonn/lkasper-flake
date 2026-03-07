@@ -59,7 +59,6 @@
 
             proxy_buffering off;
             proxy_request_buffering off;
-            proxy_http_version 1.1;
             proxy_read_timeout 3600s;
             proxy_send_timeout 3600s;
             proxy_connect_timeout 60s;
