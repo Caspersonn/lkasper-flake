@@ -49,6 +49,7 @@ in {
       atuin
       bluetooth-receiver
       postgres
+      rtcwake
 
       # Tools
       pokemon-tracker

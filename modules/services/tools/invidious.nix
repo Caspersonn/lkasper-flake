@@ -32,6 +32,7 @@
         check_tables = true;
         https_only = true;
         external_port = lib.mkForce 443;
+        force_resolve = "ipv4";
         hmac_key = "aed6Oap9ezud2Tho";
         invidious_companion = [{
           private_url = "http://127.0.0.1:8282/companion";
