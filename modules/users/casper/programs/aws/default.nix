@@ -2,7 +2,7 @@
   flake.modules.homeManager.casper-aws = { lib, config, unstable, ... }:
     let
 
-      ## NOTE RUN aws --nrofile=web_dns s3 cp s3://docs-mcs.technative.eu-longhorn/managed_service_accounts.json ~/.aws/
+      ## NOTE RUN aws --profile=TN-web_dns s3 cp s3://docs-mcs.technative.eu-longhorn/managed_service_accounts.json ~/.aws/
 
       technative_profiles = builtins.path {
         path = /home/casper/.aws/managed_service_accounts.json;
