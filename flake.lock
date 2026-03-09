@@ -2695,11 +2695,11 @@
         "walker": "walker"
       },
       "locked": {
-        "lastModified": 1772878681,
-        "narHash": "sha256-TGRXVfnV4O+BdE3Yt9yseT8gpd1dZYdZLjaIQ/4JBRY=",
+        "lastModified": 1773057580,
+        "narHash": "sha256-3eHgyBag3aBO7cv7bEQTCVOrYJCtiqO04geA7MeXEjs=",
         "owner": "caspersonn",
         "repo": "lkasper-hyprland",
-        "rev": "1021b76db8ecb5a04ac0e2abaa7fdf90b136cb8d",
+        "rev": "98b7848d18eac9b862688d593b79ae6a65948f4a",
         "type": "github"
       },
       "original": {
