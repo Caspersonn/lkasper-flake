@@ -62,6 +62,8 @@
         "221539347604" = "us-east-2"; # mustad
         "925937276627" = "us-east-2"; # mustad
         "906347402442" = "us-west-2"; # pastbook
+        "255217714588" = "eu-west-1"; # DocRevolution nonprod
+        "189796657102" = "eu-west-1"; # DocRevolution Shared services
       };
       alternative_names = {
         #"760178553019" = "pg_wtoorren";
