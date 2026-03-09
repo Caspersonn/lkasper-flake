@@ -145,16 +145,7 @@
             group = "Technative";
           };
 
-          "profile DocRevolution-nonprod" = {
-            group = "DocRevolution";
-            output = "json";
-            region = "eu-west-1";
-            role_arn =
-              "arn:aws:iam::255217714588:role/landing_zone_devops_administrator";
-            source_profile = "technative";
-          };
-
-          "profile DocRevolution-readonly" = {
+          "profile DOC-docRevolution-readonly" = {
             group = "DocRevolution";
             output = "json";
             region = "eu-west-1";
