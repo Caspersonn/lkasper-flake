@@ -47,13 +47,14 @@ in {
       atuin
       bluetooth-receiver
       postgres
-      wireguard-server
 
       # Tools
       pokemon-tracker
       acme
       vaultwarden
       nextcloud
+      invidious
+      materialious
 
       # System
       secrets

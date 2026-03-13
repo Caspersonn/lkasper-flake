@@ -2,7 +2,7 @@
   flake.modules.homeManager.casper-aws = { lib, config, unstable, ... }:
     let
 
-      ## NOTE RUN aws --nrofile=web_dns s3 cp s3://docs-mcs.technative.eu-longhorn/managed_service_accounts.json ~/.aws/
+      ## NOTE RUN aws --profile=TN-web_dns s3 cp s3://docs-mcs.technative.eu-longhorn/managed_service_accounts.json ~/.aws/
 
       technative_profiles = builtins.path {
         path = /home/casper/.aws/managed_service_accounts.json;
@@ -62,6 +62,8 @@
         "221539347604" = "us-east-2"; # mustad
         "925937276627" = "us-east-2"; # mustad
         "906347402442" = "us-west-2"; # pastbook
+        "255217714588" = "eu-west-1"; # DocRevolution nonprod
+        "189796657102" = "eu-west-1"; # DocRevolution Shared services
       };
       alternative_names = {
         #"760178553019" = "pg_wtoorren";
@@ -145,7 +147,7 @@
             group = "Technative";
           };
 
-          "profile DocRevolution-nonprod" = {
+          "profile DOC-docrevolution-nonprod" = {
             group = "DocRevolution";
             output = "json";
             region = "eu-west-1";
@@ -154,7 +156,7 @@
             source_profile = "technative";
           };
 
-          "profile DocRevolution-readonly" = {
+          "profile DOC-docrevolution-readonly" = {
             group = "DocRevolution";
             output = "json";
             region = "eu-west-1";

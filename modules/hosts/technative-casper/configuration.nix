@@ -80,6 +80,7 @@ in {
       neo4j
       printing
       postgres
+      twenty
 
       # System
       secrets

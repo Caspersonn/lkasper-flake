@@ -70,6 +70,7 @@ in {
 
       # System
       secrets
+      udev-ddcutil
     ];
 
     # State version

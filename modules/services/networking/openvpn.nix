@@ -11,7 +11,7 @@
           autoStart = false;
           authUserPass.username = "luca";
           authUserPass.password =
-            ""; # Check credentials in secrets `openvpn-improvement-it.age`
+            "&48z*GJAv0!cuI62"; # Check credentials in secrets `openvpn-improvement-it.age`
           config = ''
             client
             dev tun
