@@ -2596,11 +2596,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1767170441,
-        "narHash": "sha256-bBEfGjNzdiIhzXXUMrcl0XwYolbdNoG3cBnOEWkYcq0=",
+        "lastModified": 1773215968,
+        "narHash": "sha256-M7lO5dYLjFAknGfrqoc8tYawom1txbboTjgGTvJiuQo=",
         "owner": "Caspersonn",
         "repo": "nixvim",
-        "rev": "3600a62673dd5d6e5e58f0091bcbdf62fcab2e35",
+        "rev": "cb694692833214d26506b489cb942e36b0b3a1af",
         "type": "github"
       },
       "original": {
@@ -2695,11 +2695,11 @@
         "walker": "walker"
       },
       "locked": {
-        "lastModified": 1773136751,
-        "narHash": "sha256-qkH5I38dG6rJpv4oS2BiBvRqBSfBweCG6mioTGZ9aaM=",
+        "lastModified": 1773416708,
+        "narHash": "sha256-9LoyxPGNbGy5gmCAGd3GFNSar9nMhQuw2FralCEn1aU=",
         "owner": "caspersonn",
         "repo": "lkasper-hyprland",
-        "rev": "3afaed35f777220f7d02bea2b684c1da10debca1",
+        "rev": "8048070a9487cf45903d147eaf718f2cc58060b8",
         "type": "github"
       },
       "original": {
