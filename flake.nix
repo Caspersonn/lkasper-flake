@@ -18,7 +18,7 @@
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirtygit.url = "github:mipmip/dirtygit";
     swww.url = "github:LGFae/swww";
-    nixvim.url = "/home/casper/git/personal/nixvim";
+    nixvim.url = "github:Caspersonn/nixvim";
     openspec.url = "github:Fission-AI/OpenSpec";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     walker = {
@@ -40,7 +40,7 @@
       url = "github:nyawox/nixtendo-switch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    monitoring.url = "/home/casper/git/wearetechnative/monitoring";
+    monitoring.url = "github:wearetechnative/monitoring";
     # Dendritic tools
     import-tree.url = "github:vic/import-tree";
     pokemon-tracker.url = "github:Caspersonn/pokemon-tracker";
