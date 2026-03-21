@@ -51,6 +51,11 @@ in {
       gaming
       steam
 
+      # Programs - dev
+      dev-git
+      dev-lsp
+      dev-languages
+
       # Programs - GUI Apps
       gui-apps
 
@@ -70,6 +75,7 @@ in {
 
       # System
       secrets
+      udev-ddcutil
     ];
 
     # State version
