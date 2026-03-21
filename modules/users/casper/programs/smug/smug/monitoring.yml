@@ -1,0 +1,26 @@
+session: monitoring
+
+root: ~/
+
+windows:
+  - name: AI Monitor
+    layout: main-horizontal
+    commands:
+      - tj
+    panes:
+      - type: horizontal
+        commands:
+          - claude-monitor
+    panes:
+      - type: vertical
+        commands:
+          - rtk gain --graph
+    panes:
+      - type: vertical
+        commands:
+          -
+
+  - name: Usage monitor
+    layout: main-horizontal
+    commands:
+      - btop

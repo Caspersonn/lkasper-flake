@@ -51,6 +51,7 @@ in {
       cli-tools
 
       # Programs - Development
+      dev-ai
       dev-git
       dev-languages
       dev-lsp

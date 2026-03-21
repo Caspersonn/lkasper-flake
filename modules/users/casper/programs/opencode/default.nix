@@ -1,8 +1,8 @@
 { ... }: {
-  flake.modules.homeManager.casper-opencode = { unstable, ... }: {
+  flake.modules.homeManager.casper-opencode = { pkgs, ... }: {
     programs.opencode = {
       enable = true;
-      package = unstable.opencode;
+      package = pkgs.opencode;
       agents = { };
       commands = { };
       settings = {

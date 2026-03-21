@@ -18,34 +18,35 @@
       beam27Packages.elixir
       bruno
       docker
-      erlang_28
       entr
+      erlang_28
+      fastfetch
       gh
-      git-remote-codecommit
       gimp3
+      git-remote-codecommit
       granted
       hedgedoc
-      inotify-tools
       inkscape-with-extensions
+      inotify-tools
       lynis
       nchat
       neofetch
       postgresql_15
+      pritunl-client
       python312Packages.distutils
       quarto
       rbw
-      yarn
       redis
       slack
-      ssm-session-manager-plugin
       solidtime-desktop
+      ssm-session-manager-plugin
+      ssmsh
       teams-for-linux
       telegram-bot-api
       telegram-desktop
-      fastfetch
       terraform-docs
       terraform-ls
-      pritunl-client
+      yarn
       (texlive.combine {
         inherit (texlive)
           scheme-full datetime fmtcount textpos makecell lipsum footmisc
