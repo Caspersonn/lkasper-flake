@@ -164,6 +164,14 @@
             source_profile = "technative";
           };
 
+          "profile DOC-docrevolution-readonly-central" = {
+            group = "DocRevolution";
+            output = "json";
+            region = "eu-central-1";
+            role_arn = "arn:aws:iam::267166554494:role/TechnativeRole";
+            source_profile = "technative";
+          };
+
           #"profile ActiFlow" = {
           #    role_arn = "arn:aws:iam::337810061405:role/TechnativeFullAccessRole";
           #    region = "eu-north-1";

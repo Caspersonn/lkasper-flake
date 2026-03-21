@@ -5,6 +5,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs2405.url = "github:NixOS/nixpkgs/nixos-24.05";
+    unstable-opencode.url = "github:NixOS/nixpkgs/nixos-unstable";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
     bmc.url = "github:wearetechnative/bmc";
@@ -17,7 +18,7 @@
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirtygit.url = "github:mipmip/dirtygit";
     swww.url = "github:LGFae/swww";
-    nixvim.url = "github:Caspersonn/nixvim";
+    nixvim.url = "/home/casper/git/personal/nixvim";
     openspec.url = "github:Fission-AI/OpenSpec";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     walker = {
@@ -48,6 +49,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    teejay.url = "github:mipmip/teejay";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
