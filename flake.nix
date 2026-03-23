@@ -21,6 +21,7 @@
     nixvim.url = "github:Caspersonn/nixvim";
     openspec.url = "github:Fission-AI/OpenSpec";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    ssmsh.url = "github:torreirow/ssmsh";
     walker = {
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";

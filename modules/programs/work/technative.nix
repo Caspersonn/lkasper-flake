@@ -11,6 +11,7 @@
       inputs.jsonify-aws-dotfiles.packages."${pkgs.system}".jsonify-aws-dotfiles
       inputs.bmc.packages."${pkgs.system}".bmc
       inputs.race.packages."${pkgs.system}".race
+      inputs.ssmsh.packages."${pkgs.system}".default
       attic-client
       aws-mfa
       aws-nuke
@@ -40,7 +41,6 @@
       slack
       solidtime-desktop
       ssm-session-manager-plugin
-      ssmsh
       teams-for-linux
       telegram-bot-api
       telegram-desktop
