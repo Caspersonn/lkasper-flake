@@ -4,6 +4,7 @@
       acme-sh
       openssl
       invidious
+      steamcmd
     ];
   };
 }
