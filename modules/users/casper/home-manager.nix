@@ -11,6 +11,7 @@
       omarchy-mako
       omarchy-hyprlock
       #omarchy-hyprpaper
+      omarchy-hyprshot
       omarchy-hypridle
       omarchy-btop
       omarchy-zsh

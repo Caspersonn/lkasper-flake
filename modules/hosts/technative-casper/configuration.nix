@@ -52,6 +52,7 @@ in {
 
       # Programs - Development
       dev-ai
+      dev-android
       dev-git
       dev-languages
       dev-lsp

@@ -12,6 +12,7 @@
       inputs.bmc.packages."${pkgs.system}".bmc
       inputs.race.packages."${pkgs.system}".race
       inputs.ssmsh.packages."${pkgs.system}".default
+      inputs.aws-tui.packages."${pkgs.system}".default
       attic-client
       aws-mfa
       aws-nuke

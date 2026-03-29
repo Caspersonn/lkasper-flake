@@ -64,6 +64,7 @@
         "906347402442" = "us-west-2"; # pastbook
         "255217714588" = "eu-west-1"; # DocRevolution nonprod
         "189796657102" = "eu-west-1"; # DocRevolution Shared services
+        "238020582243" = "eu-west-1"; # DocRevolution Shared services
       };
       alternative_names = {
         #"760178553019" = "pg_wtoorren";
