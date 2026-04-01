@@ -23,6 +23,7 @@
       # Shell programs
       casper-zsh
       casper-tmux
+      casper-tses
       casper-atuin
       casper-fzf
       casper-zoxide

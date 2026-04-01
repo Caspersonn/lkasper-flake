@@ -15,22 +15,20 @@
         bind C-x send-prefix
         set -g prefix C-x
         set -g mouse on
-        set -g @plugin 'tmux-plugins/tpm
-        set -g @plugin 'tmux-plugins/tmux-sensible
-        set -g @plugin 'tmux-plugins/tmux-yank'
-        set -g @plugin 'sainnhe/tmux-fzf'
 
         # Tmux theming
-        set -g @plugin 'tmux-plugins/tmux-sensible' # optional recommended
-        set -g @plugin 'egel/tmux-gruvbox'
         set -g @tmux-gruvbox 'dark' # or 'dark256', 'light', 'light256'
         set -g @tmux-gruvbox-statusbar-alpha 'true'
+
+        # Shortcuts
+        bind S popup -E 'tses open'
+        bind K popup -E 'tses kill'
+        bind T popup -E -w 80% -h 80% 'tj --columns --sort-activity --no-sound --no-notify --picker'
 
         set -g @yank_selection_mouse 'clipboard'
         set -g @yank_with_mouse on
         set -gq allow-passthrough on
         set -g visual-activity off
-        run '~/.config/tmux/plugins/tpm/tpm' #keep this line at the bottom!
       '';
     };
 

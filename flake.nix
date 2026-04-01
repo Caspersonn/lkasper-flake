@@ -16,9 +16,9 @@
     stylix.url = "github:danth/stylix/release-25.11";
     croctalk.url = "github:wearetechnative/croctalk";
     slack2zammad.url = "github:wearetechnative/slack2zammad";
-    dirtygit.url = "github:mipmip/dirtygit";
+    dirty-repo-scanner.url = "github:mipmip/dirty-repo-scanner";
     swww.url = "github:LGFae/swww";
-    nixvim.url = "github:Caspersonn/nixvim";
+    nixvim.url = "/home/casper/git/personal/nixvim";
     openspec.url = "github:Fission-AI/OpenSpec";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     ssmsh.url = "github:torreirow/ssmsh";
@@ -51,6 +51,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     teejay.url = "github:mipmip/teejay";
+    tses.url = "github:Caspersonn/tses";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
