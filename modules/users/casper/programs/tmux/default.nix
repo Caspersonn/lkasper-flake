@@ -23,6 +23,7 @@
         # Shortcuts
         bind S popup -E 'tses open'
         bind K popup -E 'tses kill'
+        bind P popup -E 'tses pull'
         bind T popup -E -w 80% -h 80% 'tj --columns --sort-activity --no-sound --no-notify --picker'
 
         set -g @yank_selection_mouse 'clipboard'
