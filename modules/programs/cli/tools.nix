@@ -26,6 +26,7 @@
       lsof
       smug
       zsh
+      optnix
 
       # Security
       bitwarden-cli
