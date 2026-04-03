@@ -1,5 +1,5 @@
 { ... }: {
-  flake.modules.homeManager.casper-opencode = { pkgs, ... }: {
+  flake.modules.homeManager.casper-opencode = { pkgs, unstable, ... }: {
     home.file = {
       ".config/opencode" = {
         source = ./config;
@@ -10,14 +10,14 @@
 
     programs.opencode = {
       enable = true;
-      package = pkgs.opencode;
+      package = unstable.opencode;
       agents = { };
       commands = { };
       settings = {
         theme = "opencode";
         autoshare = false;
         autoupdate = true;
-        plugin = [ "@tarquinen/opencode-dcp@latest" "opencode-openai-codex-auth@latest" ];
+        plugin = [ "@tarquinen/opencode-dcp@latest" "opencode-openai-codex-auth@latest" "opencode-anthropic-login-via-cli@latest" ];
         provider = {
           anthropic = {
             options = {

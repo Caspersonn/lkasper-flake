@@ -21,7 +21,6 @@
 
       # Other
       hugo
-      claude-code
 
       # Python with packages
       (python313.withPackages (ps: with ps; [ openpyxl tkinter sv-ttk ]))
