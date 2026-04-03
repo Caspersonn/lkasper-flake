@@ -1,6 +1,5 @@
 { inputs, self, ... }: {
-  flake.modules.homeManager.antonia = {
-
+  flake.modules.homeManager.antonia = { pkgs, ... }: {
     imports = (with inputs.self.modules.homeManager; [
       gnome
       antonia-firefox

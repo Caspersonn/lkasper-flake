@@ -1,6 +1,5 @@
 { inputs, self, ... }: {
-  flake.modules.homeManager.casper = {
-
+  flake.modules.homeManager.casper = { pkgs, ... }: {
     imports = with inputs.self.modules.homeManager; (with inputs.omarchy-nix.homeManagerModules; [
       omarchy-themes
       omarchy-hyprland

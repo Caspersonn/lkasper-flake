@@ -38,6 +38,7 @@ in {
       # Home manager
       hm-nixos
       hm-users
+      antonia
 
       # Desktop Environment
       gnome

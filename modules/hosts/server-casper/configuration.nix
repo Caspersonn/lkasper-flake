@@ -32,6 +32,7 @@ in {
       # Home Manager
       hm-nixos
       hm-users
+      casper
 
       # Programs - CLI Tools
       cli-tools
