@@ -3580,11 +3580,11 @@
         "nixpkgs": "nixpkgs_26"
       },
       "locked": {
-        "lastModified": 1775470285,
-        "narHash": "sha256-BPOx2LsMCastWMJKB/qxAHpiXsxDYEOrEZYX60TmQZ0=",
+        "lastModified": 1775500417,
+        "narHash": "sha256-j2fbi3wcgbVl4pde8lN+pklS6lQl5glihVeV2QMDRTE=",
         "owner": "Caspersonn",
         "repo": "tses",
-        "rev": "c151ade6d2426d130acdda1ff1855ee5cbade676",
+        "rev": "1bf62f048acfd3c81b509e73a1e5b886e954ffbb",
         "type": "github"
       },
       "original": {
