@@ -10,9 +10,9 @@
         };
         push = {
           autoSetupRemote = true;
-          default = "simple";
+          default = "current";
         };
-        branch = { autosetupmerge = true; };
+        branch = { autoSetupMerge = "simple"; };
         pull = { rebase = true; };
         merge = { tool = "splice"; };
       };
