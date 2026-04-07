@@ -74,6 +74,7 @@ in {
       tailscale
       mysql
       flatpak
+      postgres
 
       # System
       secrets
