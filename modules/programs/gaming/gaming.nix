@@ -30,8 +30,6 @@
       pkgs.unstable.cemu
       pkgs.unstable.multiviewer-for-f1
       vulkan-tools
-      wine64Packages.unstableFull
-      wineWow64Packages.unstableFull
       cmake
       libgcc
       perl
