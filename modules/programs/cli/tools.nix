@@ -26,6 +26,9 @@
       lsof
       smug
       zsh
+      optnix
+      pkgs.unstable.wineWow64Packages.waylandFull
+      pkgs.unstable.wine64Packages.waylandFull
 
       # Security
       bitwarden-cli

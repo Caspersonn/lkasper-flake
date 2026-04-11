@@ -33,6 +33,7 @@
       lynis
       nchat
       neofetch
+      ngrok
       postgresql_15
       pritunl-client
       python312Packages.distutils

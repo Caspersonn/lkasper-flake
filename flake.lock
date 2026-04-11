@@ -2699,11 +2699,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1775222441,
-        "narHash": "sha256-2D8MrvzP3ZpLC+XHs+z8dtjdkeo2B3NN2um4uwIc+p0=",
+        "lastModified": 1775542976,
+        "narHash": "sha256-pPS3lJemC9XLzldH1ObouzJKuHVGs6pg8NY9YtOse7o=",
         "owner": "Caspersonn",
         "repo": "nixvim",
-        "rev": "a95989df648937b75b784278e7a8a2224276a388",
+        "rev": "8970db62e6fcd11753c4d3849a1a776170ee7785",
         "type": "github"
       },
       "original": {
@@ -3008,11 +3008,11 @@
         "nixpkgs": "nixpkgs_19"
       },
       "locked": {
-        "lastModified": 1770822121,
-        "narHash": "sha256-zEgaPQaIq/3QSX2BPBJnsIQsHZQ5KhY1qf4n+nbxGVc=",
+        "lastModified": 1775565614,
+        "narHash": "sha256-aFnVOCbuUAKrMvQawIhgRVibmbPgJ2aMv0dnpPeywfE=",
         "owner": "wearetechnative",
         "repo": "race",
-        "rev": "8d75bc21e9a1454a1009215524810c3fb2199b37",
+        "rev": "1da593feba0e22f03cabc27852e1366fee8f6764",
         "type": "github"
       },
       "original": {
