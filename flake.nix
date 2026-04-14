@@ -51,6 +51,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     teejay.url = "github:mipmip/teejay";
+    specgetty.url = "github:mipmip/specgetty";
     tses.url = "github:Caspersonn/tses";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
