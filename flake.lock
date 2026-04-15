@@ -2831,11 +2831,11 @@
         "nixpkgs": "nixpkgs_17"
       },
       "locked": {
-        "lastModified": 1772182342,
-        "narHash": "sha256-9Q0iUyZGcDPLdgvnrBN3GumV8g9akV8TFb8bFkD1yYs=",
+        "lastModified": 1776249123,
+        "narHash": "sha256-HmyIaFCw2d6UBg2DW5SjOj9ZnK4x74K+oZ2xVY3p58w=",
         "owner": "Fission-AI",
         "repo": "OpenSpec",
-        "rev": "afdca0d5dab1aa109cfd8848b2512333ccad60c3",
+        "rev": "f529b2596896afd95d855507b0c53b5d515433b5",
         "type": "github"
       },
       "original": {
