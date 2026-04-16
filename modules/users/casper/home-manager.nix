@@ -44,7 +44,7 @@
 
 
       ## Utilities
-      casper-dirtygit
+      casper-dirty-repo-scanner
       casper-rbw
       casper-smug
       casper-opencode
