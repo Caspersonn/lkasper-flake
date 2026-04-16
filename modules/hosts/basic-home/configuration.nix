@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 
-let hostname = "arcana-one";
+let hostname = builtins.getEnv "HOSTNAME";
 
 in {
 
@@ -11,7 +11,7 @@ in {
     };
   };
 
-  flake.modules.nixos.gaming-casper = { config, pkgs, lib, ... }: {
+  flake.modules.nixos.${hostname} = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       # Home manager
       hm-nixos
