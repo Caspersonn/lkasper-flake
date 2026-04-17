@@ -39,6 +39,7 @@
       mailutils
       mods
       teamtype
+      sc-im
     ];
   };
 }

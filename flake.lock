@@ -2714,11 +2714,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1775542976,
-        "narHash": "sha256-pPS3lJemC9XLzldH1ObouzJKuHVGs6pg8NY9YtOse7o=",
+        "lastModified": 1776412423,
+        "narHash": "sha256-R5UTydhFsY/YLITknZD0f4vKqNrsSEl8ox04VRc8Cfw=",
         "owner": "Caspersonn",
         "repo": "nixvim",
-        "rev": "8970db62e6fcd11753c4d3849a1a776170ee7785",
+        "rev": "1f08306cd5196936eee84cf2176e93c480b60139",
         "type": "github"
       },
       "original": {
