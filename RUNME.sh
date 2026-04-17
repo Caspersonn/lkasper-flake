@@ -71,13 +71,13 @@ up_home(){
   fi
 
   # Only sync if home-manager succeeded
-  if [ $? -eq 0 ]; then
-    EXTRA_ARG="auto run after home-manager switch"
-    git_sync_machine
-  else
-    echo "home-manager switch failed, skipping git sync"
-    exit 1
-  fi
+  #if [ $? -eq 0 ]; then
+  #  EXTRA_ARG="auto run after home-manager switch"
+  #  git_sync_machine
+  #else
+  #  echo "home-manager switch failed, skipping git sync"
+  #  exit 1
+  #fi
 
 
 }
@@ -98,13 +98,13 @@ up_machine(){
   fi
 
   # Only sync if nixos-rebuild succeeded
-  if [ $? -eq 0 ]; then
-    EXTRA_ARG="auto run after nixos-rebuild switch"
-    git_sync_machine
-  else
-    echo "nixos-rebuild failed, skipping git sync"
-    exit 1
-  fi
+  #if [ $? -eq 0 ]; then
+  #  EXTRA_ARG="auto run after nixos-rebuild switch"
+  #  git_sync_machine
+  #else
+  #  echo "nixos-rebuild failed, skipping git sync"
+  #  exit 1
+  #fi
 }
 
 # MACHINE BOOTSTRAP COMMAND

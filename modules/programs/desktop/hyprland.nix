@@ -71,7 +71,5 @@
 
     hardware.graphics.extraPackages = with pkgs; [ libva libva-utils ];
 
-    omarchy = {
-    };
   };
 }

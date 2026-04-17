@@ -17,7 +17,7 @@
         theme = "opencode";
         autoshare = false;
         autoupdate = true;
-        plugin = [ "@tarquinen/opencode-dcp@latest" "opencode-openai-codex-auth@latest" "opencode-anthropic-login-via-cli@latest" ];
+        plugin = [ "@tarquinen/opencode-dcp@latest" "opencode-openai-codex-auth@latest" "/home/casper/git/personal/opencode-anthropic-login-via-cli" ];
         provider = {
           anthropic = {
             options = {

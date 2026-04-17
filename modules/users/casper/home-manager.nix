@@ -1,23 +1,21 @@
 { inputs, self, ... }: {
   flake.modules.homeManager.casper = { pkgs, ... }: {
     imports = with inputs.self.modules.homeManager; (with inputs.omarchy-nix.homeManagerModules; [
-      omarchy-themes
-      omarchy-hyprland
-      omarchy-walker
-      omarchy-ghostty
-      omarchy-waybar
-      omarchy-wofi
-      omarchy-mako
-      omarchy-hyprlock
-      #omarchy-hyprpaper
-      omarchy-hyprshot
-      omarchy-hypridle
-      omarchy-btop
-      omarchy-zsh
-      omarchy-starship
-      omarchy-direnv
-      omarchy-fonts
-      omarchy-zoxide
+      lkh-themes
+      lkh-ags
+      lkh-hyprland
+      lkh-ghostty
+      lkh-hyprlock
+      lkh-hyprpaper
+      lkh-hypridle
+      lkh-btop
+      lkh-zsh
+      lkh-starship
+      lkh-direnv
+      lkh-fonts
+      lkh-zoxide
+      lkh-hyprshot
+
 
       # Shell programs
       casper-zsh
@@ -55,9 +53,6 @@
 
     ]);
 
-    omarchy = {
-      scale = 1;
-    };
 
     nixpkgs.config.allowUnfree = true;
 
