@@ -2,7 +2,7 @@
   flake.modules.nixos.twenty = { config, lib, pkgs, unstable, tfvars, ... }:
     let
       networkName = "twenty-net";
-      version = "v1.12.0";
+      version = "v1.13.7";
       forward_port = "3000";
     in {
 
@@ -32,9 +32,6 @@
         ports = [ "${forward_port}:3000" ];
         environmentFiles =
           [ config.age.secrets.twenty_server_environment.path ];
-        environment = {
-          DISABLE_DB_MIGRATIONS = "true";
-        };
         dependsOn = [ ];
         volumes = [
           "server-local-data:/app/packages/twenty-server/.local-storage"
