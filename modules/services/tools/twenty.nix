@@ -2,7 +2,7 @@
   flake.modules.nixos.twenty = { config, lib, pkgs, unstable, tfvars, ... }:
     let
       networkName = "twenty-net";
-      version = "v1.23.9";
+      version = "v2.0.1";
       forward_port = "3000";
     in {
 
