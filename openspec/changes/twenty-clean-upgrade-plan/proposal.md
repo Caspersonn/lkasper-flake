@@ -342,14 +342,22 @@ After reaching v2.0.1:
 
 ## Summary
 
-The clean upgrade requires **3 types of pre-fixes** across 12 version steps:
+The full upgrade from v1.6.7 to v2.0.1 spans **17 version steps**.
+
+**v1.6.7 → v1.19.0 (12 steps)** requires **3 types of pre-fixes**:
 
 1. **Workspace sync JS patches (permissionFlags + agent)** — applied at v1.7.7, v1.8.2, v1.11.5, v1.12.0 (4 steps, using `DISABLE_DB_MIGRATIONS` + `docker exec twenty node -e`). Patches 3 files: `from-standard-role-definition-to-flat-role.util.js`, `workspace-sync-role.service.js`, `workspace-sync-agent.service.js`
 2. **Delete orphaned serverless function** — applied before v1.10.2 (1 step)
-3. **Clear broken avatar URLs** — applied before v1.18.1 (1 step)
+3. **Clear broken avatar URLs** — applied before v1.18.1 (1 step). Must clear ALL non-null avatarUrl values, not just those matching `%people%` — some use `person-picture/` prefix.
+
+**v1.19.0 → v2.0.1 (5 steps)** — no pre-fixes expected. Simple version bumps.
 
 The race condition between containers is eliminated at the infrastructure level by `DISABLE_DB_MIGRATIONS=true` on `twenty-worker` (already applied in `modules/services/tools/twenty.nix`). No need to stop the worker during upgrades.
 
-The remaining 6 steps (v1.13.7, v1.14.0, v1.15.0, v1.16.7, v1.17.0, v1.19.0) require no pre-fixes and should upgrade cleanly.
+### Additional requirements discovered during upgrade
+
+- **Firewall**: Port 5432 must be open in the NixOS firewall for Docker containers to reach the host postgres (`networking.nix`).
+- **S3 credentials**: `STORAGE_S3_ACCESS_KEY_ID` and `STORAGE_S3_SECRET_ACCESS_KEY` must be set in the Twenty server environment. The v1.17.0+ upgrade writes to S3 and will fail without write access. A dedicated IAM user with S3 + KMS permissions was created in `twenty_user.tf`.
+- **S3 env var names**: Twenty uses `STORAGE_S3_ACCESS_KEY_ID` / `STORAGE_S3_SECRET_ACCESS_KEY` (not `STORAGE_ACCESS_KEY_ID`).
 
 Docker Hub availability note: GitHub tags (v1.7.10, v1.8.15, v1.11.14, v1.12.18, etc.) do not all have corresponding Docker images. Only the tags listed in the Version Selection section above are available on Docker Hub.
