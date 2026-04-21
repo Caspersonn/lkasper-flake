@@ -1,4 +1,4 @@
-# Proposal: Twenty CRM Clean Upgrade Plan (v1.6.7 → v1.19.0)
+# Proposal: Twenty CRM Clean Upgrade Plan (v1.6.7 → v2.0.1)
 
 ## Problem
 
@@ -66,7 +66,7 @@ These errors only occurred because of retry/partial-failure states from the prev
 Docker Hub tags do NOT match GitHub tags — many GitHub patch releases have no corresponding Docker image. The actual available upgrade path using Docker Hub images is:
 
 ```
-v1.6.7 → v1.7.7 → v1.8.2 → v1.10.2 → v1.11.5 → v1.12.0 → v1.13.7 → v1.14.0 → v1.15.0 → v1.16.7 → v1.17.0 → v1.18.1 → v1.19.0
+v1.6.7 → v1.7.7 → v1.8.2 → v1.10.2 → v1.11.5 → v1.12.0 → v1.13.7 → v1.14.0 → v1.15.0 → v1.16.7 → v1.17.0 → v1.18.1 → v1.19.0 → v1.20.2 → v1.21.2 → v1.22.5 → v1.23.9 → v2.0.1
 ```
 
 Note: There is no v1.9.x series (Twenty skipped it).
@@ -293,9 +293,38 @@ Then upgrade:
 
 Clean upgrade expected. The v1.19.0 `SynchronizeTwentyStandardApplicationService` will reconcile all metadata, creating any missing views, viewFields, and navigation items.
 
+**v1.6.7 → v1.19.0 has been completed successfully on 2026-04-21.** The steps below continue the upgrade to v2.0.1.
+
+#### v1.19.0 → v1.20.2: No pre-fix needed
+
+1. Set `version = "v1.20.2";` in `twenty.nix`
+2. `sudo nixos-rebuild switch --flake .#technative-casper`
+
+#### v1.20.2 → v1.21.2: No pre-fix needed
+
+1. Set `version = "v1.21.2";` in `twenty.nix`
+2. `sudo nixos-rebuild switch --flake .#technative-casper`
+
+#### v1.21.2 → v1.22.5: No pre-fix needed
+
+1. Set `version = "v1.22.5";` in `twenty.nix`
+2. `sudo nixos-rebuild switch --flake .#technative-casper`
+
+#### v1.22.5 → v1.23.9: No pre-fix needed
+
+1. Set `version = "v1.23.9";` in `twenty.nix`
+2. `sudo nixos-rebuild switch --flake .#technative-casper`
+
+#### v1.23.9 → v2.0.1: No pre-fix needed
+
+1. Set `version = "v2.0.1";` in `twenty.nix`
+2. `sudo nixos-rebuild switch --flake .#technative-casper`
+
+Note: v2.0.1 is a major version bump. Monitor logs carefully for any breaking changes.
+
 ### Post-Upgrade Verification
 
-After reaching v1.19.0:
+After reaching v2.0.1:
 
 1. Verify both `twenty` and `twenty-worker` containers are healthy
 2. Run the metadata audit query to confirm no standard objects have 0 views
