@@ -1,6 +1,7 @@
 { inputs, ... }: {
   flake.modules.nixos.cli-tools = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
+      inputs.rme.packages."${pkgs.stdenv.hostPlatform.system}".default
       # TUI Applications
       htop
       gum
@@ -39,6 +40,7 @@
       mailutils
       mods
       teamtype
+      sc-im
     ];
   };
 }

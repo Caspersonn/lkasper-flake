@@ -34,7 +34,7 @@
       nchat
       neofetch
       ngrok
-      postgresql_15
+      postgresql_17_jit
       pritunl-client
       python312Packages.distutils
       quarto
