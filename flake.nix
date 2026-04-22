@@ -52,6 +52,7 @@
     };
     teejay.url = "github:mipmip/teejay";
     specgetty.url = "github:mipmip/specgetty";
+    rme.url = "github:mipmip/rme";
     tses.url = "github:Caspersonn/tses";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
