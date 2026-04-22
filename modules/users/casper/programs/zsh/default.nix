@@ -29,6 +29,12 @@
       initExtra = ''
         PATH=$HOME/bin:$PATH
         set -o allexport
+        #compdef rme
+        # rme zsh completion
+        _rme() {
+            compadd $(rme --completions)
+        }
+        compdef _rme rme
         if [ -f /tmp/avante-bedrock ]; then
           source /tmp/avante-bedrock
         fi
