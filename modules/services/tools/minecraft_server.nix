@@ -5,9 +5,6 @@
 
 {
   flake.modules.nixos.minecraft-server = { lib, config, pkgs, ... }: {
-  virtualisation.docker.enable = true;
-  virtualisation.oci-containers.backend = "docker";
-
   virtualisation.oci-containers.containers.cobblemon = {
     image = "docker.io/itzg/minecraft-server:java21";
     autoStart = true;
