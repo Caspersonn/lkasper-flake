@@ -10,10 +10,10 @@
     };
 
     systemd.timers.rtcwake-hibernate = {
-      description = "Hibernate at 10:00 PM daily";
+      description = "Hibernate at 00:00 AM daily";
       wantedBy = [ "timers.target" ];
       timerConfig = {
-        OnCalendar = "*-*-* 22:00:00";
+        OnCalendar = "*-*-* 00:00:00";
         Persistent = true;
       };
     };

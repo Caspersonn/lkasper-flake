@@ -59,6 +59,7 @@ in {
       nextcloud
       materialious
       invidious
+      minecraft-server
 
       # System
       secrets
