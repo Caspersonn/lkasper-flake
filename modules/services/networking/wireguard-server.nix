@@ -29,11 +29,21 @@
           iptables -t nat -D POSTROUTING -o enp86s0 -j MASQUERADE
         '';
 
-        peers = [{
-          publicKey = "3NseKrz2SwNEvRlDSf5QeGV7maPV4e2Fo8Yh7QjxRHM=";
-          allowedIPs = [ "10.100.0.2/32" ];
-        }];
+        peers = [
+          {
+            # technative-casper
+            publicKey = "3NseKrz2SwNEvRlDSf5QeGV7maPV4e2Fo8Yh7QjxRHM=";
+            allowedIPs = [ "10.100.0.2/32" ];
+          }
+          {
+            # sakura
+            publicKey = "1hAS4/IwDvwtspp9AzchLJrOmw7JHRpxgprVCULJ9wA=";
+            allowedIPs = [ "10.100.0.3/32" ];
+          }
+        ];
       };
     };
   };
 }
+
+

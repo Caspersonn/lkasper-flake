@@ -60,6 +60,7 @@ in {
       materialious
       invidious
       minecraft-server
+      wireguard-server
 
       # System
       secrets

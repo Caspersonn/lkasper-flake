@@ -19,6 +19,7 @@
       lutris
       mangohud
       mesa
+      prismlauncher
       steamcmd
       ns-usbloader
       protonplus

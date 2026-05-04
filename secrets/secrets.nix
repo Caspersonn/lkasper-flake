@@ -11,8 +11,9 @@ let
   system7 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGSkCdC46exqaT+lg99eDiav1d2i+mwPVaHcu1eUeKVZ";
   system8 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEIQfpx2MkVCOE3KPYw4kYn3DatjsoSWV99IhkeIRwTY";
   kaito   = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFdoJda3zawJPBxuOAEWs4cTZkGc5HmHnyH6E1eL/7P";
+  sakura  = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHg9YgrgN20UXWUxeCkGGTLPxzPMTsDTCtCTA6h5b2Y8";
   raspberrypi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+MBgCQO3KqMF20ljvce+pFhViExVD91iEiFvd4dq0h";
-  systems = [ system1 system2 system3 system4 system5 system6 system7 system8 raspberrypi kaito ];
+  systems = [ system1 system2 system3 system4 system5 system6 system7 system8 raspberrypi kaito sakura ];
 in
 {
   "toggl-lkasper.age".publicKeys = users ++ systems;
@@ -28,6 +29,7 @@ in
   "pontifex.age".publicKeys = users ++ systems;
   "openvpn-improvement-it.age".publicKeys = users ++ systems;
   "wireguard-private.age".publicKeys = users ++ systems;
+  "wireguard-private-sakura.age".publicKeys = users ++ systems;
   "wireguard-public.age".publicKeys = users ++ systems;
   "wireguard-server-private.age".publicKeys = users ++ systems;
   "twenty_server_environment.age".publicKeys = users ++ systems;
