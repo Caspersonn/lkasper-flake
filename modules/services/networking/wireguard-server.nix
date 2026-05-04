@@ -30,7 +30,7 @@
         '';
 
         peers = [{
-          publicKey = "CWdPTt8t7bRVzStETmU8J/QimhdwPTGVH0R0Fn/nPFg=";
+          publicKey = "3NseKrz2SwNEvRlDSf5QeGV7maPV4e2Fo8Yh7QjxRHM=";
           allowedIPs = [ "10.100.0.2/32" ];
         }];
       };
