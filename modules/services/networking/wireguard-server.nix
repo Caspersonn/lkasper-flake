@@ -40,6 +40,11 @@
             publicKey = "1hAS4/IwDvwtspp9AzchLJrOmw7JHRpxgprVCULJ9wA=";
             allowedIPs = [ "10.100.0.3/32" ];
           }
+          {
+            # gaming-casper
+            publicKey = "tlibYE9mOYVdJm55ZNX78mzeX+ClT+jJnXhku1IMIEI=";
+            allowedIPs = [ "10.100.0.4/32" ];
+          }
         ];
       };
     };

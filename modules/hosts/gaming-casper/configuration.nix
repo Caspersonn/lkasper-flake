@@ -95,6 +95,11 @@ in {
       udev-logitech-wheel
     ];
 
+    # WireGuard
+    custom.wireguard.address = "10.100.0.4/24";
+    custom.wireguard.privateKeySecret = "wireguard-gaming-casper";
+    custom.wireguard.secretFile = ../../../secrets/wireguard-private-gaming-casper.age;
+
     # State version
     system.stateVersion = "25.11";
 
