@@ -2720,11 +2720,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1775542976,
-        "narHash": "sha256-pPS3lJemC9XLzldH1ObouzJKuHVGs6pg8NY9YtOse7o=",
+        "lastModified": 1776962858,
+        "narHash": "sha256-eHQdPkJ2b5izqfHklZwaKFVnu2oxRIQ7gX7imhgFVes=",
         "owner": "Caspersonn",
         "repo": "nixvim",
-        "rev": "8970db62e6fcd11753c4d3849a1a776170ee7785",
+        "rev": "1eaf8e8a6b87e81d4e479ad83a87e967b391e1f9",
         "type": "github"
       },
       "original": {

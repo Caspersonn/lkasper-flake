@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 
-let hostname = builtins.getEnv "HOSTNAME";
+let hostname = "arcana-one";
 
 in {
 
