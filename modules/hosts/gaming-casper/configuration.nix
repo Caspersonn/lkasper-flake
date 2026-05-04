@@ -86,6 +86,7 @@ in {
       invidious
       acme
       materialious
+      wireguard
 
       # System
       secrets
