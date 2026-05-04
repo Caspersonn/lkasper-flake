@@ -75,6 +75,7 @@ in {
       mysql
       flatpak
       postgres
+      wireguard
 
       # System
       secrets
