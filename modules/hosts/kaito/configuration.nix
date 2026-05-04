@@ -50,7 +50,7 @@ in {
       atuin
       bluetooth-receiver
       postgres
-      rtcwake
+      #rtcwake
 
       # Tools
       pokemon-tracker
