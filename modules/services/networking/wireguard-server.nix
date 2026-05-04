@@ -21,12 +21,12 @@
         postUp = ''
           iptables -A FORWARD -i wgcasper -j ACCEPT
           iptables -A FORWARD -o wgcasper -j ACCEPT
-          iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+          iptables -t nat -A POSTROUTING -o enp86s0 -j MASQUERADE
         '';
         preDown = ''
           iptables -D FORWARD -i wgcasper -j ACCEPT
           iptables -D FORWARD -o wgcasper -j ACCEPT
-          iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+          iptables -t nat -D POSTROUTING -o enp86s0 -j MASQUERADE
         '';
 
         peers = [{
