@@ -96,6 +96,9 @@ in {
     # Host-specific configuration
     networking.hostName = "technative-casper";
 
+    # WireGuard
+    custom.wireguard.address = "10.100.0.2/24";
+
     # LUKS encryption (host-specific)
     boot.initrd.luks.devices."luks-f7326c24-daa8-457b-80b6-a47a0fe8f82c".device =
       "/dev/disk/by-uuid/f7326c24-daa8-457b-80b6-a47a0fe8f82c";

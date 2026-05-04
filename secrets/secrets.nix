@@ -29,6 +29,7 @@ in
   "pontifex.age".publicKeys = users ++ systems;
   "openvpn-improvement-it.age".publicKeys = users ++ systems;
   "wireguard-private.age".publicKeys = users ++ systems;
+  "wireguard-private-sakura.age".publicKeys = users ++ systems;
   "wireguard-public.age".publicKeys = users ++ systems;
   "wireguard-server-private.age".publicKeys = users ++ systems;
   "twenty_server_environment.age".publicKeys = users ++ systems;
