@@ -4,7 +4,7 @@ let hostname = "kaito";
 
 in {
   flake.nixosConfigurations = {
-    neko = self.lib.makeNixos {
+    kaito = self.lib.makeNixos {
       inherit hostname;
       system = "x86_64-linux";
       enableFrameworkHardware = false;
@@ -18,7 +18,7 @@ in {
     };
   };
 
-  flake.modules.nixos.neko = { config, pkgs, lib, ... }: {
+  flake.modules.nixos.kaito = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       # System Configuration
       system-default
@@ -59,6 +59,8 @@ in {
       nextcloud
       materialious
       invidious
+      minecraft-server
+      wireguard-server
 
       # System
       secrets
@@ -77,5 +79,6 @@ in {
     systemd.targets.hybrid-sleep.enable = false;
 
     services.pipewire.jack.enable = true;
+    nix.settings.download-buffer-size = 524288000;
   };
 }
