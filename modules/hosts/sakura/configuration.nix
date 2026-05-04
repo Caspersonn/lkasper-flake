@@ -65,10 +65,12 @@ in {
       fonts
 
       # Services
+      age
       coolerd
       resolved
       tailscale
       flatpak
+      wireguard
 
       # System
       udev-ddcutil
