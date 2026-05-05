@@ -20,14 +20,6 @@
     config = let cfg = config.custom.wireguard; in {
       networking.firewall.allowedUDPPorts = [ 51820 ];
 
-    #<<<<<<< HEAD
-    #        peers = [{
-    #          publicKey = "7Ms/wNUDFUB+tN9tGnLtR6WiVNix1clFvNfm9sJfJxE=";
-    #          allowedIPs = [ "0.0.0.0/0" "::/0" ];
-    #          endpoint = "77.175.230.128:51820";
-    #          persistentKeepalive = 25;
-    #        }];
-    #=======
       age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       age.secrets.${cfg.privateKeySecret}.file = cfg.secretFile;
 
