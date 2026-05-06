@@ -21,19 +21,34 @@
         postUp = ''
           iptables -A FORWARD -i wgcasper -j ACCEPT
           iptables -A FORWARD -o wgcasper -j ACCEPT
-          iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+          iptables -t nat -A POSTROUTING -o enp86s0 -j MASQUERADE
         '';
         preDown = ''
           iptables -D FORWARD -i wgcasper -j ACCEPT
           iptables -D FORWARD -o wgcasper -j ACCEPT
-          iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+          iptables -t nat -D POSTROUTING -o enp86s0 -j MASQUERADE
         '';
 
-        peers = [{
-          publicKey = "REPLACE_WITH_CLIENT_PUBLIC_KEY";
-          allowedIPs = [ "10.100.0.2/32" ];
-        }];
+        peers = [
+          {
+            # technative-casper
+            publicKey = "3NseKrz2SwNEvRlDSf5QeGV7maPV4e2Fo8Yh7QjxRHM=";
+            allowedIPs = [ "10.100.0.2/32" ];
+          }
+          {
+            # sakura
+            publicKey = "1hAS4/IwDvwtspp9AzchLJrOmw7JHRpxgprVCULJ9wA=";
+            allowedIPs = [ "10.100.0.3/32" ];
+          }
+          {
+            # gaming-casper
+            publicKey = "tlibYE9mOYVdJm55ZNX78mzeX+ClT+jJnXhku1IMIEI=";
+            allowedIPs = [ "10.100.0.4/32" ];
+          }
+        ];
       };
     };
   };
 }
+
+
