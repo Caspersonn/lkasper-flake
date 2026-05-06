@@ -14,7 +14,7 @@
       omarchy-hypridle
       omarchy-btop
       omarchy-zsh
-      omarchy-starship
+      #omarchy-starship
       omarchy-direnv
       omarchy-fonts
       omarchy-zoxide

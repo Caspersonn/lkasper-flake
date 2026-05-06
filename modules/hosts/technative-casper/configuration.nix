@@ -98,6 +98,8 @@ in {
 
     # WireGuard
     custom.wireguard.address = "10.100.0.2/24";
+    custom.wireguard.privateKeySecret = "wireguard";
+    custom.wireguard.secretFile = ../../../secrets/wireguard-private.age;
 
     # LUKS encryption (host-specific)
     boot.initrd.luks.devices."luks-f7326c24-daa8-457b-80b6-a47a0fe8f82c".device =
