@@ -35,6 +35,13 @@
         _rme() {
             compadd $(rme --completions)
         }
+        bmc() {
+          if [[ "$1" == "profsel" ]]; then
+            eval "$(command bmc profsel "$@")"
+          else
+            command bmc "$@"
+          fi
+        }
         compdef _rme rme
         if [ -f /tmp/avante-bedrock ]; then
           source /tmp/avante-bedrock
