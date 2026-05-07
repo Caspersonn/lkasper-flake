@@ -48,7 +48,7 @@
       telegram-desktop
       terraform-docs
       terraform-ls
-      yarn
+      yarn-berry
       (texlive.combine {
         inherit (texlive)
           scheme-full datetime fmtcount textpos makecell lipsum footmisc
