@@ -70,6 +70,7 @@
           pylint
           python-dotenv
           pytz
+          poetry
           requests
           telegram-text
           tiktoken
