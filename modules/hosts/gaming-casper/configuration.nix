@@ -15,6 +15,12 @@ in {
       inherit hostname;
       imports = with inputs.self.modules.homeManager; [ casper ];
     };
+    "lucak@${hostname}" = self.lib.makeHomeConf {
+      username = "lucak";
+      homedir = "/home/lucak";
+      inherit hostname;
+      imports = with inputs.self.modules.homeManager; [ lucak ];
+    };
   };
 
   flake.modules.nixos.gaming-casper = { config, pkgs, lib, ... }: {
@@ -22,8 +28,8 @@ in {
       inputs.spicetify-nix.nixosModules.default
 
       # lkasper-hyprland
-      inputs.omarchy-nix.nixosModules.omarchy-system
-      inputs.omarchy-nix.nixosModules.omarchy-hyprland
+      inputs.omarchy-nix.nixosModules.lkh-system
+      inputs.omarchy-nix.nixosModules.lkh-hyprland
 
       # System Configuration
       system-default
@@ -43,6 +49,7 @@ in {
       hm-nixos
       hm-users
       casper
+      lucak
 
       # Remote building
       remote_builder

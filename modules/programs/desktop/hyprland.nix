@@ -54,12 +54,8 @@
         wttrbar
         xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
-      ] ++ lib.optionals (inputs ? elephant)
-      [ inputs.elephant.packages.${pkgs.system}.default ]
-      ++ lib.optionals (inputs ? swww)
-      [ inputs.swww.packages.${pkgs.system}.swww ]
-      ++ lib.optionals (inputs ? walker)
-      [ inputs.walker.packages.${pkgs.system}.default ];
+      ] ++ lib.optionals (inputs ? swww)
+      [ inputs.swww.packages.${pkgs.system}.swww ];
 
     services.greetd = {
       enable = true;
@@ -71,7 +67,5 @@
 
     hardware.graphics.extraPackages = with pkgs; [ libva libva-utils ];
 
-    omarchy = {
-    };
   };
 }

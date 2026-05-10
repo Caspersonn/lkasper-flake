@@ -24,6 +24,7 @@
       ns-usbloader
       protonplus
       ps3iso-utils
+      prismlauncher
       radeontop
       ryubing
       oversteer

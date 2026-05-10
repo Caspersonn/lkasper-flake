@@ -24,7 +24,7 @@
         };
         Service = {
           Type = "simple";
-          ExecStart= "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --path /Documents /home/casper/Documents https://nextcloud.inspiravita.com";
+          ExecStart= "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --path /Documents ${config.home.homeDirectory}/Documents https://nextcloud.inspiravita.com";
           TimeoutStopSec = "300";
           KillMode = "process";
           KillSignal = "SIGINT";
