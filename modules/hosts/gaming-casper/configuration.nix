@@ -15,6 +15,12 @@ in {
       inherit hostname;
       imports = with inputs.self.modules.homeManager; [ casper ];
     };
+    "lucak@${hostname}" = self.lib.makeHomeConf {
+      username = "lucak";
+      homedir = "/home/lucak";
+      inherit hostname;
+      imports = with inputs.self.modules.homeManager; [ lucak ];
+    };
   };
 
   flake.modules.nixos.gaming-casper = { config, pkgs, lib, ... }: {
@@ -43,6 +49,7 @@ in {
       hm-nixos
       hm-users
       casper
+      lucak
 
       # Remote building
       remote_builder

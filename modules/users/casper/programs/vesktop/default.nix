@@ -25,10 +25,8 @@
         themes = {
           # https://refact0r.github.io/midnight-discord/themes/flavors/midnight-vencord.theme.css
           midnight-vencord = pkgs.fetchurl {
-            url =
-              "https://refact0r.github.io/midnight-discord/themes/flavors/midnight-vencord.theme.css";
-            sha256 =
-              "sha256-0n568grm4xhxn9laq3fzgkpa1nc9az18mnx3qfn6ca2jvjbhfgi9=";
+            url = "https://refact0r.github.io/midnight-discord/themes/flavors/midnight-vencord.theme.css";
+            sha256 = "sha256-KT4Hl9xSKGasw6PbisJXidmg7nzfDaxosh12UvNDplg=";
           };
         };
       };
