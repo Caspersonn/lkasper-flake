@@ -1,5 +1,5 @@
 { ... }: {
-  flake.modules.homeManager.casper-nextcloud = { config, pkgs, unstable, ... }: {
+  flake.modules.homeManager.shared-nextcloud = { config, pkgs, unstable, ... }: {
 
     home.packages = with pkgs; [
       nextcloud-client

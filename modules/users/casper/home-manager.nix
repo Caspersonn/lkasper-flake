@@ -35,11 +35,12 @@
       shared-age
       shared-opencode
       shared-dirty-repo-scanner
+      shared-smug
+      shared-vesktop
 
       # Casper-only complex modules
       #casper-nextcloud
       casper-vesktop
-      casper-smug
     ]);
 
     # Git identity

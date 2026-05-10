@@ -1,5 +1,5 @@
 { ... }: {
-  flake.modules.homeManager.casper-smug = { ... }: {
+  flake.modules.homeManager.shared-smug = { ... }: {
     home.file = {
       ".config/smug" = {
         source = ./smug;

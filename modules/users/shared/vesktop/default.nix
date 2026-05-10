@@ -1,5 +1,5 @@
 { ... }: {
-  flake.modules.homeManager.casper-vesktop = { pkgs, ... }: {
+  flake.modules.homeManager.shared-vesktop = { pkgs, ... }: {
     programs.vesktop = {
       enable = true;
       settings = {

@@ -35,6 +35,8 @@
       shared-age
       shared-opencode
       shared-dirty-repo-scanner
+      shared-smug
+      shared-vesktop
 
       # Work shared modules
       shared-technative
@@ -61,6 +63,9 @@
         "export AWS_PROFILE='TEC-playground-student14' && export CLAUDE_CODE_USE_BEDROCK=1 && export ANTHROPIC_MODEL='arn:aws:bedrock:eu-central-1:939665396134:inference-profile/eu.anthropic.claude-sonnet-4-5-20250929-v1:0' && export AWS_REGION=eu-central-1 && claude";
       bcdc =
         "export AWS_PROFILE='TEC-playground-student14' && export CLAUDE_CODE_USE_BEDROCK=1 && export ANTHROPIC_MODEL='arn:aws:bedrock:eu-central-1:939665396134:inference-profile/eu.anthropic.claude-sonnet-4-5-20250929-v1:0' && export AWS_REGION=eu-central-1 && claude -c";
+      lin = "vi -c LinnyMenuOpen";
+      ner = "vi -c Neotree";
+      runbg = "$HOME/.config/hypr/scripts/runbg.sh";
     };
 
     # Werk oh-my-zsh plugins (includes aws + terraform)
