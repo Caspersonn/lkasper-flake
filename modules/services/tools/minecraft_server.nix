@@ -28,9 +28,10 @@
       MODRINTH_PROJECTS = "architectury-api,rctapi,forge-config-api-port:N5qzq0XV";
       MODRINTH_ALLOWED_VERSION_TYPE = "beta";
 
-      # CurseForge mod: rctmod — download manually and place in /srv/cobblemon/mods/
-      # https://www.curseforge.com/minecraft/mc-mods/rctmod (latest for 1.21.1 Fabric)
-      REMOVE_OLD_MODS_EXCLUDE = "rctmod*.jar";
+      # CurseForge mods (downloaded via itzg MODS env)
+      # rctmod 0.18.1-beta (Fabric 1.21.1): https://www.curseforge.com/minecraft/mc-mods/rctmod/download/7913182
+      # Radical Gyms & Structures 0.6 (Fabric 1.21.1): https://www.curseforge.com/minecraft/mc-mods/radical-gyms-structures-cobblemon/download/7330950
+      MODS = "https://edge.forgecdn.net/files/7913/182/rctmod-fabric-1.21.1-0.18.1-beta.jar,https://edge.forgecdn.net/files/7330/950/RadicalGymsandStructures-Cobblemon-Fabric-1.21.1-0.6.jar";
 
       # Basic server.properties values
       MOTD = "Cobblemon Official Modpack 1.7.3";
