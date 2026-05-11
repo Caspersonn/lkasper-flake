@@ -23,7 +23,7 @@
     ports = [ "25565:25565" ];
     volumes = [
       "/srv/cobblemon:/data"
-      "${extraMods}:/extra-mods:ro"
+          #"${extraMods}:/extra-mods:ro"
     ];
 
     environment = {
@@ -43,7 +43,7 @@
       MODRINTH_ALLOWED_VERSION_TYPE = "beta";
 
       # rctmod (CurseForge) — copied from Nix store into /data/mods/ on startup
-      COPY_MODS_SRC = "/extra-mods";
+          #COPY_MODS_SRC = "/extra-mods";
       REMOVE_OLD_MODS_EXCLUDE = "rctmod*.jar";
 
       # Basic server.properties values
