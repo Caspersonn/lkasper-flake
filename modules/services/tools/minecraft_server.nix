@@ -26,6 +26,7 @@
 
       # Additional mods (Modrinth)
       MODRINTH_PROJECTS = "architectury-api,rctapi,forge-config-api-port:N5qzq0XV";
+      MODRINTH_ALLOWED_VERSION_TYPE = "beta";
 
       # CurseForge mod: rctmod — download manually and place in /srv/cobblemon/mods/
       # https://www.curseforge.com/minecraft/mc-mods/rctmod (latest for 1.21.1 Fabric)
