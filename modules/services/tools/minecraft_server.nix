@@ -4,13 +4,27 @@
 { config, pkgs, ... }:
 
 {
-  flake.modules.nixos.minecraft-server = { lib, config, pkgs, ... }: {
+  flake.modules.nixos.minecraft-server = { lib, config, pkgs, ... }:
+  let
+    # rctmod (CurseForge-only) — pinned via fetchurl
+    rctmod = pkgs.fetchurl {
+      url = "https://edge.forgecdn.net/files/7913/182/rctmod-fabric-1.21.1-0.18.1-beta.jar";
+      hash = "sha256-kpUdO+R1oEM/jvUIQ5cwcj4ukB3R47JQnCkgUDHU61E=";
+    };
+
+    extraMods = pkgs.linkFarm "cobblemon-extra-mods" [
+      { name = "rctmod-fabric-1.21.1-0.18.1-beta.jar"; path = rctmod; }
+    ];
+  in {
   virtualisation.oci-containers.containers.cobblemon = {
     image = "docker.io/itzg/minecraft-server:java21";
     autoStart = true;
 
     ports = [ "25565:25565" ];
-    volumes = [ "/srv/cobblemon:/data" ];
+    volumes = [
+      "/srv/cobblemon:/data"
+      "${extraMods}:/extra-mods:ro"
+    ];
 
     environment = {
       EULA = "TRUE";
@@ -25,13 +39,12 @@
       TZ = "Europe/Amsterdam";
 
       # Additional mods (Modrinth)
-      MODRINTH_PROJECTS = "architectury-api,rctapi,forge-config-api-port:N5qzq0XV";
+      MODRINTH_PROJECTS = "architectury-api,rctapi,forge-config-api-port:N5qzq0XV,radical-gyms-cobblemon";
       MODRINTH_ALLOWED_VERSION_TYPE = "beta";
 
-      # CurseForge mods (downloaded via itzg MODS env)
-      # rctmod 0.18.1-beta (Fabric 1.21.1): https://www.curseforge.com/minecraft/mc-mods/rctmod/download/7913182
-      # Radical Gyms & Structures 0.6 (Fabric 1.21.1): https://www.curseforge.com/minecraft/mc-mods/radical-gyms-structures-cobblemon/download/7330950
-      MODS = "https://edge.forgecdn.net/files/7913/182/rctmod-fabric-1.21.1-0.18.1-beta.jar,https://edge.forgecdn.net/files/7330/950/RadicalGymsandStructures-Cobblemon-Fabric-1.21.1-0.6.jar";
+      # rctmod (CurseForge) — copied from Nix store into /data/mods/ on startup
+      COPY_MODS_SRC = "/extra-mods";
+      REMOVE_OLD_MODS_EXCLUDE = "rctmod*.jar";
 
       # Basic server.properties values
       MOTD = "Cobblemon Official Modpack 1.7.3";
