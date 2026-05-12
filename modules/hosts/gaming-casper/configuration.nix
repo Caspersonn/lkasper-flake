@@ -84,15 +84,9 @@ in {
       # Services
       coolerd
       resolved
-      tailscale
       ollama
       flatpak
-      mysql
-      postgres
       lact
-      invidious
-      acme
-      materialious
       wireguard
 
       # System
