@@ -206,11 +206,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1778135868,
-        "narHash": "sha256-7Tv6dAH9U6BYypmujANCrnBOjnSoVOkEqOLu4gV0NaQ=",
+        "lastModified": 1778265840,
+        "narHash": "sha256-HdKILqiwM5MzfMdDrPenmwGVlD5dBp6wrLUNvOfn/8s=",
         "owner": "wearetechnative",
         "repo": "bmc",
-        "rev": "01bf9c032cf5f67a96b92b2f4b19ab6a4f31afdf",
+        "rev": "cff34d6d945cc5757dfbf4ea6cf10a24e01356ee",
         "type": "github"
       },
       "original": {
@@ -2887,11 +2887,11 @@
         "walker": "walker"
       },
       "locked": {
-        "lastModified": 1778447166,
-        "narHash": "sha256-rw5GSPr7erNN/aAHMg2k751/gqmmTgm/bCHLtFcFu7k=",
+        "lastModified": 1778498956,
+        "narHash": "sha256-5gotRj6nizR7r4zfYuuTD6qN5791u6nu5tZEPahGT7M=",
         "owner": "caspersonn",
         "repo": "lkasper-hyprland",
-        "rev": "9054556e7e4a3cd802a611fdaa1843215580069d",
+        "rev": "718626662b5eeab6a50e24f96578f17735f15c4b",
         "type": "github"
       },
       "original": {

@@ -26,8 +26,8 @@ in {
       inputs.spicetify-nix.nixosModules.default
 
       # lkasper-hyprland
-      inputs.omarchy-nix.nixosModules.omarchy-system
-      inputs.omarchy-nix.nixosModules.omarchy-hyprland
+      inputs.omarchy-nix.nixosModules.lkh-system
+      inputs.omarchy-nix.nixosModules.lkh-hyprland
 
       # System Configuration
       system-default

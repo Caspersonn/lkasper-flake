@@ -38,9 +38,11 @@
       shared-smug
       shared-vesktop
 
-      # Casper-only complex modules
-      #casper-nextcloud
-      casper-vesktop
+      # Work shared modules
+      shared-technative
+
+      # Lucak-only complex modules
+      lucak-aws
     ]);
 
     # Git identity
@@ -51,6 +53,16 @@
 
     # Personal zsh aliases
     programs.zsh.shellAliases = {
+      tfplan = "$HOME/git/wearetechnative/race/tfplan.sh";
+      tfswitch = "mkdir -p ~/bin ; tfswitch -b $HOME/bin/terraform";
+      tfapply = "$HOME/git/wearetechnative/race/tfapply.sh";
+      tfdestroy = "$HOME/git/wearetechnative/race/tfdestroy.sh";
+      aws-switch = ". bmc profsel";
+      aws-mfa = "$HOME/lkasper-flake/modules/_unused/casper-hyprland-legacy/scripts/aws-mfa-auto.sh";
+      bcd =
+        "export AWS_PROFILE='TEC-playground-student14' && export CLAUDE_CODE_USE_BEDROCK=1 && export ANTHROPIC_MODEL='arn:aws:bedrock:eu-central-1:939665396134:inference-profile/eu.anthropic.claude-sonnet-4-5-20250929-v1:0' && export AWS_REGION=eu-central-1 && claude";
+      bcdc =
+        "export AWS_PROFILE='TEC-playground-student14' && export CLAUDE_CODE_USE_BEDROCK=1 && export ANTHROPIC_MODEL='arn:aws:bedrock:eu-central-1:939665396134:inference-profile/eu.anthropic.claude-sonnet-4-5-20250929-v1:0' && export AWS_REGION=eu-central-1 && claude -c";
       lin = "vi -c LinnyMenuOpen";
       ner = "vi -c Neotree";
       runbg = "$HOME/.config/hypr/scripts/runbg.sh";
