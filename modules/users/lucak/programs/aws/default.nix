@@ -175,6 +175,36 @@
             role_arn = "arn:aws:iam::827568612956:role/landing_zone_devops_administrator";
             source_profile = "technative";
           };
+
+          "profile 412183476791_developer_dev_tst" = {
+            sso_session = "postnl";
+            sso_account_id = "412183476791";
+            sso_role_name = "developer_dev_tst";
+            region = "eu-west-1";
+          };
+
+          "profile 410809966004_developer_dev_tst" = {
+            sso_session = "postnl";
+            sso_account_id = "410809966004";
+            sso_role_name = "developer_acc_prd";
+            region = "eu-west-1";
+            source_profile = "postnl";
+              };
+
+          "profile 001988425308_developer_dev_tst" = {
+            sso_session = "postnl";
+            sso_account_id = "001988425308";
+            sso_role_name = "developer_acc_prd";
+            region = "eu-west-1";
+            source_profile = "postnl";
+          };
+
+          "sso-session postnl" = {
+            sso_start_url = "https://identitycenter.amazonaws.com/ssoins-6804d9cbc3fab333";
+            sso_region = "eu-west-1";
+            sso_registration_scopes = "sso:account:access";
+          };
+
         } // builtins.listToAttrs (builtins.map (account: {
           name = "profile ${shortname_group account}-${account_name account}";
           value = tn_profile {
