@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.home-assistant = { pkgs, unstable, ... }: {
+  flake.modules.nixos.home-assistant = { pkgs, unstable, config, ... }: {
     services.home-assistant = {
       enable = true;
       package = unstable.home-assistant;
@@ -24,6 +24,15 @@
         default_config = {};
       };
     };
-
+    services.zigbee2mqtt = {
+      enable = true;
+      settings = {
+        homeassistant.enabled = config.services.home-assistant.enable;
+        permit_join = true;
+        serial = {
+          port = "/dev/ttyACM1";
+        };
+      };
+    };
   };
 }
