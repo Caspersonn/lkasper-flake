@@ -1,5 +1,11 @@
 { inputs, ... }: {
   flake.modules.nixos.home-assistant = { pkgs, unstable, config, ... }: {
+
+    networking.firewall.allowedTCPPorts = [
+      8123 # Home Assistant
+      8080 # Zigbee2MQTT frontend; remove if you do not want LAN access
+    ];
+
     services.home-assistant = {
       enable = true;
       package = unstable.home-assistant;
@@ -14,6 +20,7 @@
         "ibeacon"
         "switchbot"
         "zha"
+        "mqtt"
         # Recommended for fast zlib compression
         # https://www.home-assistant.io/integrations/isal
         "isal"
@@ -24,15 +31,67 @@
         default_config = {};
       };
     };
+
     services.zigbee2mqtt = {
       enable = true;
+
       settings = {
-        homeassistant.enabled = config.services.home-assistant.enable;
-        permit_join = true;
-        serial = {
-          port = "/dev/ttyACM1";
+        version = 5;
+
+        homeassistant = {
+          enabled = true;
+        };
+
+        permit_join = false;
+
+        mqtt = {
+          base_topic = "zigbee2mqtt";
+          server = "mqtt://127.0.0.1:1883";
+          user = "zigbee2mqtt";
+        };
+
+        frontend = {
+          enabled = true;
+          port = 8080;
+        };
+
+        advanced = {
+          network_key = "GENERATE";
+          pan_id = "GENERATE";
+          ext_pan_id = "GENERATE";
+          channel = 11;
         };
       };
+    };
+
+    systemd.services.zigbee2mqtt.serviceConfig.EnvironmentFile = "/var/lib/secrets/zigbee2mqtt.env";
+
+
+    # mosquitto integration for mqtt broker
+    services.mosquitto = {
+      enable = true;
+
+      listeners = [
+        {
+          address = "127.0.0.1";
+          port = 1883;
+
+          users.zigbee2mqtt = {
+            passwordFile = "/var/lib/secrets/mqtt-zigbee2mqtt-password";
+            acl = [
+              "readwrite zigbee2mqtt/#"
+              "readwrite homeassistant/#"
+            ];
+          };
+
+          users.homeassistant = {
+            passwordFile = "/var/lib/secrets/mqtt-homeassistant-password";
+            acl = [
+              "readwrite #"
+            ];
+          };
+        }
+      ];
     };
   };
 }
