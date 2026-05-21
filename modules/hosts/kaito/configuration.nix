@@ -61,6 +61,7 @@ in {
       invidious
       minecraft-server
       wireguard-server
+      home-assistant
 
       # System
       secrets
