@@ -2,6 +2,8 @@
   flake.modules.nixos.home-assistant = { pkgs, unstable, ... }: {
     services.home-assistant = {
       enable = true;
+      package = unstable.home-assistant;
+      openFirewall = true;
       extraComponents = [
         # Components required to complete the onboarding
         "analytics"
