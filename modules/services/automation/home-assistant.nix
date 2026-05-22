@@ -29,17 +29,24 @@
         # Includes dependencies for a basic setup
         # https://www.home-assistant.io/integrations/default_config/
         default_config = {};
+        automation = "!include automations.yaml";
       };
     };
 
     services.zigbee2mqtt = {
       enable = true;
+      package = unstable.zigbee2mqtt;
 
       settings = {
-        version = 5;
-
         homeassistant = {
           enabled = true;
+        };
+
+        serial = {
+          port = "/dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_0edbe6e0009eef11a7f6cba661ce3355-if00-port0";
+          adapter = "zstack";
+          baudrate = 115200;
+          rtscts = false;
         };
 
         permit_join = false;
@@ -52,6 +59,7 @@
 
         frontend = {
           enabled = true;
+          host = "0.0.0.0";
           port = 8080;
         };
 
