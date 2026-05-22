@@ -1,5 +1,108 @@
 { inputs, ... }: {
-  flake.modules.nixos.home-assistant = { pkgs, unstable, config, ... }: {
+  flake.modules.nixos.home-assistant = { pkgs, unstable, config, ... }:
+    let
+      bilresaAutomations = pkgs.writeText "automations.yaml" ''
+    - id: bilresa_bed_controls
+      alias: BILRESA Bed controls
+      description: Control KAJPLATS Bed Lamp and TRETAKT Fairy Lights from BILRESA Bed
+      mode: restart
+
+      triggers:
+        - trigger: mqtt
+          topic: "zigbee2mqtt/BILRESA Bed"
+          value_template: "{{ value_json.get('action', ''\) }}"
+          payload: "on"
+          id: kajplats_on
+
+        - trigger: mqtt
+          topic: "zigbee2mqtt/BILRESA Bed"
+          value_template: "{{ value_json.get('action', ''\) }}"
+          payload: "off"
+          id: kajplats_off
+
+        - trigger: mqtt
+          topic: "zigbee2mqtt/BILRESA Bed"
+          value_template: "{{ value_json.get('action', ''\) }}"
+          payload: "on_double"
+          id: tretakt_toggle
+
+        - trigger: mqtt
+          topic: "zigbee2mqtt/BILRESA Bed"
+          value_template: "{{ value_json.get('action', ''\) }}"
+          payload: "off_double"
+          id: all_off
+
+        - trigger: mqtt
+          topic: "zigbee2mqtt/BILRESA Bed"
+          value_template: "{{ value_json.get('action', ''\) }}"
+          payload: "brightness_move_up"
+          id: kajplats_brightness_up
+
+        - trigger: mqtt
+          topic: "zigbee2mqtt/BILRESA Bed"
+          value_template: "{{ value_json.get('action', ''\) }}"
+          payload: "brightness_move_down"
+          id: kajplats_brightness_down
+
+      actions:
+        - choose:
+            - conditions:
+                - condition: trigger
+                  id: kajplats_on
+              sequence:
+                - action: light.turn_on
+                  target:
+                    entity_id: light.0x00c09b9eff953a7d
+
+            - conditions:
+                - condition: trigger
+                  id: kajplats_off
+              sequence:
+                - action: light.turn_off
+                  target:
+                    entity_id: light.0x00c09b9eff953a7d
+
+            - conditions:
+                - condition: trigger
+                  id: tretakt_toggle
+              sequence:
+                - action: switch.toggle
+                  target:
+                    entity_id: switch.0x7c31fafffed877c5
+
+            - conditions:
+                - condition: trigger
+                  id: all_off
+              sequence:
+                - action: light.turn_off
+                  target:
+                    entity_id: light.0x00c09b9eff953a7d
+                - action: switch.turn_off
+                  target:
+                    entity_id: switch.0x7c31fafffed877c5
+
+            - conditions:
+                - condition: trigger
+                  id: kajplats_brightness_up
+              sequence:
+                - action: light.turn_on
+                  target:
+                    entity_id: light.0x00c09b9eff953a7d
+                  data:
+                    brightness_step_pct: 20
+
+            - conditions:
+                - condition: trigger
+                  id: kajplats_brightness_down
+              sequence:
+                - action: light.turn_on
+                  target:
+                    entity_id: light.0x00c09b9eff953a7d
+                  data:
+                    brightness_step_pct: -20
+      '';
+    in
+      {
 
     networking.firewall.allowedTCPPorts = [
       8123 # Home Assistant
@@ -32,6 +135,11 @@
         automation = "!include automations.yaml";
       };
     };
+
+      system.activationScripts.homeAssistantAutomations = ''
+        install -d -m 0755 -o hass -g hass /var/lib/hass
+        install -m 0644 -o hass -g hass ${bilresaAutomations} /var/lib/hass/automations.yaml
+      '';
 
     services.zigbee2mqtt = {
       enable = true;
@@ -72,7 +180,7 @@
       };
     };
 
-    systemd.services.zigbee2mqtt.serviceConfig.EnvironmentFile = "/var/lib/secrets/zigbee2mqtt.env";
+    systemd.services.zigbee2mqtt.serviceConfig.EnvironmentFile = config.age.secrets.zigbee2mqtt-env.path; #"/var/lib/secrets/zigbee2mqtt.env";
 
 
     # mosquitto integration for mqtt broker
@@ -85,7 +193,7 @@
           port = 1883;
 
           users.zigbee2mqtt = {
-            passwordFile = "/var/lib/secrets/mqtt-zigbee2mqtt-password";
+            passwordFile = config.age.secrets.mqtt-zigbee2mqtt-password.path; #"/var/lib/secrets/mqtt-zigbee2mqtt-password";
             acl = [
               "readwrite zigbee2mqtt/#"
               "readwrite homeassistant/#"
@@ -93,7 +201,7 @@
           };
 
           users.homeassistant = {
-            passwordFile = "/var/lib/secrets/mqtt-homeassistant-password";
+            passwordFile = config.age.secrets.mqtt-homeassistant-password.path; #"/var/lib/secrets/mqtt-homeassistant-password";
             acl = [
               "readwrite #"
             ];

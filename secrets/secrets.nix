@@ -38,6 +38,11 @@ in
   "pokemon_tracker_nextauth.age".publicKeys = users ++ systems;
   "gaming-casper-signing-key.age".publicKeys = users ++ systems;
 
+  # HomeAssistant
+  "mqtt-zigbee2mqtt-password.age".publicKeys = users ++ systems;
+  "mqtt-homeassistant-password.age".publicKeys = users ++ systems;
+  "zigbee2mqtt.env.age".publicKeys = users ++ systems;
+
   # Nextcloud
   "nextcloud-admin-passwd.age".publicKeys = users ++ systems;
   "nextcloud-casper-passwd.age".publicKeys = users ++ systems;
