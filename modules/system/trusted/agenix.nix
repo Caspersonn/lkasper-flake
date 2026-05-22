@@ -25,7 +25,7 @@
       google-engine-bedrock = keyconf "google-engine-bedrock";
       mqtt-zigbee2mqtt-password =  keyconf "mqtt-zigbee2mqtt-password";
       mqtt-homeassistant-password = keyconf "mqtt-homeassistant-password";
-      zigbee2mqtt.env = keyconf "zigbee2mqtt.env";
+      zigbee2mqtt-env = keyconf "zigbee2mqtt-env";
       #spotify = keyconf "spotify";
     };
   };

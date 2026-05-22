@@ -41,7 +41,7 @@ in
   # HomeAssistant
   "mqtt-zigbee2mqtt-password.age".publicKeys = users ++ systems;
   "mqtt-homeassistant-password.age".publicKeys = users ++ systems;
-  "zigbee2mqtt.env.age".publicKeys = users ++ systems;
+  "zigbee2mqtt-env.age".publicKeys = users ++ systems;
 
   # Nextcloud
   "nextcloud-admin-passwd.age".publicKeys = users ++ systems;

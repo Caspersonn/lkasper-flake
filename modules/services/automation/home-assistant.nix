@@ -180,7 +180,7 @@
       };
     };
 
-    systemd.services.zigbee2mqtt.serviceConfig.EnvironmentFile = config.age.secrets.zigbee2mqtt.env.path; #"/var/lib/secrets/zigbee2mqtt.env";
+    systemd.services.zigbee2mqtt.serviceConfig.EnvironmentFile = config.age.secrets.zigbee2mqtt-env.path; #"/var/lib/secrets/zigbee2mqtt.env";
 
 
     # mosquitto integration for mqtt broker
