@@ -172,9 +172,14 @@
         };
 
         advanced = {
-          network_key = "GENERATE";
-          pan_id = "GENERATE";
-          ext_pan_id = "GENERATE";
+            # Only for the first time setup
+            #network_key = "GENERATE";
+            #pan_id = "GENERATE";
+            #ext_pan_id = "GENERATE";
+
+            pan_id = "af0f";
+            ext_pan_id = "5cdf67fee2da96c7";
+            network_key = "30a4be53b28ba64ec36e25a73e0c11b2";
           channel = 11;
         };
       };
