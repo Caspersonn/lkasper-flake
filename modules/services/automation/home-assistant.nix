@@ -177,10 +177,21 @@
             #pan_id = "GENERATE";
             #ext_pan_id = "GENERATE";
 
-            pan_id = "af0f";
-            ext_pan_id = "5cdf67fee2da96c7";
-            network_key = "30a4be53b28ba64ec36e25a73e0c11b2";
-          channel = 11;
+              channel = 11;
+
+            # 0xaf0f = 44815
+            pan_id = 44815;
+
+            # 5c df 67 fe e2 da 96 c7
+            ext_pan_id = [
+              92 223 103 254 226 218 150 199
+            ];
+
+            # 30 a4 be 53 b2 8b a6 4e c3 6e 25 a7 3e 0c 11 b2
+            network_key = [
+              48 164 190 83 178 139 166 78
+              195 110 37 167 62 12 17 178
+            ];
         };
       };
     };
