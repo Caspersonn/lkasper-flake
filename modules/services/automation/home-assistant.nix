@@ -177,7 +177,7 @@
             #pan_id = "GENERATE";
             #ext_pan_id = "GENERATE";
 
-              channel = 11;
+            channel = 25;
 
             # 0xaf0f = 44815
             pan_id = 44815;
