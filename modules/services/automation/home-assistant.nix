@@ -80,6 +80,11 @@
                 - action: switch.turn_off
                   target:
                     entity_id: switch.0x7c31fafffed877c5
+                - action: switch.turn_off
+                  metadata: {}
+                  target:
+                    device_id: 11eb5bdfd3ed3ea64942de741d70cef0
+                  data: {}
 
             - conditions:
                 - condition: trigger
@@ -179,6 +184,11 @@
                 - action: switch.turn_off
                   target:
                     entity_id: switch.0x7c31fafffed877c5
+                - action: switch.turn_off
+                  metadata: {}
+                  target:
+                    device_id: 11eb5bdfd3ed3ea64942de741d70cef0
+                  data: {}
 
             - conditions:
                 - condition: trigger
