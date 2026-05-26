@@ -62,6 +62,7 @@ in {
       #minecraft-server
       wireguard-server
       home-assistant
+      aiotools
 
       # System
       secrets
