@@ -57,10 +57,12 @@ in {
       acme
       vaultwarden
       nextcloud
-      materialious
-      invidious
-      minecraft-server
+      #materialious
+      #invidious
+      #minecraft-server
       wireguard-server
+      home-assistant
+      aiotools
 
       # System
       secrets

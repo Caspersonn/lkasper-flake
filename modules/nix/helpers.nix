@@ -5,6 +5,10 @@
       modules = let
         defaults = { pkgs, ... }: {
           _module.args.inputs = inputs;
+          _module.args.unstable = import inputs.unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
           nixpkgs.hostPlatform = system;
           nixpkgs.config.allowUnfree = true;
         };
