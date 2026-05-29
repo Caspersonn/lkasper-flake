@@ -24,7 +24,6 @@
       inotify-tools
       lynis
       nchat
-      neofetch
       ngrok
       postgresql_17_jit
       pritunl-client
