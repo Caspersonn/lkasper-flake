@@ -18,6 +18,7 @@
       lkh-hyprshot
       lkh-walker
       lkh-mako
+      lkh-foot
 
       # Shared modules
       shared-zsh
