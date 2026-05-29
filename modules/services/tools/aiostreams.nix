@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.aiotools = { config, pkgs, ... }: {
+  flake.modules.nixos.aiostreams = { config, pkgs, ... }: {
 
     virtualisation.oci-containers.containers.aiostreams = {
       image = "ghcr.io/viren070/aiostreams:latest";
@@ -7,7 +7,8 @@
       environment = {
         BASE_URL = "https://aiostreams.inspiravita.com";
         DATABASE_URI = "sqlite://./data/db.sqlite";
-        SECRET_KEY = "***REMOVED***"; # Generate with: openssl rand -hex 32
+        SECRET_KEY = config.age.secrets.aiostreams_secret_key.path;
+        AIOSTREAMS_AUTH = config.age.secrets.aiostreams_auth.path;
       };
       volumes = [ "aiostreams-data:/app/data" ];
     };

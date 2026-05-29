@@ -47,4 +47,8 @@ in
   "nextcloud-admin-passwd.age".publicKeys = users ++ systems;
   "nextcloud-casper-passwd.age".publicKeys = users ++ systems;
   "nextcloud-casper-netrc.age".publicKeys = users ++ systems;
+
+  # Aiostreams
+  "aiostreams-secret-key.age".publicKeys = users ++ systems;
+  "aiostreams-auth.age".publicKeys = users ++ systems;
 }
