@@ -99,6 +99,11 @@ in {
     boot.initrd.luks.devices."luks-a295b140-6310-4699-9853-1ad5af5747f0".device =
       "/dev/disk/by-uuid/a295b140-6310-4699-9853-1ad5af5747f0";
 
+    # WireGuard
+    custom.wireguard.address = "10.100.0.2/24";
+    custom.wireguard.privateKeySecret = "wireguard";
+    custom.wireguard.secretFile = ../../../secrets/wireguard-private.age;
+
     # i2c for DDC/CI (host-specific)
     hardware.i2c.enable = true;
 
