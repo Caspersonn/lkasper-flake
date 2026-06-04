@@ -63,6 +63,7 @@ in {
       wireguard-server
       home-assistant
       aiostreams
+      adguardhome
 
       # System
       secrets
