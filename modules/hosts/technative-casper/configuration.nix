@@ -91,6 +91,8 @@ in {
       printing
       #postgres
       #twenty
+      navidrome
+      cato-client
 
       # System
       secrets

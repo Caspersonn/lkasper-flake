@@ -20,7 +20,7 @@
       [
         avizo
         bc
-        blueberry
+        blueman
         brightnessctl
         cava
         glib

@@ -6,7 +6,6 @@
       gopls
       nixd
       marksman
-      nodePackages.bash-language-server
       lua-language-server
       nil
       rust-analyzer
@@ -16,7 +15,6 @@
       # Formatters & Linters
       nixfmt-classic
       rustfmt
-      nodePackages.prettier
       markdownlint-cli
     ];
   };
