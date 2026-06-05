@@ -15,7 +15,7 @@
       pgadmin4-desktopmode
 
       # Security & Utilities
-      bitwarden-desktop
+      #bitwarden-desktop
       filezilla
       ddcutil
       winetricks

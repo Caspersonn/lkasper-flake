@@ -4,7 +4,7 @@
       inputs.teejay.packages."${pkgs.stdenv.hostPlatform.system}".default
       inputs.specgetty.packages."${pkgs.stdenv.hostPlatform.system}".default
 
-      claude-code
+      unstable.claude-code
       # opencode  # Configuration is in home-manager
       claude-monitor
       pkgs.unstable.rtk

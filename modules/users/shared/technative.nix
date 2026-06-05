@@ -11,6 +11,7 @@
       aws-nuke
       beam27Packages.elixir
       bruno
+      cato-client
       docker
       entr
       erlang_28

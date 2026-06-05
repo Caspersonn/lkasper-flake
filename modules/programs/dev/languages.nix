@@ -16,7 +16,6 @@
 
       # Nix Tools
       home-manager
-      node2nix
       pre-commit
 
       # Other
