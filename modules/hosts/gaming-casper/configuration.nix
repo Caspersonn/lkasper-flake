@@ -95,6 +95,7 @@ in {
       udev-skylanders
       udev-ddcutil
       udev-logitech-wheel
+      udev-disable-mouse
     ];
 
     # WireGuard
@@ -102,10 +103,11 @@ in {
     custom.wireguard.privateKeySecret = "wireguard-gaming-casper";
     custom.wireguard.secretFile = ../../../secrets/wireguard-private-gaming-casper.age;
 
-    networking.firewall.allowedTCPPorts = [ 3000 ];
+    #networking.firewall.allowedTCPPorts = [ 3000 27015 ];
+    #networking.firewall.allowedUDPPorts = [ 27015 27016];
 
     # State version
-    system.stateVersion = "25.11";
+    system.stateVersion = "26.05";
 
     # Host-specific configuration
     networking.hostName = "gaming-casper";
