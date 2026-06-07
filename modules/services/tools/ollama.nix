@@ -6,7 +6,6 @@
       environmentVariables = { OLLAMA_DEBUG = "1"; };
       rocmOverrideGfx = "10.3.0";
       host = "0.0.0.0";
-      acceleration = "rocm";
       openFirewall = true;
     };
 
