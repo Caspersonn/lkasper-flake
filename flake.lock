@@ -2830,11 +2830,11 @@
         "walker": "walker"
       },
       "locked": {
-        "lastModified": 1780391062,
-        "narHash": "sha256-s8KVQonsm+3zpE0QppvhyzSWGXxXuoRKq5nlaWBjqzg=",
+        "lastModified": 1780691359,
+        "narHash": "sha256-oTy791WoJKREj2dmHXQJ56IyRx81eESHxlXOgtV60iY=",
         "owner": "caspersonn",
         "repo": "lkasper-hyprland",
-        "rev": "c69d8e7a8c1390aa94a6d57f5453840aeee5369b",
+        "rev": "0e3a11e2739bb961fcebde53cefaec21ec1685eb",
         "type": "github"
       },
       "original": {
