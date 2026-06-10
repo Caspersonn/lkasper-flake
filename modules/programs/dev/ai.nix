@@ -8,6 +8,7 @@
       # opencode  # Configuration is in home-manager
       claude-monitor
       pkgs.unstable.rtk
+      beans
     ];
   };
 }
