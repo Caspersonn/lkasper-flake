@@ -42,7 +42,6 @@
           libdrm
           libglvnd
           libgbm
-        ] ++ (with pkgs.xorg; [
           libX11
           libXcomposite
           libXdamage
@@ -54,7 +53,7 @@
           libXrender
           libxcb
           libxkbcommon
-        ]);
+        ];
     };
   };
 }
