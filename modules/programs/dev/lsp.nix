@@ -13,7 +13,7 @@
       tree-sitter
 
       # Formatters & Linters
-      nixfmt-classic
+      nixfmt
       rustfmt
       markdownlint-cli
     ];

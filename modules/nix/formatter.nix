@@ -1,5 +1,5 @@
 { inputs, ... }: {
   perSystem = { pkgs, ... }: {
-    formatter = pkgs.nixfmt-classic;
+    formatter = pkgs.nixfmt;
   };
 }

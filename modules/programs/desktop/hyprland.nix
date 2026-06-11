@@ -10,12 +10,6 @@
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-    #xdg.portal = {
-    #  enable = true;
-    #  wlr.enable = true;
-    #  extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-    #};
-
     environment.systemPackages = with pkgs;
       [
         avizo
@@ -57,15 +51,6 @@
       ] ++ lib.optionals (inputs ? swww)
       [ inputs.swww.packages.${pkgs.system}.swww ];
 
-    services.greetd = {
-      enable = true;
-      settings.default_session = {
-        user = "casper";
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-      };
-    };
-
     hardware.graphics.extraPackages = with pkgs; [ libva libva-utils ];
-
   };
 }
