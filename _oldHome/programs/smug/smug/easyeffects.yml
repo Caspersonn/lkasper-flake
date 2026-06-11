@@ -1,9 +1,0 @@
-session: easyeffects
-
-root: ~/
-
-windows:  
-  - name: easyeffects
-    layout: main-horizontal
-    commands:
-      - easyeffects --gapplication-service
