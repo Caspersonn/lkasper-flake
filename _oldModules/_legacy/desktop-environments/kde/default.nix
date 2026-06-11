@@ -1,8 +1,0 @@
-{...}:
-
-{
-  imports = [
-    ./desktop-kde.nix
-  ];
-}
-
