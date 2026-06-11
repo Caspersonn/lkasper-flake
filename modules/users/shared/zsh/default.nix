@@ -13,6 +13,7 @@
       syntaxHighlighting.enable = true;
       initExtra = ''
         PATH=$HOME/bin:$PATH
+        PATH=$HOME/.local/bin:$PATH
         set -o allexport
         #compdef rme
         # rme zsh completion
