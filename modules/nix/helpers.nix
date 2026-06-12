@@ -14,38 +14,9 @@
         };
       in [
         defaults
-        #  home-manager.nixosModules.home-manager
-        #  agenix.nixosModules.default
-        #  monitoring.nixosModules.monitoring
-        #  spicetify-nix.nixosModules.spicetify
-        #{ home-manager.useGlobalPkgs = true; }
         inputs.self.modules.nixos.${hostname}
       ];
     };
-
-  #flake.lib.makeHomeConf = { username ? "casper", hostname
-  #  , system ? "x86_64-linux", channel ? inputs.nixpkgs, imports ? [ ], ... }:
-  #  inputs.home-manager.lib.homeManagerConfiguration {
-  #    pkgs = import channel {
-  #      inherit system;
-  #      config.allowUnfree = true;
-  #    };
-  #    extraSpecialArgs = {
-  #      inherit inputs hostname username;
-  #      unstable = import inputs.unstable {
-  #        inherit system;
-  #        config.allowUnfree = true;
-  #      };
-  #    };
-  #    modules = [{
-  #      home = {
-  #        inherit username;
-  #        homeDirectory = "/home/${username}";
-  #        stateVersion = "25.11";
-  #      };
-  #      programs.home-manager.enable = true;
-  #    }] ++ imports;
-  #  };
 
   flake.lib = {
     makeHomeConf = {
@@ -55,25 +26,13 @@
       imports ? [],
       homedir ? "/home/casper",
       system ? "x86_64-linux",
-      #secondbrain ? false,
-      #awscontrol ? false,
-      #desktop ? false,
-      #swapAltWin ? false,
       ...
       }:
       inputs.home-manager.lib.homeManagerConfiguration {
 
         modules = [
-
-          #inputs.self.modules.homeManager.${username}
-
-          #inputs.hm-ricing-mode.homeManagerModules.hm-ricing-mode
-
-          #(inputs.import-tree ../../home/_generic-for-contribution)
-          #(../../home + "/${username}")
-
           {
-            home.stateVersion = "25.11";
+            home.stateVersion = "26.05";
             home.username = username;
             home.homeDirectory = homedir;
           }

@@ -9,13 +9,28 @@ windows:
       - ner
     panes:
       - type: horizontal
+        commands:
+          - export AWS_PROFILE=technative
+          - clear
 
   - name: non-prod
     layout: main-horizontal
+    commands:
+      - export AWS_PROFILE=TN-NonProduction
+      - clear
     panes:
       - type: horizontal
+        commands:
+          - export AWS_PROFILE=TN-NonProduction
+          - clear
 
   - name: prod
     layout: main-horizontal
+    commands:
+      - export AWS_PROFILE=TN-Production
+      - clear
     panes:
       - type: horizontal
+        commands:
+          - export AWS_PROFILE=TN-Production
+          - clear

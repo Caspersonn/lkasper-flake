@@ -13,6 +13,8 @@
       package = unstable.opencode;
       agents = { };
       commands = { };
+      tui = {
+      };
       settings = {
         theme = "opencode";
         autoshare = false;
