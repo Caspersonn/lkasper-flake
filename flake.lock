@@ -2827,11 +2827,11 @@
         "walker": "walker"
       },
       "locked": {
-        "lastModified": 1781457626,
-        "narHash": "sha256-hKVwsjclpbLiPOwPUZPpF+zYPzoXmDXsfoBOdmE519s=",
-        "owner": "Caspersonn",
+        "lastModified": 1781534946,
+        "narHash": "sha256-Hzeky5+dGhWNgZYHQUx2CaiGHI5DGsjOF9ZOpfhF0l8=",
+        "owner": "caspersonn",
         "repo": "lkasper-hyprland",
-        "rev": "b8c354b801df5cca953b41d09fd83bd9a67664e0",
+        "rev": "61343e0c9bb98c4bcba567ce9181497644da502e",
         "type": "github"
       },
       "original": {
