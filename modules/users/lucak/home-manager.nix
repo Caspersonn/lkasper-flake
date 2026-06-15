@@ -10,8 +10,6 @@
       lkh-hyprpaper
       lkh-hypridle
       lkh-btop
-      lkh-zsh
-      lkh-starship
       lkh-direnv
       lkh-fonts
       lkh-zoxide
@@ -20,7 +18,8 @@
       lkh-mako
 
       # Shared modules
-      shared-zsh
+      #shared-zsh
+      shared-fish
       shared-git
       shared-neovim
       shared-fzf

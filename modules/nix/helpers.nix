@@ -56,11 +56,6 @@
             #overlays = [ (import ../overlays) ];
             config.allowUnfree = true;
           };
-          unstable-opencode = import inputs.unstable-opencode {
-            inherit system;
-            #overlays = [ (import ../overlays) ];
-            config.allowUnfree = true;
-          };
         };
       };
   };

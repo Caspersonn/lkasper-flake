@@ -2,7 +2,8 @@
   flake.modules.homeManager.antonia = { pkgs, ... }: {
     imports = (with inputs.self.modules.homeManager; [
       # Shared modules
-      shared-zsh
+      #shared-zsh
+      shared-fish
       shared-git
       shared-neovim
       shared-fzf
