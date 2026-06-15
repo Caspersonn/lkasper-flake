@@ -1,11 +1,10 @@
 {
-  description = "Best config";
+  description = "Personal config on current stable 26.05";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs2405.url = "github:NixOS/nixpkgs/nixos-24.05";
-    unstable-opencode.url = "github:NixOS/nixpkgs/nixos-unstable";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
     bmc.url = "github:wearetechnative/bmc";
@@ -42,11 +41,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     monitoring.url = "github:wearetechnative/monitoring";
-    # Dendritic tools
     import-tree.url = "github:vic/import-tree";
     pokemon-tracker.url = "github:Caspersonn/pokemon-tracker";
     omarchy-nix = {
-      url = "github:caspersonn/lkasper-hyprland";
+      url = "github:Caspersonn/lkasper-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };

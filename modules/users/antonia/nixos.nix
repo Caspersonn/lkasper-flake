@@ -4,7 +4,7 @@
       isNormalUser = true;
       description = "Antonia Gosker";
       extraGroups = [ "networkmanager" "wheel" "docker" "disk" ];
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
     };
   };
 }
