@@ -2755,14 +2755,17 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1781369039,
-        "narHash": "sha256-7q3jLAPttWEv5ONqs54dalQjW6OkfZXI0GKfxoPRfLY=",
-        "path": "/home/casper/git/personal/nixvim",
-        "type": "path"
+        "lastModified": 1781547379,
+        "narHash": "sha256-/gBucXdarHKxhpyGulnDu//e8bX0B7sdLRQ63NdNFbA=",
+        "owner": "caspersonn",
+        "repo": "nixvim",
+        "rev": "ebd0a85683c30a5fa6ef32f26cf326c1f88b960a",
+        "type": "github"
       },
       "original": {
-        "path": "/home/casper/git/personal/nixvim",
-        "type": "path"
+        "owner": "caspersonn",
+        "repo": "nixvim",
+        "type": "github"
       }
     },
     "nixvim_2": {
