@@ -10,6 +10,7 @@
       # Media & Entertainment
       obs-studio
       video-trimmer
+      blanket
 
       # Development
       pgadmin4-desktopmode
