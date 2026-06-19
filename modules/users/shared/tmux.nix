@@ -26,6 +26,14 @@
         bind P popup -E 'tses pull'
         bind T popup -E -w 80% -h 80% 'tj --columns --sort-activity --no-sound --no-notify --picker'
 
+        # Enable vi mode
+        setw -g mode-keys vi
+
+        # vim-like selection key bindings
+        bind -T copy-mode-vi v send-keys -X begin-selection
+        bind -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+        bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
+
         set -g @yank_selection_mouse 'clipboard'
         set -g @yank_with_mouse on
         set -gq allow-passthrough on
