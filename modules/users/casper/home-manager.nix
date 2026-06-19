@@ -15,10 +15,8 @@
       lkh-zoxide
       lkh-hyprshot
       lkh-walker
-      lkh-mako
       lkh-foot
-
-
+      lkh-yazi
 
       # Shared modules
       #shared-zsh
