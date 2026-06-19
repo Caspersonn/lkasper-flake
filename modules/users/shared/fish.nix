@@ -105,7 +105,7 @@
           set -l branch (command git symbolic-ref --short HEAD 2>/dev/null; or command git rev-parse --short HEAD 2>/dev/null)
           if test -n "$branch"
             set_color 83a598
-            echo -n '  '
+            echo -n ' '
             set_color fb4934
             echo -n $branch
             set -l dirty (command git status --porcelain 2>/dev/null)
