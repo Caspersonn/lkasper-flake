@@ -28,7 +28,6 @@
         kitty
         libnotify
         mpvpaper
-        nautilus
         networkmanagerapplet
         nwg-bar
         nwg-displays
@@ -36,9 +35,6 @@
         playerctl
         power-profiles-daemon
         rofi
-        sway
-        swaynotificationcenter
-        swayosd
         tuigreet
         uwsm
         waybar

@@ -15,7 +15,6 @@
       lkh-zoxide
       lkh-hyprshot
       lkh-walker
-      lkh-mako
 
       # Shared modules
       #shared-zsh
