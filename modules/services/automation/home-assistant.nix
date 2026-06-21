@@ -236,6 +236,8 @@
         # Recommended for fast zlib compression
         # https://www.home-assistant.io/integrations/isal
         "isal"
+
+        "adguard"
       ];
       config = {
         # Includes dependencies for a basic setup
