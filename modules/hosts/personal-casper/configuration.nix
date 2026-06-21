@@ -87,6 +87,7 @@ in {
       # System
       secrets
       udev-ddcutil
+      printing
     ];
 
     # State version
