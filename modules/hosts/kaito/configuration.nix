@@ -59,7 +59,7 @@ in {
       nextcloud
       #materialious
       #invidious
-      #minecraft-server
+      minecraft-server
       wireguard-server
       home-assistant
       aiostreams
