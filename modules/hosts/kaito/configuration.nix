@@ -53,17 +53,17 @@ in {
       #rtcwake
 
       # Tools
-      pokemon-tracker
       acme
       vaultwarden
       nextcloud
       #materialious
       #invidious
-      minecraft-server
+      #minecraft-server
       wireguard-server
       home-assistant
       aiostreams
       adguardhome
+      navidrome
 
       # System
       secrets
@@ -74,6 +74,8 @@ in {
 
     networking.hostName = hostname;
     programs.dconf.enable = true;
+
+    networking.firewall.allowedTCPPorts = [ 443 80 51820 ];
 
     services.xserver.displayManager.gdm.autoSuspend = false;
     systemd.targets.sleep.enable = false;
