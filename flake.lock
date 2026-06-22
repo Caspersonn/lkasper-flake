@@ -2889,11 +2889,11 @@
         "nixpkgs": "nixpkgs_20"
       },
       "locked": {
-        "lastModified": 1770479194,
-        "narHash": "sha256-c0W05Y5cJ5WdqN3Vf5jWcErBgpeMBAA/mGTdYmG3eYU=",
+        "lastModified": 1782067243,
+        "narHash": "sha256-63ze5M+yT819sddX4dB5VBsXaDWi3vfjBPBqP+VhapI=",
         "owner": "Caspersonn",
         "repo": "pokemon-tracker",
-        "rev": "c863af2fcdf7e0226a4aa6b9c35b1e4032bb77f6",
+        "rev": "e0b078674db95d6d6a57ee4f1b11a14e091b3a98",
         "type": "github"
       },
       "original": {
