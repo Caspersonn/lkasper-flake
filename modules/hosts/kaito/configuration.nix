@@ -75,7 +75,8 @@ in {
     networking.hostName = hostname;
     programs.dconf.enable = true;
 
-    networking.firewall.allowedTCPPorts = [ 443 80 51820 ];
+    networking.firewall.allowedTCPPorts = [ 53 443 80 51820 ];
+    networking.firewall.allowedUDPPorts = [ 53 ];
 
     services.xserver.displayManager.gdm.autoSuspend = false;
     systemd.targets.sleep.enable = false;
