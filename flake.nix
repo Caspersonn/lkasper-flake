@@ -44,7 +44,7 @@
     import-tree.url = "github:vic/import-tree";
     pokemon-tracker.url = "github:Caspersonn/pokemon-tracker";
     omarchy-nix = {
-      url = "github:Caspersonn/lkasper-hyprland";
+      url = "/home/casper/git/personal/lkasper-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -59,6 +59,9 @@
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     aws-tui.url = "github:Caspersonn/aws-tui";
+    mip-rs.url = "github:mipmip/mip.rs";
+    nivis.url = "github:wearetechnative/nivis";
+    openlore.url = "/home/casper/git/technative_b.v./OpenLore";
   };
 
   outputs = inputs@{ flake-parts, ... }:
