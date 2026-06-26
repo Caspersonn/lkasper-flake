@@ -19,17 +19,12 @@
         theme = "opencode";
         autoshare = false;
         autoupdate = true;
-        plugin = [ "@tarquinen/opencode-dcp@latest" "opencode-openai-codex-auth@latest" "${config.home.homeDirectory}/git/personal/opencode-anthropic-login-via-cli" ];
+        plugin = [ "@tarquinen/opencode-dcp@latest" "opencode-openai-codex-auth@latest" "opencode-with-claude" ];
         provider = {
           anthropic = {
             options = {
-              baseURL = "https://api.anthropic.com/v1";
-            };
-          };
-          amazon-bedrock = {
-            options = {
-              region = "eu-central-1";
-              profile = "TEC-playground-student14";
+              baseURL = "http://127.0.0.1:3456";
+              apiKey  = "dummy";
             };
           };
         };

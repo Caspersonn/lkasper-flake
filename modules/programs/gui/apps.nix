@@ -5,7 +5,7 @@
       libreoffice-qt6-fresh
       onlyoffice-desktopeditors
       signal-desktop
-      pkgs.unstable.discord
+      discord
 
       # Media & Entertainment
       obs-studio

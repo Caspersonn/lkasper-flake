@@ -89,7 +89,7 @@ in {
       wireguard
       neo4j
       printing
-      #postgres
+      postgres
       #twenty
       navidrome
       cato-client
