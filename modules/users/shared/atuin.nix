@@ -9,7 +9,13 @@
         sync_address = "https://atuin.inspiravita.com";
         search_mode = "prefix";
       };
-      flags = [ "--disable-up-arrow" ];
+      flags = [ "--disable-up-arrow" "--disable-ai"];
+
+      settings = {
+        ai = {
+          enabled = false;
+        };
+      };
     };
   };
 }
