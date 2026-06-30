@@ -60,8 +60,9 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     aws-tui.url = "github:Caspersonn/aws-tui";
     mip-rs.url = "github:mipmip/mip.rs";
-    nivis.url = "github:wearetechnative/nivis";
-    openlore.url = "/home/casper/git/technative_b.v./OpenLore";
+    nivis.url = "git+ssh://git@github.com/nivis-project/nivis.git";
+    #openlore.url = "/home/casper/git/technative_b.v./OpenLore";
+    meridian.url = "github:rynfar/meridian";
   };
 
   outputs = inputs@{ flake-parts, ... }:
