@@ -7,11 +7,9 @@
       enable = true;
 
       plugins = [
-        # Colorized command output
         { name = "grc"; src = pkgs.fishPlugins.grc.src; }
         { name = "aws"; src = pkgs.fishPlugins.aws; }
         { name = "colored-man-pages"; src = pkgs.fishPlugins.colored-man-pages; }
-        # Manually packaged `z` jump plugin
         {
           name = "z";
           src = pkgs.fetchFromGitHub {
@@ -50,7 +48,6 @@
           end
         '';
 
-        # Select an AWS profile via bmc and load it into the current shell.
         aws-switch = ''
           command bmc profsel $argv | __load_exports
         '';
@@ -58,24 +55,6 @@
           command bmc profsel -p technative $argv | __load_exports
         '';
 
-        # Launch Claude Code against the Technative Bedrock playground.
-        bcd = ''
-          set -gx AWS_PROFILE 'TEC-playground-student14'
-          set -gx CLAUDE_CODE_USE_BEDROCK 1
-          set -gx ANTHROPIC_MODEL 'arn:aws:bedrock:eu-central-1:939665396134:inference-profile/eu.anthropic.claude-sonnet-4-5-20250929-v1:0'
-          set -gx AWS_REGION eu-central-1
-          claude $argv
-        '';
-        bcdc = ''
-          set -gx AWS_PROFILE 'TEC-playground-student14'
-          set -gx CLAUDE_CODE_USE_BEDROCK 1
-          set -gx ANTHROPIC_MODEL 'arn:aws:bedrock:eu-central-1:939665396134:inference-profile/eu.anthropic.claude-sonnet-4-5-20250929-v1:0'
-          set -gx AWS_REGION eu-central-1
-          claude -c $argv
-        '';
-
-        # Gruvbox prompt — left side: user@host, cwd, git branch + dirty/clean.
-        # Mirrors the old oh-my-zsh "casper" theme.
         fish_prompt = ''
           set -l last_status $status
 
@@ -161,20 +140,8 @@
         set -g fish_pager_color_completion ebdbb2
         set -g fish_pager_color_description a89984
 
-        # Personal bin dirs first on PATH. Added unconditionally (unlike
-        # fish_add_path, which skips dirs that don't exist yet) because e.g.
-        # claude drops self-updates into ~/.local/bin before it exists.
-        for dir in $HOME/bin $HOME/.local/bin
-          contains $dir $PATH; or set -gx PATH $dir $PATH
-        end
-
         # rme completion (mirrors the zsh `compadd $(rme --completions)`)
         complete -c rme -f -a "(rme --completions)"
-
-        # Load runtime secrets written by the neovim avante / google tooling
-        for f in /tmp/avante-bedrock /tmp/avante-openai /tmp/google-bedrock /tmp/google-engine-bedrock
-          test -f $f; and __load_exports <$f
-        end
       '';
     };
   };
