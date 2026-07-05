@@ -1,5 +1,9 @@
 { inputs, ... }: {
   flake.modules.nixos.dev-git = { pkgs, ... }: {
-    environment.systemPackages = with pkgs; [ gh git-sync jujutsu ];
+    environment.systemPackages = with pkgs; [
+      gh
+      git-sync
+      jujutsu
+    ];
   };
 }

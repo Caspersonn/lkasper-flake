@@ -19,9 +19,9 @@
       lkh-yazi
 
       # Shared modules
-      #shared-zsh
       shared-fish
       shared-git
+      shared-jujutsu
       shared-neovim
       shared-fzf
       shared-zoxide
@@ -33,7 +33,6 @@
       shared-font
       shared-firefox
       shared-age
-      shared-opencode
       shared-dirty-repo-scanner
       shared-smug
       shared-vesktop
@@ -43,6 +42,9 @@
 
       # Lucak-only complex modules
       lucak-aws
+
+      #shared-opencode
+
     ]);
 
     # Git identity
@@ -50,6 +52,12 @@
       email = "lucakasper8@gmail.com";
       name = "Caspersonn";
     };
+
+    programs.jujutsu.settings.user = {
+        email = "lucakasper8@gmail.com";
+        name = "Caspersonn";
+    };
+
 
     # Personal zsh aliases
     programs.zsh.shellAliases = {
