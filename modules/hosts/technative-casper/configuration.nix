@@ -59,7 +59,6 @@ in {
       cli-tools
 
       # Programs - Development
-      dev-ai
       dev-android
       dev-git
       dev-languages

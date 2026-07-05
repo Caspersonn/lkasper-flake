@@ -60,7 +60,6 @@ in {
       steam
 
       # Programs - dev
-      dev-ai
       dev-git
       dev-lsp
       dev-languages

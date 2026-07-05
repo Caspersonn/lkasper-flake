@@ -6,7 +6,6 @@
       htop
       gum
       glow
-      claude-monitor
 
       # Network & File Management
       wget
