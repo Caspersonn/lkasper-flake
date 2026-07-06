@@ -81,7 +81,33 @@
       id = 0;
       name = "personal";
       isDefault = true;
-      search.default = "ddg";
+      search.default = "kg";
+      search.force = true;
+      search.engines = {
+        kagi = {
+          name = "Kagi";
+          urls = [
+            {
+              template = "https://www.kagi.com";
+              params = [ { name = "search"; value = "{searchTerms}"; } ];
+            }
+          ];
+          definedAliases = [ "@kg" ];
+        };
+        "Nix Packages" = {
+          urls = [
+            {
+              template = "https://search.nixos.org/packages";
+              params = [
+                { name = "channel"; value = "unstable"; }
+                { name = "query";   value = "{searchTerms}"; }
+              ];
+            }
+          ];
+          icon           = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@np" ];
+        };
+      };
       settings = {
         "browser.toolbars.bookmarks.visibility" = "never";
         "browser.bookmarks.addedImportButton" = false;
