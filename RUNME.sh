@@ -117,14 +117,14 @@ setup_aws_key(){
     cp ~/.aws/credentials ~/.aws/credentials.bak
     chmod 600 ~/.aws/credentials.bak
   fi
-  age --decrypt -i ~/.ssh/id_ed25519 ./secrets/aws-credentials-copy.age > ~/.aws/credentials
+  age --decrypt -i ~/.ssh/id_ed25519 ./secrets/aws_credentials.age > ~/.aws/credentials
   chmod 600 ~/.aws/credentials
 
   if [ ~/.aws/config ]; then
     cp ~/.aws/config ~/.aws/config.bak
     chmod 600 ~/.aws/config.bak
   fi
-  age --decrypt -i ~/.ssh/id_ed25519 ./secrets/aws-config-copy-first-time-only.age > ~/.aws/config
+  age --decrypt -i ~/.ssh/id_ed25519 ./secrets/aws_config.age > ~/.aws/config
   chmod 600 ~/.aws/config
 
   copy_aws_other_accounts
@@ -133,8 +133,8 @@ setup_aws_key(){
 
 make_command "technativeawsupdate" "update AWS account info from technative"
 technativeawsupdate(){
-  aws-mfa --profile technative --device arn:aws:iam::521402697040:mfa/pim@technative.nl
-  aws --profile=technative-web_dns s3 cp s3://docs-mcs.technative.eu-longhorn/managed_service_accounts.json ~/.aws/
+  aws-mfa --profile technative --device arn:aws:iam::521402697040:mfa/Ideapad15
+  aws --profile=TN-web_dns s3 cp s3://docs-mcs.technative.eu-longhorn/managed_service_accounts.json ~/.aws/
   echo "Don't forget to run home-manager again"
 }
 
