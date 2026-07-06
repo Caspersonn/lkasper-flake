@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 
-let hostname = "nixhost";
+let hostname = "ip-10-0-2-196.eu-central-1.compute.internal";
 
 in {
 
