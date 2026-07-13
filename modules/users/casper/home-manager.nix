@@ -36,6 +36,8 @@
       shared-dirty-repo-scanner
       shared-smug
       shared-vesktop
+      shared-meridian
+      shared-opencode
 
       # Work shared modules
       shared-technative

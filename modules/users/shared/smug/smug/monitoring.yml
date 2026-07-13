@@ -10,7 +10,7 @@ windows:
     panes:
       - type: horizontal
         commands:
-          - claude-monitor
+          - claude-code-monitor
     panes:
       - type: vertical
         commands:

@@ -11,6 +11,7 @@
       obs-studio
       video-trimmer
       blanket
+      feishin
 
       # Development
       pgadmin4-desktopmode
