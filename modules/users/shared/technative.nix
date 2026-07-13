@@ -17,7 +17,6 @@
       erlang_28
       fastfetch
       gh
-      gimp3
       git-remote-codecommit
       granted
       hedgedoc

@@ -57,6 +57,7 @@
 
         fish_prompt = ''
           set -l last_status $status
+          set -x PATH /home/casper/bin $PATH
 
           # success (green) / error (red) arrow
           if test $last_status -eq 0

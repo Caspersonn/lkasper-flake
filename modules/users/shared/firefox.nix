@@ -19,6 +19,16 @@
             "https://addons.mozilla.org/firefox/downloads/latest/return-youtube-dislikes/latest.xpl";
           installation_mode = "force_installed";
         };
+        "{b5e0e8de-ebfe-4306-9528-bcc18241a490}" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/granted/latest.xpl";
+          installation_mode = "force_installed";
+        };
+        "hello@solidtime.io" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/solidtime/latest.xpl";
+          installation_mode = "force_installed";
+        };
       };
     };
   };

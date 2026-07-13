@@ -13,11 +13,10 @@
     nixpkgs-cosmic.follows = "nixos-cosmic/nixpkgs";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     stylix.url = "github:danth/stylix/release-25.11";
-    croctalk.url = "github:wearetechnative/croctalk";
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirty-repo-scanner.url = "github:mipmip/dirty-repo-scanner";
     swww.url = "github:LGFae/swww";
-    nixvim.url = "github:caspersonn/nixvim";
+    nixvim.url = "/home/casper/git/personal/nixvim";
     openspec.url = "github:Fission-AI/OpenSpec";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     ssmsh.url = "github:torreirow/ssmsh";
@@ -44,7 +43,7 @@
     import-tree.url = "github:vic/import-tree";
     pokemon-tracker.url = "github:Caspersonn/pokemon-tracker";
     omarchy-nix = {
-      url = "github:Caspersonn/lkasper-hyprland";
+      url = "/home/casper/git/personal/lkasper-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -71,7 +70,7 @@
       imports = [
         # Enable flake.modules support
         flake-parts.flakeModules.modules
-	inputs.home-manager.flakeModules.home-manager
+        inputs.home-manager.flakeModules.home-manager
         # Automatically import all dendritic modules from modules/
         (inputs.import-tree ./modules)
         # Centralized home-manager configurations

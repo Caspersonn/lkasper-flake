@@ -63,6 +63,7 @@ in {
       dev-git
       dev-languages
       dev-lsp
+      dev-ai
 
       # Programs - GUI Apps
       gui-apps

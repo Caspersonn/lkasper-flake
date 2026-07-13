@@ -12,7 +12,19 @@
         autoshare = false;
         autoupdate = true;
         plugin = [ "@tarquinen/opencode-dcp@latest" "opencode-openai-codex-auth@latest" config.services.meridian.opencode.pluginPath ];
+
         provider = {
+          llama = {
+            name = "llama.cpp (local)";
+            npm = "@ai-sdk/openai-compatible";
+            options = {
+              baseURL = "http://127.0.0.1:8080/v1";
+              apiKey = "local";
+            };
+            models = {
+              "Huihui-gemma-4-26B-A4B-it-abliterated-TQ1_0" = { "name" = "Gemma-4-26B-A4B (local)"; };
+            };
+          };
           anthropic = {
             options = {
               baseURL = "http://127.0.0.1:3456";
@@ -20,34 +32,9 @@
             };
           };
         };
+        model = "llama/Huihui-gemma-4-26B-A4B-it-abliterated-TQ1_0";
       };
       themes = { };
-    };
-    imports = [
-      inputs.meridian.homeManagerModules.default
-    ];
-
-    xdg.configFile."meridian/sdk-features.json".text = builtins.toJSON {
-      opencode = {
-        clientSystemPrompt = false;
-        codeSystemPrompt = true;
-      };
-    };
-
-    services.meridian = {
-      enable = true;
-
-      settings = {
-        port = 3456;
-        host = "127.0.0.1";
-        passthrough = true;
-        defaultAgent = "opencode";
-      };
-
-      environment = {
-        MERIDIAN_CLAUDE_PATH = "/run/current-system/sw/bin/claude";
-        MERIDIAN_DEBUG = "1";
-      };
     };
   };
 }
