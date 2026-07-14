@@ -2971,8 +2971,8 @@
         "walker": "walker"
       },
       "locked": {
-        "lastModified": 1783924038,
-        "narHash": "sha256-kDx38dlufGyI9xdb5ILl8ObxZADfrMIHu8u0h+9UMlw=",
+        "lastModified": 1784029898,
+        "narHash": "sha256-4xZVVRFUjPCYfJtD3+3KiMDqHpW/zeUr94v5b9Ur3gQ=",
         "path": "/home/casper/git/personal/lkasper-hyprland",
         "type": "path"
       },
