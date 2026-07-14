@@ -12,6 +12,18 @@ flake.modules.nixos.navidrome = {pkgs, ...}: {
       ];
     };
 
+    services.nginx = {
+      enable = true;
+      virtualHosts."navidrome.inspiravita.com" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:4533";
+          proxyWebsockets = true;
+        };
+      };
+    };
+
     # Allow the CD-rip watcher on the laptop to push finished albums into
     # navidrome's music folder over ssh. It rsyncs as user casper and
     # invokes rsync on this host through `sudo -n -u navidrome` so files
