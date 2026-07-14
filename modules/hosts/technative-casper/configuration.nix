@@ -93,6 +93,7 @@ in {
       #twenty
       navidrome
       cato-client
+      llama-cpp
 
       # System
       secrets
