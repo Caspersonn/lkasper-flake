@@ -41,6 +41,7 @@ in {
       openssh
       nixpkgs
       age
+      remote_builder
 
       # Hardware
       framework-misc
@@ -107,7 +108,6 @@ in {
     networking.hostName = "technative-casper";
 
     # WireGuard
-    custom.wireguard.address = "10.100.0.2/24";
     custom.wireguard.privateKeySecret = "wireguard";
     custom.wireguard.secretFile = ../../../secrets/wireguard-private.age;
 
