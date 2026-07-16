@@ -1,10 +1,6 @@
 { inputs, ... }: {
   flake.modules.nixos.wireguard = { config, lib, ... }: {
     options.custom.wireguard = {
-      address = lib.mkOption {
-        type = lib.types.str;
-        description = "WireGuard tunnel address for this host";
-      };
       privateKeySecret = lib.mkOption {
         type = lib.types.str;
         default = "wireguard";
@@ -26,20 +22,22 @@
       networking.wg-quick.interfaces = {
         wgtechnative = {
           autostart = false;
-          address = [ cfg.address ];
+          address = [ "10.0.0.2/32" ];
           privateKeyFile = config.age.secrets.${cfg.privateKeySecret}.path;
 
           peers = [{
             publicKey = "CWdPTt8t7bRVzStETmU8J/QimhdwPTGVH0R0Fn/nPFg=";
-            allowedIPs = [ "0.0.0.0/0" "::/0" ];
+            allowedIPs = [ "0.0.0.0/0" ];
             endpoint = "82.172.137.171:51820";
             persistentKeepalive = 25;
           }];
+        postUp = "iptables -A FORWARD -i wgtechnative -d 224.0.0.251/32 -j ACCEPT";
+        postDown = "iptables -A FORWARD -o wgtechnative -d 224.0.0.251/32 -j ACCEPT";
         };
 
         wgcasper = {
           autostart = false;
-          address = [ cfg.address ];
+          address = [ "10.0.0.3/32" ];
           privateKeyFile = config.age.secrets.${cfg.privateKeySecret}.path;
 
           peers = [{
@@ -48,6 +46,8 @@
             endpoint = "77.175.230.128:51820";
             persistentKeepalive = 25;
           }];
+        postUp = "iptables -A FORWARD -i wgcasper -d 224.0.0.251/32 -j ACCEPT";
+        postDown = "iptables -A FORWARD -o wgcasper-d 224.0.0.251/32 -j ACCEPT";
         };
       };
     };

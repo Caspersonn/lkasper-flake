@@ -38,6 +38,7 @@
       shared-vesktop
       shared-meridian
       shared-opencode
+      shared-claude
 
       # Work shared modules
       shared-technative

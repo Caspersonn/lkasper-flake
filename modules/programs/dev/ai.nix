@@ -5,7 +5,6 @@
       inputs.specgetty.packages."${pkgs.stdenv.hostPlatform.system}".default
       #inputs.openlore.packages."${pkgs.stdenv.hostPlatform.system}".default
 
-      unstable.claude-code
       # opencode  # Configuration is in home-manager
       claude-monitor
       pkgs.unstable.rtk
