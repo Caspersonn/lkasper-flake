@@ -34,6 +34,10 @@
         bind -T copy-mode-vi y send-keys -X copy-selection-and-cancel
         bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
 
+        # set active-inactive window styles
+        set -g window-style 'fg=colour247,bg=colour236'
+        set -g window-active-style 'fg=default,bg=colour234'
+
         set -g @yank_selection_mouse 'clipboard'
         set -g @yank_with_mouse on
         set -gq allow-passthrough on
