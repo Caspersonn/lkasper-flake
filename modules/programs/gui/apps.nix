@@ -12,6 +12,7 @@
       video-trimmer
       blanket
       aonsoku
+      supersonic-wayland
 
       # Development
       pgadmin4-desktopmode
@@ -25,5 +26,26 @@
       # 3D printing
       orca-slicer
     ];
+
+    services.avahi.enable = true;
+
+    services.pipewire = {
+      enable = true;
+      pulse.enable = true;
+
+      raopOpenFirewall = true;
+
+      extraConfig.pipewire."10-airplay" = {
+        "context.modules" = [
+          {
+            name = "libpipewire-module-raop-discover";
+            args = {
+              "raop.latency.ms" = 500;
+            };
+          }
+        ];
+      };
+    };
+
   };
 }
