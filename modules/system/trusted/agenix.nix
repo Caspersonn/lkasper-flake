@@ -18,6 +18,13 @@
         group = "root";
         mode = "600";
       };
+      soltty = keyname: service: cfgtype: {
+        file = ../../../secrets/${keyname}.age;
+        path = "/home/casper/.config/${service}/config.${cfgtype}";
+        owner = "casper";
+        group = "users";
+        mode = "600";
+      };
     in {
       avante-bedrock = keyconf "avante-bedrock";
       avante-openai = keyconf "avante-openai";
@@ -28,6 +35,8 @@
       zigbee2mqtt-env = keyconf "zigbee2mqtt-env";
       aiostreams_secret_key = keyconf "aiostreams-secret-key";
       aiostreams_auth = keyconf "aiostreams-auth";
+      sollty-config = soltty "soltty-config" "soltty" "json";
+      jiratui-config = soltty "jiratui-config" "jiratui" "yaml";
       #spotify = keyconf "spotify";
     };
   };
