@@ -16,6 +16,7 @@ let
   systems = [ system1 system2 system3 system4 system5 system6 system7 system8 raspberrypi kaito sakura ];
 in
 {
+  "soltty-config.age".publicKeys = users ++ systems;
   "toggl-lkasper.age".publicKeys = users ++ systems;
   "spotify.age".publicKeys = users ++ systems;
   "vaultwarden.age".publicKeys = users ++ systems;
@@ -37,6 +38,7 @@ in
   "twenty_worker_environment.age".publicKeys = users ++ systems;
   "pokemon_tracker_nextauth.age".publicKeys = users ++ systems;
   "gaming-casper-signing-key.age".publicKeys = users ++ systems;
+  "jiratui-config.age".publicKeys = users ++ systems;
 
   # HomeAssistant
   "mqtt-zigbee2mqtt-password.age".publicKeys = users ++ systems;

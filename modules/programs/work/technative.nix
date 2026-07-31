@@ -4,6 +4,8 @@
       lato
       inputs.mip-rs.packages."${pkgs.stdenv.hostPlatform.system}".default
       inputs.nivis.packages."${pkgs.stdenv.hostPlatform.system}".nivis
+      jira-cli-go
+      jiratui
     ];
 
     security.acme = {
