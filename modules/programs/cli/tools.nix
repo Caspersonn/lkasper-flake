@@ -29,6 +29,7 @@
       optnix
       pkgs.unstable.wineWow64Packages.waylandFull
       pkgs.unstable.wine64Packages.waylandFull
+      borgbackup
 
       # Security
       bitwarden-cli

@@ -11,8 +11,9 @@
         };
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
           install_url =
-            "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpl";
+            "https://addons.mozilla.org/firefox/downloads/file/4875950/bitwarden_password_manager-2026.6.1.xpi";
           installation_mode = "force_installed";
+          updates_disabled = true;
         };
         "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = {
           install_url =
