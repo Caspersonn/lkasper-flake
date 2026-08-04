@@ -42,8 +42,6 @@
         wlogout
         wofi
         wttrbar
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-hyprland
       ] ++ lib.optionals (inputs ? swww)
       [ inputs.swww.packages.${pkgs.system}.swww ];
 

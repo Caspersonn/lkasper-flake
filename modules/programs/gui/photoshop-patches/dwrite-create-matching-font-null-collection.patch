@@ -1,0 +1,46 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Luca Kasper <luca.kasper@technative.eu>
+Date: Tue, 4 Aug 2026 00:00:00 +0200
+Subject: [PATCH] dwrite: Avoid NULL dereference in create_matching_font on a
+ null font collection.
+
+layout_run_get_last_resort_font() passes range->collection straight through,
+and that pointer is NULL for a range that never had a collection assigned.
+create_matching_font() then calls IDWriteFontCollection_FindFamilyName() on
+it, which dereferences the COM vtable at offset 0 and raises an access
+violation.
+
+Under Wine the exception surfaces through user_callback_handler, which logs
+"ignoring exception c0000005" and unwinds without releasing the critical
+section the faulting thread held. Every other thread then blocks on that
+section forever, so the application deadlocks rather than crashing outright.
+Photoshop 2021 hits this when opening its New Document dialog: the dialog
+never appears and the UI stops responding.
+
+The caller already handles failure here by retrying against the system
+collection with Tahoma, so returning E_FAIL is enough to reach that path and
+render the dialog.
+
+Written against Wine 11.12. PhialsBasement/wine-adobe-installers carried an
+equivalent fix as a binary trampoline patched into dwrite.dll; this is the
+same change made in source so it survives a Wine version bump.
+---
+ dlls/dwrite/analyzer.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/dlls/dwrite/analyzer.c b/dlls/dwrite/analyzer.c
+--- a/dlls/dwrite/analyzer.c
++++ b/dlls/dwrite/analyzer.c
+@@ -2594,6 +2594,9 @@ HRESULT create_matching_font(IDWriteFontCollection *collection, const WCHAR *name
+
+     *obj = NULL;
+
++    if (!collection)
++        return E_FAIL;
++
+     hr = IDWriteFontCollection_FindFamilyName(collection, name, &i, &exists);
+     if (FAILED(hr))
+         return hr;
+--
+2.51.0
+

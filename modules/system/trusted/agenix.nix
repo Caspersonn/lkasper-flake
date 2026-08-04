@@ -35,6 +35,7 @@
       zigbee2mqtt-env = keyconf "zigbee2mqtt-env";
       aiostreams_secret_key = keyconf "aiostreams-secret-key";
       aiostreams_auth = keyconf "aiostreams-auth";
+      openvpn-improvement-it-login = keyconf "openvpn-improvement-it-login";
       sollty-config = soltty "soltty-config" "soltty" "json";
       jiratui-config = soltty "jiratui-config" "jiratui" "yaml";
       #spotify = keyconf "spotify";

@@ -28,7 +28,7 @@ in
   "google-engine-bedrock.age".publicKeys = users ++ systems;
   "avante-openai.age".publicKeys = users ++ systems;
   "pontifex.age".publicKeys = users ++ systems;
-  "openvpn-improvement-it.age".publicKeys = users ++ systems;
+  "openvpn-improvement-it-login.age".publicKeys = users ++ systems;
   "wireguard-private.age".publicKeys = users ++ systems;
   "wireguard-private-sakura.age".publicKeys = users ++ systems;
   "wireguard-private-gaming-casper.age".publicKeys = users ++ systems;

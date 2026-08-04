@@ -59,22 +59,15 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     aws-tui.url = "github:Caspersonn/aws-tui";
     mip-rs.url = "github:mipmip/mip.rs";
-    nivis.url = "git+ssh://git@github.com/nivis-project/nivis.git";
-    #openlore.url = "/home/casper/git/technative_b.v./OpenLore";
     meridian.url = "github:rynfar/meridian";
   };
 
   outputs = inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      # Import all flake-parts modules
       imports = [
-        # Enable flake.modules support
         flake-parts.flakeModules.modules
         inputs.home-manager.flakeModules.home-manager
-        # Automatically import all dendritic modules from modules/
         (inputs.import-tree ./modules)
-        # Centralized home-manager configurations
-        #./parts/home-manager.nix
       ];
 
       systems = [ "x86_64-linux" "aarch64-linux" ];

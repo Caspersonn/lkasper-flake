@@ -71,6 +71,7 @@ in {
       chromium
       spotify
       bambu-labs
+      photoshop
 
       # Programs - Work
       technative
