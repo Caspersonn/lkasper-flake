@@ -91,11 +91,8 @@ in {
       wireguard
       neo4j
       printing
-      postgres
-      #twenty
-      navidrome
-      cato-client
-      llama-cpp
+      #cato-client
+      #llama-cpp
 
       # System
       secrets
