@@ -2854,11 +2854,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1785128890,
-        "narHash": "sha256-tFF5efIm99IWTsg+o53TJ6pcW7KjvLGGvISoOU+oGPw=",
+        "lastModified": 1786344672,
+        "narHash": "sha256-RXZfFq4d+ujKDxsbwAR1DtbfCUHwyr/pZUAjKXPRtfg=",
         "owner": "caspersonn",
         "repo": "nixvim",
-        "rev": "6ca5e75882176e7c5631a0dc759ee1a7892020b6",
+        "rev": "818b178affdc4555b2c1359bc489318eddea3a5d",
         "type": "github"
       },
       "original": {
