@@ -1,7 +1,8 @@
 { inputs, ... }: {
-  flake.modules.nixos.cli-tools = { pkgs, ... }: {
+  flake.modules.nixos.cli-tools = { pkgs, quiqrpkg, ... }: {
     environment.systemPackages = with pkgs; [
       inputs.rme.packages."${pkgs.stdenv.hostPlatform.system}".default
+      quiqrpkg.quiqr.server
       # TUI Applications
       htop
       gum

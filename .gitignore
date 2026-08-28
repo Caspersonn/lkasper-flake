@@ -1,2 +1,4 @@
 .git
 *.py
+# Scripts referenced from Nix must be tracked, or flakes cannot see them.
+!modules/**/*.py

@@ -4,7 +4,6 @@
       enable = true;
       clock24 = false;
       plugins = [
-        pkgs.tmuxPlugins.gruvbox
         pkgs.tmuxPlugins.sensible
         pkgs.tmuxPlugins.yank
         pkgs.tmuxPlugins.tmux-fzf
@@ -16,14 +15,13 @@
         set -g prefix C-x
         set -g mouse on
 
-        # Tmux theming
-        set -g @tmux-gruvbox 'dark' # or 'dark256', 'light', 'light256'
-        set -g @tmux-gruvbox-statusbar-alpha 'true'
+        source-file -q ~/.config/lkasper-hyprland/current/tmux.conf
 
         # Shortcuts
         bind S popup -E 'tses open'
         bind K popup -E 'tses kill'
         bind P popup -E 'tses pull'
+        bind B popup -E 'beans tui'
         bind T popup -E -w 80% -h 80% 'tj --columns --sort-activity --no-sound --no-notify --picker'
 
         # Enable vi mode

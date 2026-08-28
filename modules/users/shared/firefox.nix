@@ -3,6 +3,24 @@
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;
+      policies.Preferences = {
+        "widget.use-xdg-desktop-portal.settings" = {
+          Value = 1;
+          Status = "default";
+        };
+        "browser.theme.toolbar-theme" = {
+          Value = 2;
+          Status = "default";
+        };
+        "browser.theme.content-theme" = {
+          Value = 2;
+          Status = "default";
+        };
+        "layout.css.prefers-color-scheme.content-override" = {
+          Value = 2;
+          Status = "default";
+        };
+      };
       policies.ExtensionSettings = {
         "uBlock0@raymondhill.net" = {
           install_url =
@@ -11,7 +29,7 @@
         };
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
           install_url =
-            "https://addons.mozilla.org/firefox/downloads/file/4875950/bitwarden_password_manager-2026.6.1.xpi";
+            "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpl";
           installation_mode = "force_installed";
           updates_disabled = true;
         };

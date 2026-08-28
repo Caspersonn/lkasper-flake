@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "toastFallback": false,
+  "updateIntervalMs": 50,
+  "initialDisplayDelayMs": 10,
+  "rollingWindowMs": 1000,
+  "showAverage": true,
+  "showInstant": true,
+  "showTotalTokens": true,
+  "showElapsed": true,
+  "format": "compact",
+  "minVisibleTPS": 0,
+  "fallbackTokenHeuristic": "chars_div_4",
+  "enableColorCoding": false,
+  "slowTpsThreshold": 10,
+  "fastTpsThreshold": 50
+}

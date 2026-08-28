@@ -91,12 +91,14 @@ in {
       wireguard
       neo4j
       printing
+      reverse-proxy-claude
       #cato-client
       #llama-cpp
 
       # System
       secrets
       udev-ddcutil
+      kdeconnect
     ];
 
     # State version
