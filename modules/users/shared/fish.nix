@@ -61,22 +61,22 @@
 
           # success (green) / error (red) arrow
           if test $last_status -eq 0
-            set_color --bold b8bb26
+            set_color --bold $lkh_green
           else
-            set_color --bold fb4934
+            set_color --bold $lkh_red
           end
           echo -n '➜ '
 
           # user@host
-          set_color 83a598
+          set_color $lkh_blue
           echo -n (whoami)
-          set_color 458588
+          set_color $lkh_dim
           echo -n '@'(prompt_hostname)
           set_color normal
           echo -n ' '
 
           # current directory
-          set_color --bold 8ec07c
+          set_color --bold $lkh_cyan
           echo -n (prompt_pwd)
           set_color normal
           echo -n ' '
@@ -84,16 +84,16 @@
           # git branch + state
           set -l branch (command git symbolic-ref --short HEAD 2>/dev/null; or command git rev-parse --short HEAD 2>/dev/null)
           if test -n "$branch"
-            set_color 83a598
+            set_color $lkh_blue
             echo -n ' '
-            set_color fb4934
+            set_color $lkh_red
             echo -n $branch
             set -l dirty (command git status --porcelain 2>/dev/null)
             if test -n "$dirty"
-              set_color fabd2f
+              set_color $lkh_yellow
               echo -n ' '
             else
-              set_color b8bb26
+              set_color $lkh_green
               echo -n ' ✓'
             end
             set_color normal
@@ -104,12 +104,12 @@
         # Right side: active AWS profile + terraform backend state.
         fish_right_prompt = ''
           if set -q AWS_PROFILE
-            set_color d3869b
+            set_color $lkh_magenta
             echo -n "  $AWS_PROFILE"
             set_color normal
           end
           if test -f .terraform/tfbackend.state
-            set_color b8bb26
+            set_color $lkh_green
             echo -n ' 󱁢 '(cat .terraform/tfbackend.state)
             set_color normal
           end
@@ -119,27 +119,16 @@
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
 
-        # --- Gruvbox syntax-highlighting colors ---
-        set -g fish_color_normal        ebdbb2
-        set -g fish_color_command       b8bb26
-        set -g fish_color_keyword       fb4934
-        set -g fish_color_quote         b8bb26
-        set -g fish_color_redirection   8ec07c
-        set -g fish_color_end           fe8019
-        set -g fish_color_error         fb4934
-        set -g fish_color_param         ebdbb2
-        set -g fish_color_comment       a89984
-        set -g fish_color_operator      8ec07c
-        set -g fish_color_escape        fe8019
-        set -g fish_color_autosuggestion 928374
-        set -g fish_color_cwd           fabd2f
-        set -g fish_color_user          8ec07c
-        set -g fish_color_host          83a598
-        set -g fish_color_selection     --background=3c3836
-        set -g fish_color_search_match  --background=3c3836
-        set -g fish_pager_color_prefix  fabd2f
-        set -g fish_pager_color_completion ebdbb2
-        set -g fish_pager_color_description a89984
+        if test -r ~/.config/lkasper-hyprland/current/fish.fish
+          source ~/.config/lkasper-hyprland/current/fish.fish
+        end
+
+        for pair in lkh_fg:ebdbb2 lkh_dim:928374 lkh_red:fb5944 lkh_green:b8bb26 lkh_yellow:fabd2f lkh_blue:83a598 lkh_magenta:d3869b lkh_cyan:8ec07c
+          set -l kv (string split -m 1 : -- $pair)
+          if not set -q $kv[1]
+            set -g $kv[1] $kv[2]
+          end
+        end
 
         # rme completion (mirrors the zsh `compadd $(rme --completions)`)
         complete -c rme -f -a "(rme --completions)"

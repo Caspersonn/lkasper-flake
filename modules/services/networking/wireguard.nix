@@ -37,7 +37,7 @@
 
         wgcasper = {
           autostart = false;
-          address = [ "10.0.0.3/32" ];
+          address = [ "10.100.0.2/24" ];
           privateKeyFile = config.age.secrets.${cfg.privateKeySecret}.path;
 
           peers = [{

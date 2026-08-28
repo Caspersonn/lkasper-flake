@@ -1,6 +1,6 @@
 session: workloads
 
-root: ~/git/technative_mcs/technative-awsaccounts-workloads
+root: ~/git/gh.technative-mcs/technative-awsaccounts-workloads
 
 windows:
   - name: workloads

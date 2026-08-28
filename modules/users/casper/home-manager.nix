@@ -39,6 +39,7 @@
       shared-meridian
       shared-opencode
       shared-claude
+      shared-scripts
 
       # Work shared modules
       shared-technative
