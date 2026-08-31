@@ -11,6 +11,7 @@
 
       services.vaultwarden = {
         enable = true;
+        package = unstable.vaultwarden;
         environmentFile = config.age.secrets.vaultwarden.path;
         config = {
           ROCKET_ADDRESS = "127.0.0.1";
