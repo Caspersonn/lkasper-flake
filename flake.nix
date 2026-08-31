@@ -16,7 +16,7 @@
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirty-repo-scanner.url = "github:mipmip/dirty-repo-scanner";
     swww.url = "github:LGFae/swww";
-    nixvim.url = "github:caspersonn/nixvim";
+    nixvim.url = "/home/casper/git/gh.caspersonn/nixvim";
     openspec.url = "github:Fission-AI/OpenSpec";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     ssmsh.url = "github:torreirow/ssmsh";
@@ -43,7 +43,7 @@
     import-tree.url = "github:vic/import-tree";
     pokemon-tracker.url = "github:Caspersonn/pokemon-tracker";
     omarchy-nix = {
-      url = "github:caspersonn/lkasper-hyprland";
+      url = "/home/casper/git/gh.caspersonn/lkasper-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -51,6 +51,8 @@
     specgetty.url = "github:mipmip/specgetty";
     rme.url = "github:mipmip/rme";
     tses.url = "github:Caspersonn/tses";
+    huphop.url = "github:mipmip/huphop";
+    quiqrpkg.url = "github:mipmip/nixpkgs/quiqr-in-nixpkgs";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";

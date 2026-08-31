@@ -9,6 +9,10 @@
             inherit system;
             config.allowUnfree = true;
           };
+          _module.args.quiqrpkg = import inputs.quiqrpkg {
+            inherit system;
+            config.allowUnfree = true;
+          };
           nixpkgs.hostPlatform = system;
           nixpkgs.config.allowUnfree = true;
         };
@@ -52,6 +56,11 @@
         extraSpecialArgs = {
           inherit inputs system;
           unstable = import inputs.unstable {
+            inherit system;
+            #overlays = [ (import ../overlays) ];
+            config.allowUnfree = true;
+          };
+          quiqrpkg = import inputs.quiqrpkg {
             inherit system;
             #overlays = [ (import ../overlays) ];
             config.allowUnfree = true;

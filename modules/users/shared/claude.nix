@@ -1,10 +1,35 @@
 { inputs, ... } : {
 
-  flake.modules.homeManager.shared-claude = { unstable, ... }: {
+  flake.modules.homeManager.shared-claude = { lib, pkgs, unstable, ... }: let
+
+    claudePackage = unstable.claude-code;
+
+    shimUrl = "http://127.0.0.1:11435";
+    ollamaModel = "laguna-xs-2.1:latest";
+
+    claude-local = pkgs.writeShellScriptBin "claude-local" ''
+      unset ANTHROPIC_API_KEY
+      export ANTHROPIC_BASE_URL="''${ANTHROPIC_BASE_URL:-${shimUrl}}"
+      export ANTHROPIC_AUTH_TOKEN="ollama"
+      export ANTHROPIC_MODEL="''${CLAUDE_LOCAL_MODEL:-${ollamaModel}}"
+      exec ${claudePackage}/bin/claude --model "${ollamaModel}" "$@"
+    '';
+
+  in {
+
+    home.packages = [ claude-local ];
 
     programs.claude-code = {
       enable = true;
-      package = unstable.claude-code;
+      package = claudePackage;
+      enableMcpIntegration = true;
+
+      mcpServers = {
+        github = {
+          type = "http";
+          url = "http://127.0.0.1:8765/mcp";
+        };
+      };
 
       commands = {
 
