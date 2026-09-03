@@ -34,6 +34,7 @@ in {
       system-default
       locale
       boot
+      performance
       networking
       graphics
       audio
@@ -87,6 +88,7 @@ in {
       secrets
       udev-ddcutil
       printing
+      twobluetooth
     ];
 
     # State version
@@ -100,7 +102,7 @@ in {
       "/dev/disk/by-uuid/a295b140-6310-4699-9853-1ad5af5747f0";
 
     # WireGuard
-    custom.wireguard.address = "10.100.0.2/24";
+    #custom.wireguard.address = "10.100.0.2/24";
     custom.wireguard.privateKeySecret = "wireguard";
     custom.wireguard.secretFile = ../../../secrets/wireguard-private.age;
 

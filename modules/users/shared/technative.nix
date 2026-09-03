@@ -39,6 +39,7 @@
       telegram-desktop
       terraform-docs
       terraform-ls
+      opentofu
       yarn-berry
       (texlive.combine {
         inherit (texlive)

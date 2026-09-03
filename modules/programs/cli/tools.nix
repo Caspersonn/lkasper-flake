@@ -2,7 +2,6 @@
   flake.modules.nixos.cli-tools = { pkgs, quiqrpkg, ... }: {
     environment.systemPackages = with pkgs; [
       inputs.rme.packages."${pkgs.stdenv.hostPlatform.system}".default
-      quiqrpkg.quiqr.server
       # TUI Applications
       htop
       gum
@@ -31,6 +30,7 @@
       pkgs.unstable.wineWow64Packages.waylandFull
       pkgs.unstable.wine64Packages.waylandFull
       borgbackup
+      easyeffects
 
       # Security
       bitwarden-cli
