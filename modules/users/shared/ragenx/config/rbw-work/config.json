@@ -1,0 +1,6 @@
+{
+  "base_url": "https://vaultwarden.technative.eu",
+  "email": "luca.kasper@technative.eu",
+  "identity_url": null,
+  "lock_timeout": 600
+}
