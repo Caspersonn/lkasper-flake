@@ -40,6 +40,9 @@
       shared-opencode
       shared-claude
       shared-scripts
+      shared-hup
+      shared-rbw
+      shared-ragenx
 
       # Work shared modules
       shared-technative
