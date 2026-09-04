@@ -25,8 +25,6 @@
         tfswitch = "mkdir -p $HOME/bin; command tfswitch -b $HOME/bin/terraform";
         lin = "vi -c LinnyMenuOpen";
         ner = "vi -c Neotree";
-        runbg = "$HOME/.config/hypr/scripts/runbg.sh";
-        aws-mfa = "$HOME/lkasper-flake/modules/users/casper/desktop/hyprland/scripts/aws-mfa-auto.sh";
       };
 
       functions = {
