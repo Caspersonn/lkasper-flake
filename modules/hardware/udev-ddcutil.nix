@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.udev-ddcutil = { config, lib, pkgs, ... }: {
+  flake.modules.nixos.hardware-udevddcutil = { config, lib, pkgs, ... }: {
     services.udev = {
       enable = true;
       extraRules = ''

@@ -3048,11 +3048,11 @@
         "walker": "walker"
       },
       "locked": {
-        "lastModified": 1788454497,
-        "narHash": "sha256-bnf6DX78pVwCRGuqvXPDK1+PvUC6QZIz5dntJfNyaGo=",
+        "lastModified": 1788713759,
+        "narHash": "sha256-IKb4o7MG2pX3yxrbMjE8RpbXRb0josvxSLIxEk4TmcI=",
         "owner": "caspersonn",
         "repo": "lkasper-hyprland",
-        "rev": "85a4955df181a598c9fc3c10d1c7246504d1a31b",
+        "rev": "2a189f60ce258d24dd0c0f3e8389ddb55c657413",
         "type": "github"
       },
       "original": {

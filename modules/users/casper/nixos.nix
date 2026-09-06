@@ -9,5 +9,7 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOtpGyC5u8+T71Oo+QL9ym+hWaNSiisskL43ElmpWiEr"
       ];
     };
+
+    programs.fish.enable = true;
   };
 }

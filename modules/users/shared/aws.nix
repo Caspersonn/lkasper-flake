@@ -1,5 +1,5 @@
 { ... }: {
-  flake.modules.homeManager.lucak-aws = { lib, config, unstable, ... }:
+  flake.modules.homeManager.shared-aws = { lib, config, unstable, ... }:
     let
 
       ## NOTE RUN aws --profile=TN-web_dns s3 cp s3://docs-mcs.technative.eu-longhorn/managed_service_accounts.json ~/.aws/
@@ -132,7 +132,7 @@
         };
     in {
       programs.awscli = {
-        package = unstable.awscli2;
+        #package = unstable.awscli2;
         enable = true;
         settings = {
 

@@ -5,13 +5,14 @@
       settings = {
         push = {
           autoSetupRemote = true;
-          default = "current";
+          default = "simple";
         };
         branch = { autoSetupMerge = "simple"; };
         pull = { rebase = true; };
         merge = { tool = "splice"; };
       };
     };
+
     programs.gh = {
       enable = true;
       gitCredentialHelper = {

@@ -2,7 +2,6 @@
   flake.modules.homeManager.antonia = { pkgs, ... }: {
     imports = (with inputs.self.modules.homeManager; [
       # Shared modules
-      #shared-zsh
       shared-fish
       shared-git
       shared-neovim
@@ -17,8 +16,8 @@
       shared-firefox
       shared-age
 
-      # Antonia desktop
-      gnome
+      # Personal Modules
+      antonia-gnome
     ]);
 
     # Git identity
@@ -26,8 +25,6 @@
       email = "antoniagosker@gmail.com";
       name = "antonia";
     };
-    programs.git.settings.push.default = "simple";
-    programs.git.settings.branch.autosetupmerge = true;
 
     # Personal Firefox profile
     programs.firefox.profiles.personal = {
@@ -46,7 +43,5 @@
         "sidebar.verticalTabs" = false;
       };
     };
-
-    nixpkgs.config.allowUnfree = true;
   };
 }

@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.udev-skylanders = { config, lib, pkgs, ... }: {
+  flake.modules.nixos.hardware-udevskylanders = { config, lib, pkgs, ... }: {
     services.udev = {
       enable = true;
       extraRules = ''

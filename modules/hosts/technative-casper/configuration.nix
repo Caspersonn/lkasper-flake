@@ -23,11 +23,6 @@ in {
   flake.modules.nixos.technative-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.nixos-hardware.nixosModules.framework-13-7040-amd
-      inputs.spicetify-nix.nixosModules.default
-
-      # lkasper-hyprland
-      inputs.omarchy-nix.nixosModules.lkh-system
-      inputs.omarchy-nix.nixosModules.lkh-hyprland
 
       # System Configuration
       system-default
@@ -44,14 +39,13 @@ in {
       remote_builder
 
       # Hardware
-      framework-misc
-      framework-fingerprint
+      hardware-frameworkmisc
+      hardware-frameworkfingerprint
 
       # Home manager
       hm-nixos
       hm-users
       casper
-      lucak
 
       # Desktop Environment
       hyprland
@@ -97,7 +91,7 @@ in {
 
       # System
       secrets
-      udev-ddcutil
+      hardware-udevddcutil
       kdeconnect
     ];
 

@@ -15,12 +15,6 @@ in {
       inherit hostname;
       imports = with inputs.self.modules.homeManager; [ casper ];
     };
-    "lucak@${hostname}" = self.lib.makeHomeConf {
-      username = "lucak";
-      homedir = "/home/lucak";
-      inherit hostname;
-      imports = with inputs.self.modules.homeManager; [ lucak ];
-    };
   };
 
   flake.modules.nixos.personal-casper = { config, pkgs, lib, ... }: {
@@ -29,7 +23,6 @@ in {
 
       inputs.omarchy-nix.nixosModules.lkh-system
       inputs.omarchy-nix.nixosModules.lkh-hyprland
-
       # System Configuration
       system-default
       locale
@@ -48,7 +41,6 @@ in {
       hm-nixos
       hm-users
       casper
-      lucak
 
       # Desktop Environment
       hyprland
@@ -86,8 +78,8 @@ in {
 
       # System
       secrets
-      udev-ddcutil
-      printing
+      hardware-udevddcutil
+      hardware-printing
       twobluetooth
     ];
 
