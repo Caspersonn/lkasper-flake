@@ -1,5 +1,5 @@
 { inputs, ... } : {
-  flake.modules.nixos.framework-fingerprint = { config, pkgs, ... }: {
+  flake.modules.nixos.hardware-frameworkfingerprint = { config, pkgs, ... }: {
 
     # Install the driver
     services.fprintd.enable = true;

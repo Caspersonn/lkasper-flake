@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.homeManager.gnome = { pkgs, lib, ... }:
+  flake.modules.homeManager.anotnia-gnome = { pkgs, lib, ... }:
     let self-pkgs = inputs.self.packages.${pkgs.system};
     in {
       home.packages = with pkgs; [

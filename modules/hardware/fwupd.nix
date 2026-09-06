@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.fwupd = { config, pkgs, ... }: {
+  flake.modules.nixos.hardware-fwupd = { config, pkgs, ... }: {
     services.fwupd.enable = true;
   };
 }

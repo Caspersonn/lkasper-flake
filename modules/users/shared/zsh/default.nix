@@ -1,5 +1,6 @@
 { ... }: {
-  flake.modules.homeManager.shared-zsh = { config, ... }: {
+  flake.modules.homeManager.shared-zsh = { pkgs, config, ... }: {
+
     home.file = {
       ".ohmyzsh-casper" = {
         source = ./ohmyzsh-casper;

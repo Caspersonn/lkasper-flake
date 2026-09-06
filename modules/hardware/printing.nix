@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.printing = { pkgs, ... }: {
+  flake.modules.nixos.hardware-printing = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       cups-brother-dcpl3550cdw
       cups-filters

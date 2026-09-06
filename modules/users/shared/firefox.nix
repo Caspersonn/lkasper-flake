@@ -47,6 +47,11 @@
             "https://addons.mozilla.org/firefox/downloads/latest/solidtime/latest.xpl";
           installation_mode = "force_installed";
         };
+        "aws-extend-switch-roles@toshi.tilfin.com" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/aws-extend-switch-roles3/latest.xpl";
+          installation_mode = "force_installed";
+        };
       };
     };
   };

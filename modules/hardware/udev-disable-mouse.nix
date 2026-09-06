@@ -1,5 +1,5 @@
 { ... }: {
-  flake.modules.nixos.udev-disable-mouse = { ... }: {
+  flake.modules.nixos.hardware-udevdisablemouse = { ... }: {
     # This rule will disable sleep waking for the Logitech Pro Wireless
     # Bus 003 Device 006: ID 046d:c539 Logitech, Inc. Lightspeed Receiver
     services.udev = {

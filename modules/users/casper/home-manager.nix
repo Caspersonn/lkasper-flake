@@ -2,56 +2,50 @@
   flake.modules.homeManager.casper = { pkgs, config, ... }: {
     imports = with inputs.self.modules.homeManager; (with inputs.omarchy-nix.homeManagerModules; [
       # Omarchy-nix (Hyprland desktop)
-      lkh-themes
       lkh-ags
-      lkh-hyprland
-      lkh-ghostty
-      lkh-hyprlock
-      lkh-hyprpaper
-      lkh-hypridle
       lkh-btop
       lkh-direnv
       lkh-fonts
-      lkh-zoxide
-      lkh-hyprshot
-      lkh-walker
       lkh-foot
+      lkh-ghostty
+      lkh-hypridle
+      lkh-hyprland
+      lkh-hyprlock
+      lkh-hyprpaper
+      lkh-hyprshot
+      lkh-themes
+      lkh-walker
       lkh-yazi
+      lkh-zoxide
 
       # Shared modules
-      shared-fish
-      shared-git
-      shared-jujutsu
-      shared-neovim
-      shared-fzf
-      shared-zoxide
-      shared-autojump
+      shared-age
       shared-atuin
+      shared-autojump
+      shared-aws
+      shared-aws
+      shared-claude
+      shared-dirty-repo-scanner
+      shared-firefox
+      shared-fish
+      shared-font
+      shared-fzf
+      shared-git
+      shared-hup
       shared-jq
+      shared-jujutsu
+      shared-meridian
+      shared-neovim
+      shared-opencode
+      shared-ragenx
+      shared-rbw
+      shared-scripts
+      shared-smug
+      shared-technative
       shared-tmux
       shared-tses
-      shared-font
-      shared-firefox
-      shared-age
-      shared-dirty-repo-scanner
-      shared-smug
       shared-vesktop
-      shared-meridian
-      shared-opencode
-      shared-claude
-      shared-scripts
-      shared-hup
-      shared-rbw
-      shared-ragenx
-
-      # Work shared modules
-      shared-technative
-
-      # Lucak-only complex modules
-      lucak-aws
-
-      #shared-opencode
-
+      shared-zoxide
     ]);
 
     # Git identity
@@ -64,7 +58,6 @@
         email = "lucakasper8@gmail.com";
         name = "Caspersonn";
     };
-
 
     # Personal zsh aliases
     programs.zsh.shellAliases = {
@@ -83,7 +76,6 @@
       runbg = "$HOME/.config/hypr/scripts/runbg.sh";
     };
 
-    # Personal Firefox profile
     programs.firefox.profiles.personal = {
       id = 0;
       name = "personal";
@@ -138,13 +130,5 @@
         ];
       };
     };
-
-    # Librewolf (disabled, personal only)
-    programs.librewolf = {
-      enable = false;
-      package = pkgs.librewolf;
-    };
-
-    nixpkgs.config.allowUnfree = true;
   };
 }

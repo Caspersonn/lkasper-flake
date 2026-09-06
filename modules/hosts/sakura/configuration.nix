@@ -73,7 +73,7 @@ in {
       wireguard
 
       # System
-      udev-ddcutil
+      hardware-udevddcutil
     ];
 
     # State version

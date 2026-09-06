@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.udev-logitech-wheel = { config, lib, pkgs, ... }: {
+  flake.modules.nixos.hardware-udevlogitechwheel = { config, lib, pkgs, ... }: {
     services.udev = {
       enable = true;
       extraRules = ''
