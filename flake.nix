@@ -16,7 +16,7 @@
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirty-repo-scanner.url = "github:mipmip/dirty-repo-scanner";
     swww.url = "github:LGFae/swww";
-    nixvim.url = "/home/casper/git/personal/nixvim";
+    nixvim.url = "github:caspersonn/nixvim";
     openspec.url = "github:Fission-AI/OpenSpec";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     ssmsh.url = "github:torreirow/ssmsh";
@@ -43,7 +43,7 @@
     import-tree.url = "github:vic/import-tree";
     pokemon-tracker.url = "github:Caspersonn/pokemon-tracker";
     omarchy-nix = {
-      url = "/home/casper/git/personal/lkasper-hyprland";
+      url = "github:caspersonn/lkasper-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };

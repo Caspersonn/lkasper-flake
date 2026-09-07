@@ -2972,14 +2972,17 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1788715594,
-        "narHash": "sha256-vep1km1l5bJdvDbSog5MX4fjy6dG8l8VF8PZtHeZi+4=",
-        "path": "/home/casper/git/personal/nixvim",
-        "type": "path"
+        "lastModified": 1788353736,
+        "narHash": "sha256-Zy5pVG6TGvgHhUHsatHbMpcwQ7merez+kt07GIIE8SA=",
+        "owner": "caspersonn",
+        "repo": "nixvim",
+        "rev": "ac670682ae5b012e70cd3993a833fde22182d869",
+        "type": "github"
       },
       "original": {
-        "path": "/home/casper/git/personal/nixvim",
-        "type": "path"
+        "owner": "caspersonn",
+        "repo": "nixvim",
+        "type": "github"
       }
     },
     "nixvim_2": {
@@ -3045,14 +3048,17 @@
         "walker": "walker"
       },
       "locked": {
-        "lastModified": 1788721083,
-        "narHash": "sha256-FmWUMBVhBUFRz3x7vEfiIq+RoU3FZXUag0YqVsj97AM=",
-        "path": "/home/casper/git/personal/lkasper-hyprland",
-        "type": "path"
+        "lastModified": 1788759885,
+        "narHash": "sha256-XCFb3zEqaJsEpCVywsWa0eCOwlhvqPD2fU+qi2Dv3GY=",
+        "owner": "caspersonn",
+        "repo": "lkasper-hyprland",
+        "rev": "de8644c701bed96b9d3c58b0a4ff40dd4699c4cd",
+        "type": "github"
       },
       "original": {
-        "path": "/home/casper/git/personal/lkasper-hyprland",
-        "type": "path"
+        "owner": "caspersonn",
+        "repo": "lkasper-hyprland",
+        "type": "github"
       }
     },
     "openspec": {
