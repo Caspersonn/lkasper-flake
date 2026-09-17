@@ -233,11 +233,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1785832655,
-        "narHash": "sha256-NlpdWOBdu53Ue5w58aFshah930Q9+DfYsJWQ+ZnRbrI=",
+        "lastModified": 1788854643,
+        "narHash": "sha256-nzcoAsxhG53905ZiIIzseyLuI45MItByKNsa++DgUwg=",
         "owner": "wearetechnative",
         "repo": "bmc",
-        "rev": "e10309e3e7cfe7070f569a6d6db669b168668860",
+        "rev": "0674f591288069c74ef0bc07e0576c666be9f3d6",
         "type": "github"
       },
       "original": {
@@ -2415,11 +2415,11 @@
     },
     "nixpkgs_14": {
       "locked": {
-        "lastModified": 1781216227,
-        "narHash": "sha256-9mUW6gNwoN2SWc/l0fW4svPNOulXLl8ijqKyeSOGgJE=",
+        "lastModified": 1789344334,
+        "narHash": "sha256-vdhpDJ3Lr24lkZ+fDCjmBRRtw9/vcSzkqGJOJyF5h2U=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a0374025a863d007d98e3297f6aa46cc3141c2f0",
+        "rev": "c3eea5b2156db11c7eeeada3dc737711255b253e",
         "type": "github"
       },
       "original": {
@@ -2683,11 +2683,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1781509190,
-        "narHash": "sha256-uJZs9Di8I6ciTp6jiojj0HzlNpBkud8ax5aT/O5aJkw=",
+        "lastModified": 1782847189,
+        "narHash": "sha256-twXPFqFsrrY5r28Zh7Homgcp2gUMBgQ6WDS98Q/3xFI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d6df3513510aa548c83868fd22bfddd0a8c0a0d4",
+        "rev": "b6018f87da91d19d0ab4cf979885689b469cdd41",
         "type": "github"
       },
       "original": {
@@ -2972,17 +2972,14 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1788784387,
-        "narHash": "sha256-NirdH10xCT/OPPlRU2JE2+UswV8O1GCqAv7M8Hr9CbE=",
-        "owner": "caspersonn",
-        "repo": "nixvim",
-        "rev": "9755c4ce1db9b24f1abd0f1db00ab34899581270",
-        "type": "github"
+        "lastModified": 1788939172,
+        "narHash": "sha256-9rg65b59q6zi43TMNtKF3M8sFr5DSmSRXXGjkpIp6/k=",
+        "path": "/home/casper/git/gh.caspersonn/nixvim",
+        "type": "path"
       },
       "original": {
-        "owner": "caspersonn",
-        "repo": "nixvim",
-        "type": "github"
+        "path": "/home/casper/git/gh.caspersonn/nixvim",
+        "type": "path"
       }
     },
     "nixvim_2": {

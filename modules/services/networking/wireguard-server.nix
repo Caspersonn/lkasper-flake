@@ -45,6 +45,11 @@
             publicKey = "tlibYE9mOYVdJm55ZNX78mzeX+ClT+jJnXhku1IMIEI=";
             allowedIPs = [ "10.100.0.4/32" ];
           }
+          {
+            # Pixel 7A
+            publicKey = "yXI2v7agC3EtYd9JXLcBpa1GV6L1tnoFkaspTza5zF0=";
+            allowedIPs = [ "10.100.0.5/32" ];
+          }
         ];
       };
     };

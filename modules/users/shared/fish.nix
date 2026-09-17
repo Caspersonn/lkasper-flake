@@ -24,6 +24,7 @@
       shellAliases = {
         tfswitch = "mkdir -p $HOME/bin; command tfswitch -b $HOME/bin/terraform";
         lin = "vi -c LinnyMenuOpen";
+        linrem = "vi -c \"LinnyOpenNotebook \$(pwd)\"";
         ner = "vi -c Neotree";
       };
 
