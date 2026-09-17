@@ -59,6 +59,7 @@ in {
       #materialious
       #invidious
       #minecraft-server
+      skyblock-minecraft
       wireguard-server
       home-assistant
       aiostreams

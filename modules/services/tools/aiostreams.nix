@@ -7,8 +7,8 @@
       environment = {
         BASE_URL = "https://aiostreams.inspiravita.com";
         DATABASE_URI = "sqlite://./data/db.sqlite";
-        SECRET_KEY = config.age.secrets.aiostreams_secret_key.path;
-        AIOSTREAMS_AUTH = config.age.secrets.aiostreams_auth.path;
+        SECRET_KEY = "***REMOVED***"; #config.age.secrets.aiostreams_secret_key.path;
+        AIOSTREAMS_AUTH = "admin:***REMOVED***"; #config.age.secrets.aiostreams_auth.path;
       };
       volumes = [ "aiostreams-data:/app/data" ];
     };
