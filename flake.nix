@@ -16,7 +16,7 @@
     slack2zammad.url = "github:wearetechnative/slack2zammad";
     dirty-repo-scanner.url = "github:mipmip/dirty-repo-scanner";
     swww.url = "github:LGFae/swww";
-    nixvim.url = "github:caspersonn/nixvim";
+    nixvim.url = "/home/casper/git/gh.caspersonn/nixvim";
     openspec.url = "github:Fission-AI/OpenSpec";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     ssmsh.url = "github:torreirow/ssmsh";

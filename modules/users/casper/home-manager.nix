@@ -18,6 +18,9 @@
       lkh-yazi
       lkh-zoxide
 
+      # Casper
+      casper-ssh
+
       # Shared modules
       shared-age
       shared-atuin

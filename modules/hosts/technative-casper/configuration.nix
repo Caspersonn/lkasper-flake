@@ -22,6 +22,11 @@ in {
 
   flake.modules.nixos.technative-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
+      inputs.spicetify-nix.nixosModules.default
+
+      inputs.omarchy-nix.nixosModules.lkh-system
+      inputs.omarchy-nix.nixosModules.lkh-hyprland
+
       inputs.nixos-hardware.nixosModules.framework-13-7040-amd
 
       # System Configuration
@@ -84,7 +89,7 @@ in {
       openvpn
       wireguard
       neo4j
-      printing
+      hardware-printing
       reverse-proxy-claude
       #cato-client
       #llama-cpp
