@@ -53,4 +53,22 @@ in
   # Aiostreams
   "aiostreams-secret-key.age".publicKeys = users ++ systems;
   "aiostreams-auth.age".publicKeys = users ++ systems;
+
+  # Nebula
+  "nebula-ca.crt.age".publicKeys = users ++ systems;
+  "nebula-ca.key.age".publicKeys = users;
+  "nebula-kaito.crt.age".publicKeys = users ++ systems;
+  "nebula-kaito.key.age".publicKeys = users ++ systems;
+  "nebula-neko.crt.age".publicKeys = users ++ systems;
+  "nebula-neko.key.age".publicKeys = users ++ systems;
+  "nebula-server-casper.crt.age".publicKeys = users ++ systems;
+  "nebula-server-casper.key.age".publicKeys = users ++ systems;
+  "nebula-gaming-casper.crt.age".publicKeys = users ++ systems;
+  "nebula-gaming-casper.key.age".publicKeys = users ++ systems;
+  "nebula-personal-casper.crt.age".publicKeys = users ++ systems;
+  "nebula-personal-casper.key.age".publicKeys = users ++ systems;
+  "nebula-technative-casper.crt.age".publicKeys = users ++ systems;
+  "nebula-technative-casper.key.age".publicKeys = users ++ systems;
+  "nebula-sakura.crt.age".publicKeys = users ++ systems;
+  "nebula-sakura.key.age".publicKeys = users ++ systems;
 }

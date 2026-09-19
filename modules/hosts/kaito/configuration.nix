@@ -18,6 +18,13 @@ in {
     };
   };
 
+  casper.nebula.nodes.kaito = {
+    address = "10.123.0.1";
+    groups = [ "servers" ];
+    isLighthouse = true;
+    endpoint = "vaultwarden.inspiravita.com:4242";
+  };
+
   flake.modules.nixos.kaito = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       # System Configuration
@@ -45,6 +52,7 @@ in {
       # Services
       resolved
       tailscale
+      networking-nebula
       docker
       smb
       atuin

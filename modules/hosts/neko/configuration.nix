@@ -18,6 +18,11 @@ in {
     };
   };
 
+  casper.nebula.nodes.neko = {
+    address = "10.123.0.11";
+    groups = [ "servers" ];
+  };
+
   flake.modules.nixos.neko = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       # System Configuration
@@ -45,6 +50,7 @@ in {
       # Services
       resolved
       tailscale
+      networking-nebula
       docker
       smb
       atuin

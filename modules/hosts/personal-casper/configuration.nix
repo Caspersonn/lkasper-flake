@@ -17,6 +17,11 @@ in {
     };
   };
 
+  casper.nebula.nodes.personal-casper = {
+    address = "10.123.0.52";
+    groups = [ "workstations" ];
+  };
+
   flake.modules.nixos.personal-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default
@@ -71,6 +76,7 @@ in {
       # Services
       resolved
       tailscale
+      networking-nebula
       mysql
       flatpak
       postgres
