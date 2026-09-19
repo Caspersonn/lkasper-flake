@@ -6,11 +6,6 @@
       libusb1
       usbutils
       sof-firmware
-      open-scq30
-      epson-escpr
-      epson-escpr2
-      simple-scan
-      sane-airscan
     ];
 
     hardware.sane = {
