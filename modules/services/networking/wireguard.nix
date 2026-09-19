@@ -1,6 +1,11 @@
 { inputs, ... }: {
   flake.modules.nixos.wireguard = { config, lib, ... }: {
     options.custom.wireguard = {
+      address = lib.mkOption {
+        type = lib.types.str;
+        default = "10.100.0.2/24";
+        description = "This host's address on the wgcasper interface, matching its peer entry on the server";
+      };
       privateKeySecret = lib.mkOption {
         type = lib.types.str;
         default = "wireguard";
@@ -37,7 +42,7 @@
 
         wgcasper = {
           autostart = false;
-          address = [ "10.100.0.2/24" ];
+          address = [ cfg.address ];
           privateKeyFile = config.age.secrets.${cfg.privateKeySecret}.path;
 
           peers = [{

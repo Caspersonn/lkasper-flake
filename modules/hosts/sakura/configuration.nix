@@ -20,8 +20,8 @@ in {
 
     "casper@${hostname}" = self.lib.makeHomeConf {
       inherit hostname;
-      username = "antonia";
-      homedir = "/home/antonia";
+      username = "casper";
+      homedir = "/home/casper";
       imports = with inputs.self.modules.homeManager; [ casper ];
     };
   };
@@ -51,6 +51,7 @@ in {
       hm-nixos
       hm-users
       antonia
+      casper
 
       # Desktop Environment
       gnome
