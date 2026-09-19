@@ -3,6 +3,7 @@
   flake.modules.homeManager.casper-ssh = { pkgs, config, ... }: {
     programs.ssh = {
       enable = true;
+      enableDefaultConfig = false;
       settings = {
         "github.com" = {
           HostName = "github.com";

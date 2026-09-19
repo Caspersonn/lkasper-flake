@@ -2,7 +2,7 @@
   flake.modules.nixos.age = { pkgs, ... }: {
 
     environment.systemPackages = [
-      inputs.agenix.packages."${pkgs.stdenv.hostPlatform.system}".default
+      inputs.agenix.packages."${pkgs.system}".default
     ];
 
     imports = [

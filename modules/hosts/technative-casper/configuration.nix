@@ -4,7 +4,7 @@ let hostname = "technative-casper";
 in {
   flake.nixosConfigurations.${hostname} = inputs.self.lib.makeNixos {
     inherit hostname;
-    stdenv.hostPlatform.system = "x86_64-linux";
+    system = "x86_64-linux";
   };
 
   flake.homeConfigurations = {

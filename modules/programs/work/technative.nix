@@ -2,8 +2,8 @@
   flake.modules.nixos.technative = { pkgs, unstable, ... }: {
     environment.systemPackages = with pkgs; [
       lato
-      inputs.mip-rs.packages."${pkgs.stdenv.hostPlatform.system}".default
-      #inputs.nivis.packages."${pkgs.stdenv.hostPlatform.system}".nivis
+      inputs.mip-rs.packages."${pkgs.system}".default
+      #inputs.nivis.packages."${pkgs.system}".nivis
       jira-cli-go
       unstable.jiratui
     ];

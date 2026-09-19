@@ -34,6 +34,7 @@
       shared-font
       shared-fzf
       shared-git
+      shared-hmrice
       shared-hup
       shared-jq
       shared-jujutsu

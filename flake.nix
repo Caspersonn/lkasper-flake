@@ -63,6 +63,7 @@
     mip-rs.url = "github:mipmip/mip.rs";
     meridian.url = "github:rynfar/meridian";
     ragenx.url = "github:torreirow/ragenx";
+    hm-ricing-mode.url = "github:mipmip/hm-ricing-mode";
   };
 
   outputs = inputs@{ flake-parts, ... }:

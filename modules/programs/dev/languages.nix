@@ -1,7 +1,7 @@
 { inputs, ... }: {
   flake.modules.nixos.dev-languages = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
-      inputs.openspec.packages."${pkgs.stdenv.hostPlatform.system}".default
+      inputs.openspec.packages."${pkgs.system}".default
 
       # Build Tools
       gcc

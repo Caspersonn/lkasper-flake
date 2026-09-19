@@ -6,7 +6,7 @@ in {
   flake.nixosConfigurations = {
     sakura = self.lib.makeNixos {
       inherit hostname;
-      stdenv.hostPlatform.system = "x86_64-linux";
+      system = "x86_64-linux";
     };
   };
 

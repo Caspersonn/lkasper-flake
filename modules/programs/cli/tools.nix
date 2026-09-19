@@ -1,8 +1,8 @@
 { inputs, ... }: {
   flake.modules.nixos.cli-tools = { pkgs, quiqrpkg, ... }: {
     environment.systemPackages = with pkgs; [
-      inputs.rme.packages."${pkgs.stdenv.hostPlatform.system}".default
-      #inputs.wireguard.packages."${pkgs.stdenv.hostPlatform.system}".default
+      inputs.rme.packages."${pkgs.system}".default
+      #inputs.wireguard.packages."${pkgs.system}".default
       # TUI Applications
       htop
       gum
