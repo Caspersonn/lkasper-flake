@@ -17,6 +17,13 @@ in {
       homedir = "/home/antonia";
       imports = with inputs.self.modules.homeManager; [ antonia ];
     };
+
+    "casper@${hostname}" = self.lib.makeHomeConf {
+      inherit hostname;
+      username = "antonia";
+      homedir = "/home/antonia";
+      imports = with inputs.self.modules.homeManager; [ casper ];
+    };
   };
 
   casper.nebula.nodes.sakura = {
