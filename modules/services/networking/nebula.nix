@@ -2,7 +2,7 @@
 let
   cfg = config.casper.nebula;
 
-  lighthouses = lib.mapAttrs' (_: node: lib.nameValuePair node.address node.endpoint) (
+  lighthouses = lib.mapAttrs' (_: node: lib.nameValuePair node.address node.endpoints) (
     lib.filterAttrs (_: node: node.isLighthouse) cfg.nodes
   );
   lighthouseIps = builtins.attrNames lighthouses;
@@ -49,10 +49,12 @@ in
             description = "Whether this node is a lighthouse and relay.";
           };
 
-          endpoint = lib.mkOption {
-            type = lib.types.nullOr lib.types.str;
-            default = null;
-            description = "Reachable underlay \"host:port\". Required on a lighthouse.";
+          endpoints = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+            description = ''
+              Reachable underlay "host:port" addresses, required on a lighthouse.
+            '';
           };
         };
       });
@@ -101,7 +103,7 @@ in
           isRelay = isLighthouse;
           lighthouses = lib.optionals (!isLighthouse) lighthouseIps;
           relays = lib.optionals (!isLighthouse) lighthouseIps;
-          staticHostMap = lib.mapAttrs (_address: endpoint: [ endpoint ]) lighthouses;
+          staticHostMap = lighthouses;
 
           settings = {
             cipher = "aes";

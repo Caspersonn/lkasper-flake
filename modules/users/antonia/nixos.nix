@@ -6,5 +6,7 @@
       extraGroups = [ "networkmanager" "wheel" "docker" "disk" ];
       shell = pkgs.fish;
     };
+
+    programs.fish.enable = true;
   };
 }
