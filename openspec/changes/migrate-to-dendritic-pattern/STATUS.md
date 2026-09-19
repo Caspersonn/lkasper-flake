@@ -187,7 +187,7 @@ Successfully migrated lkasper-flake to the Dendritic Pattern following mipnix/de
    - Location: Lines need to import `inputs.self.modules.nixos.nix-channels`
 
 2. **server-casper**: binfmt assertion failure
-   - Error: `assertion '(system != (pkgs).stdenv.hostPlatform.system)' failed`
+   - Error: `assertion '(system != (pkgs).system)' failed`
    - Root cause: Configuration issue with binfmt/emulation setup for ARM server
    - Fix: Review binfmt configuration in server-casper for x86_64 emulation setup
 
@@ -199,7 +199,7 @@ Successfully migrated lkasper-flake to the Dendritic Pattern following mipnix/de
 
 2. **Deprecation warnings** (non-blocking):
    - `hardware.pulseaudio` → `services.pulseaudio` 
-   - `'system'` → `'stdenv.hostPlatform.system'`
+   - `'system'` → `'system'`
 
 ### Host-Specific Configurations Preserved
 - **technative-casper**: Fingerprint reader, LUKS encryption

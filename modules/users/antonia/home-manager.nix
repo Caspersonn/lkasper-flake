@@ -2,19 +2,20 @@
   flake.modules.homeManager.antonia = { pkgs, ... }: {
     imports = (with inputs.self.modules.homeManager; [
       # Shared modules
-      shared-fish
-      shared-git
-      shared-neovim
-      shared-fzf
-      shared-zoxide
-      shared-autojump
+      shared-age
       shared-atuin
+      shared-autojump
+      shared-firefox
+      shared-fish
+      shared-font
+      shared-fzf
+      shared-git
+      shared-hmrice
       shared-jq
+      shared-neovim
       shared-tmux
       shared-tses
-      shared-font
-      shared-firefox
-      shared-age
+      shared-zoxide
 
       # Personal Modules
       antonia-gnome

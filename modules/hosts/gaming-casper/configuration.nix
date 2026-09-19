@@ -6,7 +6,7 @@ in {
   flake.nixosConfigurations = {
     gaming-casper = self.lib.makeNixos {
       inherit hostname;
-      stdenv.hostPlatform.system = "x86_64-linux";
+      system = "x86_64-linux";
     };
   };
 
@@ -86,12 +86,12 @@ in {
       secrets
       hardware-udevskylanders
       hardware-udevddcutil
-      hardware-udevlogitech-wheel
-      hardware-udevdisable-mouse
+      hardware-udevlogitechwheel
+      hardware-udevdisablemouse
     ];
 
     # WireGuard
-    custom.wireguard.address = "10.100.0.4/24";
+    #custom.wireguard.address = "10.100.0.4/24";
     custom.wireguard.privateKeySecret = "wireguard-gaming-casper";
     custom.wireguard.secretFile = ../../../secrets/wireguard-private-gaming-casper.age;
 
