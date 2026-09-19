@@ -22,7 +22,9 @@ in {
     address = "10.123.0.1";
     groups = [ "servers" ];
     isLighthouse = true;
-    endpoint = "vaultwarden.inspiravita.com:4242";
+    endpoints = [
+      "vaultwarden.inspiravita.com:4242"
+    ];
   };
 
   flake.modules.nixos.kaito = { config, pkgs, lib, ... }: {

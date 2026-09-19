@@ -39,6 +39,7 @@
       shared-jq
       shared-jujutsu
       shared-meridian
+      shared-nebula
       shared-neovim
       shared-opencode
       shared-ragenx
