@@ -18,6 +18,11 @@ in {
     };
   };
 
+  casper.nebula.nodes.server-casper = {
+    address = "10.123.0.12";
+    groups = [ "servers" ];
+  };
+
   flake.modules.nixos.server-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       # System Configuration (Note: no boot/graphics - ARM server has custom bootloader)
@@ -43,6 +48,7 @@ in {
       # Services
       resolved
       tailscale
+      networking-nebula
       docker
       smb
       atuin

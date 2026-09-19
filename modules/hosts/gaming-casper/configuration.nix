@@ -17,6 +17,11 @@ in {
     };
   };
 
+  casper.nebula.nodes.gaming-casper = {
+    address = "10.123.0.51";
+    groups = [ "workstations" ];
+  };
+
   flake.modules.nixos.gaming-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default
@@ -76,6 +81,7 @@ in {
       # Services
       hardware-coolerd
       resolved
+      networking-nebula
       ollama
       flatpak
       lact

@@ -20,6 +20,11 @@ in {
     };
   };
 
+  casper.nebula.nodes.technative-casper = {
+    address = "10.123.0.53";
+    groups = [ "workstations" ];
+  };
+
   flake.modules.nixos.technative-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default
@@ -84,6 +89,7 @@ in {
       # Services
       resolved
       tailscale
+      networking-nebula
       docker
       mysql
       openvpn

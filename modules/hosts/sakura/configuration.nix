@@ -19,6 +19,11 @@ in {
     };
   };
 
+  casper.nebula.nodes.sakura = {
+    address = "10.123.0.54";
+    groups = [ "workstations" ];
+  };
+
   flake.modules.nixos.sakura = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default
@@ -66,9 +71,10 @@ in {
 
       # Services
       age
-      coolerd
+      hardware-coolerd
       resolved
       tailscale
+      networking-nebula
       flatpak
       wireguard
 
