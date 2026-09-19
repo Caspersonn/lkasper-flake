@@ -5,7 +5,6 @@
       libreoffice-qt6-fresh
       onlyoffice-desktopeditors
       signal-desktop
-      discord
 
       # Media & Entertainment
       obs-studio
