@@ -1,6 +1,6 @@
 { withSystem, ... }: {
   flake.overlays.apps = final: prev:
-    withSystem prev.system (
+    withSystem prev.stdenv.hostPlatform.system (
 
       # perSystem parameters. Note that perSystem does not use `final` or `prev`.
       { config, ... }:
