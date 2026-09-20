@@ -3081,11 +3081,11 @@
         "walker": "walker"
       },
       "locked": {
-        "lastModified": 1789845950,
-        "narHash": "sha256-u0emC4hSxNFbeir7g+tNdbOQqhV2bhNjJxand6xI520=",
+        "lastModified": 1789898018,
+        "narHash": "sha256-yGhZBzEEmz0WaJj+CqiLcTpIevldnxxOGi5ioih5gcY=",
         "owner": "caspersonn",
         "repo": "lkasper-hyprland",
-        "rev": "e4dd153a754cb73661e2d0ab96b91e757c8c028c",
+        "rev": "f5ab19e9e45636f2afc9d48d073ca05da526b9e6",
         "type": "github"
       },
       "original": {
@@ -3495,11 +3495,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782420155,
-        "narHash": "sha256-Gspz57gkgh9eqDkN/HAPz8TNvi3Us+6qjxaacYsoMHQ=",
+        "lastModified": 1789653077,
+        "narHash": "sha256-VbYaC/ZS3oQyfYfbBMQTIHd3A/r2ggc3V8AoDqc48S0=",
         "owner": "torreirow",
         "repo": "soltty",
-        "rev": "0913d793c310ffd9ed1909dd3093c3d28efed4cc",
+        "rev": "88b7b4c8efbe61bbe7e554c7a3325a3c458f7dc6",
         "type": "github"
       },
       "original": {
