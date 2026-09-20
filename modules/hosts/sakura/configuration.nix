@@ -92,6 +92,7 @@ in {
 
       # System
       hardware-udevddcutil
+      hardware-wol
     ];
 
     # State version

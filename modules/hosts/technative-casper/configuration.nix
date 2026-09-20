@@ -107,6 +107,7 @@ in {
       secrets
       hardware-udevddcutil
       kdeconnect
+      hardware-wol
     ];
 
     # State version
