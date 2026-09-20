@@ -2,7 +2,8 @@
   flake.modules.homeManager.casper = { pkgs, config, ... }: {
     imports = with inputs.self.modules.homeManager; (with inputs.omarchy-nix.homeManagerModules; [
       # Omarchy-nix (Hyprland desktop)
-      lkh-ags
+      #lkh-ags
+      lkh-quickshell
       lkh-btop
       lkh-direnv
       lkh-fonts
