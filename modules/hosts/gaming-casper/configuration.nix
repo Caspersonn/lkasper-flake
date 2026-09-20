@@ -77,6 +77,7 @@ in {
       hardware-utils
       disk-utils
       fonts
+      dev-ai
 
       # Services
       hardware-coolerd
@@ -86,7 +87,7 @@ in {
       flatpak
       lact
       wireguard
-      postgres
+      #postgres
 
       # System
       secrets
