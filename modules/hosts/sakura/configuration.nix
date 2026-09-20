@@ -101,7 +101,7 @@ in {
     networking.hostName = "sakura";
 
     # WireGuard
-    custom.wireguard.address = "10.100.0.3/24";
+    #custom.wireguard.address = "10.100.0.3/24";
     custom.wireguard.privateKeySecret = "wireguard-sakura";
     custom.wireguard.secretFile = ../../../secrets/wireguard-private-sakura.age;
 
