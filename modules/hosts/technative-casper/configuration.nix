@@ -25,6 +25,10 @@ in {
     groups = [ "workstations" ];
   };
 
+  casper.wol = {
+    client = true;
+  };
+
   flake.modules.nixos.technative-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default

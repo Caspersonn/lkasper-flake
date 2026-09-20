@@ -23,6 +23,10 @@ in {
     groups = [ "servers" ];
   };
 
+  casper.wol = {
+    client = true;
+  };
+
   flake.modules.nixos.neko = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       # System Configuration

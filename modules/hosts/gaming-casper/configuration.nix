@@ -22,6 +22,10 @@ in {
     groups = [ "workstations" ];
   };
 
+  casper.wol = {
+    interface = "enp8s0";
+  };
+
   flake.modules.nixos.gaming-casper = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default
@@ -95,6 +99,7 @@ in {
       hardware-udevddcutil
       hardware-udevlogitechwheel
       hardware-udevdisablemouse
+      hardware-wol
     ];
 
     # WireGuard

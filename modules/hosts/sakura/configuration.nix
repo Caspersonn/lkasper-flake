@@ -31,6 +31,10 @@ in {
     groups = [ "workstations" ];
   };
 
+  casper.wol = {
+    client = true;
+  };
+
   flake.modules.nixos.sakura = { config, pkgs, lib, ... }: {
     imports = with inputs.self.modules.nixos; [
       inputs.spicetify-nix.nixosModules.default
