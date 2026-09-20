@@ -83,6 +83,7 @@ in {
 
       # System
       secrets
+      hardware-wol
     ];
 
     # State version

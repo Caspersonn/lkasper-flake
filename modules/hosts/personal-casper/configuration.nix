@@ -91,6 +91,7 @@ in {
       hardware-udevddcutil
       hardware-printing
       twobluetooth
+      hardware-wol
     ];
 
     # State version
