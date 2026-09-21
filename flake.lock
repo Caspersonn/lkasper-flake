@@ -3076,11 +3076,11 @@
         "nixpkgs": "nixpkgs_21"
       },
       "locked": {
-        "lastModified": 1787779197,
-        "narHash": "sha256-efy/YUkr95S44N26FCRQ2/F+ciaaMRvzh/cI1Z0huzU=",
+        "lastModified": 1789626679,
+        "narHash": "sha256-I2z9ODO9nrV1CAuI42a9Fxi0QSuidUa6a/htjQnhmH0=",
         "owner": "Fission-AI",
         "repo": "OpenSpec",
-        "rev": "a0ddb60d040c61f4907436a9d91310934b1dda63",
+        "rev": "bae58cf61479986431bb798acbe5a688a591c18c",
         "type": "github"
       },
       "original": {

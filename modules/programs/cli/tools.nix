@@ -32,6 +32,7 @@
       pkgs.unstable.wine64Packages.waylandFull
       borgbackup
       easyeffects
+      lm_sensors
 
       # Security
       bitwarden-cli
