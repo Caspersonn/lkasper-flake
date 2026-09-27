@@ -7,6 +7,7 @@ in {
     personal-casper = self.lib.makeNixos {
       inherit hostname;
       system = "x86_64-linux";
+      enableFrameworkHardware = false;
     };
   };
 
@@ -117,5 +118,23 @@ in {
 
     # Epson printer drivers (host-specific)
     services.printing.drivers = with pkgs; [ epson-escpr2 epson-escpr ];
+
+    services.udisks2.enable = true;
+    security.polkit.enable = true;
+
+    hardware.firmware = [
+      (pkgs.runCommandLocal "yellow-carp-dmcub-firmware" {
+        src = pkgs.fetchurl {
+          name = "yellow_carp_dmcub.bin";
+          # tag 20260519 == f7c95a2f945e7ca5fd8f55c3ff3fe662bac24f65
+          url =
+            "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/amdgpu/yellow_carp_dmcub.bin?id=f7c95a2f945e7ca5fd8f55c3ff3fe662bac24f65";
+          hash = "sha256-smgZgXSAbKVR9kKjVFZyo+0oFFozhaoC2lDEIyDb6c8=";
+        };
+        meta.priority = 0;
+      } ''
+        install -Dm444 "$src" "$out/lib/firmware/amdgpu/yellow_carp_dmcub.bin"
+      '')
+    ];
   };
 }
