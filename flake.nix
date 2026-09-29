@@ -64,6 +64,7 @@
     meridian.url = "github:rynfar/meridian";
     ragenx.url = "github:torreirow/ragenx";
     hm-ricing-mode.url = "github:mipmip/hm-ricing-mode";
+    soltty.url = "github:torreirow/soltty";
   };
 
   outputs = inputs@{ flake-parts, ... }:
