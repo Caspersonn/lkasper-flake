@@ -2,6 +2,7 @@
   flake.modules.nixos.cli-tools = { pkgs, quiqrpkg, ... }: {
     environment.systemPackages = with pkgs; [
       inputs.rme.packages."${pkgs.system}".default
+      inputs.soltty.packages."${pkgs.system}".soltty
       #inputs.wireguard.packages."${pkgs.system}".default
       # TUI Applications
       htop
