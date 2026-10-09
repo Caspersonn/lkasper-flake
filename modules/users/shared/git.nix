@@ -5,11 +5,11 @@
       settings = {
         push = {
           autoSetupRemote = true;
-          default = "simple";
         };
         branch = { autoSetupMerge = "simple"; };
         pull = { rebase = true; };
         merge = { tool = "splice"; };
+        push = { default = "current"; };
       };
     };
 

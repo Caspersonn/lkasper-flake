@@ -1,0 +1,15 @@
+{
+  "mfa": {
+    "enabled": true,
+    "totp_script": "rbw get 'AWS Console login TechNative'  --field totp",
+    "copy_command": "wl-copy",
+    "paste_command": "wl-paste"
+  },
+  "ec2": {
+    "auto_start_stopped": "prompt",
+    "columns": ["InstanceId", "Name", "PrivateIP", "PublicIP", "State", "Hibernate", "Scheduler"]
+  },
+  "console": {
+    "firefox_containers": true
+  }
+}

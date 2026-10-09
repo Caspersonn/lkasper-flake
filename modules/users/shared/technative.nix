@@ -1,5 +1,12 @@
 { inputs, ... }: {
   flake.modules.homeManager.shared-technative = { pkgs, unstable, ... }: {
+    home.file = {
+      ".config/bmc/" = {
+        source = ./bmc;
+        recursive = true;
+      };
+    };
+
     home.packages = with pkgs; [
       inputs.jsonify-aws-dotfiles.packages."${pkgs.system}".jsonify-aws-dotfiles
       inputs.bmc.packages."${pkgs.system}".bmc
@@ -32,7 +39,6 @@
       rbw
       redis
       slack
-      solidtime-desktop
       ssm-session-manager-plugin
       teams-for-linux
       telegram-bot-api
@@ -41,6 +47,7 @@
       terraform-ls
       opentofu
       yarn-berry
+      wtype
       (texlive.combine {
         inherit (texlive)
           scheme-full datetime fmtcount textpos makecell lipsum footmisc

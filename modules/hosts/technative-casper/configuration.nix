@@ -51,6 +51,7 @@ in {
       nixpkgs
       age
       remote_builder
+      fonts
 
       # Hardware
       hardware-frameworkmisc
