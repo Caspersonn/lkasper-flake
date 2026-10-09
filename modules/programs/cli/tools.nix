@@ -39,6 +39,7 @@
       bitwarden-cli
       rbw
       pinentry-tty
+      bitwarden-desktop
 
       # Misc
       mailutils
