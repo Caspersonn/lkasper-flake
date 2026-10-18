@@ -4,7 +4,6 @@
       beammp-launcher
       gamescope
       protontricks
-      rpcs3
       steam-tui
       android-tools
       appimage-run
