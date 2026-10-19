@@ -3,7 +3,8 @@
   # Declarative glue for settings the music apps only keep in their own
   # databases. Idempotent: safe on every boot and rebuild. Re-run manually with
   #   systemctl restart music-provision
-  flake.modules.nixos.navidrome = { config, lib, pkgs, ... }:
+  # Expects the navidrome, lidarr, slskd, aurral and jellyfin modules.
+  flake.modules.nixos.music-provision = { config, lib, pkgs, ... }:
     let
       lidarrUrl = "http://127.0.0.1:8686";
       jellyfinUrl = "http://127.0.0.1:8096";
@@ -176,6 +177,13 @@
       apps = [ "lidarr.service" "jellyfin.service" "aurral.service" "navidrome.service" "slskd.service" ];
     in
     {
+      age.secrets = {
+        music-lidarr-api.file = ../../../secrets/music-lidarr-api.age;
+        music-slskd.file = ../../../secrets/music-slskd.age;
+        # Web UI logins.
+        music-credentials.file = ../../../secrets/music-credentials.age;
+      };
+
       systemd.services.music-provision = {
         description = "Provision Lidarr, Jellyfin, slskd and Navidrome links into Aurral";
         wantedBy = [ "multi-user.target" ];
