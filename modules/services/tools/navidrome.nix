@@ -1,5 +1,5 @@
 { config, ... }: {
-flake.modules.nixos.navidrome = {pkgs, ...}: {
+  flake.modules.nixos.navidrome = {pkgs, ...}: {
     services.navidrome = {
       enable = true;
       openFirewall = true;
@@ -8,7 +8,7 @@ flake.modules.nixos.navidrome = {pkgs, ...}: {
         MusicFolder = "/mnt/audio/music";
       };
       plugins = with pkgs.navidromePlugins; [
-          listenbrainz-daily-playlist
+        listenbrainz-daily-playlist
       ];
     };
 
@@ -33,5 +33,24 @@ flake.modules.nixos.navidrome = {pkgs, ...}: {
         options = [ "NOPASSWD" ];
       }];
     }];
+
+    services.aurral = {
+      enable = true;
+
+      port = 3001;
+      openFirewall = false;
+
+      dataDir = "/var/lib/aurral";
+
+      directories = [
+        "/mnt/audio/music"
+      ];
+
+      environment = {
+        DOWNLOAD_FOLDER = "/mnt/audio/music/aurral";
+      };
+    };
+
+    users.users.navidrome.extraGroups = [ "aurral" ];
   };
 }
