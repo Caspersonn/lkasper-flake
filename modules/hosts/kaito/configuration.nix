@@ -70,7 +70,7 @@ in {
       # Tools
       acme
       vaultwarden
-      nextcloud
+      #nextcloud
       #materialious
       #invidious
       #minecraft-server
