@@ -124,6 +124,9 @@
       };
 
       systemd.tmpfiles.rules = [
+        # Shared parent must be root-owned, otherwise tmpfiles refuses to create
+        # the service-owned folders below it ("unsafe path transition").
+        "d /mnt/audio 0755 root root -"
         "d ${musicDir}/lidarr 0755 lidarr lidarr -"
         "d ${slskdDir} 2770 slskd slskd -"
         "d ${slskdDir}/downloads 2770 slskd slskd -"
@@ -134,15 +137,8 @@
         enable = true;
         virtualHosts = {
           "navidrome.inspiravita.com" = proxy 4533;
-          # First-run endpoints are unauthenticated until setup finishes; only
-          # music-provision (via localhost) may use them. Both apps route
-          # case-insensitively, hence ~*.
-          "jellyfin.inspiravita.com" = lib.recursiveUpdate (proxy 8096) {
-            locations."~* ^/startup".return = "403";
-          };
-          "aurral.inspiravita.com" = lib.recursiveUpdate (proxy 3001) {
-            locations."~* ^/api/onboarding".return = "403";
-          };
+          "jellyfin.inspiravita.com" = proxy 8096;
+          "aurral.inspiravita.com" = proxy 3001;
           "lidarr.inspiravita.com" = proxy 8686;
         };
       };
