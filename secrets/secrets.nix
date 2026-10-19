@@ -54,6 +54,12 @@ in
   "aiostreams-secret-key.age".publicKeys = users ++ systems;
   "aiostreams-auth.age".publicKeys = users ++ systems;
 
+  # Music stack (navidrome module on kaito)
+  "music-lidarr-api.age".publicKeys = users ++ [ kaito ];
+  "music-credentials.age".publicKeys = users ++ [ kaito ];
+  "music-slskd.age".publicKeys = users ++ [ kaito ];
+  "music-lastfm.age".publicKeys = users ++ [ kaito ];
+
   # Nebula
   "nebula-ca.crt.age".publicKeys = users ++ systems;
   "nebula-ca.key.age".publicKeys = users;
