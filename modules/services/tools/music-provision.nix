@@ -74,9 +74,7 @@
           jf() {
             local method=$1 path=$2
             shift 2
-            local auth=$jf_client
-            [ -n "$jf_token" ] && auth="$auth, Token=\"$jf_token\""
-            json -X "$method" -H "Authorization: $auth" "${jellyfinUrl}$path" "$@"
+            json -X "$method" -H "Authorization: $jf_client, Token=\"$jf_token\"" "${jellyfinUrl}$path" "$@"
           }
 
           jellyfin_login() {
@@ -90,17 +88,6 @@
 
           provision_jellyfin() {
             wait_for "${jellyfinUrl}/System/Info/Public"
-
-            if [ "$(curl -fsS "${jellyfinUrl}/System/Info/Public" | jq -r .StartupWizardCompleted)" != true ]; then
-              jf POST /Startup/Configuration \
-                -d '{"UICulture":"en-US","MetadataCountryCode":"NL","PreferredMetadataLanguage":"en"}' >/dev/null
-              jf GET /Startup/User >/dev/null
-              jq -n --arg u "$JELLYFIN_USERNAME" --arg p "$JELLYFIN_PASSWORD" '{Name: $u, Password: $p}' \
-                | jf POST /Startup/User -d @- >/dev/null
-              jf POST /Startup/RemoteAccess -d '{"EnableRemoteAccess":true,"EnableAutomaticPortMapping":false}' >/dev/null
-              jf POST /Startup/Complete >/dev/null
-              log "completed startup wizard"
-            fi
 
             jellyfin_login
 
@@ -126,15 +113,6 @@
           # ---------------------------------------------------------------- Aurral
           provision_aurral() {
             wait_for "${aurralUrl}/api/health"
-
-            if [ "$(curl -fsS "${aurralUrl}/api/health" | jq -r .onboardingRequired)" = true ]; then
-              jq -n --arg u "$AURRAL_USERNAME" --arg p "$AURRAL_PASSWORD" --arg k "$LIDARR_API_KEY" \
-                  --arg d "${config.services.aurral.environment.DOWNLOAD_FOLDER}" '{
-                    authUser: $u, authPassword: $p, downloadFolderPath: $d,
-                    lidarr: {url: "${lidarrUrl}", apiKey: $k}
-                  }' | json -X POST "${aurralUrl}/api/onboarding/complete" -d @- >/dev/null
-              log "completed onboarding"
-            fi
 
             local token want
             token=$(jq -n --arg u "$AURRAL_USERNAME" --arg p "$AURRAL_PASSWORD" '{username: $u, password: $p}' \
