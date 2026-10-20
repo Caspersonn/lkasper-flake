@@ -54,6 +54,12 @@ in
   "aiostreams-secret-key.age".publicKeys = users ++ systems;
   "aiostreams-auth.age".publicKeys = users ++ systems;
 
+  # Linny MCP
+  "linny-mcp-tokens.age".publicKeys = users ++ systems;
+
+  # OpenCode
+  "opencode-go-api-key.age".publicKeys = users ++ systems;
+
   # Nebula
   "nebula-ca.crt.age".publicKeys = users ++ systems;
   "nebula-ca.key.age".publicKeys = users;
