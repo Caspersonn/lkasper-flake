@@ -65,6 +65,8 @@
     ragenx.url = "github:torreirow/ragenx";
     hm-ricing-mode.url = "github:mipmip/hm-ricing-mode";
     soltty.url = "github:torreirow/soltty";
+    opencode-v2.url = "github:anomalyco/opencode";
+    linny-mcp.url = "github:linden-project/linny-mcp-server";
   };
 
   outputs = inputs@{ flake-parts, ... }:

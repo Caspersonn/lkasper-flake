@@ -8,25 +8,26 @@
     };
     programs.opencode = {
       enable = true;
-      package = unstable.opencode;
+      package = inputs.opencode-v2.packages."${pkgs.system}".default;
       enableMcpIntegration = true;
 
-      agents = { };
-      commands = { };
+      agents = ./agents;
+      commands = ./commands;
+      context = ./AGENTS.md;
       tui = {
         theme = "opencode";
       };
       settings = {
         autoshare = false;
         autoupdate = true;
-        plugin = [ "@tarquinen/opencode-dcp@latest" "opencode-openai-codex-auth@latest" config.services.meridian.opencode.pluginPath "opencode-tps-meter@latest" ];
+        plugin = [ "@tarquinen/opencode-dcp@latest" config.services.meridian.opencode.pluginPath "opencode-tps-meter@latest" ];
 
-        model = "laguna-xs-2.1:latest";
-        small_model = "llama/qwen3.5-fast-8k:latest";
+        model = "opencode-go/deepseek-v4.1-flash";
+        small_model = "opencode-go/deepseek-v4.1-flash";
 
         agent = {
           explore = {
-            model = "llama/qwen3.5-fast-8k:latest";
+            model = "opencode-go/deepseek-v4.1-flash";
           };
         };
 
@@ -42,6 +43,11 @@
         };
 
         provider = {
+          opencode-go = {
+            options = {
+              apiKey = "{file:/tmp/opencode-go-api-key}";
+            };
+          };
           llama = {
             name = "llama.cpp";
             npm = "@ai-sdk/openai-compatible";

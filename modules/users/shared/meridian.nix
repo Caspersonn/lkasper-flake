@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.homeManager.shared-meridian = { pkgs, config, unstable, ... }: {
+  flake.modules.homeManager.shared-meridian = { lib, pkgs, config, unstable, ... }: {
     imports = [
       inputs.meridian.homeManagerModules.default
     ];
@@ -22,7 +22,7 @@
       };
 
       environment = {
-        MERIDIAN_CLAUDE_PATH = "/run/current-system/sw/bin/claude";
+        MERIDIAN_CLAUDE_PATH = lib.getExe unstable.claude-code;
         MERIDIAN_DEBUG = "1";
       };
     };

@@ -101,7 +101,8 @@ in {
       neo4j
       hardware-printing
       reverse-proxy-claude
-      #cato-client
+      cato-client
+      linny-mcp
       #llama-cpp
 
       # System

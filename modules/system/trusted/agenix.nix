@@ -36,6 +36,7 @@
       aiostreams_secret_key = keyconf "aiostreams-secret-key";
       aiostreams_auth = keyconf "aiostreams-auth";
       openvpn-improvement-it-login = keyconf "openvpn-improvement-it-login";
+      opencode-go-api-key = keyconf "opencode-go-api-key";
       sollty-config = soltty "soltty-config" "soltty" "json";
       jiratui-config = soltty "jiratui-config" "jiratui" "yaml";
       #spotify = keyconf "spotify";
