@@ -18,7 +18,8 @@
         group = "root";
         mode = "600";
       };
-      soltty = keyname: service: cfgtype: {
+
+      home-manager = keyname: service: cfgtype: {
         file = ../../../secrets/${keyname}.age;
         path = "/home/casper/.config/${service}/config.${cfgtype}";
         owner = "casper";
@@ -37,8 +38,9 @@
       aiostreams_auth = keyconf "aiostreams-auth";
       openvpn-improvement-it-login = keyconf "openvpn-improvement-it-login";
       opencode-go-api-key = keyconf "opencode-go-api-key";
-      sollty-config = soltty "soltty-config" "soltty" "json";
-      jiratui-config = soltty "jiratui-config" "jiratui" "yaml";
+      sollty-config = home-manager "soltty-config" "soltty" "json";
+      hip-config = home-manager "hip-config" "hip" "yaml";
+      jiratui-config = home-manager "jiratui-config" "jiratui" "yaml";
       #spotify = keyconf "spotify";
     };
   };

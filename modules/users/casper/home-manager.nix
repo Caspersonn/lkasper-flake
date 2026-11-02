@@ -36,7 +36,7 @@
       shared-fzf
       shared-git
       shared-hmrice
-      shared-hup
+      shared-hip
       shared-jq
       shared-jujutsu
       shared-meridian

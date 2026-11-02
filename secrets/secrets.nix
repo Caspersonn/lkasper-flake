@@ -83,4 +83,7 @@ in
   "nebula-technative-casper.key.age".publicKeys = users ++ systems;
   "nebula-sakura.crt.age".publicKeys = users ++ systems;
   "nebula-sakura.key.age".publicKeys = users ++ systems;
+
+  # Hip
+  "hip-config.age".publicKeys = users ++ systems;
 }
