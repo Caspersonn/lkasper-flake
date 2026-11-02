@@ -51,7 +51,7 @@
     specgetty.url = "github:mipmip/specgetty";
     rme.url = "github:mipmip/rme";
     tses.url = "github:Caspersonn/tses";
-    huphop.url = "github:mipmip/huphop";
+    hip.url = "github:mipmip/hip";
     quiqrpkg.url = "github:mipmip/nixpkgs/quiqr-in-nixpkgs";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";

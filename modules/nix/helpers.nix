@@ -35,6 +35,7 @@
       inputs.home-manager.lib.homeManagerConfiguration {
 
         modules = [
+          lib.agenix.homeManagerModules.default
           {
             home.stateVersion = "26.05";
             home.username = username;
