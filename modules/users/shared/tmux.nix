@@ -11,6 +11,35 @@
         lib.mapAttrsToList (profile: label: "    ${profile}) label=\"${label}\" ;;") rbwProfiles
       );
 
+      tmuxSessionKill = pkgs.writeShellScriptBin "tmux-session-kill" ''
+        set -euo pipefail
+
+        current="$(tmux display-message -p '#S')"
+
+        selected="$(
+          tmux list-sessions -F "#{session_name}\t#{session_windows}\t#{?session_attached,attached,detached}" \
+            | ${pkgs.fzf}/bin/fzf --multi --with-nth=1,2,3 \
+                --header "enter: kill · tab: mark several · current: $current" \
+                --prompt 'kill session> ' \
+                --preview 'tmux list-windows -t "={1}" -F "#{window_index}: #{window_name}"' \
+                --preview-window 'right:40%:wrap'
+        )" || exit 0
+
+        [ -z "$selected" ] && exit 0
+
+        current_hit=""
+        while IFS=$'\t' read -r name _; do
+          [ -z "$name" ] && continue
+          if [ "$name" = "$current" ]; then
+            current_hit="$name"
+          else
+            tmux kill-session -t "=$name"
+          fi
+        done <<< "$selected"
+
+        [ -n "$current_hit" ] && tmux kill-session -t "=$current_hit"
+      '';
+
       rbwStatus = pkgs.writeShellScript "rbw-status" ''
         # Bron van waarheid: het bestand dat `rbwsel` schrijft. De status bar
         # draait in de tmux server, dus die heeft geen RBW_PROFILE uit een pane.
@@ -45,9 +74,9 @@
         source-file -q ~/.config/lkasper-hyprland/current/tmux.conf
 
         # Shortcuts
-        bind S popup -E -w 80% -h 80% 'tses open'
-        bind K popup -E -w 80% -h 80% 'tses kill'
-        bind P popup -E -w 80% -h 80% 'tses pull'
+        bind S popup -E -w 80% -h 80% 'hip tui --mode multiplex --flatlist --filter'
+        bind K popup -E -w 80% -h 60% 'tmux-session-kill'
+        bind P popup -E -w 80% -h 80% 'hip sync'
         bind B popup -E -w 80% -h 80% 'beans tui'
         bind T popup -E -w 80% -h 80% 'tj --columns --sort-activity --no-sound --no-notify --picker'
         bind G popup -E -w 80% -h 80% 'drs ~/git'
@@ -72,6 +101,6 @@
       '';
     };
 
-    home.packages = [ pkgs.tmux-sessionizer ];
+    home.packages = [ pkgs.tmux-sessionizer tmuxSessionKill ];
   };
 }

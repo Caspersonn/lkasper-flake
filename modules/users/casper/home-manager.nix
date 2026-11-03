@@ -49,7 +49,6 @@
       shared-smug
       shared-technative
       shared-tmux
-      shared-tses
       shared-vesktop
       shared-zoxide
     ]);

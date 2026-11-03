@@ -39,7 +39,6 @@
       openvpn-improvement-it-login = keyconf "openvpn-improvement-it-login";
       opencode-go-api-key = keyconf "opencode-go-api-key";
       sollty-config = home-manager "soltty-config" "soltty" "json";
-      hip-config = home-manager "hip-config" "hip" "yaml";
       jiratui-config = home-manager "jiratui-config" "jiratui" "yaml";
       #spotify = keyconf "spotify";
     };
