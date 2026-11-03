@@ -14,7 +14,6 @@
       shared-jq
       shared-neovim
       shared-tmux
-      shared-tses
       shared-zoxide
 
       # Personal Modules

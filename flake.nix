@@ -50,7 +50,6 @@
     teejay.url = "github:mipmip/teejay";
     specgetty.url = "github:mipmip/specgetty";
     rme.url = "github:mipmip/rme";
-    tses.url = "github:Caspersonn/tses";
     hip.url = "github:mipmip/hip";
     quiqrpkg.url = "github:mipmip/nixpkgs/quiqr-in-nixpkgs";
     plasma-manager = {
