@@ -199,6 +199,36 @@
             source_profile = "postnl";
           };
 
+          "profile 716904822663-vanderfeer" = {
+            group = "Van der Feer";
+            region = "eu-central-1";
+            output = "json";
+          };
+
+          "profile 915530404871-vanderfeerProduction" = {
+            group = "Van der Feer";
+            output = "json";
+            region = "eu-central-1";
+            role_arn = "arn:aws:iam::915530404871:role/landing_zone_devops_administrator";
+            source_profile = "technative";
+          };
+
+          "profile 181507499791-vanderfeerNonProduction" = {
+            group = "Van der Feer";
+            output = "json";
+            region = "eu-central-1";
+            role_arn = "arn:aws:iam::181507499791:role/landing_zone_devops_administrator";
+            source_profile = "technative";
+          };
+
+          "profile 971724210378-vanderfeerUseraccount" = {
+            group = "Van der Feer";
+            output = "json";
+            region = "eu-central-1";
+            role_arn = "arn:aws:iam::971724210378:role/landing_zone_devops_administrator";
+            source_profile = "technative";
+          };
+
           "sso-session postnl" = {
             sso_start_url = "https://identitycenter.amazonaws.com/ssoins-6804d9cbc3fab333";
             sso_region = "eu-west-1";

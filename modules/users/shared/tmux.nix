@@ -15,20 +15,21 @@
         set -euo pipefail
 
         current="$(tmux display-message -p '#S')"
+        sep=$'\t'
 
         selected="$(
-          tmux list-sessions -F "#{session_name}\t#{session_windows}\t#{?session_attached,attached,detached}" \
-            | ${pkgs.fzf}/bin/fzf --multi --with-nth=1,2,3 \
+          tmux list-sessions -F "#{session_name}''${sep}#{session_windows}''${sep}#{?session_attached,attached,detached}" \
+            | ${pkgs.fzf}/bin/fzf --multi --delimiter="$sep" --with-nth=1,2,3 \
                 --header "enter: kill · tab: mark several · current: $current" \
                 --prompt 'kill session> ' \
-                --preview 'tmux list-windows -t "={1}" -F "#{window_index}: #{window_name}"' \
+                --preview 'tmux list-windows -t {1} -F "#{window_index}: #{window_name}"' \
                 --preview-window 'right:40%:wrap'
         )" || exit 0
 
         [ -z "$selected" ] && exit 0
 
         current_hit=""
-        while IFS=$'\t' read -r name _; do
+        while IFS="$sep" read -r name _; do
           [ -z "$name" ] && continue
           if [ "$name" = "$current" ]; then
             current_hit="$name"
@@ -74,12 +75,13 @@
         source-file -q ~/.config/lkasper-hyprland/current/tmux.conf
 
         # Shortcuts
-        bind S popup -E -w 80% -h 80% 'hip tui --mode multiplex --flatlist --filter'
+        bind S popup -E -w 80% -h 80% 'hip-tui --mode multiplex --flatlist --filter'
         bind K popup -E -w 80% -h 60% 'tmux-session-kill'
         bind P popup -E -w 80% -h 80% 'hip sync'
         bind B popup -E -w 80% -h 80% 'beans tui'
         bind T popup -E -w 80% -h 80% 'tj --columns --sort-activity --no-sound --no-notify --picker'
-        bind G popup -E -w 80% -h 80% 'drs ~/git'
+        bind G popup -E -w 80% -h 80% 'smg'
+        bind R popup -E -w 80% -h 80% 'drs ~/git'
 
         # Enable vi mode
         setw -g mode-keys vi

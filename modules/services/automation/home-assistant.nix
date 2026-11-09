@@ -214,8 +214,10 @@
       {
 
     networking.firewall.allowedTCPPorts = [
-      8123 # Home Assistant
-      8080 # Zigbee2MQTT frontend; remove if you do not want LAN access
+      8123  # Home Assistant
+      8080  # Zigbee2MQTT frontend; remove if you do not want LAN access
+      10200 # Wyoming Piper TTS (for voice satellite devices)
+      10300 # Wyoming Faster Whisper STT (for voice satellite devices)
     ];
 
     services.home-assistant = {
@@ -238,6 +240,8 @@
         "isal"
 
         "adguard"
+        "ollama"
+        "wyoming"
       ];
       config = {
         # Includes dependencies for a basic setup
@@ -307,7 +311,27 @@
       };
     };
 
-    systemd.services.zigbee2mqtt.serviceConfig.EnvironmentFile = config.age.secrets.zigbee2mqtt-env.path; #"/var/lib/secrets/zigbee2mqtt.env";
+    systemd.services.zigbee2mqtt.serviceConfig.EnvironmentFile = config.age.secrets.zigbee2mqtt-env.path;
+
+    services.ollama = {
+      enable = true;
+      package = unstable.ollama;
+      loadModels = [ "llama3.2:3b" ];
+    };
+
+    services.wyoming.faster-whisper.servers."main" = {
+      enable = true;
+      model = "small-int8";
+      language = "nl";
+      uri = "tcp://0.0.0.0:10300";
+      device = "cpu";
+    };
+
+    services.wyoming.piper.servers."main" = {
+      enable = true;
+      voice = "nl_BE-nathalie-medium";
+      uri = "tcp://0.0.0.0:10200";
+    };
 
 
     # mosquitto integration for mqtt broker
