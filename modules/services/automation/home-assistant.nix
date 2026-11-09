@@ -321,8 +321,7 @@
 
     services.wyoming.faster-whisper.servers."main" = {
       enable = true;
-      model = "small-int8";
-      language = "nl";
+      model = "base-int8";
       uri = "tcp://0.0.0.0:10300";
       device = "cpu";
     };
