@@ -26,6 +26,51 @@
         "$tmux" switch-client -t "=$sess:$win"
       '';
 
+      hipTui = pkgs.writeShellScriptBin "hip-tui" ''
+        set -euo pipefail
+
+        cache="$HOME/.cache/hip/github-caspersonn.json"
+        root="$HOME/git"
+
+        [ -f "$cache" ] || exec hip tui "$@"
+
+        clones="$(
+          find "$root" -mindepth 3 -maxdepth 3 -type d -name .git -printf '%P\n' 2>/dev/null \
+            | awk -F/ -v prefix='gh.' 'NF == 3 && index($1, prefix) == 1 { print substr($1, length(prefix) + 1) "/" $2 }'
+        )"
+
+        adds="$(
+          printf '%s\n' "$clones" \
+            | ${pkgs.jq}/bin/jq -R -s '
+                split("\n") | map(select(length > 0)) | map(split("/")) |
+                map({
+                  Owner: .[0],
+                  Name: .[1],
+                  Description: "",
+                  SSHURL: ("git@github.com:" + .[0] + "/" + .[1] + ".git"),
+                  HTTPSURL: ("https://github.com/" + .[0] + "/" + .[1] + ".git"),
+                  WebURL: ("https://github.com/" + .[0] + "/" + .[1]),
+                  DefaultBranch: "",
+                  Archived: false,
+                  Fork: false,
+                  Visibility: "public",
+                  UpdatedAt: "0001-01-01T00:00:00Z"
+                })'
+        )"
+
+        tmp="$(mktemp)"
+        ${pkgs.jq}/bin/jq --argjson add "$adds" '
+          . as $c
+          | ($c.repos | map((.Owner | ascii_downcase) + "/" + (.Name | ascii_downcase))) as $have
+          | .repos += ($add | map(
+              select((((.Owner | ascii_downcase) + "/" + (.Name | ascii_downcase))) as $key
+                     | ($have | index($key)) | not)))
+        ' "$cache" > "$tmp"
+        mv "$tmp" "$cache"
+
+        exec hip tui "$@"
+      '';
+
       hipConfig = {
         base_dir = "~/git";
         clone_pattern_tpl = "{{.BaseDir}}/{{.Short}}.{{.OwnerLower}}/{{.Repo}}";
@@ -62,6 +107,7 @@
       home.packages = [
         inputs.hip.packages."${pkgs.system}".default
         hip-tmux-switch
+        hipTui
       ];
 
       xdg.configFile."hip/config.yaml" = {

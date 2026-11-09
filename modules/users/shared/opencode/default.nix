@@ -37,8 +37,18 @@
             type = "remote";
             url = "http://127.0.0.1:8765/mcp";
             headers = {
-              Authorization = "Bearer U9SZFYZs-tsgOOZ2mEca638l_WMsWlBD12PL1fyYeJ4";
+              Authorization = "Bearer {file:/tmp/linny-mcp-tokens}";
             };
+          };
+          jira = {
+            type = "local";
+            command = ["uvx" "mcp-atlassian"];
+            environment = {
+              JIRA_URL = "https://technative.atlassian.net";
+              JIRA_USERNAME = "luca.kasper@technative.eu";
+              JIRA_API_TOKEN = "{file:/tmp/jira-api-token}";
+            };
+            enabled = true;
           };
         };
 

@@ -57,6 +57,9 @@ in
   # Linny MCP
   "linny-mcp-tokens.age".publicKeys = users ++ systems;
 
+  # Jira MCP
+  "jira-api-token.age".publicKeys = users ++ systems;
+
   # OpenCode
   "opencode-go-api-key.age".publicKeys = users ++ systems;
 

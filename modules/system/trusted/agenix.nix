@@ -38,6 +38,8 @@
       aiostreams_auth = keyconf "aiostreams-auth";
       openvpn-improvement-it-login = keyconf "openvpn-improvement-it-login";
       opencode-go-api-key = keyconf "opencode-go-api-key";
+      linny-mcp-opencode = keyconf "linny-mcp-tokens";
+      jira-api-token = keyconf "jira-api-token";
       sollty-config = home-manager "soltty-config" "soltty" "json";
       jiratui-config = home-manager "jiratui-config" "jiratui" "yaml";
       #spotify = keyconf "spotify";
