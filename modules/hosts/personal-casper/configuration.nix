@@ -93,6 +93,7 @@ in {
       hardware-printing
       twobluetooth
       hardware-wol
+      hardware-fwupd
     ];
 
     # State version

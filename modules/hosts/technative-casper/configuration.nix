@@ -110,6 +110,7 @@ in {
       hardware-udevddcutil
       kdeconnect
       hardware-wol
+      hardware-fwupd
     ];
 
     # State version
