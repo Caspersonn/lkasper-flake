@@ -34,8 +34,7 @@
       mqtt-zigbee2mqtt-password =  keyconf "mqtt-zigbee2mqtt-password";
       mqtt-homeassistant-password = keyconf "mqtt-homeassistant-password";
       zigbee2mqtt-env = keyconf "zigbee2mqtt-env";
-      aiostreams_secret_key = keyconf "aiostreams-secret-key";
-      aiostreams_auth = keyconf "aiostreams-auth";
+      aiostreams_env = keyconf_root "aiostreams-env";
       openvpn-improvement-it-login = keyconf "openvpn-improvement-it-login";
       opencode-go-api-key = keyconf "opencode-go-api-key";
       linny-mcp-opencode = keyconf "linny-mcp-tokens";
