@@ -86,4 +86,7 @@ in
   "nebula-technative-casper.key.age".publicKeys = users ++ systems;
   "nebula-sakura.crt.age".publicKeys = users ++ systems;
   "nebula-sakura.key.age".publicKeys = users ++ systems;
+  # Phone: no host needs these, only the owner to load them into Mobile Nebula
+  "nebula-pixel-10a.crt.age".publicKeys = users;
+  "nebula-pixel-10a.key.age".publicKeys = users;
 }
