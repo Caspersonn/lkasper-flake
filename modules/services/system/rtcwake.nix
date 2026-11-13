@@ -18,5 +18,10 @@
       };
     };
 
+    # Test VMs (modules/nix/vm-testing.nix) must never hibernate on a schedule.
+    virtualisation.vmVariant = { lib, ... }: {
+      systemd.timers.rtcwake-hibernate.enable = lib.mkVMOverride false;
+    };
+
   };
 }

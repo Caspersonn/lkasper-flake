@@ -19,6 +19,8 @@
       in [
         defaults
         inputs.self.modules.nixos.${hostname}
+        # Only touches virtualisation.vmVariant; see modules/nix/vm-testing.nix.
+        inputs.self.modules.nixos.vm-testing
       ];
     };
 

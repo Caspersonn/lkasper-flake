@@ -2,3 +2,5 @@
 *.py
 # Scripts referenced from Nix must be tracked, or flakes cannot see them.
 !modules/**/*.py
+# Disk images from `nixos-rebuild build-vm` run inside the repo.
+*.qcow2
