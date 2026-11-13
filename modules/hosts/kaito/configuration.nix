@@ -81,6 +81,12 @@ in {
       adguardhome
       navidrome
 
+      # Media acquisition (HolyArrs + Decypharr + Jackett on /data)
+      media-storage
+      jackett
+      decypharr
+      holyarrs
+
       # System
       secrets
       hardware-wol
