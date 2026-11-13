@@ -1,7 +1,8 @@
 { ... }: {
-  flake.modules.homeManager.shared-atuin = { ... }: {
+  flake.modules.homeManager.shared-atuin = { unstable, ... }: {
     programs.atuin = {
       enable = true;
+      package = unstable.atuin;
       enableZshIntegration = true;
       settings = {
         auto_sync = true;

@@ -1,7 +1,8 @@
 { inputs, ... }: {
-  flake.modules.nixos.atuin = { config, pkgs, ... }: {
+  flake.modules.nixos.atuin = { config, pkgs, unstable, ... }: {
     services.atuin = {
       enable = true;
+      package = unstable.atuin;
       database.createLocally = true;
       openRegistration = true;
       host = "0.0.0.0";
