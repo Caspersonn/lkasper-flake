@@ -58,6 +58,7 @@ in
 
   # Jira MCP
   "jira-api-token.age".publicKeys = users ++ systems;
+  "jira-api-token-postnl.age".publicKeys = users ++ systems;
 
   # OpenCode
   "opencode-go-api-key.age".publicKeys = users ++ systems;
