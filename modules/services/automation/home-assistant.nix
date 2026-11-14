@@ -219,6 +219,7 @@
       10200 # Wyoming Piper TTS (for voice satellite devices)
       10300 # Wyoming Faster Whisper STT (for voice satellite devices)
     ];
+    networking.firewall.allowedUDPPorts = [ 5353 ];
 
     services.home-assistant = {
       enable = true;
@@ -242,6 +243,7 @@
         "adguard"
         "ollama"
         "wyoming"
+        "matter"
       ];
       config = {
         # Includes dependencies for a basic setup
