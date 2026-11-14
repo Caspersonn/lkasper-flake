@@ -75,11 +75,16 @@ in {
       #invidious
       #minecraft-server
       skyblock-minecraft
-      wireguard-server
       home-assistant
       aiostreams
       adguardhome
       navidrome
+
+      # Media acquisition (HolyArrs + Decypharr + Jackett on /data)
+      media-storage
+      jackett
+      decypharr
+      holyarrs
 
       # System
       secrets
@@ -103,5 +108,9 @@ in {
 
     services.pipewire.jack.enable = true;
     nix.settings.download-buffer-size = 524288000;
+
+    # Test VM only (nix run .#vm-kaito): Ollama, Home Assistant, Minecraft
+    # and Docker need more than the 4 GiB default.
+    virtualisation.vmVariant.virtualisation.memorySize = 8192;
   };
 }

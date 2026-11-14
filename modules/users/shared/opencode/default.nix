@@ -40,13 +40,23 @@
               Authorization = "Bearer {file:/tmp/linny-mcp-tokens}";
             };
           };
-          jira = {
+          jira-technative = {
             type = "local";
-            command = ["uvx" "mcp-atlassian"];
+            command = ["${pkgs.uv}/bin/uvx" "mcp-atlassian"];
             environment = {
               JIRA_URL = "https://technative.atlassian.net";
               JIRA_USERNAME = "luca.kasper@technative.eu";
-              JIRA_API_TOKEN = "{file:/tmp/jira-api-token}";
+              JIRA_API_TOKEN = "{file:/run/agenix/jira-api-token}";
+            };
+            enabled = true;
+          };
+          jira-postnl = {
+            type = "local";
+            command = ["${pkgs.uv}/bin/uvx" "mcp-atlassian"];
+            environment = {
+              JIRA_URL = "https://postnl.atlassian.net";
+              JIRA_USERNAME = "luca.kasper@postnl.nl";
+              JIRA_API_TOKEN = "{file:/run/agenix/jira-api-token-postnl}";
             };
             enabled = true;
           };

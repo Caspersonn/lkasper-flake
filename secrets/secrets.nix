@@ -51,14 +51,14 @@ in
   "nextcloud-casper-netrc.age".publicKeys = users ++ systems;
 
   # Aiostreams
-  "aiostreams-secret-key.age".publicKeys = users ++ systems;
-  "aiostreams-auth.age".publicKeys = users ++ systems;
+  "aiostreams-env.age".publicKeys = users ++ systems;
 
   # Linny MCP
   "linny-mcp-tokens.age".publicKeys = users ++ systems;
 
   # Jira MCP
   "jira-api-token.age".publicKeys = users ++ systems;
+  "jira-api-token-postnl.age".publicKeys = users ++ systems;
 
   # OpenCode
   "opencode-go-api-key.age".publicKeys = users ++ systems;
@@ -86,4 +86,7 @@ in
   "nebula-technative-casper.key.age".publicKeys = users ++ systems;
   "nebula-sakura.crt.age".publicKeys = users ++ systems;
   "nebula-sakura.key.age".publicKeys = users ++ systems;
+  # Phone: no host needs these, only the owner to load them into Mobile Nebula
+  "nebula-pixel-10a.crt.age".publicKeys = users;
+  "nebula-pixel-10a.key.age".publicKeys = users;
 }
