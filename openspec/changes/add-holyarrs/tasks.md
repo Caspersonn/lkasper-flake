@@ -1,5 +1,15 @@
 # Tasks
 
+Checked items below record the implemented acquisition baseline only; they do not verify the expanded playback or no-clickops requirements. New implementation and deployment are blocked on section 0. Comments in code are not needed.
+
+## 0. Resolve the expanded implementation design
+
+- [x] 0.1 Record user selections in `design.md`: Soundspan conditional on verified HolyArrs integration, Jellyfin for movies/TV, and Casper's client profiles on technative-casper, gaming-casper and personal-casper; verified against the user's confirmations and each host's declared `casper@<hostname>` profile
+- [ ] 0.2 Implement and verify the approved custom Soundspan-to-HolyArrs provider, availability refresh and automatic playback against pinned versions; `design.md` records Soundspan revision `207d412ab380de7e4e0af11daecd6a2f82f86857` and HolyArrs `1.0.19` source revision `3a710bab9e157dc68385da4f3f7e96b957f6617e`, native request contracts and the provider-patch direction; remains open pending the acquisition/bootstrap gates, concrete implementation tasks, contract tests and end-to-end verification
+- [ ] 0.3 Establish a subscription-free music acquisition source, supported HolyArrs/downloader integration and storage policy; the user selected Transmission plus Jackett with local files and required VPN isolation, recorded in `design.md`; resolve the VPN provider/tunnel, specific indexers and retention policy, then verify fail-closed peer egress, tunneled DNS, no IPv6 bypass and a VPN exit IP, without routing unrelated services through the VPN or using paid Real-Debrid as the sole music path
+- [ ] 0.4 Establish unattended owner/API-key bootstrap, settings reconciliation and protected key recovery for each selected service at its pinned version; verify no procedure requires a wizard, manually obtained UI key or direct database editing
+- [ ] 0.5 Once application, acquisition and bootstrap design decisions are resolved, add concrete application-specific implementation tasks and verification commands, including the custom provider work tracked by 0.2; full integration/end-to-end verification follows implementation, not task creation; verify the design, proposal, spec and tasks describe the same selected stack before applying
+
 ## 1. Pre-flight checks on kaito
 
 - [ ] 1.1 Confirm the Nebula and Tailscale interface names with `ip -br link` on kaito and verify `nebula.mesh` and `tailscale0` are listed
@@ -27,27 +37,36 @@
 ## 6. Wire into kaito and build
 
 - [x] 6.1 Add `media-storage`, `jackett`, `decypharr` and `holyarrs` to kaito's imports in `modules/hosts/kaito/configuration.nix`; verify `nix build .#nixosConfigurations.kaito.config.system.build.toplevel` succeeds
-- [x] 6.2 Verify the other hosts are unaffected: their `config.system.build.toplevel.drvPath` before and after the change are identical
-- [x] 6.3 Verify no secret is in the diff: `git diff` contains no tokens, passwords or API keys, and no new `.age` files were added
+- [x] 6.2 Verify the original acquisition baseline leaves other hosts unaffected: their `config.system.build.toplevel.drvPath` before and after that baseline are identical; expanded client changes require fresh verification
+- [x] 6.3 Verify the original acquisition baseline adds no tokens, passwords, API keys or `.age` files; the expanded requirement permits encrypted agenix inputs and requires a fresh plaintext-secret check
 - [x] 6.4 Show the diff and build result to the user and get explicit approval before committing, pushing or deploying
 
-## 7. Deploy (manual, on kaito)
+## 7. Deploy on kaito after declarative provisioning and VM acceptance
 
 - [ ] 7.1 Push, copy the closure to kaito and activate with `sudo .../bin/switch-to-configuration switch`; verify `systemctl is-active docker-decypharr docker-holyarrs jackett` prints three times `active`
 - [ ] 7.2 Verify existing services survived: `systemctl is-active navidrome docker-aiostreams home-assistant` all `active`, and `https://navidrome.inspiravita.com` and `https://aiostreams.inspiravita.com` still load
 - [ ] 7.3 Verify the firewall: `http://kaito.mesh:6262`, `:8282` and `:9117` load from a mesh device, and the same ports on kaito's LAN address time out from a LAN device
 
-## 8. Configure the services (web UIs, manual)
+## 8. Declarative service provisioning (blocked on section 0)
 
-- [ ] 8.1 Decypharr wizard at `http://kaito.mesh:8282`: admin login, Real-Debrid API key, mount type `dfs` at `/data/debrid` with `allow_other`, cache under `/app`, download folder `/data/symlinks`; verify `ls /data/debrid` on the kaito host lists the Real-Debrid folders
-- [ ] 8.2 Jackett at `http://kaito.mesh:9117`: add at least one indexer with music categories and note the API key; verify a manual search for a known album returns results in Jackett
-- [ ] 8.3 HolyArrs at `http://kaito.mesh:6262`: create the owner account and add library folders `/data/media/movies`, `/data/media/tv`, `/data/media/music`; verify `docker exec holyarrs /holyarrs doctor` reports no errors
-- [ ] 8.4 HolyArrs: link Jackett (`http://127.0.0.1:9117`, API key, "Reach the local network" on) and Decypharr as qBittorrent (`127.0.0.1:8282`, Decypharr login); verify both show as connected, and add HolyArrs' category in Decypharr if the connection test asks for it
-- [ ] 8.5 Copy `/var/lib/holyarrs/holyarrs.key` (the `/config` root, confirmed in the test VM) into the password manager; verify the stored copy matches with `sha256sum`
+- [ ] 8.1 Provision Decypharr credentials, mount settings, `allow_other`, cache and `/data/symlinks` declaratively; verify a fresh instance is configured without a wizard and the host can read `/data/debrid`
+- [ ] 8.2 Provision Jackett indexers, categories and API access declaratively; verify a configured source returns album releases and two activations do not duplicate sources
+- [ ] 8.3 Provision HolyArrs owner/API access and library folders declaratively; verify a fresh instance needs no account wizard and `docker exec holyarrs /holyarrs doctor` reports no errors
+- [ ] 8.4 Provision HolyArrs source/downloader connections and downloader categories declaratively; verify both connections work and repeated activation preserves library records without duplicate integrations
+- [ ] 8.5 Provision secret inputs through agenix/runtime files and implement protected automated recovery for state and `/var/lib/holyarrs/holyarrs.key`; verify a clean restore decrypts credentials without manual copying and plaintext secrets are absent from Git, store paths and logs
 
-## 9. End-to-end tests (manual, on kaito)
+## 9. Acquisition tests after disposable-VM acceptance
 
 - [ ] 9.1 Movie: add a popular movie and grab a cached release; verify a link appears under `/data/symlinks`, then under `/data/media/movies/`, that `readlink -f` resolves into `/data/debrid`, and that `ffprobe` on it reads the stream
-- [ ] 9.2 Music: add an artist, set one album to keep up to date and search; verify the tracks appear under `/data/media/music/<Artist>/<Album> (<Year>)/` as links that `ffprobe` can read
+- [ ] 9.2 Music: request an unowned album through the selected music application using the subscription-free acquisition path; verify HolyArrs receives the request and imported tracks are readable according to the selected storage policy
 - [ ] 9.3 Mount loss: `systemctl restart docker-decypharr` and verify `/data/debrid` comes back on the host and in HolyArrs (`docker exec holyarrs /holyarrs doctor`) without a "Transport endpoint is not connected" error
 - [ ] 9.4 Reboot kaito once and verify all three services, `/data/debrid` and the HolyArrs library are back without manual steps
+
+## 10. Expanded stack acceptance (blocked on section 0 and concrete implementation tasks)
+
+- [ ] 10.1 Build affected NixOS and Home Manager configurations with pure evaluation before deployment; record actual commands and successful results, and verify hosts without selected client profiles remain unchanged by this change
+- [ ] 10.2 Test a clean disposable VM with runtime secrets: activate twice and restart services; verify accounts, integrations and paths are ready without browser setup, manual API calls or database edits, with no duplicate integrations or loss of user state
+- [ ] 10.3 Recreate a selected Home Manager profile; verify supported client packages and non-secret dotfiles are restored from repository-managed configuration without manual copying, while shared server state stays NixOS-owned
+- [ ] 10.4 Verify an unowned music recommendation can be requested, acquired through HolyArrs and played automatically after import without switching to an administration UI; verify pending/failure states and retry, with no paid subscription or YouTube fallback
+- [ ] 10.5 Verify the separate movie/TV application plays an acquired item, and Navidrome/AIOStreams and original libraries remain available throughout testing; record acceptance before proposing decommissioning
+- [ ] 10.6 After deployment approval and successful VM tests, perform host-specific checks on kaito and selected client hardware; verify playback, private access, restart and rollback without deleting existing state or media

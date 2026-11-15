@@ -16,6 +16,12 @@ let
   systems = [ system1 system2 system3 system4 system5 system6 system7 system8 raspberrypi kaito sakura ];
 in
 {
+  "atuin-casper-session.age".publicKeys = [ user1 ];
+  "atuin-casper-key.age".publicKeys = [ user1 ];
+  "atuin-antonia-session.age".publicKeys = [ user1 sakura ];
+  "atuin-antonia-key.age".publicKeys = [ user1 sakura ];
+  "atuin-antonia-password.age".publicKeys = [ user1 ];
+
   "soltty-config.age".publicKeys = users ++ systems;
   "toggl-lkasper.age".publicKeys = users ++ systems;
   "spotify.age".publicKeys = users ++ systems;

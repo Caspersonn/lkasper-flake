@@ -119,6 +119,14 @@ in {
     # AMD GPU driver (host-specific)
     services.xserver.videoDrivers = [ "amdgpu" ];
 
+    # Xbox Wireless Controller over Bluetooth
+    hardware.bluetooth.settings.General = {
+      Privacy = "device";
+      JustWorksRepairing = "always";
+      FastConnectable = true;
+    };
+    hardware.bluetooth.input.General.ClassicBondedOnly = false;
+
     # Storage and USB management (host-specific)
     services.udisks2.enable = true;
     security.polkit.enable = true;
