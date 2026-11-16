@@ -924,3 +924,104 @@ index a744a32..0242e84 100644
  test("getFallbackOptions labels youtube as Try YouTube Music", () => {
      const options = getFallbackOptions({ ...none, youtube: true }, "soulseek");
      assert.deepEqual(options[1], {
+diff --git a/backend/src/routes/downloads.ts b/backend/src/routes/downloads.ts
+--- a/backend/src/routes/downloads.ts
++++ b/backend/src/routes/downloads.ts
+@@ -69,6 +69,7 @@
+ 
+         res.json({
+             enabled:
++                availability.holyarrs ||
+                 availability.lidarr ||
+                 availability.soulseek ||
+                 availability.tidal ||
+@@ -238,6 +239,7 @@
+         const availability = await probeDownloadSourceAvailability();
+ 
+         if (
++            !availability.holyarrs &&
+             !availability.lidarr &&
+             !availability.soulseek &&
+             !availability.tidal &&
+diff --git a/backend/src/routes/__tests__/downloadsRuntime.test.ts b/backend/src/routes/__tests__/downloadsRuntime.test.ts
+--- a/backend/src/routes/__tests__/downloadsRuntime.test.ts
++++ b/backend/src/routes/__tests__/downloadsRuntime.test.ts
+@@ -39,6 +39,10 @@
+     },
+ }));
+ 
++jest.mock("../../services/holyarrs", () => ({
++    holyarrsService: { isAvailable: jest.fn() },
++}));
++
+ jest.mock("../../services/soulseek", () => ({
+     soulseekService: {
+         isAvailable: jest.fn(),
+@@ -126,6 +130,7 @@
+ import { prisma } from "../../utils/db";
+ import { getSystemSettings } from "../../utils/systemSettings";
+ import { lidarrService } from "../../services/lidarr";
++import { holyarrsService } from "../../services/holyarrs";
+ import { soulseekService } from "../../services/soulseek";
+ import { tidalService } from "../../services/tidal";
+ import tidalTrackDownloadQueue, {
+@@ -266,6 +271,7 @@
+         });
+ 
+         mockLidarrIsEnabled.mockResolvedValue(true);
++        (holyarrsService.isAvailable as jest.Mock).mockResolvedValue(false);
+         mockLidarrAddArtist.mockResolvedValue({ id: 101 });
+         mockLidarrSearchAlbum.mockResolvedValue([]);
+         mockLidarrGrabRelease.mockResolvedValue(true);
+@@ -336,6 +342,51 @@
+         });
+     });
+ 
++    it("enables downloads when only HolyArrs is available", async () => {
++        mockLidarrIsEnabled.mockResolvedValue(false);
++        mockSoulseekAvailable.mockResolvedValue(false);
++        mockTidalAvailable.mockResolvedValue(false);
++        mockYoutubeAvailable.mockResolvedValue(false);
++        (holyarrsService.isAvailable as jest.Mock).mockResolvedValue(true);
++
++        const res = createRes();
++        await availabilityHandler({} as any, res);
++
++        expect(res.statusCode).toBe(200);
++        expect(res.body.enabled).toBe(true);
++    });
++
++    it("queues an album when only HolyArrs is available", async () => {
++        mockLidarrIsEnabled.mockResolvedValue(false);
++        mockSoulseekAvailable.mockResolvedValue(false);
++        mockTidalAvailable.mockResolvedValue(false);
++        mockYoutubeAvailable.mockResolvedValue(false);
++        (holyarrsService.isAvailable as jest.Mock).mockResolvedValue(true);
++        mockGetSystemSettings.mockResolvedValue({
++            musicPath: "/music",
++            downloadSource: "holyarrs",
++            primaryFailureFallback: "none",
++        });
++
++        const res = createRes();
++        await createJobHandler({
++            body: {
++                type: "album",
++                mbid: "rg-1",
++                subject: "Billie Eilish - HIT ME HARD AND SOFT",
++                artistName: "Billie Eilish",
++                albumTitle: "HIT ME HARD AND SOFT",
++            },
++            user: { id: "user-1" },
++        } as any, res);
++        await new Promise((resolve) => setImmediate(resolve));
++
++        expect(res.statusCode).toBe(200);
++        expect(mockEnqueueAlbumDownloadInBackground).toHaveBeenCalledWith(
++            expect.objectContaining({ jobId: "job-1", mbid: "rg-1" }),
++        );
++    });
++
+     it("returns 500 when availability checks fail", async () => {
+         mockLidarrIsEnabled.mockRejectedValueOnce(new Error("lidarr down"));
+ 

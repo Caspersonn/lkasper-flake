@@ -1,5 +1,13 @@
 # Implementation notes: add-holyarrs
 
+## Soundspan client acquisition gates (2026-11-16)
+
+The download availability response and job-creation preflight now include HolyArrs alongside the other providers. Regression tests cover availability and album submission with only HolyArrs configured, using Billie Eilish's `HIT ME HARD AND SOFT` as the request fixture. The targeted backend suites passed 88 tests, and the Python suite passed 119 tests. The kaito build passed at `/nix/store/ymwspplammkpijsg8nab5x7f5ni98cs7-nixos-system-kaito-26.05.20261015.26f4107`; the Soundspan VM passed at `/nix/store/hc7nqdb0aan10168vddw19drb9fv7lmq-vm-test-run-soundspan-provision`. Strict OpenSpec validation passed. Activation and live client-request/playback verification remain pending.
+
+On kaito, the user's manual HolyArrs downloads imported `dont smile at me` (9/9 tracks) and `WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?` (14/14 tracks). The `my future` download required an import decision. HolyArrs had received no Soundspan asks at inspection time. These imports do not establish discovery, acquisition or playback of `BIRDS OF A FEATHER`, which belongs to `HIT ME HARD AND SOFT`; Soundspan library detection and playback remain unverified.
+
+The earlier runtime deployment was activated: Soundspan's backend/frontend were active and the public-origin onboarding request returned HTTP 200 with the configured allow-origin header. The user confirmed music search after the Last.fm activation.
+
 ## Soundspan runtime paths and metadata availability (2026-11-16)
 
 After the Last.fm activation, kaito returned its frontend in 0.013911 seconds and onboarding status in 0.004553 seconds. A direct MusicBrainz artist lookup returned HTTP 503 in 0.110845 seconds; backend logs also recorded recording-search HTTP 503 responses. These measurements do not measure authenticated artist/album page latency. No music symlinks were present under `/data/media/music`; discovery results alone do not establish playable media.

@@ -50,6 +50,8 @@ Unresolved acquisition and bootstrap choices block their dependent components an
 
 ### Soundspan integration investigation
 
+The native HolyArrs provider participates in both download-route gates: `GET /downloads/availability` enables the client controls when HolyArrs alone is available, and `POST /downloads` accepts that configuration before dispatching the album job. Provider dispatch alone does not enable the client acquisition path. Album requests use a MusicBrainz release-group identity; discovery metadata and Play on an unowned track do not establish acquisition or playback. Comments in code are not needed.
+
 Soundspan's music discovery search uses Last.fm artist and track searches; podcast search uses iTunes independently. The backend receives `LASTFM_API_KEY` from the existing agenix `music-lastfm` environment file when that secret is declared. This reuses the existing free metadata credential without adding an acquisition subscription. Configurations without agenix or the declared secret omit this environment file. Comments in code are not needed.
 
 Repository-managed runtime environment settings follow the persistent generated environment file so upgrades also reconcile existing installations. The origin allowlist includes `https://soundspan.inspiravita.com` and the loopback frontend. Systemd creates `/var/cache/soundspan` for the service; transcodes use its `transcodes` subdirectory rather than a relative path under the read-only package directory. External MusicBrainz availability and completed acquisition remain separate from these runtime settings.
