@@ -49,6 +49,8 @@ The requirements are confirmed, but the expanded stack is not ready for activati
 Unresolved acquisition and bootstrap choices block their dependent components and full-stack activation, not independent contract tests. Discovery and a revised concrete design must precede each component's implementation; full workflow verification is an acceptance gate after implementation. Comments in code are not needed.
 
 ### Soundspan integration investigation
+
+Soundspan's music discovery search uses Last.fm artist and track searches; podcast search uses iTunes independently. The backend receives `LASTFM_API_KEY` from the existing agenix `music-lastfm` environment file when that secret is declared. This reuses the existing free metadata credential without adding an acquisition subscription. Configurations without agenix or the declared secret omit this environment file. Comments in code are not needed.
 Inspected Soundspan source revision `207d412ab380de7e4e0af11daecd6a2f82f86857`; this identifies the research snapshot, not a selected deployment version.
 
 - [Soundspan integrations](https://soundspan.io/docs/integrations) documents Lidarr acquisition and import webhooks, not a HolyArrs connection. Its separate Soulseek path does not demonstrate acquisition through HolyArrs.

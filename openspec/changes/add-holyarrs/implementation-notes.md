@@ -1,5 +1,11 @@
 # Implementation notes: add-holyarrs
 
+## Soundspan music discovery credential (2026-11-16)
+
+Music discovery search uses Last.fm; podcast search uses iTunes without that credential. The Soundspan backend now includes the existing `music-lastfm` agenix secret as a second systemd environment file when declared. Neither credential values nor decrypted files enter the Nix store. A direct artist search using the encrypted repository credential returned Miles Davis, Miles Davis Quintet and Miles Davis Quartet. Deployed Soundspan search still requires verification after activation; this external API check does not establish album import or playback.
+
+The kaito build passed at `/nix/store/jh6b56gyp0pf2ifp2y0nzc91qqsgl0vk-nixos-system-kaito-26.05.20261015.26f4107`; the configuration without agenix reused the passing Soundspan VM check `/nix/store/jn8sqsv877v43jkj8qvsrqd957798glq-vm-test-run-soundspan-provision`. The Python suite passed 119 tests. Activation requires sudo access on kaito.
+
 ## HolyArrs owner and API provisioning (2026-11-15)
 
 `holyarrs.nix` runs the owner/API provisioner as the media identity after the

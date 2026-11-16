@@ -132,7 +132,10 @@ in
       Type = "exec";
       User = "soundspan";
       Group = "soundspan";
-      EnvironmentFile = "-${stateDir}/env";
+      EnvironmentFile = [ "-${stateDir}/env" ]
+        ++ lib.optionals (builtins.hasAttr "music-lastfm" (config.age.secrets or { })) [
+          config.age.secrets.music-lastfm.path
+        ];
       WorkingDirectory = backendDir;
       ExecStart = "${pkgs.nodejs}/bin/node dist/index.js";
       ExecStartPost = "${pkgs.writeShellScript "soundspan-wait" ''
