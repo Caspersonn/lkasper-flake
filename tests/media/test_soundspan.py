@@ -19,6 +19,7 @@ class FakeClient:
         self.users = 0
         self.login_ok = True
         self.settings = {}
+        self.scan_error = None
 
     def ready(self):
         return {"needsOnboarding": self.users == 0, "hasAccount": self.users > 0}
@@ -38,6 +39,10 @@ class FakeClient:
             return {"token": "logged", "user": {"role": "admin"}}
         if path == "/api/onboarding/complete":
             return {"success": True}
+        if path == "/api/library/scan":
+            if self.scan_error:
+                raise soundspan.ProvisionError(self.scan_error)
+            return {"jobId": "scan-1"}
         if path == "/api/system-settings":
             if method == "GET":
                 return dict(self.settings)
@@ -66,6 +71,7 @@ class SoundspanTests(unittest.TestCase):
         self.assertEqual(client.settings["downloadSource"], "holyarrs")
         self.assertEqual(client.settings["holyarrsApiKey"], "hak-soundspan")
         self.assertEqual(client.settings["musicPath"], "/data/media/music")
+        self.assertIn(("POST", "/api/library/scan", None), client.calls)
         self.assertFalse(client.admin_password_visible if hasattr(client, "admin_password_visible") else False)
 
     def test_repeat_reconciliation_changes_nothing(self):
@@ -75,6 +81,17 @@ class SoundspanTests(unittest.TestCase):
         self.run_reconcile(client)
         posts = [call for call in client.calls if call[0] == "POST" and call[1] == "/api/system-settings"]
         self.assertEqual(len(posts), 1)
+
+    def test_scan_cooldown_is_accepted(self):
+        client = FakeClient()
+        client.scan_error = "Soundspan request failed with HTTP 429 for POST /api/library/scan"
+        self.run_reconcile(client)
+
+    def test_scan_failure_is_reported(self):
+        client = FakeClient()
+        client.scan_error = "Soundspan request failed with HTTP 500 for POST /api/library/scan"
+        with self.assertRaises(soundspan.ProvisionError):
+            self.run_reconcile(client)
 
     def test_existing_account_uses_login(self):
         client = FakeClient()

@@ -110,6 +110,11 @@ def reconcile(client, state_dir, credentials):
         current = client.call("GET", "/api/system-settings")
         if not isinstance(current, dict) or any(current.get(name) != value for name, value in wanted.items()):
             raise ProvisionError("Soundspan settings did not match intent after saving")
+    try:
+        client.call("POST", "/api/library/scan")
+    except ProvisionError as error:
+        if "HTTP 429 for POST /api/library/scan" not in str(error):
+            raise
     return current
 
 

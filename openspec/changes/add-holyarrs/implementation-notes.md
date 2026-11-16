@@ -308,6 +308,30 @@ and Jellyfin state are included in backup settings when their services exist; th
 Soundspan database is dumped with `pg_dump --format=custom` before writers stop. Nothing
 has been deployed.
 
+## Linked music library scanning (2026-11-16)
+
+Kaito's manual HolyArrs imports include HIT ME HARD AND SOFT (10 tracks),
+WHEN WE ALL FALL ASLEEP, WHERE DO WE GO? (14 tracks), and dont smile at me
+(9 tracks). These are library symlinks; Soundspan's scanner previously skipped
+all symbolic links. The source patch now includes audio links whose targets are
+regular files, retains their library paths, and excludes dangling and directory
+links. A regression covers the linked BIRDS OF A FEATHER filename, a missing
+target, a directory target and non-audio links.
+
+Provisioning submits a library scan after settings reconciliation, accepting
+only scan-cooldown HTTP 429 as a nonfatal response. The backend uses packaged
+FFmpeg and a systemd-managed writable playlist log directory. Three backend
+regression suites passed 126 tests; the Python suite passed 121 tests, including
+scan submission, cooldown and failure handling. The VM creates a tagged FLAC
+under `/data/debrid`, links it into `/data/media/music`, and verifies that the
+startup scan indexes one track. It also verifies writable playlist logs and
+preserved credentials across another activation. VM output:
+`/nix/store/qsd1h391dzyvflfs2240v7f6skaaxlx3-vm-test-run-soundspan-provision`.
+Kaito closure:
+`/nix/store/2avh7jp7yyrj74hlgi8rkddz8x71z205-nixos-system-kaito-26.05.20261015.26f4107`.
+Deployment verification, ongoing acquisition refresh and actual Billie Eilish
+playback remain separate acceptance checks.
+
 ## Full-stack backup coverage (2026-11-16)
 
 `media-backup.nix` now extends the encrypted acquisition-state backup to the

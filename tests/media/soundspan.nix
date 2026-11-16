@@ -15,6 +15,18 @@ pkgs.testers.runNixOSTest {
     virtualisation.diskSize = 8192;
     systemd.services.nginx.wantedBy = lib.mkForce [ ];
     environment.systemPackages = [ pkgs.python3 ];
+    systemd.services.soundspan-linked-fixture = {
+      requiredBy = [ "soundspan-backend.service" ];
+      before = [ "soundspan-backend.service" ];
+      after = [ "systemd-tmpfiles-setup.service" ];
+      serviceConfig.Type = "oneshot";
+      serviceConfig.RemainAfterExit = true;
+      script = ''
+        mkdir -p /data/debrid/fixture /data/media/music/Fixture
+        ${pkgs.ffmpeg}/bin/ffmpeg -y -f lavfi -i anullsrc=r=44100:cl=stereo -t 1 -metadata artist="Linked Artist" -metadata album="Linked Album" -metadata title="Linked Track" /data/debrid/fixture/track.flac
+        ln -s /data/debrid/fixture/track.flac /data/media/music/Fixture/track.flac
+      '';
+    };
   };
   testScript = ''
     machine.start()
@@ -23,6 +35,8 @@ pkgs.testers.runNixOSTest {
     machine.succeed("curl -fsS -D - -o /dev/null -H 'Origin: https://soundspan.inspiravita.com' http://127.0.0.1:3006/api/onboarding/status | grep -i 'access-control-allow-origin: https://soundspan.inspiravita.com'")
     machine.succeed("runuser -u soundspan -- test -w /var/cache/soundspan/transcodes")
     machine.succeed("python3 ${./soundspan-probe.py}")
+    machine.wait_until_succeeds("runuser -u postgres -- psql soundspan -tAc 'SELECT count(*) FROM \"Track\"' | grep -x '1'")
+    machine.succeed("runuser -u soundspan -- test -w /var/log/soundspan/playlists")
     original = machine.succeed("sha256sum /var/lib/soundspan/provision/admin.json")
     machine.succeed("/run/current-system/bin/switch-to-configuration test >&2")
     machine.wait_for_unit("soundspan-provision.service")

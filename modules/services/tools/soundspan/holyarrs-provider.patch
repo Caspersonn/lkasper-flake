@@ -1025,3 +1025,61 @@ diff --git a/backend/src/routes/__tests__/downloadsRuntime.test.ts b/backend/src
      it("returns 500 when availability checks fail", async () => {
          mockLidarrIsEnabled.mockRejectedValueOnce(new Error("lidarr down"));
  
+--- a/backend/src/services/musicScanner.ts
++++ b/backend/src/services/musicScanner.ts
+@@ -1102,10 +1102,21 @@
+             });
+ 
+             for (const entry of entries) {
++                const fullPath = path.join(current.dir, entry.name);
+                 if (entry.isSymbolicLink()) {
++                    if (!AUDIO_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
++                        continue;
++                    }
++                    try {
++                        const target = await fs.promises.stat(fullPath);
++                        if (target.isFile()) {
++                            files.push(fullPath);
++                        }
++                    } catch (error) {
++                        logger.warn(`[Scanner] Cannot read linked audio file: ${fullPath}`, error);
++                    }
+                     continue;
+                 }
+-                const fullPath = path.join(current.dir, entry.name);
+ 
+                 if (entry.isDirectory()) {
+                     if (entry.name.startsWith(".")) {
+--- a/backend/src/services/__tests__/musicScannerService.processing.test.ts
++++ b/backend/src/services/__tests__/musicScannerService.processing.test.ts
+@@ -270,6 +270,30 @@
+         );
+     });
+ 
++    it("finds linked audio files while skipping broken links and linked directories", async () => {
++        const scanner = new MusicScannerService() as any;
++        mockReaddir.mockResolvedValueOnce([
++            makeDirent("BIRDS OF A FEATHER.flac", "symlink"),
++            makeDirent("broken.flac", "symlink"),
++            makeDirent("directory.flac", "symlink"),
++            makeDirent("cover.jpg", "symlink"),
++        ]);
++        mockStat
++            .mockResolvedValueOnce({ isFile: () => true })
++            .mockRejectedValueOnce(new Error("ENOENT"))
++            .mockResolvedValueOnce({ isFile: () => false });
++
++        await expect(scanner.findAudioFiles("/music")).resolves.toEqual([
++            "/music/BIRDS OF A FEATHER.flac",
++        ]);
++        expect(mockStat).toHaveBeenCalledTimes(3);
++        expect(mockLogger.warn).toHaveBeenCalledWith(
++            expect.stringContaining("/music/broken.flac"),
++            expect.any(Error),
++        );
++        expect(mockReaddir).toHaveBeenCalledTimes(1);
++    });
++
+     it("does not descend into a symlinked directory cycle", async () => {
+         const scanner = new MusicScannerService() as any;
+         const rootEntries = [

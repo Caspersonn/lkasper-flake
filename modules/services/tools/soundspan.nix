@@ -47,6 +47,8 @@
   runtimeEnv = pkgs.writeText "soundspan-runtime.env" ''
     ALLOWED_ORIGINS=https://soundspan.inspiravita.com,http://127.0.0.1:3030
     TRANSCODE_CACHE_PATH=/var/cache/soundspan/transcodes
+    FFMPEG_PATH=${pkgs.ffmpeg}/bin/ffmpeg
+    PLAYLIST_LOG_DIR=/var/log/soundspan/playlists
   '';
   scripts = pkgs.runCommand "soundspan-provision" { } ''
     mkdir -p "$out"
@@ -142,6 +144,7 @@ in
         ];
       WorkingDirectory = backendDir;
       CacheDirectory = "soundspan";
+      LogsDirectory = "soundspan";
       ExecStart = "${pkgs.nodejs}/bin/node dist/index.js";
       ExecStartPost = "${pkgs.writeShellScript "soundspan-wait" ''
         for _ in {1..90}; do

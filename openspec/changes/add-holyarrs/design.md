@@ -50,6 +50,8 @@ Unresolved acquisition and bootstrap choices block their dependent components an
 
 ### Soundspan integration investigation
 
+Soundspan's scanner accepts audio-file symlinks after checking that their targets are regular files. It retains the library link path, skips dangling links, and does not traverse directory links. This matches HolyArrs' linked imports without introducing directory cycles. Provisioning requests a library scan after settings reconciliation; a scan cooldown is accepted, while other scan errors fail provisioning. This startup scan does not establish ongoing acquisition-completion refresh or automatic playback. The backend receives the packaged FFmpeg path and writable playlist logs under `/var/log/soundspan/playlists`. Comments in code are not needed.
+
 The native HolyArrs provider participates in both download-route gates: `GET /downloads/availability` enables the client controls when HolyArrs alone is available, and `POST /downloads` accepts that configuration before dispatching the album job. Provider dispatch alone does not enable the client acquisition path. Album requests use a MusicBrainz release-group identity; discovery metadata and Play on an unowned track do not establish acquisition or playback. Comments in code are not needed.
 
 Soundspan's music discovery search uses Last.fm artist and track searches; podcast search uses iTunes independently. The backend receives `LASTFM_API_KEY` from the existing agenix `music-lastfm` environment file when that secret is declared. This reuses the existing free metadata credential without adding an acquisition subscription. Configurations without agenix or the declared secret omit this environment file. Comments in code are not needed.
