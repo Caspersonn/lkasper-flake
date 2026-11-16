@@ -44,6 +44,10 @@
   backendDir = "${backendPkg}/lib/node_modules/soundspan-backend";
   frontendDir = "${frontendPkg}/lib/node_modules/soundspan-frontend";
   stateDir = "/var/lib/soundspan/provision";
+  runtimeEnv = pkgs.writeText "soundspan-runtime.env" ''
+    ALLOWED_ORIGINS=https://soundspan.inspiravita.com,http://127.0.0.1:3030
+    TRANSCODE_CACHE_PATH=/var/cache/soundspan/transcodes
+  '';
   scripts = pkgs.runCommand "soundspan-provision" { } ''
     mkdir -p "$out"
     cp ${./media-provision/soundspan.py} "$out/soundspan.py"
@@ -132,11 +136,12 @@ in
       Type = "exec";
       User = "soundspan";
       Group = "soundspan";
-      EnvironmentFile = [ "-${stateDir}/env" ]
+      EnvironmentFile = [ "-${stateDir}/env" runtimeEnv ]
         ++ lib.optionals (builtins.hasAttr "music-lastfm" (config.age.secrets or { })) [
           config.age.secrets.music-lastfm.path
         ];
       WorkingDirectory = backendDir;
+      CacheDirectory = "soundspan";
       ExecStart = "${pkgs.nodejs}/bin/node dist/index.js";
       ExecStartPost = "${pkgs.writeShellScript "soundspan-wait" ''
         for _ in {1..90}; do

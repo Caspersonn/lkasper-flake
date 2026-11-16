@@ -1,5 +1,11 @@
 # Implementation notes: add-holyarrs
 
+## Soundspan runtime paths and metadata availability (2026-11-16)
+
+After the Last.fm activation, kaito returned its frontend in 0.013911 seconds and onboarding status in 0.004553 seconds. A direct MusicBrainz artist lookup returned HTTP 503 in 0.110845 seconds; backend logs also recorded recording-search HTTP 503 responses. These measurements do not measure authenticated artist/album page latency. No music symlinks were present under `/data/media/music`; discovery results alone do not establish playable media.
+
+Backend logs additionally reported rejection of the public Soundspan origin and attempted transcode-cache creation under the read-only package path. A repository-managed environment file now overrides those generated persistent defaults with the public/loopback origin allowlist and `/var/cache/soundspan/transcodes`. Systemd owns the cache-directory lifecycle. The VM check passed at `/nix/store/0ck53zkdwcb58qv7k32am66dkb4xmgsm-vm-test-run-soundspan-provision`, verifying public-origin response headers and cache writability before and after activation. The kaito build passed at `/nix/store/fa0x1bdggnq73k6kac7cqlhqs9pqa8q8-nixos-system-kaito-26.05.20261015.26f4107`; the Python suite passed 119 tests and strict OpenSpec validation passed. Deployment verification for this runtime change is pending sudo activation on kaito; metadata loading and acquired-track playback remain open under task 17.2.
+
 ## Soundspan music discovery credential (2026-11-16)
 
 Music discovery search uses Last.fm; podcast search uses iTunes without that credential. The Soundspan backend now includes the existing `music-lastfm` agenix secret as a second systemd environment file when declared. Neither credential values nor decrypted files enter the Nix store. A direct artist search using the encrypted repository credential returned Miles Davis, Miles Davis Quintet and Miles Davis Quartet. Deployed Soundspan search still requires verification after activation; this external API check does not establish album import or playback.
