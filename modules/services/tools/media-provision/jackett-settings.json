@@ -1,0 +1,19 @@
+{
+  "server": {
+    "AllowExternal": true,
+    "AllowCORS": false,
+    "UpdateDisabled": true,
+    "BlackholeDir": "",
+    "FlareSolverrUrl": ""
+  },
+  "indexers": {
+    "knaben": [
+      {"id": "sitelink", "value": "https://knaben.org/"}
+    ],
+    "thepiratebay": [
+      {"id": "sitelink", "value": "https://thepiratebay.org/"},
+      {"id": "apiurl", "value": "apibay.org"},
+      {"id": "top100", "value": "100"}
+    ]
+  }
+}

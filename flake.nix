@@ -7,6 +7,8 @@
     nixpkgs2405.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
+    soundspan.url = "github:soundspan/soundspan/207d412ab380de7e4e0af11daecd6a2f82f86857";
+    soundspan.flake = false;
     bmc.url = "github:wearetechnative/bmc";
     race.url = "github:wearetechnative/race";
     jsonify-aws-dotfiles.url = "github:wearetechnative/jsonify-aws-dotfiles";

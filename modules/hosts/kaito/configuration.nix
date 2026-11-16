@@ -79,12 +79,16 @@ in {
       aiostreams
       adguardhome
       navidrome
+      jellyfin
 
       # Media acquisition (HolyArrs + Decypharr + Jackett on /data)
       media-storage
       jackett
       decypharr
+      media-backup
       holyarrs
+      media-connections
+      soundspan
 
       # System
       secrets

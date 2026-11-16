@@ -1,0 +1,36 @@
+{
+  "port": "8282",
+  "use_auth": true,
+  "disable_webdav": true,
+  "hearsay": { "disabled": true, "participate": false, "publish": false },
+  "nfs": { "enabled": false },
+  "smb": { "enabled": false },
+  "strm": { "enabled": false, "download_sidecars": false },
+  "download_folder": "/data/symlinks",
+  "default_download_action": "symlink",
+  "categories": ["holyarrs-movies", "holyarrs-tv", "holyarrs-music"],
+  "allowed_file_types": [
+    "mkv", "mp4", "m4v", "avi", "webm", "mov", "mpg", "mpeg", "ts", "m2ts",
+    "mp3", "flac", "m4a", "aac", "alac", "ogg", "opus", "wav", "aiff", "aif", "wv", "ape"
+  ],
+  "min_file_size": "0",
+  "max_file_size": "0",
+  "debrids": [
+    { "name": "realdebrid", "provider": "realdebrid", "download_uncached": true }
+  ],
+  "usenet": { "providers": [] },
+  "mount": {
+    "type": "dfs",
+    "mount_path": "/data/debrid",
+    "dfs": {
+      "uid": 2000,
+      "gid": 2000,
+      "umask": "002",
+      "cache_dir": "/app/cache/dfs",
+      "disk_cache_size": "500MB",
+      "buffer_memory": "256MB",
+      "cache_cleanup_interval": "5m",
+      "cache_expiry": "24h"
+    }
+  }
+}

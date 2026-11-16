@@ -74,6 +74,8 @@ in
   "music-credentials.age".publicKeys = users ++ [ kaito ];
   "music-slskd.age".publicKeys = users ++ [ kaito ];
   "music-lastfm.age".publicKeys = users ++ [ kaito ];
+  "media-real-debrid.age".publicKeys = users ++ [ kaito ];
+  "media-backup-password.age".publicKeys = users ++ [ kaito ];
 
   # Nebula
   "nebula-ca.crt.age".publicKeys = users ++ systems;

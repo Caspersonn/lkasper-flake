@@ -1,0 +1,64 @@
+diff --git a/pkg/server/qbit/routes.go b/pkg/server/qbit/routes.go
+index b31b1d2..51d671e 100644
+--- a/pkg/server/qbit/routes.go
++++ b/pkg/server/qbit/routes.go
+@@ -47,6 +47,12 @@ func (q *QBit) Routes() http.Handler {
+ 
+ 		})
+ 
++		r.Route("/sync", func(r chi.Router) {
++			r.Use(q.authContext)
++			r.Get("/maindata", q.handleSyncMainData)
++			r.Post("/maindata", q.handleSyncMainData)
++		})
++
+ 		r.Route("/app", func(r chi.Router) {
+ 			r.Get("/version", q.handleVersion)
+ 			r.Get("/webapiVersion", q.handleWebAPIVersion)
+diff --git a/pkg/server/qbit/sync.go b/pkg/server/qbit/sync.go
+new file mode 100644
+index 0000000..18ba168
+--- /dev/null
++++ b/pkg/server/qbit/sync.go
+@@ -0,0 +1,41 @@
++package qbit
++
++import (
++	"net/http"
++	"strings"
++	"sync/atomic"
++
++	"github.com/sirrobot01/decypharr/internal/config"
++	"github.com/sirrobot01/decypharr/pkg/storage"
++	"github.com/sirrobot01/decypharr/internal/utils"
++)
++
++var syncRid atomic.Int64
++
++type serverState struct {
++	DlRateLimit int64 `json:"dl_rate_limit"`
++	UpRateLimit int64 `json:"up_rate_limit"`
++}
++
++func (q *QBit) handleSyncMainData(w http.ResponseWriter, r *http.Request) {
++	ctx := r.Context()
++	category := getCategory(ctx)
++	torrents, err := q.manager.Queue().ListFilter(category, config.ProtocolTorrent, storage.TorrentState(""), nil, "added_on", false)
++	if err != nil {
++		http.Error(w, "Failed to read the download queue", http.StatusInternalServerError)
++		return
++	}
++	maindata := make(map[string]interface{}, len(torrents)+2)
++	entry := make(map[string]Torrent, len(torrents))
++	for _, t := range torrents {
++		converted := convertToQBitTorrentTorrent(t)
++		entry[strings.ToLower(converted.Hash)] = converted
++	}
++	maindata["rid"] = syncRid.Add(1)
++	maindata["full_update"] = true
++	if len(entry) > 0 {
++		maindata["torrents"] = entry
++	}
++	maindata["server_state"] = serverState{}
++	utils.JSONResponse(w, maindata, http.StatusOK)
++}

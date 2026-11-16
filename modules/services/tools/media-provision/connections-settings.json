@@ -1,0 +1,25 @@
+{
+  "folders": [
+    {"path": "/data/media/movies", "kind": "movie", "label": "Movies"},
+    {"path": "/data/media/tv", "kind": "show", "label": "TV"},
+    {"path": "/data/media/music", "kind": "music", "label": "Music"}
+  ],
+  "sources": [
+    {"name": "nixos-knaben", "url": "http://127.0.0.1:9117/api/v2.0/indexers/knaben/results/torznab/api"},
+    {"name": "nixos-thepiratebay", "url": "http://127.0.0.1:9117/api/v2.0/indexers/thepiratebay/results/torznab/api"}
+  ],
+  "source_defaults": {
+    "format": "torznab", "protocol": "torrent", "allow_local_network": true,
+    "kinds": ["movie", "tv", "music"],
+    "categories": {"movie": [2000], "tv": [5000], "music": [3000]},
+    "use_for": {"feed": true, "auto_search": true, "hand_search": true},
+    "priority": 1
+  },
+  "downloader": {
+    "name": "nixos-decypharr", "kind": "qbittorrent", "url": "http://127.0.0.1:8282",
+    "username": "media", "category": "holyarrs-movies",
+    "category_movies": "holyarrs-movies", "category_shows": "holyarrs-tv", "category_music": "holyarrs-music",
+    "path_map": [{"theirs": "/data/symlinks", "ours": "/data/symlinks"}],
+    "allow_local_network": true, "writable": true, "clear_finished": false, "priority": 1
+  }
+}

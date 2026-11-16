@@ -7,7 +7,7 @@ Provides a declarative, private media pipeline on kaito with separate movie/TV a
 ## ADDED Requirements
 
 ### Requirement: Delivered as importable NixOS modules
-The pipeline SHALL be delivered as NixOS modules under `modules/services/tools/` (`media-storage`, `holyarrs`, `decypharr`, `jackett`), enabled solely by importing them into a host. No other host than kaito SHALL import them.
+The pipeline SHALL be delivered as NixOS modules under `modules/services/tools/` (`media-storage`, `holyarrs`, `decypharr`, `jackett`, `media-connections`, `media-backup`), enabled solely by importing them into a host. No other host than kaito SHALL import them.
 
 #### Scenario: Only kaito changes
 - **WHEN** every `nixosConfigurations` output is evaluated after the change
@@ -31,6 +31,10 @@ HolyArrs (port 6262), Decypharr (port 8282) and Jackett (port 9117) SHALL be rea
 #### Scenario: No public virtual host
 - **WHEN** the kaito nginx configuration is inspected
 - **THEN** it contains no virtual host for HolyArrs, Decypharr or Jackett
+
+#### Scenario: Owner bootstrap is incomplete or fails
+- **WHEN** HolyArrs starts before its managed owner and API access have been established, or provisioning refuses existing state
+- **THEN** only its loopback backend is reachable and its mesh-facing management socket remains closed, preventing another client from claiming the owner
 
 ### Requirement: Reproducible service versions
 HolyArrs and Decypharr SHALL run from explicitly pinned image versions; floating tags such as `latest` SHALL NOT be used. Upgrades SHALL happen only by changing the pinned version in the repository.
@@ -57,8 +61,10 @@ The services SHALL share one tree under `/data`, visible at identical absolute p
 - **WHEN** a file is created under `/data/media` by HolyArrs
 - **THEN** it belongs to group `media` and is writable by that group
 
-### Requirement: Existing debrid acquisition remains isolated
-Movie and show releases acquired through the existing Real-Debrid pipeline SHALL be exposed as symlinks into its mount without local media copies or seeding on kaito. Music acquisition SHALL satisfy the subscription-free music requirement; the existing paid debrid pipeline SHALL NOT be assumed to satisfy it.
+### Requirement: All media acquisition uses the existing debrid service
+Movie, show and music releases SHALL be acquired through HolyArrs and Decypharr using the existing paid Real-Debrid service and exposed as symlinks into its mount, without retained full local media copies or seeding on kaito. No local torrent client or additional VPN service SHALL be introduced for this pipeline. Application state, artwork and bounded operational caches MAY remain local.
+
+Decypharr's Hearsay peer discovery and publishing SHALL be explicitly disabled; remote acquisition SHALL NOT implicitly enable an additional peer network on kaito.
 
 #### Scenario: Grab a cached movie
 - **WHEN** HolyArrs grabs a release that Real-Debrid has cached
@@ -68,8 +74,12 @@ Movie and show releases acquired through the existing Real-Debrid pipeline SHALL
 - **WHEN** the Real-Debrid mount is not available
 - **THEN** imports fail visibly in HolyArrs instead of writing media to local disk
 
+#### Scenario: Music acquisition without local torrent peers
+- **WHEN** a music release is acquired or Real-Debrid cannot fetch it
+- **THEN** kaito does not join a torrent swarm or fall back to a local torrent client, and failure is shown if remote acquisition cannot complete
+
 ### Requirement: Imports land in the library as links
-HolyArrs SHALL accept symlinked downloads and preserve links when importing them into the library, named by its own naming scheme (music as `Artist/Album (Year)/NN - Title.ext`). A separately selected subscription-free music downloader MAY produce local files; their storage policy MUST be established before rollout.
+HolyArrs SHALL accept symlinked downloads and preserve links when importing them into the library, named by its own naming scheme (music as `Artist/Album (Year)/NN - Title.ext`). Playback services SHALL read these links through the shared mount without requiring complete retained local copies.
 
 #### Scenario: Import a movie
 - **WHEN** a grabbed movie finishes in the downloader
@@ -80,7 +90,7 @@ HolyArrs SHALL accept symlinked downloads and preserve links when importing them
 - **THEN** the album's tracks appear under `/data/media/music/<Artist>/<Album> (<Year>)/` as links
 
 ### Requirement: Search sources include music
-HolyArrs SHALL search sources through Jackett's Torznab feeds, including each site's music categories.
+HolyArrs SHALL search the user-selected Knaben and The Pirate Bay sources through Jackett's Torznab feeds, including each site's music categories. Source configuration SHALL be repository-managed without requiring tracker accounts or browser setup.
 
 #### Scenario: Music search returns releases
 - **WHEN** the owner runs a manual search for an album in HolyArrs
@@ -96,6 +106,17 @@ Credentials, API keys and recoverable encryption keys SHALL be provisioned witho
 #### Scenario: Restore encrypted state
 - **WHEN** service state is restored using the documented automated recovery procedure and protected key material
 - **THEN** the services can decrypt their stored credentials without manual key copying or account recreation
+
+### Requirement: Encrypted local state backups
+Protected repository-managed bootstrap state SHALL be stored encrypted under `secrets/`. Mutable databases SHALL remain in service-owned runtime directories. Backups SHALL be encrypted and stored on kaito under `/var/backups/media` until a different destination is approved. Snapshots SHALL preserve service state and its associated encryption/authentication keys consistently. Same-server backup storage SHALL NOT be represented as protection against server disk loss.
+
+#### Scenario: Consistent acquisition-state snapshot
+- **WHEN** the scheduled acquisition backup runs
+- **THEN** state writers are stopped for the snapshot, the actual HolyArrs master key is included with its state, and previously active services resume even if backup fails
+
+#### Scenario: Restore verification without overwriting live state
+- **WHEN** an encrypted backup is restored for verification
+- **THEN** the restored state is verified in a protected staging directory and an existing nonempty target is refused
 
 ### Requirement: Existing services are unaffected
 Navidrome, AIOStreams and all other kaito services SHALL keep running unchanged while this pipeline is introduced.
@@ -140,9 +161,9 @@ The music application SHALL offer discovery outside the owned library and submit
 - **WHEN** no usable release is found or acquisition fails
 - **THEN** the application shows the failure and permits retry without reporting the track as playable
 
-### Requirement: Subscription-free music workflow
-Music discovery, acquisition and playback SHALL use open-source self-hosted applications without requiring paid subscriptions. YouTube or a paid streaming service SHALL NOT be a required playback fallback. A metadata recommendation is not evidence that playable audio is available.
+### Requirement: Music reuses the approved acquisition subscription
+Music discovery and playback SHALL use open-source self-hosted applications without requiring an additional application or streaming subscription. Acquisition SHALL reuse the user's approved existing paid Real-Debrid subscription. YouTube or a paid streaming service SHALL NOT be a required playback fallback. A metadata recommendation is not evidence that playable audio is available.
 
-#### Scenario: No streaming subscription
-- **WHEN** a user has no paid music or acquisition subscription
-- **THEN** discovery, acquisition from a configured subscription-free source and playback still work for available releases
+#### Scenario: Existing debrid subscription only
+- **WHEN** a user has the configured Real-Debrid credentials but no paid music-streaming or VPN subscription
+- **THEN** discovery, acquisition through HolyArrs and Decypharr, and playback work for releases Real-Debrid can fetch without requiring another subscription
