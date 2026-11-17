@@ -10,7 +10,7 @@ in {
   flake.homeConfigurations = {
     "casper@${hostname}" = self.lib.makeHomeConf {
       inherit hostname;
-      imports = with inputs.self.modules.homeManager; [ casper ];
+      imports = with inputs.self.modules.homeManager; [ casper shared-moonfin ];
     };
     "lucak@${hostname}" = self.lib.makeHomeConf {
       username = "lucak";

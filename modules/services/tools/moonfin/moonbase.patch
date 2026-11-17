@@ -1,0 +1,88 @@
+diff --git a/Jellyfin/backend/Api/MoonfinController.cs b/Jellyfin/backend/Api/MoonfinController.cs
+--- a/Jellyfin/backend/Api/MoonfinController.cs
++++ b/Jellyfin/backend/Api/MoonfinController.cs
+@@ -131,8 +131,8 @@
+             Version = MoonfinPlugin.Instance?.Version.ToString() ?? "1.0.0.0",
+             SettingsSyncEnabled = config?.EnableSettingsSync ?? false,
+             ServerName = "Jellyfin",
+-            SeerrEnabled = config?.SeerrEnabled ?? false,
+-            SeerrUrl = (config?.SeerrEnabled == true)
++            SeerrEnabled = HolyArrsIntegration.Enabled || (config?.SeerrEnabled ?? false),
++            SeerrUrl = HolyArrsIntegration.Enabled ? "/Moonfin/Seerr" : (config?.SeerrEnabled == true)
+                 ? config.SeerrUrl
+                 : null,
+             MdblistAvailable = !string.IsNullOrWhiteSpace(config?.MdblistApiKey),
+@@ -148,13 +148,13 @@
+             ExtendedCompleteShowingsSupported = config?.LiveTvDetectIncompleteRecordings ?? true,
+             RecommendationsSupported = config?.RecommendationsProviderEnabled ?? true,
+             SmartSearchEnabled = config?.SmartSearchEnabled ?? false,
+-            CalendarAvailable = config?.SeerrEnabled == true
++            CalendarAvailable = !HolyArrsIntegration.Enabled && config?.SeerrEnabled == true
+                 && !string.IsNullOrEmpty(config.GetEffectiveSeerrUrl())
+                 && ArrCalendarWindow.Refusal(config.CalendarAdminsOnly, this.IsAdminFromClaims()) == null,
+             CalendarDaysBack = Math.Max(0, config?.CalendarDaysBack ?? 14),
+             CalendarDaysAhead = Math.Max(0, config?.CalendarDaysAhead ?? 90),
+             CalendarReminders = true,
+-            ArrQueueAvailable = config?.SeerrEnabled == true && !string.IsNullOrEmpty(config.GetEffectiveSeerrUrl()),
++            ArrQueueAvailable = !HolyArrsIntegration.Enabled && config?.SeerrEnabled == true && !string.IsNullOrEmpty(config.GetEffectiveSeerrUrl()),
+             SocketRelay = config?.EnableSocketRelay ?? false,
+             PushSupported = config?.PushEnabled ?? false,
+             DefaultSettings = _settingsService.AdminDefaultsFor(profile)
+diff --git a/Jellyfin/backend/Api/SeerrProxyController.cs b/Jellyfin/backend/Api/SeerrProxyController.cs
+--- a/Jellyfin/backend/Api/SeerrProxyController.cs
++++ b/Jellyfin/backend/Api/SeerrProxyController.cs
+@@ -67,6 +67,7 @@
+     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+     public async Task<IActionResult> Login([FromBody] SeerrLoginRequest request)
+     {
++        if (HolyArrsIntegration.Enabled) return await HolyArrsIntegration.Handle(this, "login");
+         var config = MoonfinPlugin.Instance?.Configuration;
+         var seerrUrl = config?.GetEffectiveSeerrUrl();
+         if (config?.SeerrEnabled != true || string.IsNullOrEmpty(seerrUrl))
+@@ -198,6 +199,7 @@
+     [ProducesResponseType(StatusCodes.Status200OK)]
+     public async Task<IActionResult> GetStatus()
+     {
++        if (HolyArrsIntegration.Enabled) return await HolyArrsIntegration.Handle(this, "status");
+         var config = MoonfinPlugin.Instance?.Configuration;
+         var seerrUrl = config?.GetEffectiveSeerrUrl();
+         if (config?.SeerrEnabled != true || string.IsNullOrEmpty(seerrUrl))
+@@ -251,6 +253,7 @@
+     [ProducesResponseType(StatusCodes.Status200OK)]
+     public async Task<IActionResult> Validate()
+     {
++        if (HolyArrsIntegration.Enabled) return await HolyArrsIntegration.Handle(this, "validate");
+         var userId = this.GetUserIdFromClaims();
+         if (userId == null)
+         {
+@@ -274,6 +277,7 @@
+     [ProducesResponseType(StatusCodes.Status200OK)]
+     public async Task<IActionResult> Logout()
+     {
++        if (HolyArrsIntegration.Enabled) return await HolyArrsIntegration.Handle(this, "logout");
+         var userId = this.GetUserIdFromClaims();
+         if (userId == null)
+         {
+@@ -485,6 +489,7 @@
+ 
+     private async Task<IActionResult> ProxyApiRequest(HttpMethod method, string path)
+     {
++        if (HolyArrsIntegration.Enabled) return await HolyArrsIntegration.Handle(this, "api", path);
+         var config = MoonfinPlugin.Instance?.Configuration;
+         var seerrUrl = config?.GetEffectiveSeerrUrl();
+         if (config?.SeerrEnabled != true || string.IsNullOrEmpty(seerrUrl))
+diff --git a/Jellyfin/backend/Services/MoonfinSettingsService.cs b/Jellyfin/backend/Services/MoonfinSettingsService.cs
+--- a/Jellyfin/backend/Services/MoonfinSettingsService.cs
++++ b/Jellyfin/backend/Services/MoonfinSettingsService.cs
+@@ -292,6 +292,11 @@ public class MoonfinSettingsService
+     internal static MoonfinSettingsProfile? AdminDefaultsFor(string? profileName, PluginConfiguration? config)
+     {
+         var global = config?.DefaultUserSettings;
++        if (HolyArrsIntegration.Enabled)
++        {
++            global ??= new MoonfinSettingsProfile();
++            global.SeerrEnabled ??= true;
++        }
+         var device = IsDeviceProfile(profileName) ? config?.GetDefaultsFor(profileName) : null;
+         if (device == null)
+         {

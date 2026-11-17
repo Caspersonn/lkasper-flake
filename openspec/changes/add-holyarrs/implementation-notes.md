@@ -364,3 +364,10 @@ lessons: nixpkgs `wait_for_unit` takes no `state=` argument (use
 backup quiesce does not auto-restart `partOf` provision oneshots, and start-limit
 counting can latch a restart that arrives too quickly after a quiesce failure.
 Nothing is deployed.
+## Moonfin native HolyArrs integration
+
+Moonbase `c6aad40f61a89be84a272329731b5b688eac8567` is packaged with a repository-managed native HolyArrs backend behind the official Moonfin request protocol. No Seerr service is deployed. The plugin supplies discovery, movie/show details, movie and whole-show/selected-season requests, request lists and counts. Unsupported operations return 501. Requests use the managed HolyArrs owner; restricted Jellyfin accounts are refused. The key is read from a systemd credential and never returned to the client.
+
+The contract executable passed 45 assertions and the Python suite passed 121 tests. The final Jellyfin VM passed authorization, repeat activation, distinct absent/present TMDB identifiers and streaming of a linked video fixture (`/nix/store/k38q3lgh66zf2v7syihjx5rky4gvar0r-vm-test-run-jellyfin-provision`), including the paged provider lookup and request-count additions. Kaito closure `/nix/store/abdllz8vi36f08d55lgj0az4pvh8b4pg-nixos-system-kaito-26.05.20261015.26f4107` and all three selected Home Manager activation packages built; the server closure was copied but activation requires sudo on kaito. The official Moonfin 3.1.0 Linux client started under Xvfb and remained running until the 25-second smoke-test timeout. Its FHS package includes the shared libraries required by the official bundle, including libgbm. Request protocol source files were compared with the official 3.1.0 tag without differences.
+
+The client is selected for Casper's gaming, personal and technative Home Manager profiles. Android and Android TV compatibility is based on the official 3.1.0 client protocol and release artifacts, not device testing. Existing client state is preserved; automatic server registration is not implemented. Production deployment, real movie/show request-to-playback and Android/TV execution remain open acceptance work.

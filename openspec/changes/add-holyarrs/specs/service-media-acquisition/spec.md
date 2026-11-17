@@ -167,3 +167,18 @@ Music discovery and playback SHALL use open-source self-hosted applications with
 #### Scenario: Existing debrid subscription only
 - **WHEN** a user has the configured Real-Debrid credentials but no paid music-streaming or VPN subscription
 - **THEN** discovery, acquisition through HolyArrs and Decypharr, and playback work for releases Real-Debrid can fetch without requiring another subscription
+
+### Requirement: Moonfin video discovery and requests
+Moonfin SHALL provide discovery outside the owned library, movie and TV acquisition requests, request status and Jellyfin playback in the same client on Linux, Android and Android/Google TV. A repository-managed Moonbase integration SHALL submit requests to HolyArrs without exposing server credentials or requiring a separate request application. Existing Jellyfin identity and access restrictions SHALL apply.
+
+#### Scenario: Request an unowned movie
+- **WHEN** an authorized user discovers an unowned movie in Moonfin and requests it
+- **THEN** HolyArrs receives the request through Moonbase, Moonfin shows its status, and playback becomes available only after Jellyfin indexes readable imported media
+
+#### Scenario: Request a show
+- **WHEN** an authorized user requests a whole show or selected seasons in Moonfin
+- **THEN** the HolyArrs request retains that scope and its status remains visible inside Moonfin
+
+#### Scenario: Reject unauthorized acquisition
+- **WHEN** an unauthenticated or unauthorized client attempts acquisition
+- **THEN** the request is refused without disclosing credentials or creating a HolyArrs request

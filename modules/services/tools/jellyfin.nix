@@ -5,6 +5,8 @@
   flake.modules.nixos.jellyfin = { config, lib, pkgs, ... }:
     let
       stateDir = "${config.services.jellyfin.dataDir}/provision";
+      moonbase = pkgs.callPackage ./moonfin/_package.nix { };
+      holyarrsEnabled = config.virtualisation.oci-containers.containers ? holyarrs;
       scripts = pkgs.runCommand "jellyfin-provision" { } ''
         mkdir -p "$out"
         cp ${./media-provision/jellyfin.py} "$out/jellyfin.py"
@@ -29,6 +31,23 @@
       };
 
       users.users.jellyfin.extraGroups = [ "media" ];
+
+      systemd.services.jellyfin = {
+        after = lib.optionals holyarrsEnabled [ "docker-holyarrs.service" ];
+        requires = lib.optionals holyarrsEnabled [ "docker-holyarrs.service" ];
+        restartTriggers = [ moonbase ];
+        environment = lib.optionalAttrs holyarrsEnabled {
+          MOONFIN_HOLYARRS_KEY_FILE = "%d/holyarrs-key";
+        };
+        serviceConfig.LoadCredential = lib.optionals holyarrsEnabled [
+          "holyarrs-key:/var/lib/holyarrs/provision/api-key.json"
+        ];
+        preStart = ''
+          ${pkgs.coreutils}/bin/install -d -m 0750 ${config.services.jellyfin.dataDir}/plugins/Moonbase
+          ${pkgs.coreutils}/bin/install -m 0444 ${moonbase}/Moonfin.Server.dll ${config.services.jellyfin.dataDir}/plugins/Moonbase/
+          ${pkgs.coreutils}/bin/install -m 0444 ${moonbase}/SharpCompress.dll ${config.services.jellyfin.dataDir}/plugins/Moonbase/
+        '';
+      };
 
       systemd.services.jellyfin-media-provision = {
         wantedBy = [ "multi-user.target" ];
