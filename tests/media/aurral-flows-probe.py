@@ -55,6 +55,7 @@ for name, entry in journal.items():
     assert flow["name"] == name
     assert flow["ownerUserId"] == logged["user"]["id"]
     assert flow["autoDownload"] is True
+    assert flow["enabled"] is True
     assert flow["deepDive"] is False
     assert flow["scheduleDays"]
 config = json.loads(Path("/var/lib/slskd-aurral/slskd.yml").read_text())
@@ -63,6 +64,11 @@ assert config["flags"]["no_connect"] is True
 assert config["web"]["ip_address"] == "127.0.0.1"
 assert config["soulseek"]["listen_port"] == 50310
 assert config["retention"]["files"] == {"complete": None, "incomplete": None}
+assert config["transfers"]["download"]["slots"] == 6
+assert "speed_limit" not in config["transfers"]["download"]
+options = call(5032, "/api/v0/options", headers={"X-API-Key": credential["api_key"]})
+assert options["transfers"]["download"]["slots"] == 6
+assert options["transfers"]["download"]["speedLimit"] == 2147483647
 call(5032, "/api/v0/session", headers={"X-API-Key": credential["api_key"]})
 salt = "fixture-subsonic-salt"
 token = hashlib.md5((seed["password"] + salt).encode()).hexdigest()

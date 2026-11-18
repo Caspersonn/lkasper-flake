@@ -110,6 +110,9 @@ def reconcile_flows(client, state_dir, recipes, user_id):
     flows = flow_list(client)
     for name, recipe in recipes.items():
         wanted = dict(recipe, name=name)
+        enabled = wanted.pop("enabled")
+        if type(enabled) is not bool:
+            raise ProvisionError("Aurral recipe enabled state must be boolean")
         entry = journal["managed"].get(name)
         matches = [flow for flow in flows if flow.get("name") == name]
         if entry is None:
@@ -143,6 +146,11 @@ def reconcile_flows(client, state_dir, recipes, user_id):
         current = next((flow for flow in flow_list(client) if flow.get("id") == flow_id), None)
         if not contains(current, wanted):
             raise ProvisionError("Aurral recipe did not converge after saving")
+        if current.get("enabled") is not enabled:
+            client.call("PUT", f"/api/playlists/flows/{flow_id}/enabled", {"enabled": enabled})
+            current = next((flow for flow in flow_list(client) if flow.get("id") == flow_id), None)
+            if not isinstance(current, dict) or current.get("enabled") is not enabled:
+                raise ProvisionError("Aurral recipe enabled state did not converge after saving")
 
 
 def reconcile(client, state_dir, settings, credentials):

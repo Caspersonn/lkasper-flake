@@ -57,8 +57,7 @@ def render(state_dir, credential_path, connect=False):
         },
         "transfers": {
             "download": {
-                "slots": 2,
-                "speed_limit": 2048,
+                "slots": 6,
                 "retry": {"partial": "resume", "attempts": 3, "delay": 5000, "max_delay": 60000},
                 "destination": {"exists": "rename", "permissions": {"mode": "660"}},
             },

@@ -89,6 +89,7 @@ in {
       holyarrs
       media-connections
       soundspan
+      aurral-flows
 
       # System
       secrets
@@ -100,6 +101,12 @@ in {
 
     networking.hostName = hostname;
     programs.dconf.enable = true;
+
+    services.aurralFlows = {
+      enable = true;
+      connect = true;
+      clientDomain = "aurral.inspiravita.com";
+    };
 
     networking.firewall.allowedTCPPorts = [ 53 443 80 51820 ];
     networking.firewall.allowedUDPPorts = [ 53 ];

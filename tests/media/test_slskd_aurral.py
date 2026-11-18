@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 import sys
 import tempfile
@@ -48,6 +49,17 @@ class SlskdAurralTests(unittest.TestCase):
             render(self.state, self.credentials)
         self.assertEqual(path.read_text(), "existing")
         self.assertFalse(self.credentials.exists())
+
+    def test_six_download_slots_without_a_configured_speed_cap(self):
+        config = render(self.state, self.credentials)
+        seed = self.credentials.read_bytes()
+        config["transfers"]["download"].update(slots=2, speed_limit=2048)
+        (self.state / "slskd.yml").write_text(json.dumps(config))
+        updated = render(self.state, self.credentials)
+        self.assertEqual(updated["transfers"]["download"]["slots"], 6)
+        self.assertNotIn("speed_limit", updated["transfers"]["download"])
+        self.assertEqual(self.credentials.read_bytes(), seed)
+        self.assertEqual(render(self.state, self.credentials), updated)
 
     def test_public_seed_and_symlinks_are_rejected(self):
         render(self.state, self.credentials)

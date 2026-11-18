@@ -24,6 +24,8 @@ class FakeClient:
         self.login_user = {"id": 1, "username": "casper", "role": "admin"}
         self.ignore_settings = False
         self.fail_after_create = False
+        self.ignore_enabled = False
+        self.ignore_recipes = False
 
     def ready(self):
         return {"onboardingRequired": self.onboarding}
@@ -42,15 +44,22 @@ class FakeClient:
         if path == "/api/playlists/status":
             return {"flows": copy.deepcopy(self.flows)}
         if path == "/api/playlists/flows":
-            flow = dict(body, id=f"flow-{len(self.flows) + 1}", ownerUserId=1)
+            flow = dict(body, id=f"flow-{len(self.flows) + 1}", ownerUserId=1, enabled=False, nextRunAt=None)
             self.flows.append(flow)
             if self.fail_after_create:
                 self.fail_after_create = False
                 raise aurral.ProvisionError("interrupted after create")
             return {"flow": copy.deepcopy(flow)}
+        if path.startswith("/api/playlists/flows/") and path.endswith("/enabled") and method == "PUT":
+            flow = next(flow for flow in self.flows if flow["id"] == path.split("/")[-2])
+            if not self.ignore_enabled:
+                flow["enabled"] = body["enabled"]
+                flow["nextRunAt"] = "2030-01-01T05:00:00Z" if body["enabled"] else None
+            return {"success": True, "enabled": flow["enabled"]}
         if path.startswith("/api/playlists/flows/") and method == "PUT":
             flow = next(flow for flow in self.flows if flow["id"] == path.rsplit("/", 1)[1])
-            flow.update(copy.deepcopy(body))
+            if not self.ignore_recipes:
+                flow.update({key: value for key, value in copy.deepcopy(body).items() if key != "enabled"})
             return {"flow": copy.deepcopy(flow)}
         raise AssertionError((method, path))
 
@@ -75,6 +84,7 @@ class AurralTests(unittest.TestCase):
         self.assertFalse(self.client.onboarding)
         self.assertEqual(len(self.client.flows), 2)
         self.assertTrue(all(flow["autoDownload"] for flow in self.client.flows))
+        self.assertTrue(all(flow["enabled"] and flow["nextRunAt"] for flow in self.client.flows))
         self.assertTrue(self.client.settings["subsonic"]["favoriteAutoKeep"])
         for source in ("lidarr", "prowlarr", "nzbget", "sabnzbd", "tidarr", "ytdlp", "deemix"):
             self.assertFalse(self.client.settings["integrations"][source]["enabled"])
@@ -84,6 +94,33 @@ class AurralTests(unittest.TestCase):
         self.assertNotIn("existingMusic", onboarding)
         self.assertEqual(self.client.settings["unmanaged"], "keep")
         self.assertEqual((self.root / "admin.json").stat().st_mode & 0o777, 0o600)
+        for flow in self.client.flows:
+            self.assertLess(routes.index(("PUT", f"/api/playlists/flows/{flow['id']}")), routes.index(("PUT", f"/api/playlists/flows/{flow['id']}/enabled")))
+
+    def test_disabled_managed_flow_is_enabled_without_recreating_or_touching_personal_flow(self):
+        self.reconcile()
+        managed = self.client.flows[0]
+        managed["enabled"] = False
+        managed["nextRunAt"] = None
+        self.client.flows.append({"id": "personal", "name": "Personal", "ownerUserId": 1, "enabled": False})
+        self.client.calls.clear()
+        self.reconcile()
+        self.assertTrue(managed["enabled"])
+        self.assertTrue(managed["nextRunAt"])
+        self.assertFalse(self.client.flows[-1]["enabled"])
+        mutations = [(method, path) for method, path, _ in self.client.calls if method in ("POST", "PUT") and path != "/api/auth/login"]
+        self.assertEqual(mutations, [("PUT", f"/api/playlists/flows/{managed['id']}/enabled")])
+
+    def test_enabled_state_must_converge(self):
+        self.client.ignore_enabled = True
+        with self.assertRaises(aurral.ProvisionError):
+            self.reconcile()
+
+    def test_recipe_failure_does_not_enable_flow(self):
+        self.client.ignore_recipes = True
+        with self.assertRaises(aurral.ProvisionError):
+            self.reconcile()
+        self.assertFalse(any(path.endswith("/enabled") for _, path, _ in self.client.calls))
 
     def test_repeat_activation_preserves_credentials_and_unmanaged_flows(self):
         self.reconcile()
