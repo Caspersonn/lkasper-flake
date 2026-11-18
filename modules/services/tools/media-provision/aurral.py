@@ -153,6 +153,27 @@ def reconcile_flows(client, state_dir, recipes, user_id):
                 raise ProvisionError("Aurral recipe enabled state did not converge after saving")
 
 
+def authenticate(client, seed):
+    logged = client.call("POST", "/api/auth/login", seed)
+    user = logged.get("user", {})
+    token = logged.get("token")
+    if not isinstance(token, str) or not token or user.get("role") != "admin" or user.get("username") != seed["username"] or type(user.get("id")) is not int or user["id"] <= 0:
+        raise ProvisionError("Aurral login did not authenticate the managed administrator")
+    client.token = token
+    return user
+
+
+def reconcile_worker(client, worker):
+    if not isinstance(worker, dict) or set(worker) != {"concurrency"} or type(worker["concurrency"]) is not int or not 1 <= worker["concurrency"] <= 3:
+        raise ProvisionError("Aurral worker settings require a supported concurrency from one to three")
+    current = client.call("GET", "/api/playlists/worker/settings")
+    if not contains(current, worker):
+        client.call("PUT", "/api/playlists/worker/settings", worker)
+        current = client.call("GET", "/api/playlists/worker/settings")
+        if not contains(current, worker):
+            raise ProvisionError("Aurral worker settings did not converge after saving")
+
+
 def reconcile(client, state_dir, settings, credentials):
     credential = read_object(credentials, protected=True)
     key = credential.get("api_key")
@@ -168,22 +189,18 @@ def reconcile(client, state_dir, settings, credentials):
             "downloadFolderPath": wanted["downloadFolderPath"],
             "security": {"localNetworkBypass": {"enabled": False}},
         })
-    logged = client.call("POST", "/api/auth/login", seed)
-    user = logged.get("user", {})
-    token = logged.get("token")
-    if not isinstance(token, str) or not token or user.get("role") != "admin" or user.get("username") != seed["username"] or type(user.get("id")) is not int or user["id"] <= 0:
-        raise ProvisionError("Aurral login did not authenticate the managed administrator")
-    client.token = token
+    user = authenticate(client, seed)
     current = client.call("GET", "/api/settings")
     if not contains(current, wanted):
         client.call("POST", "/api/settings", wanted)
         current = client.call("GET", "/api/settings")
         if not contains(current, wanted):
             raise ProvisionError("Aurral settings did not converge after saving")
+    reconcile_worker(client, settings["worker"])
     reconcile_flows(client, state_dir, settings["flows"], user["id"])
 
 
-def provision(client, state_dir, settings, credentials):
+def provision(client, state_dir, settings, credentials=None, worker_only=False):
     info = state_dir.lstat()
     if not stat.S_ISDIR(info.st_mode) or info.st_mode & 0o077 or state_dir.resolve() != state_dir.absolute():
         raise ProvisionError("Aurral provisioning state must be private without symlinks")
@@ -193,7 +210,16 @@ def provision(client, state_dir, settings, credentials):
             raise ProvisionError("Aurral provisioning lock must be regular")
         os.fchmod(lock.fileno(), 0o600)
         fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-        reconcile(client, state_dir, settings, credentials)
+        if worker_only:
+            status = client.ready()
+            if status.get("onboardingRequired") is not False:
+                raise ProvisionError("Aurral worker-only updates require an existing installation")
+            authenticate(client, administrator(state_dir, status))
+            reconcile_worker(client, settings["worker"])
+        else:
+            if credentials is None:
+                raise ProvisionError("Aurral provisioning requires protected slskd credentials")
+            reconcile(client, state_dir, settings, credentials)
 
 
 def main():
@@ -201,10 +227,13 @@ def main():
     parser.add_argument("--endpoint", default="http://127.0.0.1:3002")
     parser.add_argument("--state-dir", type=Path, required=True)
     parser.add_argument("--settings", type=Path, required=True)
-    parser.add_argument("--credentials", type=Path, required=True)
+    parser.add_argument("--credentials", type=Path)
+    parser.add_argument("--worker-only", action="store_true")
     args = parser.parse_args()
     try:
-        provision(Client(args.endpoint), args.state_dir, read_object(args.settings), args.credentials)
+        provision(Client(args.endpoint), args.state_dir, read_object(args.settings), args.credentials, worker_only=args.worker_only)
+        if args.worker_only:
+            print("Aurral search concurrency verified; no flow settings were changed.")
     except (ProvisionError, OSError, ValueError, TypeError, KeyError, AttributeError):
         print("Aurral provisioning failed; no account, unmanaged flow or library was reset.", file=sys.stderr)
         return 1

@@ -26,6 +26,8 @@ class FakeClient:
         self.fail_after_create = False
         self.ignore_enabled = False
         self.ignore_recipes = False
+        self.worker = {"concurrency": 2, "existingFileMode": "reuse", "retryPausedPlaylistIds": ["personal"]}
+        self.ignore_worker = False
 
     def ready(self):
         return {"onboardingRequired": self.onboarding}
@@ -41,6 +43,10 @@ class FakeClient:
             if method == "POST" and not self.ignore_settings:
                 self.settings = aurral.merge(self.settings, body)
             return copy.deepcopy(self.settings)
+        if path == "/api/playlists/worker/settings":
+            if method == "PUT" and not self.ignore_worker:
+                self.worker.update(body)
+            return copy.deepcopy(self.worker)
         if path == "/api/playlists/status":
             return {"flows": copy.deepcopy(self.flows)}
         if path == "/api/playlists/flows":
@@ -116,6 +122,75 @@ class AurralTests(unittest.TestCase):
         with self.assertRaises(aurral.ProvisionError):
             self.reconcile()
 
+    def test_worker_concurrency_converges_without_changing_other_worker_settings(self):
+        self.reconcile()
+        self.assertEqual(self.client.worker, {"concurrency": 3, "existingFileMode": "reuse", "retryPausedPlaylistIds": ["personal"]})
+        self.client.worker["concurrency"] = 1
+        self.client.calls.clear()
+        self.reconcile()
+        mutations = [(method, path, body) for method, path, body in self.client.calls if method == "PUT"]
+        self.assertEqual(mutations, [("PUT", "/api/playlists/worker/settings", {"concurrency": 3})])
+
+    def test_worker_settings_must_converge_before_flow_creation(self):
+        self.client.ignore_worker = True
+        with self.assertRaises(aurral.ProvisionError):
+            self.reconcile()
+        self.assertEqual(self.client.flows, [])
+
+    def test_worker_only_updates_existing_installation_without_touching_flows_or_credentials(self):
+        self.client.onboarding = False
+        aurral.atomic_json(self.root / "admin.json", {"username": "casper", "password": "existing-password-" * 3})
+        before = {path.name: path.read_bytes() for path in self.root.iterdir()}
+        self.client.flows = [{"id": "personal", "enabled": True}]
+        aurral.provision(self.client, self.root, self.settings, worker_only=True)
+        self.assertEqual(self.client.calls, [
+            ("POST", "/api/auth/login", json.loads(before["admin.json"])),
+            ("GET", "/api/playlists/worker/settings", None),
+            ("PUT", "/api/playlists/worker/settings", {"concurrency": 3}),
+            ("GET", "/api/playlists/worker/settings", None),
+        ])
+        self.assertEqual(self.client.worker, {"concurrency": 3, "existingFileMode": "reuse", "retryPausedPlaylistIds": ["personal"]})
+        self.assertEqual(self.client.flows, [{"id": "personal", "enabled": True}])
+        self.assertEqual(self.client.settings, {"unmanaged": "keep"})
+        for name, payload in before.items():
+            self.assertEqual((self.root / name).read_bytes(), payload)
+        self.assertFalse((self.root / "flows.json").exists())
+        self.client.calls.clear()
+        aurral.provision(self.client, self.root, self.settings, worker_only=True)
+        self.assertFalse(any(method == "PUT" for method, _, _ in self.client.calls))
+
+    def test_worker_only_refuses_fresh_or_unmanaged_installations(self):
+        for onboarding in (True, False):
+            with self.subTest(onboarding=onboarding):
+                self.client.onboarding = onboarding
+                with self.assertRaises(aurral.ProvisionError):
+                    aurral.provision(self.client, self.root, self.settings, worker_only=True)
+                self.assertEqual(self.client.calls, [])
+                self.assertFalse((self.root / "admin.json").exists())
+
+    def test_worker_only_rejects_nonadministrator_before_updating(self):
+        self.client.onboarding = False
+        aurral.atomic_json(self.root / "admin.json", {"username": "casper", "password": "existing-password-" * 3})
+        self.client.login_user["role"] = "user"
+        with self.assertRaises(aurral.ProvisionError):
+            aurral.provision(self.client, self.root, self.settings, worker_only=True)
+        self.assertEqual([path for _, path, _ in self.client.calls], ["/api/auth/login"])
+
+    def test_worker_only_reports_nonconvergence_without_flow_calls(self):
+        self.client.onboarding = False
+        self.client.ignore_worker = True
+        aurral.atomic_json(self.root / "admin.json", {"username": "casper", "password": "existing-password-" * 3})
+        with self.assertRaises(aurral.ProvisionError):
+            aurral.provision(self.client, self.root, self.settings, worker_only=True)
+        self.assertTrue(all(path in ("/api/auth/login", "/api/playlists/worker/settings") for _, path, _ in self.client.calls))
+
+    def test_worker_payload_cannot_modify_other_settings_or_exceed_native_limit(self):
+        for worker in ({"concurrency": 0}, {"concurrency": 4}, {"concurrency": True}, {"concurrency": 3, "existingFileMode": "replace"}):
+            with self.subTest(worker=worker):
+                with self.assertRaises(aurral.ProvisionError):
+                    aurral.reconcile_worker(self.client, worker)
+                self.assertEqual(self.client.calls, [])
+
     def test_recipe_failure_does_not_enable_flow(self):
         self.client.ignore_recipes = True
         with self.assertRaises(aurral.ProvisionError):
@@ -163,7 +238,7 @@ class AurralTests(unittest.TestCase):
                 self.client.calls.clear()
                 with self.assertRaises(aurral.ProvisionError):
                     self.reconcile()
-                self.assertFalse(any(path.startswith("/api/playlists/") for _, path, _ in self.client.calls))
+                self.assertFalse(any(path.startswith("/api/playlists/flows") or path == "/api/playlists/status" for _, path, _ in self.client.calls))
 
     def test_existing_unmanaged_administrator_is_not_adopted(self):
         self.client.onboarding = False
