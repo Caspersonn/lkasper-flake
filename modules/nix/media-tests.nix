@@ -1,5 +1,10 @@
 { inputs, ... }: {
   perSystem = { pkgs, ... }: {
+    checks.aurral-flows-provision = import ../../tests/media/aurral-flows.nix {
+      inherit pkgs;
+      inherit (inputs) agenix;
+      inherit (inputs.self.modules.nixos) media-storage aurral-flows media-backup;
+    };
     checks.media-connections = import ../../tests/media/connections.nix {
       inherit pkgs;
       inherit (inputs) agenix;

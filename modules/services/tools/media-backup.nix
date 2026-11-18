@@ -3,21 +3,26 @@
     let
       jellyfin = config.services.jellyfin.enable;
       soundspan = builtins.hasAttr "soundspan-backend" config.systemd.services;
+      aurral = config.services.aurralFlows.enable or false;
       paths = [ "/var/lib/decypharr" "/var/lib/holyarrs" "/var/lib/jackett" ]
         ++ lib.optionals jellyfin [ "/var/lib/jellyfin" ]
-        ++ lib.optionals soundspan [ "/var/backups/media/soundspan-dump" ];
-      units = [ "docker-holyarrs.service" "jackett.service" "docker-decypharr.service" ]
+        ++ lib.optionals soundspan [ "/var/backups/media/soundspan-dump" ]
+        ++ lib.optionals aurral [ "/var/lib/aurral-flows-provision" "/var/lib/aurral-flows" "/var/lib/slskd-aurral" "/data/music-aurral" ];
+      units = lib.optionals aurral [ "aurral-capacity.timer" "aurral-capacity.service" "aurral-flows-provision.service" "docker-aurral-flows.service" "docker-slskd-aurral.service" ]
+        ++ [ "docker-holyarrs.service" "jackett.service" "docker-decypharr.service" ]
         ++ lib.optionals jellyfin [ "jellyfin.service" ]
         ++ lib.optionals soundspan [ "soundspan-backend.service" "soundspan-frontend.service" ];
       requiredFiles = [
         "/var/lib/decypharr/config.json"
         "/var/lib/decypharr/auth.json"
         "/var/lib/holyarrs/holyarrs.key"
-      ] ++ lib.optionals soundspan [ "/var/backups/media/soundspan-dump/soundspan.dump" ];
+      ] ++ lib.optionals soundspan [ "/var/backups/media/soundspan-dump/soundspan.dump" ]
+        ++ lib.optionals aurral [ "/var/lib/aurral-flows-provision/admin.json" "/var/lib/aurral-flows-provision/slskd.json" "/var/lib/aurral-flows-provision/flows.json" "/var/lib/aurral-flows/aurral.db" "/var/lib/slskd-aurral/slskd.yml" ];
       settings = pkgs.writeText "media-backup-settings.json" (builtins.toJSON {
         repository = "/var/backups/media/restic";
         restore_root = "/var/lib/media-restore";
         inherit paths units;
+        aurral = if aurral then { database = "/var/lib/aurral-flows/aurral.db"; library = "/data/music-aurral"; } else null;
         required_files = requiredFiles;
         exclude = [ "/var/lib/decypharr/cache" ];
         tag = "media-state-v1";
@@ -33,6 +38,12 @@
           ++ lib.optionals soundspan [
             { "/var/backups/media/soundspan-dump" = [ "postgres" "postgres" ]; }
           ]
+          ++ lib.optionals aurral [
+            { "/var/lib/aurral-flows-provision" = [ "root" "root" ]; }
+            { "/var/lib/aurral-flows" = [ "media" "media" ]; }
+            { "/var/lib/slskd-aurral" = [ "media" "media" ]; }
+            { "/data/music-aurral" = [ "media" "media" ]; }
+          ]
         );
       });
       dumpDatabase = pkgs.writeShellApplication {
@@ -47,7 +58,8 @@
             --file=/var/backups/media/soundspan-dump/soundspan.dump
         '';
       };
-      run = operation: "${pkgs.python3}/bin/python3 ${./media-provision/backup.py} --settings ${settings} --password-file %d/password --runtime-dir /run/media-state-backup ${operation}";
+      run = operation: lib.optionalString aurral "${pkgs.util-linux}/bin/flock -n /run/aurral-maintenance/lock "
+        + "${pkgs.python3}/bin/python3 ${./media-provision/backup.py} --settings ${settings} --password-file %d/password --runtime-dir /run/media-state-backup ${operation}";
       common = {
         path = [ pkgs.restic pkgs.systemd ];
         serviceConfig = {

@@ -1,10 +1,12 @@
 import importlib.util
+from contextlib import closing
 import fcntl
 import grp
 import json
 import os
 from pathlib import Path
 import pwd
+import sqlite3
 import stat
 import subprocess
 import sys
@@ -81,6 +83,68 @@ class BackupTests(unittest.TestCase):
         self.assertEqual([c[2] for c in starts], list(reversed(self.settings['units'])))
         self.assertLess(self.calls.index(stops[-1]), next(i for i, c in enumerate(self.calls) if c[:2] == ['restic', 'backup']))
         self.assertFalse(self.backup.journal.exists())
+
+    def aurral_scope(self):
+        library = self.root / 'music'
+        flow = library / '_flows' / 'fixture'
+        flow.mkdir(parents=True)
+        self.kept = flow / 'Keep [live]*?.flac'
+        self.unkept = flow / 'Temporary [live]*?.flac'
+        self.kept.write_bytes(b'kept audio')
+        self.unkept.write_bytes(b'temporary audio')
+        database = self.state / 'aurral.db'
+        with closing(sqlite3.connect(database)) as connection, connection:
+            connection.execute('CREATE TABLE playlist_download_jobs (playlist_type TEXT, final_path TEXT)')
+            connection.execute('INSERT INTO playlist_download_jobs VALUES (?, ?)', ('library', str(self.kept)))
+        return {'database': str(database), 'library': str(library)}
+
+    def test_aurral_selection_preserves_kept_audio_inside_flow_directory(self):
+        scope = self.aurral_scope()
+        before = Path(scope['database']).read_bytes()
+        patterns = module.aurral_excludes(scope)
+        self.assertEqual(patterns, [str(self.unkept).replace('[', '\\[').replace(']', '\\]').replace('*', '\\*').replace('?', '\\?')])
+        self.assertEqual(Path(scope['database']).read_bytes(), before)
+        self.assertTrue(self.kept.is_file())
+        self.assertTrue(self.unkept.is_file())
+
+    def test_aurral_selection_fails_closed_for_missing_or_external_kept_file(self):
+        scope = self.aurral_scope()
+        self.kept.unlink()
+        with self.assertRaises(module.BackupError):
+            module.aurral_excludes(scope)
+        with closing(sqlite3.connect(scope['database'])) as connection, connection:
+            connection.execute('UPDATE playlist_download_jobs SET final_path = ?', (str(self.key),))
+        with self.assertRaises(module.BackupError):
+            module.aurral_excludes(scope)
+
+    def test_aurral_selection_refuses_missing_database_without_creating_it(self):
+        scope = self.aurral_scope()
+        Path(scope['database']).unlink()
+        with self.assertRaises(module.BackupError):
+            module.aurral_excludes(scope)
+        self.assertFalse(Path(scope['database']).exists())
+
+    def test_aurral_selection_never_follows_flow_or_kept_symlinks(self):
+        scope = self.aurral_scope()
+        self.kept.unlink()
+        self.kept.symlink_to(self.key)
+        with self.assertRaises(module.BackupError):
+            module.aurral_excludes(scope)
+
+    def test_aurral_reference_failure_resumes_writers_without_backup(self):
+        self.settings['aurral'] = self.aurral_scope()
+        self.kept.unlink()
+        with self.assertRaises(module.BackupError):
+            self.run_mocked('backup')
+        self.assertEqual(len([call for call in self.calls if call[:2] == ['systemctl', 'start']]), 2)
+        self.assertFalse(any(call[:2] == ['restic', 'backup'] for call in self.calls))
+
+    def test_aurral_selection_is_computed_after_writers_stop(self):
+        self.settings['aurral'] = self.aurral_scope()
+        self.run_mocked('backup')
+        create = next(call for call in self.calls if call[:2] == ['restic', 'backup'])
+        self.assertIn('--exclude', create)
+        self.assertNotIn(str(self.kept), create)
 
     def test_failed_backup_resumes_without_pruning(self):
         self.fail_backup = True

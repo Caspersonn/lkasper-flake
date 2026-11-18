@@ -123,9 +123,23 @@ def main():
         token = json.loads((app / "auth.json").read_text())["api_token"]
 
         jackett_provision.provision(SOURCE / "jackett-settings.json", jackett_home / ".config" / "Jackett", jackett_port)
+        subprocess.run(["pkill", "-f", f"--Port {jackett_port}"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        time.sleep(2)
         jackett_env = dict(os.environ, HOME=str(jackett_home))
         subprocess.Popen([args.jackett_bin, "--Port", str(jackett_port)], env=jackett_env,
                          stdout=(root / "jackett.log").open("w"), stderr=subprocess.STDOUT)
+        jackett_key = json.loads((jackett_home / ".config" / "Jackett" / "provision-auth.json").read_text())["APIKey"]
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+        for attempt in range(60):
+            try:
+                with opener.open(f"http://127.0.0.1:{jackett_port}/api/v2.0/indexers/thepiratebay/results/torznab/api?t=caps&apikey={jackett_key}", timeout=3) as response:
+                    if b'error code="100"' not in response.read()[:200]:
+                        break
+            except Exception:
+                pass
+            if attempt == 59:
+                raise AssertionError("Jackett did not start with its provisioned key")
+            time.sleep(1)
 
         docker("run", "-d", "--name", decy, "--network", "host", "--device", "/dev/fuse",
                "--cap-add", "SYS_ADMIN", "--security-opt", "apparmor=unconfined",
@@ -231,9 +245,19 @@ def main():
 
         deadline = time.time() + args.timeout_minutes * 60
         states = {}
+        retried = set()
         poll = 0
         while time.time() < deadline:
             poll += 1
+            for row in client.call("GET", "/downloads/view", key=key).get("downloads", []):
+                if row.get("phase") == "needs_a_decision" and row.get("id") not in retried:
+                    retried.add(row["id"])
+                    try:
+                        client.call("PUT", f"/downloads/{row['id']}/edition",
+                                    {"edition": "Theatrical", "confirm": True, "retry": True}, key=key)
+                        print("edition retry queued for download", row["id"], flush=True)
+                    except holyarrs.ApiError as error:
+                        print("edition retry", row["id"], "failed with status", error.status, flush=True)
             for name, ask_id in ids.items():
                 if not ask_id:
                     continue

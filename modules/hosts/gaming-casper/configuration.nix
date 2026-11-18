@@ -107,7 +107,7 @@ in {
     custom.wireguard.privateKeySecret = "wireguard-gaming-casper";
     custom.wireguard.secretFile = ../../../secrets/wireguard-private-gaming-casper.age;
 
-    #networking.firewall.allowedTCPPorts = [ 3000 27015 ];
+    networking.firewall.allowedTCPPorts = [ 4096 ];
     #networking.firewall.allowedUDPPorts = [ 27015 27016];
 
     # State version

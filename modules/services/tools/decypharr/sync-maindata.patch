@@ -62,3 +62,28 @@ index 0000000..18ba168
 +	maindata["server_state"] = serverState{}
 +	utils.JSONResponse(w, maindata, http.StatusOK)
 +}
+diff --git a/pkg/server/qbit/types.go b/pkg/server/qbit/types.go
+index eb18319..01ad386 100644
+--- a/pkg/server/qbit/types.go
++++ b/pkg/server/qbit/types.go
+@@ -4,6 +4,7 @@ import (
+ 	"github.com/sirrobot01/decypharr/internal/config"
+ 	debridTypes "github.com/sirrobot01/decypharr/pkg/debrid/types"
+ 	"github.com/sirrobot01/decypharr/pkg/storage"
++	"path"
+ )
+ 
+ type BuildInfo struct {
+@@ -459,10 +460,11 @@ func calculateETA(amountLeft, downloadSpeed int64) int64 {
+ 
+ func getTorrentFiles(t *storage.Entry) []TorrentFile {
+ 	index := 0
++	folder := storage.GetTorrentFolder(config.Get().FolderNaming, t)
+ 	files := make([]TorrentFile, 0)
+ 	for _, f := range t.Files {
+ 		files = append(files, TorrentFile{
+-			Name:  f.Name,
++			Name:  path.Join(folder, f.Name),
+ 			Size:  f.Size,
+ 			Index: index,
+ 		})

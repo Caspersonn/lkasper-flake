@@ -1,4 +1,5 @@
 import argparse
+from contextlib import closing
 import fcntl
 import grp
 import json
@@ -7,6 +8,7 @@ from pathlib import Path
 import pwd
 import shutil
 import signal
+import sqlite3
 import stat
 import subprocess
 import sys
@@ -16,6 +18,46 @@ import tempfile
 
 class BackupError(Exception):
     pass
+
+
+def aurral_excludes(scope):
+    library = Path(scope['library'])
+    database = Path(scope['database'])
+    if library.resolve() != library.absolute() or not library.is_dir():
+        raise BackupError()
+    if database.resolve() != database.absolute() or not database.is_file():
+        raise BackupError()
+    try:
+        with closing(sqlite3.connect(database.as_uri() + '?mode=ro', uri=True)) as connection:
+            rows = connection.execute("SELECT final_path FROM playlist_download_jobs WHERE playlist_type = 'library' AND final_path IS NOT NULL AND final_path != ''").fetchall()
+    except sqlite3.Error:
+        raise BackupError() from None
+    retained = set()
+    for (value,) in rows:
+        path = Path(value)
+        if not path.is_absolute() or not path.is_relative_to(library):
+            raise BackupError()
+        if path.resolve() != path or not path.is_file():
+            raise BackupError()
+        retained.add(path)
+    flow_root = library / '_flows'
+    if not flow_root.exists() and not flow_root.is_symlink():
+        return []
+    if flow_root.is_symlink() or not flow_root.is_dir():
+        raise BackupError()
+    excluded = []
+    pending = [flow_root]
+    while pending:
+        with os.scandir(pending.pop()) as entries:
+            for entry in entries:
+                path = Path(entry.path)
+                if entry.is_dir(follow_symlinks=False):
+                    pending.append(path)
+                elif path not in retained:
+                    excluded.append(''.join('\\' + char if char in '\\*?[]' else char for char in str(path)))
+    if sum(len(value.encode()) + 16 for value in excluded) > 256 * 1024:
+        raise BackupError()
+    return sorted(excluded)
 
 
 def private_directory(path):
@@ -118,7 +160,10 @@ class Backup:
         try:
             for unit in active:
                 command(['systemctl', 'stop', unit])
-            excludes = [arg for path in self.settings['exclude'] for arg in ['--exclude', path]]
+            patterns = list(self.settings['exclude'])
+            if self.settings.get('aurral'):
+                patterns.extend(aurral_excludes(self.settings['aurral']))
+            excludes = [arg for path in patterns for arg in ['--exclude', path]]
             pending_tag = self.settings['tag'] + '-pending'
             output = self.restic('backup', '--json', '--one-file-system', '--tag', pending_tag, *excludes, '--', *paths)
             summaries = [row for line in output.splitlines() if (row := json.loads(line)).get('message_type') == 'summary']

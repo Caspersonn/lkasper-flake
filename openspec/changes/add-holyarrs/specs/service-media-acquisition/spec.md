@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Provides a declarative, private media pipeline on kaito with separate movie/TV and music applications, music discovery outside the owned library, and automated acquisition through HolyArrs before playback.
+Provides declarative media services on kaito: Moonfin/HolyArrs video acquisition and playback, and Aurral/slskd music discovery through temporary full-song flows with favorite-to-permanent-library retention. Existing applications and libraries remain available during migration.
 
 ## ADDED Requirements
 
@@ -51,18 +51,18 @@ Each service's configuration, database and credentials SHALL persist on kaito's 
 - **THEN** users, linked downloader, linked sources and library settings are still present
 
 ### Requirement: Shared library layout
-The services SHALL share one tree under `/data`, visible at identical absolute paths on the host and inside every container: `/data/debrid` (Real-Debrid mount), `/data/symlinks` (downloader drop folder) and `/data/media/movies`, `/data/media/tv`, `/data/media/music` (library). Files created there SHALL be group-writable by a shared `media` group.
+The services SHALL use consistent absolute paths under `/data` on the host and in participating containers: `/data/debrid` (Real-Debrid mount), `/data/symlinks` (debrid downloader drop folder), existing `/data/media/{movies,tv,music}` libraries, and isolated local Aurral library, temporary flow and slskd staging paths. Files SHALL have the shared `media` permissions required by their readers and writers. New music storage SHALL NOT overwrite or reorganize existing libraries during bootstrap.
 
 #### Scenario: Paths agree everywhere
-- **WHEN** a symlink under `/data/symlinks` or `/data/media` is resolved on the host, in HolyArrs or in Decypharr
+- **WHEN** an existing debrid-backed symlink under `/data/symlinks` or `/data/media` is resolved on the host, in HolyArrs or in Decypharr
 - **THEN** it resolves to the same file under `/data/debrid`
 
 #### Scenario: Group access
 - **WHEN** a file is created under `/data/media` by HolyArrs
 - **THEN** it belongs to group `media` and is writable by that group
 
-### Requirement: All media acquisition uses the existing debrid service
-Movie, show and music releases SHALL be acquired through HolyArrs and Decypharr using the existing paid Real-Debrid service and exposed as symlinks into its mount, without retained full local media copies or seeding on kaito. No local torrent client or additional VPN service SHALL be introduced for this pipeline. Application state, artwork and bounded operational caches MAY remain local.
+### Requirement: Video acquisition uses the existing debrid service
+Movie and show releases SHALL be acquired through HolyArrs and Decypharr using the existing paid Real-Debrid service and exposed as symlinks into its mount, without retained full local video copies or seeding on kaito. No local torrent client or additional VPN service SHALL be introduced for this path. Application state, artwork and bounded operational caches MAY remain local. The separate Aurral/slskd music path SHALL download local audio files and SHALL NOT be represented as Real-Debrid-mediated acquisition.
 
 Decypharr's Hearsay peer discovery and publishing SHALL be explicitly disabled; remote acquisition SHALL NOT implicitly enable an additional peer network on kaito.
 
@@ -74,20 +74,20 @@ Decypharr's Hearsay peer discovery and publishing SHALL be explicitly disabled; 
 - **WHEN** the Real-Debrid mount is not available
 - **THEN** imports fail visibly in HolyArrs instead of writing media to local disk
 
-#### Scenario: Music acquisition without local torrent peers
-- **WHEN** a music release is acquired or Real-Debrid cannot fetch it
-- **THEN** kaito does not join a torrent swarm or fall back to a local torrent client, and failure is shown if remote acquisition cannot complete
+#### Scenario: Video acquisition cannot complete
+- **WHEN** Real-Debrid cannot fetch a movie or show release
+- **THEN** failure is shown without falling back to a local torrent client or the music downloader
 
 ### Requirement: Imports land in the library as links
-HolyArrs SHALL accept symlinked downloads and preserve links when importing them into the library, named by its own naming scheme (music as `Artist/Album (Year)/NN - Title.ext`). Playback services SHALL read these links through the shared mount without requiring complete retained local copies.
+HolyArrs SHALL accept debrid-backed symlinked downloads and preserve links when importing them into its library, named by its own naming scheme. Playback services SHALL read these links through the shared mount without requiring complete retained local copies. Existing debrid-backed music links SHALL remain intact; new Aurral/slskd music follows the separate local-file retention requirements.
 
 #### Scenario: Import a movie
 - **WHEN** a grabbed movie finishes in the downloader
 - **THEN** HolyArrs places it under `/data/media/movies` as a link that plays the Real-Debrid file
 
-#### Scenario: Import an album
-- **WHEN** the owner adds an artist, marks an album to keep up to date, and a matching release is grabbed
-- **THEN** the album's tracks appear under `/data/media/music/<Artist>/<Album> (<Year>)/` as links
+#### Scenario: Preserve existing debrid-backed albums
+- **WHEN** Aurral and slskd are introduced alongside the existing services
+- **THEN** existing music links and their naming remain unchanged and are not converted into Aurral-owned files
 
 ### Requirement: Search sources include music
 HolyArrs SHALL search the user-selected Knaben and The Pirate Bay sources through Jackett's Torznab feeds, including each site's music categories. Source configuration SHALL be repository-managed without requiring tracker accounts or browser setup.
@@ -119,7 +119,7 @@ Protected repository-managed bootstrap state SHALL be stored encrypted under `se
 - **THEN** the restored state is verified in a protected staging directory and an existing nonempty target is refused
 
 ### Requirement: Existing services are unaffected
-Navidrome, AIOStreams and all other kaito services SHALL keep running unchanged while this pipeline is introduced.
+Soundspan, Navidrome, AIOStreams and unrelated kaito services SHALL remain available while the selected replacement is introduced. Their state and existing libraries SHALL NOT be removed before replacement acceptance and explicit removal approval. Optional Navidrome integration SHALL preserve its existing libraries, identities, playlists and history.
 
 #### Scenario: After deployment
 - **WHEN** the change is activated on kaito
@@ -150,23 +150,57 @@ The stack SHALL provide an open-source music application separate from the movie
 - **WHEN** a user opens the music application
 - **THEN** discovery and playback do not require using the movie/TV application
 
-### Requirement: Music discovery and acquisition from one application
-The music application SHALL offer discovery outside the owned library and submit selected music to HolyArrs for acquisition. It SHALL show pending, available and failed states, refresh availability automatically after import, and start a requested track when ready without requiring the user to switch to an administration UI. A wait for acquisition before first playback is acceptable; instantaneous availability is not required.
+### Requirement: Full-song discovery flows and playback
+Aurral SHALL offer scheduled, rotating mixed-artist discovery flows containing music outside the owned library, acquired through slskd as temporary full audio files. A repository-managed initial recipe SHALL work without prior listening history and SHALL enable automatic downloads. The playback application SHALL play readable full tracks consecutively from a prepared flow without switching to an administration UI. It SHALL distinguish waiting, downloading, playable and failed items and allow retry. A wait for acquisition is acceptable; 30-second previews, metadata-only recommendations and claims of guaranteed instant endless streaming SHALL NOT satisfy this requirement.
 
-#### Scenario: Discover an unowned album
-- **WHEN** a user selects an available but unowned album recommendation and requests playback
-- **THEN** the application submits acquisition to HolyArrs, shows progress and begins playback when the requested track is imported and readable
+#### Scenario: Prepare and play outside-library discovery
+- **WHEN** a configured discovery flow runs with working Soulseek access
+- **THEN** it selects tracks from multiple artists including artists outside the owned library, downloads full audio into temporary flow storage, and offers consecutive full-track playback as files become readable
+
+#### Scenario: Start without listening history
+- **WHEN** the initial configured flow runs for a fresh account with no plays recorded
+- **THEN** its configured discovery sources or artist seeds can produce candidates without requiring manual recommendation setup
 
 #### Scenario: Acquisition cannot complete
-- **WHEN** no usable release is found or acquisition fails
-- **THEN** the application shows the failure and permits retry without reporting the track as playable
+- **WHEN** Soulseek is disconnected, a peer queues a transfer, no matching file exists or validation fails
+- **THEN** the application shows waiting or failure and permits retry without reporting an unavailable full track as playable or silently enabling another source
 
-### Requirement: Music reuses the approved acquisition subscription
-Music discovery and playback SHALL use open-source self-hosted applications without requiring an additional application or streaming subscription. Acquisition SHALL reuse the user's approved existing paid Real-Debrid subscription. YouTube or a paid streaming service SHALL NOT be a required playback fallback. A metadata recommendation is not evidence that playable audio is available.
+### Requirement: Favorite flow tracks become permanent library items
+Aurral's Subsonic endpoint SHALL be configured so that favoriting a downloaded flow track retains it in the permanent library. The user SHALL also be able to keep a track explicitly through Add to library. Retention SHALL survive flow rotation, restarts and repeated favorite actions without duplicate files or acquisitions. Removing a favorite or static playlist entry SHALL NOT implicitly delete retained audio. Artist favorites or follows SHALL NOT automatically download an entire discography.
 
-#### Scenario: Existing debrid subscription only
-- **WHEN** a user has the configured Real-Debrid credentials but no paid music-streaming or VPN subscription
-- **THEN** discovery, acquisition through HolyArrs and Decypharr, and playback work for releases Real-Debrid can fetch without requiring another subscription
+#### Scenario: Like a discovery track
+- **WHEN** a user favorites a downloaded flow track in a supported client connected to Aurral's Subsonic endpoint
+- **THEN** the track becomes a permanent library item and remains readable and playable after the flow rotates and services restart
+
+#### Scenario: Rotate while retention is pending
+- **WHEN** a flow rotates while a favorite or Add to library action is being processed
+- **THEN** cleanup preserves the track until its retained file and library record are safe, and repeated actions do not create duplicate acquisition
+
+#### Scenario: Favorite through a different backend
+- **WHEN** a client connects directly to Navidrome instead of Aurral
+- **THEN** that connection is not advertised as supporting Aurral's favorite-to-library action unless the behavior is separately implemented and verified
+
+### Requirement: Bounded temporary music storage and durable retention
+Temporary flow audio, incomplete downloads and permanent library tracks SHALL have distinct ownership/retention rules. Disk budgets, minimum free space and cleanup SHALL be declared in the repository. Rotation SHALL reclaim expired unkept flow files without deleting permanent tracks, other active references or pre-existing libraries. Backup/recovery SHALL cover Aurral/slskd state, favorites, recipes and credentials and define protection for permanent local audio; temporary flow audio MAY be regenerated. Same-server backups SHALL NOT be described as protection against disk loss.
+
+#### Scenario: Rotation and disk pressure
+- **WHEN** a flow is replaced or its temporary storage reaches the declared budget
+- **THEN** only eligible unkept temporary files are reclaimed; insufficient safe free space pauses acquisition visibly rather than deleting permanent library audio
+
+#### Scenario: Restore the music workflow
+- **WHEN** protected service state and retained music are restored through the declared recovery procedure
+- **THEN** accounts, favorites, retained playable tracks and managed flow settings return without manual configuration, while missing temporary flow audio can be downloaded again
+
+### Requirement: Music uses the selected Soulseek source without a paid streaming dependency
+Music discovery and playback SHALL use open-source self-hosted Aurral and slskd without requiring an additional application or music-streaming subscription. Acquisition SHALL use direct Soulseek transfers rather than depend on Real-Debrid, Seerr or Lidarr. Other acquisition fallbacks SHALL remain disabled unless separately selected. Soulseek peer exposure and any listening/share policy SHALL be documented and repository-managed; existing libraries SHALL NOT be shared implicitly. slskd administration SHALL remain private and authenticated. No torrent client or anonymity guarantee SHALL be introduced.
+
+#### Scenario: Independent music acquisition
+- **WHEN** Aurral has valid slskd/Soulseek access and no paid streaming credentials or Real-Debrid access
+- **THEN** matching available music can be downloaded and played through the selected flow workflow without a paid streaming fallback
+
+#### Scenario: Explicit network and sharing policy
+- **WHEN** the music services are activated
+- **THEN** management access is authenticated, peer-listening and share paths follow the declared policy, the direct public-IP exposure is documented, and no existing library becomes an upload share implicitly
 
 ### Requirement: Moonfin video discovery and requests
 Moonfin SHALL provide discovery outside the owned library, movie and TV acquisition requests, request status and Jellyfin playback in the same client on Linux, Android and Android/Google TV. A repository-managed Moonbase integration SHALL submit requests to HolyArrs without exposing server credentials or requiring a separate request application. Existing Jellyfin identity and access restrictions SHALL apply.

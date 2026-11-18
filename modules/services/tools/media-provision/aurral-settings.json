@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "downloadFolderPath": "/data/music-aurral",
+    "security": {"localNetworkBypass": {"enabled": false}},
+    "subsonic": {"favoriteAutoKeep": true},
+    "qualityProfile": {
+      "order": ["flac-hires", "flac-standard", "mp3-320", "m4a-320", "mp3-256", "m4a-256", "mp3-192", "m4a-192", "mp3-128", "m4a-128"],
+      "enabled": ["flac-hires", "flac-standard", "mp3-320", "m4a-320", "mp3-256", "m4a-256"],
+      "cutoff": "flac-standard",
+      "automaticUpgrades": false,
+      "intervalDays": 2
+    },
+    "integrations": {
+      "slskd": {"enabled": true, "url": "http://127.0.0.1:5032", "priority": 10, "preferredFormat": "flac", "preferredFormatStrict": false},
+      "lidarr": {"enabled": false},
+      "prowlarr": {"enabled": false},
+      "nzbget": {"enabled": false},
+      "sabnzbd": {"enabled": false},
+      "tidarr": {"enabled": false},
+      "ytdlp": {"enabled": false},
+      "deemix": {"enabled": false},
+      "navidrome": {"enabled": false},
+      "jellyfin": {"enabled": false},
+      "metadata": {"provider": "brainzmash", "baseUrl": "https://lidarrapi.brainzmash.cc", "enableNarrowFallbacks": true}
+    }
+  },
+  "flows": {
+    "Managed Discover Weekly": {"mix": {"discover": 100, "mix": 0, "trending": 0, "focus": 0, "newReleases": 0}, "size": 30, "deepDive": false, "recentListening": false, "recordHistory": false, "autoDownload": true, "tags": [], "excludeTags": [], "relatedArtists": [], "scheduleDays": [0], "scheduleTime": "04:00"},
+    "Managed Trending Daily": {"mix": {"discover": 0, "mix": 0, "trending": 100, "focus": 0, "newReleases": 0}, "size": 20, "deepDive": false, "recentListening": false, "recordHistory": false, "autoDownload": true, "tags": [], "excludeTags": [], "relatedArtists": [], "scheduleDays": [0, 1, 2, 3, 4, 5, 6], "scheduleTime": "05:00"}
+  }
+}
