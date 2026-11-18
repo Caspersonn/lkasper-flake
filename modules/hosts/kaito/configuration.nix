@@ -108,7 +108,7 @@ in {
       clientDomain = "aurral.inspiravita.com";
     };
 
-    networking.firewall.allowedTCPPorts = [ 53 443 80 51820 ];
+    networking.firewall.allowedTCPPorts = [ 53 443 80 51820 4096 13420 ];
     networking.firewall.allowedUDPPorts = [ 53 ];
 
     services.xserver.displayManager.gdm.autoSuspend = false;
