@@ -45,7 +45,6 @@ assert call(3002, "/api/playlists/worker/settings", headers=auth)["concurrency"]
 settings = call(3002, "/api/settings", headers=auth)
 assert settings["downloadFolderPath"] == "/data/music-aurral"
 assert settings["integrations"]["slskd"]["apiKey"] == credential["api_key"]
-assert settings["subsonic"]["favoriteAutoKeep"] is True
 assert settings["security"]["localNetworkBypass"]["enabled"] is False
 for source in ("lidarr", "ytdlp", "prowlarr", "nzbget", "sabnzbd", "tidarr", "deemix"):
     assert settings["integrations"][source]["enabled"] is False

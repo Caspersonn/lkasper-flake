@@ -97,6 +97,27 @@ class CleanupTests(unittest.TestCase):
                 db.execute(statement)
             self.assertGreater(cleanup.references(self.database)[0], 0)
 
+    def test_nightly_schema_protects_paths_and_checks_all_active_work(self):
+        target = self.staging / "partial"
+        with closing(sqlite3.connect(self.database)) as db, db:
+            db.execute("ALTER TABLE playlist_download_jobs RENAME TO download_jobs")
+            db.execute("ALTER TABLE weekly_flow_download_provider_work RENAME TO download_provider_work")
+            db.execute("DROP TABLE _honker_live")
+            db.execute("CREATE TABLE jobs (state TEXT)")
+            db.execute("INSERT INTO download_jobs VALUES ('done', ?, NULL)", (str(target),))
+            db.execute("INSERT INTO jobs VALUES ('done')")
+        before = self.database.read_bytes()
+        self.assertEqual(cleanup.references(self.database), (0, {target}))
+        self.assertEqual(self.database.read_bytes(), before)
+        for statement in [
+            "INSERT INTO download_jobs VALUES ('downloading', NULL, NULL)",
+            "INSERT INTO download_provider_work VALUES ('work')",
+            "INSERT INTO jobs VALUES ('pending')",
+        ]:
+            with closing(sqlite3.connect(self.database)) as db, db:
+                db.execute(statement)
+            self.assertGreater(cleanup.references(self.database)[0], 0)
+
     def test_missing_or_malformed_database_fails_without_creating_it(self):
         missing = self.root / "missing.db"
         with self.assertRaises(cleanup.ProvisionError):

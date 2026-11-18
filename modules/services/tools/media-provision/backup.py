@@ -29,7 +29,11 @@ def aurral_excludes(scope):
         raise BackupError()
     try:
         with closing(sqlite3.connect(database.as_uri() + '?mode=ro', uri=True)) as connection:
-            rows = connection.execute("SELECT final_path FROM playlist_download_jobs WHERE playlist_type = 'library' AND final_path IS NOT NULL AND final_path != ''").fetchall()
+            tables = {row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type = 'table'")}
+            if 'download_jobs' in tables:
+                rows = connection.execute("SELECT final_path FROM download_jobs WHERE owner_type = 'library' AND final_path IS NOT NULL AND final_path != ''").fetchall()
+            else:
+                rows = connection.execute("SELECT final_path FROM playlist_download_jobs WHERE playlist_type = 'library' AND final_path IS NOT NULL AND final_path != ''").fetchall()
     except sqlite3.Error:
         raise BackupError() from None
     retained = set()

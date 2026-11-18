@@ -28,6 +28,8 @@
         };
       in
       {
+        aurral-flows-image = final.callPackage ./_aurral-image.nix { };
+
         bambu-studio-device-page = prev.stdenv.mkDerivation {
           pname = "bambu-studio-device-page";
           version = "0.0.0";
@@ -155,4 +157,3 @@
         #});
       });
 }
-

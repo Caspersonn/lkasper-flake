@@ -107,6 +107,18 @@ class BackupTests(unittest.TestCase):
         self.assertTrue(self.kept.is_file())
         self.assertTrue(self.unkept.is_file())
 
+    def test_nightly_aurral_selection_preserves_kept_audio_and_is_read_only(self):
+        scope = self.aurral_scope()
+        with closing(sqlite3.connect(scope['database'])) as connection, connection:
+            connection.execute('ALTER TABLE playlist_download_jobs RENAME TO download_jobs')
+            connection.execute('ALTER TABLE download_jobs RENAME COLUMN playlist_type TO owner_type')
+        before = Path(scope['database']).read_bytes()
+        self.assertEqual(len(module.aurral_excludes(scope)), 1)
+        self.assertEqual(Path(scope['database']).read_bytes(), before)
+        self.kept.unlink()
+        with self.assertRaises(module.BackupError):
+            module.aurral_excludes(scope)
+
     def test_aurral_selection_fails_closed_for_missing_or_external_kept_file(self):
         scope = self.aurral_scope()
         self.kept.unlink()

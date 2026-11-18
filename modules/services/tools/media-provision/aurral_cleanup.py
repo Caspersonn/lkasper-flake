@@ -35,10 +35,17 @@ def references(database):
         raise ProvisionError("cleanup database must exist without symlinks")
     try:
         with closing(sqlite3.connect(database.as_uri() + "?mode=ro", uri=True)) as db:
-            busy = db.execute("SELECT count(*) FROM playlist_download_jobs WHERE status NOT IN ('done','failed','saved','cancelled') OR status IS NULL").fetchone()[0]
-            busy += db.execute("SELECT count(*) FROM weekly_flow_download_provider_work").fetchone()[0]
-            busy += db.execute("SELECT count(*) FROM _honker_live").fetchone()[0]
-            rows = db.execute("SELECT staging_path, final_path FROM playlist_download_jobs").fetchall()
+            tables = {row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type = 'table'")}
+            if "download_jobs" in tables:
+                busy = db.execute("SELECT count(*) FROM download_jobs WHERE status NOT IN ('done','failed','saved','cancelled') OR status IS NULL").fetchone()[0]
+                busy += db.execute("SELECT count(*) FROM download_provider_work").fetchone()[0]
+                busy += db.execute("SELECT count(*) FROM jobs WHERE state NOT IN ('done','failed','cancelled') OR state IS NULL").fetchone()[0]
+                rows = db.execute("SELECT staging_path, final_path FROM download_jobs").fetchall()
+            else:
+                busy = db.execute("SELECT count(*) FROM playlist_download_jobs WHERE status NOT IN ('done','failed','saved','cancelled') OR status IS NULL").fetchone()[0]
+                busy += db.execute("SELECT count(*) FROM weekly_flow_download_provider_work").fetchone()[0]
+                busy += db.execute("SELECT count(*) FROM _honker_live").fetchone()[0]
+                rows = db.execute("SELECT staging_path, final_path FROM playlist_download_jobs").fetchall()
     except sqlite3.Error as error:
         raise ProvisionError("cleanup reference snapshot unavailable") from error
     paths = set()

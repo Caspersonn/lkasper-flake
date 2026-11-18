@@ -120,6 +120,12 @@ On 2026-11-17 the user selected Aurral Flows + slskd for music, superseding the 
 - [ ] 18.3 Provide Moonfin 3.1.0 on the three Linux profiles (all activation packages built with `--impure`, package present; Xvfb startup survived the 25-second smoke-test timeout); Android and Android/Google TV device execution and automatic server registration remain unverified/unimplemented; code comments are not needed
 - [ ] 18.4 Verify on kaito and selected clients that an unowned movie and show can be discovered, requested, acquired and played inside Moonfin; preserve existing clients and media until acceptance passes
 
+## 20. Aurral nightly with Android playback update
+
+- [x] 20.1 Add `aurral-flows-image` to the application overlay, pin official `nightly.1060+4b3708a` containing PR #1907, wire the active container declaration to it and rebase favorite retention on the matching source; disposable copied 2.13 state preserved existing retained-song identities and full-file playback after migration and restart, while the user's separate native-package configuration remains unchanged
+- [ ] 20.2 Existing-state migration, authenticated full-file playback, old and new favorite retention after cleanup/restart, managed-settings convergence and native quality/source fixtures passed locally; 179 Python tests passed and kaito system `/nix/store/fgm7wqkfhf5i3cynchnf0yakrhx8qraa-nixos-system-kaito-26.05.20261015.26f4107` built. Full VM verification remains blocked by the previously identified fresh-flow provisioning race; nightly recovery compatibility is not yet VM-verified
+- [ ] 20.3 After deployment approval, activate on kaito without resetting state and test preview/full-track playback and background transitions on the affected Pixel; do not claim the upstream PR fixes distortion before device verification
+
 ## 19. Aurral Flows + slskd music replacement
 
 - [x] 19.1 Inspected existing modules and the running Octo/slskd containers read-only; pinned Aurral 2.13.0 and slskd 0.26.2 by source revision and image digest/hash, verified bootstrap/settings/flows/Subsonic/private-management contracts against official images and VM `/nix/store/5ly5q5cvm8bxsfpw9mhcdmpl086qr67y-vm-test-run-aurral-flows-provision`, and documented Brainzmash metadata, explicit source selection and the favorite-persistence patch in `design.md`; production services remain unchanged; code comments are not needed

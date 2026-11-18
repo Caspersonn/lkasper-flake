@@ -91,7 +91,7 @@ class AurralTests(unittest.TestCase):
         self.assertEqual(len(self.client.flows), 2)
         self.assertTrue(all(flow["autoDownload"] for flow in self.client.flows))
         self.assertTrue(all(flow["enabled"] and flow["nextRunAt"] for flow in self.client.flows))
-        self.assertTrue(self.client.settings["subsonic"]["favoriteAutoKeep"])
+        self.assertEqual(self.client.settings["integrations"]["metadata"]["baseUrl"], "https://lidarrapi.brainzmash.cc")
         for source in ("lidarr", "prowlarr", "nzbget", "sabnzbd", "tidarr", "ytdlp", "deemix"):
             self.assertFalse(self.client.settings["integrations"][source]["enabled"])
         routes = [(method, path) for method, path, _ in self.client.calls]

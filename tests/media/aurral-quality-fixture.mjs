@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { validateParsedQuality } from '/app/backend/services/qualityProfileService.ts';
+import { validateParsedQuality } from '/app/backend/services/qualityProfile.ts';
 import { getEnabledDownloadSources } from '/app/backend/services/downloadSourceService.ts';
 import { FlowTrackSource } from '/app/backend/services/flows/flowTrackSource.ts';
 
@@ -33,10 +33,10 @@ source._getRecommendations = () => { throw new Error('Listening history must not
 source._getLibraryArtistKeySet = async () => new Set();
 source._buildFeedbackExcludeKeys = () => new Set();
 source._getTrendingChart = async () => [
-  { name: 'First', artistName: 'New Artist One', albumName: 'First Album' },
-  { name: 'Duplicate Artist', artistName: 'New Artist One', albumName: 'Second Album' },
-  { name: 'Second', artistName: 'New Artist Two', albumName: 'Third Album' },
-  { name: 'Third', artistName: 'New Artist Three', albumName: 'Fourth Album' },
+  { trackName: 'First', artistName: 'New Artist One', albumName: 'First Album' },
+  { trackName: 'Duplicate Artist', artistName: 'New Artist One', albumName: 'Second Album' },
+  { trackName: 'Second', artistName: 'New Artist Two', albumName: 'Third Album' },
+  { trackName: 'Third', artistName: 'New Artist Three', albumName: 'Fourth Album' },
 ];
 const plan = await source.buildFlowRunPlan({
   id: 'quality-fixture', ownerUserId: 1, size: 3,

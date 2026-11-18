@@ -2,7 +2,6 @@
   "settings": {
     "downloadFolderPath": "/data/music-aurral",
     "security": {"localNetworkBypass": {"enabled": false}},
-    "subsonic": {"favoriteAutoKeep": true},
     "qualityProfile": {
       "order": ["flac-hires", "flac-standard", "mp3-320", "m4a-320", "mp3-256", "m4a-256", "mp3-192", "m4a-192", "mp3-128", "m4a-128"],
       "enabled": ["flac-hires", "flac-standard", "mp3-320", "m4a-320", "mp3-256", "m4a-256"],
@@ -21,7 +20,7 @@
       "deemix": {"enabled": false},
       "navidrome": {"enabled": false},
       "jellyfin": {"enabled": false},
-      "metadata": {"provider": "brainzmash", "baseUrl": "https://lidarrapi.brainzmash.cc", "enableNarrowFallbacks": true}
+      "metadata": {"baseUrl": "https://lidarrapi.brainzmash.cc"}
     }
   },
   "worker": {"concurrency": 3},
