@@ -4,6 +4,13 @@ Checked baseline items do not verify the expanded playback or no-clickops requir
 
 On 2026-11-17 the user selected Aurral Flows + slskd for music, superseding the Soundspan/Real-Debrid-only music target. Checked Soundspan and debrid-music component work below is historical evidence, not acceptance of the selected replacement. Section 19 tracks the new implementation and verification; its tasks are open. Video/Moonfin work remains unchanged. This update does not authorize deployment or removal of existing services.
 
+## 21. Remux replaces the Jellyfin video service
+
+- [ ] 21.1 Pin Remux server/client and verify supported bootstrap, authentication, addon/source configuration and P2P disabling; establish network-isolated first-run provisioning before normal startup, without database edits or credential logging
+- [ ] 21.2 Implement protected idempotent Remux provisioning and NixOS service/client exposure, using the existing AIOStreams/Real-Debrid path with direct torrenting disabled; test authorization, source quality details and actual fixture streaming
+- [ ] 21.3 Replace kaito's Jellyfin service import with Remux while retaining Jellyfin state, existing media and rollback/backup coverage; preserve acquisition, AIOStreams and music services. Kaito system `/nix/store/r4jpm3r6rsnpwrq6gfpjk1mlib9gjhq9-nixos-system-kaito-26.05.20261015.26f4107` builds and 195 Python tests pass. On 2026-11-19 the user approved deployment while skipping the failed VM gate; disposable recovery and live activation remain unverified, so this task stays open
+- [ ] 21.4 Verify movie/show source selection and playback inside the selected Remux Linux/Android/TV clients and record live deployment, failures and rollback outcomes before claiming replacement acceptance; code comments are not needed
+
 ## 0. Resolve the expanded implementation design
 
 - [x] 0.1 Record the earlier Soundspan/Jellyfin selection and Casper's three client profiles; those confirmations remain historical input, while the current Aurral selection is recorded in the proposal/design and section 19 and Moonfin in section 18

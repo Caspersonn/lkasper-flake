@@ -6,6 +6,8 @@ Provide separate movie/TV and music experiences: Moonfin with HolyArrs-managed v
 
 ## What Changes
 
+- Following the user's 2026-11-19 replacement request, replace the active Jellyfin video service with self-hosted Remux and its integrated discovery/source-selection/playback experience. Preserve Jellyfin state and all media for rollback; the earlier Moonfin/Jellyfin requirements below are superseded for the selected video application. Reuse AIOStreams/Real-Debrid without enabling Remux's native P2P acquisition. Provision and test the new server and clients before claiming live readiness.
+
 - Add HolyArrs (request and library manager for movies, shows and music) to kaito as a pinned container, reachable only over the private Nebula mesh and Tailscale.
 - Add Decypharr as HolyArrs' download client: it presents itself as qBittorrent, hands torrents to Real-Debrid and exposes the results as symlinks into a Real-Debrid mount. This video acquisition path does not retain complete local files or seed locally; the separately selected Soulseek music path does download local files.
 - Add Jackett as HolyArrs' search source (Torznab), with the user-approved Knaben and The Pirate Bay sources and their music categories; Prowlarr is not used.

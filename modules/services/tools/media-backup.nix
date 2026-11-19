@@ -1,22 +1,26 @@
 { inputs, ... }: {
   flake.modules.nixos.media-backup = { config, lib, pkgs, ... }:
     let
-      jellyfin = config.services.jellyfin.enable;
+      remux = builtins.hasAttr "docker-remux-main" config.systemd.services;
+      jellyfin = config.services.jellyfin.enable || remux;
       soundspan = builtins.hasAttr "soundspan-backend" config.systemd.services;
       aurral = config.services.aurralFlows.enable or false;
       paths = [ "/var/lib/decypharr" "/var/lib/holyarrs" "/var/lib/jackett" ]
+        ++ lib.optionals remux [ "/var/lib/remux" "/var/lib/remux-provision" ]
         ++ lib.optionals jellyfin [ "/var/lib/jellyfin" ]
         ++ lib.optionals soundspan [ "/var/backups/media/soundspan-dump" ]
         ++ lib.optionals aurral [ "/var/lib/aurral-flows-provision" "/var/lib/aurral-flows" "/var/lib/slskd-aurral" "/data/music-aurral" ];
       units = lib.optionals aurral [ "aurral-capacity.timer" "aurral-capacity.service" "aurral-flows-provision.service" "docker-aurral-flows.service" "docker-slskd-aurral.service" ]
+        ++ lib.optionals remux [ "remux-source-provision.service" "docker-remux-main.service" ]
         ++ [ "docker-holyarrs.service" "jackett.service" "docker-decypharr.service" ]
-        ++ lib.optionals jellyfin [ "jellyfin.service" ]
+        ++ lib.optionals config.services.jellyfin.enable [ "jellyfin.service" ]
         ++ lib.optionals soundspan [ "soundspan-backend.service" "soundspan-frontend.service" ];
       requiredFiles = [
         "/var/lib/decypharr/config.json"
         "/var/lib/decypharr/auth.json"
         "/var/lib/holyarrs/holyarrs.key"
       ] ++ lib.optionals soundspan [ "/var/backups/media/soundspan-dump/soundspan.dump" ]
+        ++ lib.optionals remux [ "/var/lib/remux/db.sqlite" "/var/lib/remux-provision/admin.json" "/var/lib/remux-provision/source.json" ]
         ++ lib.optionals aurral [ "/var/lib/aurral-flows-provision/admin.json" "/var/lib/aurral-flows-provision/slskd.json" "/var/lib/aurral-flows-provision/flows.json" "/var/lib/aurral-flows/aurral.db" "/var/lib/slskd-aurral/slskd.yml" ];
       settings = pkgs.writeText "media-backup-settings.json" (builtins.toJSON {
         repository = "/var/backups/media/restic";
@@ -24,7 +28,7 @@
         inherit paths units;
         aurral = if aurral then { database = "/var/lib/aurral-flows/aurral.db"; library = "/data/music-aurral"; } else null;
         required_files = requiredFiles;
-        exclude = [ "/var/lib/decypharr/cache" ];
+        exclude = [ "/var/lib/decypharr/cache" ] ++ lib.optionals remux [ "/var/lib/remux/cache" "/var/lib/remux/transcode_sessions" ];
         tag = "media-state-v1";
         owners = lib.foldl (a: b: a // b) { } (
           [
@@ -34,6 +38,10 @@
           ]
           ++ lib.optionals jellyfin [
             { "/var/lib/jellyfin" = [ "jellyfin" "jellyfin" ]; }
+          ]
+          ++ lib.optionals remux [
+            { "/var/lib/remux" = [ "media" "media" ]; }
+            { "/var/lib/remux-provision" = [ "root" "root" ]; }
           ]
           ++ lib.optionals soundspan [
             { "/var/backups/media/soundspan-dump" = [ "postgres" "postgres" ]; }

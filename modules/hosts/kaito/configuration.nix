@@ -79,7 +79,7 @@ in {
       aiostreams
       adguardhome
       navidrome
-      jellyfin
+      remux
 
       # Media acquisition (HolyArrs + Decypharr + Jackett on /data)
       media-storage

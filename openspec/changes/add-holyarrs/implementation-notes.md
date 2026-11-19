@@ -1,5 +1,13 @@
 # Implementation notes: add-holyarrs
 
+## Remux replacement implementation (2026-11-19)
+
+The user explicitly approved committing, pushing and deploying this implementation while skipping the VM gate. The VM failure remains recorded below and is not counted as a pass. Remote `sudo -n true` requires a password; deployment preparation can copy the built closure, but activation must be performed with the user's sudo authorization. No sudo policy is modified.
+
+The supplied private AIOStreams manifest is encrypted in `secrets/remux-aiostreams.age` for the owner and kaito. The pinned Remux 0.41.1 image completed supported-API bootstrap twice with Docker networking disabled and accepted the real configured AIOStreams source in a disposable normal-network instance after P2P was disabled. Existing AIOStreams accounts and settings were not modified.
+
+The new module replaces kaito's Jellyfin service import, retains Jellyfin state and backup ownership, adds protected Remux state to encrypted backup coverage, and gates the existing Jellyfin HTTPS hostname on source provisioning. Main startup always follows a temporary isolated bootstrap. Cache/transcode/tmp mounts are bounded and media is read-only. The kaito system builds at `/nix/store/r4jpm3r6rsnpwrq6gfpjk1mlib9gjhq9-nixos-system-kaito-26.05.20261015.26f4107`; 195 Python tests pass, including 16 Remux tests. The initial VM encountered guest disk write I/O errors and a read-only Docker filesystem before bootstrap; the host had only 3.6 GiB available when inspected. Free-space remediation and a successful rerun are required before accepting the VM result. No garbage collection or user-file deletion was performed. Remux recovery, live video playback and native-client acceptance remain open; nothing has been activated on kaito.
+
 ## Aurral/slskd selection, specification only (2026-11-17)
 
 The user selected Aurral Flows + slskd for mixed-artist discovery using temporary full-song downloads, with liked flow tracks retained in the permanent library. Proposal, design, requirements and tasks now distinguish this direct Soulseek/local-audio music path from the unchanged Moonfin/HolyArrs/Real-Debrid video path. Prior Soundspan implementation and tests remain historical results; they do not verify Aurral.
