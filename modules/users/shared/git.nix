@@ -8,7 +8,7 @@
         };
         branch = { autoSetupMerge = "simple"; };
         pull = { rebase = true; };
-        merge = { tool = "splice"; };
+        merge = { ff = false; tool = "splice"; };
         push = { default = "current"; };
       };
     };
