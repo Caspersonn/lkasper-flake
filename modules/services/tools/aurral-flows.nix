@@ -108,7 +108,7 @@
               PUID = toString config.users.users.media.uid;
               PGID = toString config.users.groups.media.gid;
               AURRAL_DATA_DIR = "/config";
-              DOWNLOAD_FOLDER = "/data/music-aurral";
+              LIBRARY_FOLDER = "/data/music-aurral";
               FILE_BROWSE_ROOTS = "/data/music-aurral,/data/downloads/slskd";
               XDG_CACHE_HOME = "/config/cache";
               TZ = config.time.timeZone;

@@ -1,5 +1,10 @@
 { inputs, ... }: {
   perSystem = { pkgs, ... }: {
+    checks.remux-provision = import ../../tests/media/remux.nix {
+      inherit pkgs;
+      inherit (inputs) agenix;
+      inherit (inputs.self.modules.nixos) media-storage remux;
+    };
     checks.aurral-flows-provision = import ../../tests/media/aurral-flows.nix {
       inherit pkgs;
       inherit (inputs) agenix;

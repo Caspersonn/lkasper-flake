@@ -58,6 +58,7 @@ in
 
   # Aiostreams
   "aiostreams-env.age".publicKeys = users ++ systems;
+  "remux-aiostreams.age".publicKeys = users ++ [ kaito ];
 
   # Linny MCP
   "linny-mcp-tokens.age".publicKeys = users ++ systems;

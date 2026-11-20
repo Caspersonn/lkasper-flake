@@ -1,6 +1,6 @@
 --- a/subsonicLibraryService.ts
 +++ b/subsonicLibraryService.ts
-@@ -1117,13 +1117,26 @@
+@@ -1085,13 +1085,26 @@
  
  // Map playlist-song star rows to their library song row when the entry is a library track.
  const libraryStarRows = <T extends StarKey>(user: SubsonicUser, rows: T[]) => {
@@ -33,44 +33,28 @@
      const libraryTrack = resolved[index]?.track;
      return libraryTrack
        ? { ...row, entity_kind: "song", entity_key: libraryTrack.identityKey }
-@@ -1476,20 +1489,26 @@
-     )
-   )
-     return false;
-+  const retainedJobIds = new Map<number, string>();
-   if (favoriteAutoKeepEnabled()) {
-     const createdJobIds: string[] = [];
--    for (const entry of playlistSongs.filter((song): song is NonNullable<typeof song> =>
--      Boolean(song),
--    )) {
--      if (!ensureLibraryJob(entry.track, createdJobIds)) {
-+    for (const [index, entry] of playlistSongs.entries()) {
-+      if (!entry) continue;
-+      const jobId = ensureLibraryJob(entry.track, createdJobIds);
-+      if (!jobId) {
-         for (const jobId of createdJobIds) downloadTracker.removeJob(jobId);
-         return false;
-       }
-+      retainedJobIds.set(index, jobId);
-     }
-   }
+@@ -1314,7 +1327,14 @@
+   keepSongsInLibrary(parsed.flatMap((target) => (target.kind === "song" ? [target.key] : [])));
    const addStars = db.transaction(() => {
      let changed = false;
++    let retainedIndex = 0;
 -    for (const target of parsed) {
 +    for (const [index, original] of parsed.entries()) {
-+      const jobId = retainedJobIds.get(index);
++      const jobId = playlistSongs[index]
++        ? linked.tracks[retainedIndex++]?.canonicalJobId
++        : null;
 +      const target = jobId
 +        ? { kind: "retained-song", key: JSON.stringify([jobId, original.kind, original.key]) }
 +        : original;
        changed =
          addStarStmt.run(user.id, target.kind, target.key, Date.now()).changes > 0 || changed;
      }
-@@ -1525,7 +1544,7 @@
+@@ -1351,7 +1371,7 @@
          removeStarStmt.run(user.id, row.entity_kind, row.entity_key).changes > 0
        ) {
          removed.push({
 -          id: idFor(row.entity_kind, row.entity_key),
-+          id: idFor(libraryRow.entity_kind, libraryRow.entity_key),
++          id: idFor(libraryRow?.entity_kind ?? row.entity_kind, libraryRow?.entity_key ?? row.entity_key),
            starredAt: Number(row.created_at) || Date.now(),
          });
        }

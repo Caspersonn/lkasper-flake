@@ -2,6 +2,7 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -40,16 +41,23 @@ logged = call(3002, "/api/auth/login", seed)
 assert logged["user"]["username"] == "casper"
 assert logged["user"]["role"] == "admin"
 auth = {"Authorization": "Bearer " + logged["token"]}
+assert call(3002, "/api/playlists/worker/settings", headers=auth)["concurrency"] == 3
 settings = call(3002, "/api/settings", headers=auth)
 assert settings["downloadFolderPath"] == "/data/music-aurral"
 assert settings["integrations"]["slskd"]["apiKey"] == credential["api_key"]
-assert settings["subsonic"]["favoriteAutoKeep"] is True
 assert settings["security"]["localNetworkBypass"]["enabled"] is False
 for source in ("lidarr", "ytdlp", "prowlarr", "nzbget", "sabnzbd", "tidarr", "deemix"):
     assert settings["integrations"][source]["enabled"] is False
-flows = call(3002, "/api/playlists/status", headers=auth)["flows"]
 journal = json.loads((root / "flows.json").read_text())["managed"]
 assert len(journal) == 2
+expected_ids = {entry["id"] for entry in journal.values()}
+for attempt in range(30):
+    flows = call(3002, "/api/playlists/status", headers=auth)["flows"]
+    if expected_ids <= {flow["id"] for flow in flows}:
+        break
+    time.sleep(1)
+else:
+    raise AssertionError("managed flows did not become visible after provisioning")
 for name, entry in journal.items():
     flow = next(flow for flow in flows if flow["id"] == entry["id"])
     assert flow["name"] == name

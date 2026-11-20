@@ -6,6 +6,21 @@ Provides declarative media services on kaito: Moonfin/HolyArrs video acquisition
 
 ## ADDED Requirements
 
+### Requirement: Remux video replacement preserves data and excludes local torrenting
+Remux SHALL replace the active Jellyfin video service and provide discovery, stream source and quality selection, and movie/show playback in its own client experience. The existing self-hosted AIOStreams and Real-Debrid path SHALL supply configured external streams. Native P2P acquisition SHALL remain disabled, including during first-run provisioning before normal networking. Setup and credential-bearing addon configuration SHALL remain private. Existing Jellyfin state, media, AIOStreams and music services SHALL be preserved for rollback; removing the service SHALL NOT delete its data. This requirement supersedes the earlier Moonfin/Jellyfin client selection, not historical test evidence.
+
+#### Scenario: Safe first installation
+- **WHEN** Remux starts with empty state
+- **THEN** setup occurs without external network access and public client access remains unavailable until authentication, source configuration and disabled P2P are verified
+
+#### Scenario: Select a playable release
+- **WHEN** an authenticated user selects a movie or show with an available provider stream
+- **THEN** the client displays source and quality information and plays the selected stream without requiring a separate request UI or falsely reporting unavailable content as playable
+
+#### Scenario: Roll back the replacement
+- **WHEN** the previous Jellyfin configuration is restored
+- **THEN** its retained state and media remain available, without resetting accounts or deleting the Remux state
+
 ### Requirement: Delivered as importable NixOS modules
 The pipeline SHALL be delivered as NixOS modules under `modules/services/tools/` (`media-storage`, `holyarrs`, `decypharr`, `jackett`, `media-connections`, `media-backup`), enabled solely by importing them into a host. No other host than kaito SHALL import them.
 
