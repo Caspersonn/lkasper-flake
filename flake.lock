@@ -3422,7 +3422,6 @@
         "rme": "rme",
         "slack2zammad": "slack2zammad",
         "soltty": "soltty_2",
-        "soundspan": "soundspan",
         "specgetty": "specgetty",
         "spicetify-nix": "spicetify-nix",
         "ssmsh": "ssmsh",
@@ -3551,23 +3550,6 @@
       "original": {
         "owner": "torreirow",
         "repo": "soltty",
-        "type": "github"
-      }
-    },
-    "soundspan": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1794027816,
-        "narHash": "sha256-vcthETdT/5g+WWC1oaSBPhNgNstW2aOuwoZ5vlYIhCU=",
-        "owner": "soundspan",
-        "repo": "soundspan",
-        "rev": "207d412ab380de7e4e0af11daecd6a2f82f86857",
-        "type": "github"
-      },
-      "original": {
-        "owner": "soundspan",
-        "repo": "soundspan",
-        "rev": "207d412ab380de7e4e0af11daecd6a2f82f86857",
         "type": "github"
       }
     },

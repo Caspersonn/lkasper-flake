@@ -64,31 +64,17 @@ in {
       smb
       atuin
       bluetooth-receiver
-      postgres
       #rtcwake
 
       # Tools
       acme
       vaultwarden
-      #nextcloud
-      #materialious
-      #invidious
-      #minecraft-server
       skyblock-minecraft
       home-assistant
       aiostreams
       adguardhome
-      navidrome
-      remux
 
-      # Media acquisition (HolyArrs + Decypharr + Jackett on /data)
-      media-storage
-      jackett
-      decypharr
-      media-backup
-      holyarrs
-      media-connections
-      soundspan
+      # Music
       aurral-flows
 
       # System

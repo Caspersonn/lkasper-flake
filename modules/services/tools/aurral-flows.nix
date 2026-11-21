@@ -71,6 +71,17 @@
           assertion = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
           message = "The pinned Aurral Flows images are verified for x86_64-linux.";
         }];
+        users.groups.media.gid = 2000;
+        users.users.media = {
+          isSystemUser = true;
+          uid = 2000;
+          group = "media";
+          description = "Owner of the shared media tree in /data";
+        };
+        users.users.casper.extraGroups = [ "media" ];
+        systemd.tmpfiles.settings = {
+          "10-data-root"."/data".d = { user = "root"; group = "root"; mode = "0755"; };
+        };
         systemd.tmpfiles.rules = [
           "d ${state} 0700 root root -"
           "d /run/aurral-maintenance 0700 root root -"

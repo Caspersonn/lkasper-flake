@@ -58,7 +58,6 @@ in
 
   # Aiostreams
   "aiostreams-env.age".publicKeys = users ++ systems;
-  "remux-aiostreams.age".publicKeys = users ++ [ kaito ];
 
   # Linny MCP
   "linny-mcp-tokens.age".publicKeys = users ++ systems;
@@ -70,13 +69,9 @@ in
   # OpenCode
   "opencode-go-api-key.age".publicKeys = users ++ systems;
 
-  # Music stack (navidrome module on kaito)
-  "music-lidarr-api.age".publicKeys = users ++ [ kaito ];
+  # Music
   "music-credentials.age".publicKeys = users ++ [ kaito ];
-  "music-slskd.age".publicKeys = users ++ [ kaito ];
   "music-lastfm.age".publicKeys = users ++ [ kaito ];
-  "media-real-debrid.age".publicKeys = users ++ [ kaito ];
-  "media-backup-password.age".publicKeys = users ++ [ kaito ];
 
   # Nebula
   "nebula-ca.crt.age".publicKeys = users ++ systems;
