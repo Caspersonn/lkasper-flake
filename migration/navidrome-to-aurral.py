@@ -5,6 +5,10 @@ The script talks to the Aurral JSON API under /api and to the Navidrome
 Subsonic API. It moves the music files into the Aurral Library folder through
 the Aurral ingest endpoint, connects Navidrome as a history server so the play
 counts and listening history arrive, and imports the Navidrome favorites.
+
+The source path is resolved inside the Aurral container, so it has to be a path
+that the container can read. On kaito the Navidrome music folder is mounted
+read-only into the Aurral container under the same path.
 """
 
 import argparse
@@ -81,7 +85,16 @@ def bootstrap(base_url):
 
 
 def ingest_check(client, source_path):
-    result = client.post("/api/library/files/ingest/check", {"sourcePath": source_path})
+    try:
+        result = client.post("/api/library/files/ingest/check", {"sourcePath": source_path})
+    except MigrationError as error:
+        message = str(error)
+        if "does not exist" in message or "cannot read it" in message:
+            raise MigrationError(
+                "{} Aurral reads the source path inside its own container, so the folder "
+                "has to be mounted into it.".format(message)
+            )
+        raise
     if not isinstance(result, dict):
         raise MigrationError("the ingest check returned no result")
     return result
@@ -91,31 +104,38 @@ def ingest(client, source_path, mode, monitor="none", fill_tags=True):
     result = client.post(
         "/api/library/files/ingest",
         {"sourcePath": source_path, "mode": mode, "monitor": monitor, "fillTags": fill_tags},
+        expect=(200, 202),
     )
     if not isinstance(result, dict):
         raise MigrationError("the ingest request returned no operation")
     operation = result.get("operation") if isinstance(result.get("operation"), dict) else result
-    operation_id = operation.get("id") or operation.get("operationId")
-    if not operation_id:
+    operation_id = operation.get("id")
+    if operation_id is None:
         raise MigrationError("the ingest request returned no operation identifier")
     return str(operation_id)
 
 
+def operation_state(client, operation_id):
+    result = client.get("/api/library/files/operations/" + urllib.parse.quote(operation_id))
+    if not isinstance(result, dict):
+        raise MigrationError("the operation status returned no result")
+    operation = result.get("operation") if isinstance(result.get("operation"), dict) else result
+    return str(operation.get("status") or "").lower(), operation
+
+
 def wait_for_operation(client, operation_id, timeout, poll_interval):
     deadline = time.monotonic() + timeout
-    path = "/api/library/files/operations/" + urllib.parse.quote(operation_id)
     while True:
-        result = client.get(path)
-        status = ""
-        if isinstance(result, dict):
-            status = str(result.get("status") or result.get("state") or "").lower()
-        if status in ("completed", "complete", "succeeded", "success", "done"):
-            return result
-        if status in ("failed", "error", "cancelled", "canceled"):
-            detail = result.get("error") or result.get("message") or status
+        status, operation = operation_state(client, operation_id)
+        if status == "complete":
+            return operation
+        if status in ("failed", "cancelled"):
+            detail = operation.get("error") or status
             raise MigrationError("ingest operation {} ended as {}".format(operation_id, detail))
         if time.monotonic() >= deadline:
-            raise MigrationError("ingest operation {} timed out in state {}".format(operation_id, status or "unknown"))
+            raise MigrationError(
+                "ingest operation {} timed out in state {}".format(operation_id, status or "unknown")
+            )
         time.sleep(poll_interval)
 
 
@@ -144,7 +164,8 @@ def history_servers(client):
 def choose_mode(check, requested):
     if requested != "auto":
         return requested
-    if check.get("hardlinkSupported") or check.get("hardlinkWorks") or check.get("canHardlink"):
+    hardlink = check.get("hardlink")
+    if isinstance(hardlink, dict) and hardlink.get("available"):
         return "hardlink"
     return "copy"
 

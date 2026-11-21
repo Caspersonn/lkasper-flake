@@ -65,6 +65,11 @@
           default = 20 * 1024 * 1024 * 1024;
           description = "Minimum available bytes on both music and staging filesystems.";
         };
+        legacyLibraryPath = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          default = null;
+          description = "Host path of a music folder that Aurral mounts read-only, so an existing library can be ingested into the Library folder.";
+        };
       };
       config = lib.mkIf cfg.enable {
         assertions = [{
@@ -120,7 +125,8 @@
               PGID = toString config.users.groups.media.gid;
               AURRAL_DATA_DIR = "/config";
               LIBRARY_FOLDER = "/data/music-aurral";
-              FILE_BROWSE_ROOTS = "/data/music-aurral,/data/downloads/slskd";
+              FILE_BROWSE_ROOTS = "/data/music-aurral,/data/downloads/slskd"
+                + lib.optionalString (cfg.legacyLibraryPath != null) ",${cfg.legacyLibraryPath}";
               XDG_CACHE_HOME = "/config/cache";
               TZ = config.time.timeZone;
             } // lib.optionalAttrs (cfg.clientDomain != null) {
@@ -132,6 +138,8 @@
               "${favoriteService}:/app/backend/services/subsonicLibraryService.ts:ro"
               "/data/music-aurral:/data/music-aurral"
               "/data/downloads/slskd:/data/downloads/slskd"
+            ] ++ lib.optionals (cfg.legacyLibraryPath != null) [
+              "${cfg.legacyLibraryPath}:${cfg.legacyLibraryPath}:ro"
             ];
           };
         };

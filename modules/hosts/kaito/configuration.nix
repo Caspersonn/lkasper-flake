@@ -92,6 +92,7 @@ in {
       enable = true;
       connect = true;
       clientDomain = "aurral.inspiravita.com";
+      legacyLibraryPath = "/mnt/audio/music";
     };
 
     networking.firewall.allowedTCPPorts = [ 53 443 80 51820 4096 13420 ];
