@@ -17,7 +17,7 @@
       # Zigbee2MQTT friendly name of the BILRESA scroll wheel (MQTT topic zigbee2mqtt/<name>)
       bilresaWheel = "0x6cd8fb000020b0b4";
       # Home Assistant entity of the DUBBELKISEL LED driver (Matter)
-      dubbelkiselLight = "light.dubbelkisel";
+      dubbelkiselLight = "light.dubbelkisel_30w";
     in
     {
       networking.firewall.allowedTCPPorts = [
