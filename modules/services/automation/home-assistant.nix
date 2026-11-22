@@ -371,7 +371,7 @@
           };
 
           serial = {
-            port = "/dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_0edbe6e0009eef11a7f6cba661ce3355-if00-port0";
+            port = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_5256aab514a1ef118a5fa1a361ce3355-if00-port0";
             adapter = "zstack";
             baudrate = 115200;
             rtscts = false;
