@@ -46,312 +46,6 @@
           # Includes dependencies for a basic setup
           # https://www.home-assistant.io/integrations/default_config/
           default_config = { };
-          automation = [
-            {
-              id = "bilresa_bed_controls";
-              alias = "BILRESA Bed controls";
-              description = "Control KAJPLATS Bed Lamp and TRETAKT Fairy Lights from BILRESA Bed";
-              mode = "restart";
-              triggers = [
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "on";
-                  id = "kajplats_on";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "off";
-                  id = "kajplats_off";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "on_double";
-                  id = "tretakt_toggle";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "off_double";
-                  id = "all_off";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "brightness_move_up";
-                  id = "kajplats_brightness_up";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "brightness_move_down";
-                  id = "kajplats_brightness_down";
-                }
-              ];
-              actions = [
-                {
-                  choose = [
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_on";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_off";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_off";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "tretakt_toggle";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "switch.toggle";
-                          target.entity_id = "switch.0x7c31fafffed877c5";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "all_off";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_off";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                        {
-                          action = "switch.turn_off";
-                          target.entity_id = "switch.0x7c31fafffed877c5";
-                        }
-                        {
-                          action = "switch.turn_off";
-                          metadata = { };
-                          target.device_id = "11eb5bdfd3ed3ea64942de741d70cef0";
-                          data = { };
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_brightness_up";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                          data.brightness_step_pct = 20;
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_brightness_down";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                          data.brightness_step_pct = -20;
-                        }
-                      ];
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              id = "bilresa_burea_controls";
-              alias = "BILRESA Burea controls";
-              description = "Control TRETAKT Burea Lamp from BILRESA Burea";
-              mode = "restart";
-              triggers = [
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "on";
-                  id = "kajplats_on";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "off";
-                  id = "kajplats_off";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "on_double";
-                  id = "tretakt_toggle";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "off_double";
-                  id = "all_off";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "brightness_move_up";
-                  id = "kajplats_brightness_up";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "brightness_move_down";
-                  id = "kajplats_brightness_down";
-                }
-              ];
-              actions = [
-                {
-                  choose = [
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_on";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_off";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_off";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "tretakt_toggle";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "switch.toggle";
-                          target.entity_id = "switch.0x983268fffe3c54e0";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "all_off";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_off";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                        {
-                          action = "switch.turn_off";
-                          target.entity_id = "switch.0x7c31fafffed877c5";
-                        }
-                        {
-                          action = "switch.turn_off";
-                          metadata = { };
-                          target.device_id = "11eb5bdfd3ed3ea64942de741d70cef0";
-                          data = { };
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_brightness_up";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                          data.brightness_step_pct = 20;
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_brightness_down";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                          data.brightness_step_pct = -20;
-                        }
-                      ];
-                    }
-                  ];
-                }
-              ];
-            }
-          ];
           scene = [ ];
           script = { };
         };
@@ -372,9 +66,9 @@
 
           serial = {
             port = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_5256aab514a1ef118a5fa1a361ce3355-if00-port0";
-            adapter = "zstack";
-            baudrate = 115200;
-            rtscts = false;
+            #adapter = "zstack";
+            #baudrate = 115200;
+            #rtscts = false;
           };
 
           permit_join = false;
@@ -397,42 +91,42 @@
             #pan_id = "GENERATE";
             #ext_pan_id = "GENERATE";
 
-            channel = 25;
+            #channel = 25;
 
             # 0xaf0f = 44815
-            pan_id = 44815;
+            #pan_id = 44815;
 
             # 5c df 67 fe e2 da 96 c7
-            ext_pan_id = [
-              92
-              223
-              103
-              254
-              226
-              218
-              150
-              199
-            ];
+            #Ext_pan_id = [
+            #  92
+            #  223
+            #  103
+            #  254
+            #  226
+            #  218
+            #  150
+            #  199
+            #];
 
             # 30 a4 be 53 b2 8b a6 4e c3 6e 25 a7 3e 0c 11 b2
-            network_key = [
-              48
-              164
-              190
-              83
-              178
-              139
-              166
-              78
-              195
-              110
-              37
-              167
-              62
-              12
-              17
-              178
-            ];
+            #network_key = [
+            #  48
+            #  164
+            #  190
+            #  83
+            #  178
+            #  139
+            #  166
+            #  78
+            #  195
+            #  110
+            #  37
+            #  167
+            #  62
+            #  12
+            #  17
+            #  178
+            #];
           };
         };
       };
