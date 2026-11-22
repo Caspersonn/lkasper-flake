@@ -8,6 +8,11 @@
     }:
     let
       mapDashboardYaml = (pkgs.formats.yaml { }).generate "map.yaml" { type = "map"; };
+
+      # Sonoff ZBDongle-P (TI CC2652P, Z-Stack firmware) -> Zigbee2MQTT
+      zigbeeDongle = "/dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_0edbe6e0009eef11a7f6cba661ce3355-if00-port0";
+      # Sonoff Dongle Plus MG24 (EFR32MG24, OpenThread RCP firmware) -> Thread border router
+      threadDongle = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_5256aab514a1ef118a5fa1a361ce3355-if00-port0";
     in
     {
       networking.firewall.allowedTCPPorts = [
@@ -40,7 +45,11 @@
           "adguard"
           "ollama"
           "wyoming"
+
+          # Matter over Thread
           "matter"
+          "otbr"
+          "thread"
         ];
         config = {
           # Includes dependencies for a basic setup
@@ -65,9 +74,8 @@
           };
 
           serial = {
-            port = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_5256aab514a1ef118a5fa1a361ce3355-if00-port0";
-            # Sonoff Dongle Plus MG24 = Silicon Labs EFR32MG24 (EmberZNet firmware)
-            adapter = "ember";
+            port = zigbeeDongle;
+            adapter = "zstack";
             baudrate = 115200;
             rtscts = false;
           };
@@ -92,8 +100,8 @@
             #pan_id = "GENERATE";
             #ext_pan_id = "GENERATE";
 
-            # Network identity of the original (zstack) network, kept when
-            # migrating to the Sonoff MG24 (ember) so devices don't need re-pairing.
+            # Network identity of the original Z-Stack network on the ZBDongle-P.
+            # Zigbee stays on channel 25; Thread should use a different channel (e.g. 15).
             channel = 25;
 
             # 0xaf0f = 44815
@@ -108,8 +116,33 @@
         };
       };
 
-      systemd.services.zigbee2mqtt.serviceConfig.EnvironmentFile =
-        config.age.secrets.zigbee2mqtt-env.path;
+      systemd.services.zigbee2mqtt = {
+        # Zigbee2MQTT crashes at boot if the MQTT broker is not up yet
+        after = [ "mosquitto.service" ];
+        wants = [ "mosquitto.service" ];
+        serviceConfig.EnvironmentFile = config.age.secrets.zigbee2mqtt-env.path;
+      };
+
+      # Thread border router on the Sonoff MG24 (needs OpenThread RCP firmware).
+      # Home Assistant's OTBR integration talks to the REST API on http://127.0.0.1:8081
+      # and forms the Thread network if none exists yet.
+      services.openthread-border-router = {
+        enable = true;
+        backboneInterfaces = [ "enp86s0" ];
+        radio = {
+          device = threadDongle;
+          # Must match the baud rate of the flashed RCP firmware (usually in the file name)
+          baudRate = 460800;
+          flowControl = false;
+        };
+      };
+
+      # Matter controller for Home Assistant (ws://127.0.0.1:5580/ws)
+      services.matter-server = {
+        enable = true;
+        # Keep in sync with the Home Assistant version (both from unstable)
+        package = unstable.python-matter-server;
+      };
 
       services.ollama = {
         enable = true;
