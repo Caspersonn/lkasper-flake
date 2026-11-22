@@ -72,7 +72,6 @@ in {
       skyblock-minecraft
       home-assistant
       aiostreams
-      adguardhome
 
       # Music
       aurral-flows
