@@ -66,9 +66,10 @@
 
           serial = {
             port = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_5256aab514a1ef118a5fa1a361ce3355-if00-port0";
-            #adapter = "zstack";
-            #baudrate = 115200;
-            #rtscts = false;
+            # Sonoff Dongle Plus MG24 = Silicon Labs EFR32MG24 (EmberZNet firmware)
+            adapter = "ember";
+            baudrate = 115200;
+            rtscts = false;
           };
 
           permit_join = false;
@@ -91,42 +92,18 @@
             #pan_id = "GENERATE";
             #ext_pan_id = "GENERATE";
 
-            #channel = 25;
+            # Network identity of the original (zstack) network, kept when
+            # migrating to the Sonoff MG24 (ember) so devices don't need re-pairing.
+            channel = 25;
 
             # 0xaf0f = 44815
-            #pan_id = 44815;
+            pan_id = 44815;
 
             # 5c df 67 fe e2 da 96 c7
-            #Ext_pan_id = [
-            #  92
-            #  223
-            #  103
-            #  254
-            #  226
-            #  218
-            #  150
-            #  199
-            #];
+            ext_pan_id = [ 92 223 103 254 226 218 150 199 ];
 
             # 30 a4 be 53 b2 8b a6 4e c3 6e 25 a7 3e 0c 11 b2
-            #network_key = [
-            #  48
-            #  164
-            #  190
-            #  83
-            #  178
-            #  139
-            #  166
-            #  78
-            #  195
-            #  110
-            #  37
-            #  167
-            #  62
-            #  12
-            #  17
-            #  178
-            #];
+            network_key = [ 48 164 190 83 178 139 166 78 195 110 37 167 62 12 17 178 ];
           };
         };
       };
