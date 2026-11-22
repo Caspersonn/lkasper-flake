@@ -354,36 +354,6 @@
           ];
           scene = [ ];
           script = { };
-          lovelace = {
-            mode = "yaml";
-            dashboards = {
-              "nixos-lovelace" = null;
-              map = {
-                mode = "yaml";
-                filename = "dashboards/map.yaml";
-                title = "Map";
-                icon = "mdi:map";
-              };
-            };
-          };
-        };
-        lovelaceConfig = {
-          views = [
-            {
-              title = "Home";
-              cards = [
-                {
-                  type = "entities";
-                  title = "BILRESA";
-                  entities = [
-                    "light.0x00c09b9eff953a7d"
-                    "switch.0x7c31fafffed877c5"
-                    "switch.0x983268fffe3c54e0"
-                  ];
-                }
-              ];
-            }
-          ];
         };
       };
 
