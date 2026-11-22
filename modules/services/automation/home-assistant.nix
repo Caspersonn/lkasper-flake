@@ -18,6 +18,7 @@
       networking.firewall.allowedTCPPorts = [
         8123 # Home Assistant
         8080 # Zigbee2MQTT frontend; remove if you do not want LAN access
+        5580 # Matter server dashboard + websocket (no auth!); remove if you do not want LAN access
         10200 # Wyoming Piper TTS (for voice satellite devices)
         10300 # Wyoming Faster Whisper STT (for voice satellite devices)
       ];
@@ -141,7 +142,16 @@
       services.matter-server = {
         enable = true;
         # Keep in sync with the Home Assistant version (both from unstable)
-        package = unstable.python-matter-server;
+        # Patched: one malformed PAA root certificate on the DCL makes
+        # x509.load_pem_x509_certificate raise ValueError, which kills the startup
+        # task before the websocket/dashboard on :5580 is opened. Skip such certs.
+        package = unstable.python-matter-server.overridePythonAttrs (old: {
+          postPatch = (old.postPatch or "") + ''
+            f=matter_server/server/helpers/paa_certificates.py
+            sed -i 's/^\( *\)cert = x509.load_pem_x509_certificate(pem_certificate.encode())$/\1try:\n\1    cert = x509.load_pem_x509_certificate(pem_certificate.encode())\n\1except ValueError as err:\n\1    LOGGER.warning("Skipping invalid PAA certificate %s: %s", subject, err)\n\1    return False/' $f
+            grep -q "Skipping invalid PAA certificate" $f
+          '';
+        });
       };
 
       services.ollama = {
