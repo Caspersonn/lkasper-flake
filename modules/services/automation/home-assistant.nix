@@ -152,6 +152,12 @@
             grep -q "Skipping invalid PAA certificate" $f
           '';
         });
+        # Use kaito's own Bluetooth (hci0) so the Matter server can commission
+        # Thread devices directly (HA: Matter -> "Commission device with code"),
+        # bypassing the Android/Google Play Services border router discovery.
+        extraArgs = {
+          bluetooth-adapter = 0;
+        };
       };
 
       services.ollama = {
