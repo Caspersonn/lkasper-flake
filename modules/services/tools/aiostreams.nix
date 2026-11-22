@@ -2,7 +2,7 @@
   flake.modules.nixos.aiostreams = { config, pkgs, ... }: {
 
     virtualisation.oci-containers.containers.aiostreams = {
-      image = "ghcr.io/viren070/aiostreams:latest";
+      image = "ghcr.io/viren070/aiostreams:v2.38";
       ports = [ "127.0.0.1:3099:3000" ];
       environment = {
         BASE_URL = "https://aiostreams.inspiravita.com";
