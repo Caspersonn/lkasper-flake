@@ -13,6 +13,11 @@
       zigbeeDongle = "/dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_0edbe6e0009eef11a7f6cba661ce3355-if00-port0";
       # Sonoff Dongle Plus MG24 (EFR32MG24, OpenThread RCP firmware) -> Thread border router
       threadDongle = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_5256aab514a1ef118a5fa1a361ce3355-if00-port0";
+
+      # Zigbee2MQTT friendly name of the BILRESA scroll wheel (MQTT topic zigbee2mqtt/<name>)
+      bilresaWheel = "0x6cd8fb000020b0b4";
+      # Home Assistant entity of the DUBBELKISEL LED driver (Matter)
+      dubbelkiselLight = "light.dubbelkisel";
     in
     {
       networking.firewall.allowedTCPPorts = [
@@ -58,6 +63,56 @@
           default_config = { };
           scene = [ ];
           script = { };
+
+          automation = [
+            {
+              id = "bilresa_wheel_dubbelkisel";
+              alias = "BILRESA wiel -> DUBBELKISEL";
+              mode = "restart";
+              triggers = [
+                {
+                  trigger = "mqtt";
+                  topic = "zigbee2mqtt/${bilresaWheel}";
+                }
+              ];
+              conditions = [
+                {
+                  condition = "template";
+                  value_template = "{{ trigger.payload_json.action is defined }}";
+                }
+              ];
+              actions = [
+                {
+                  choose = [
+                    {
+                      conditions = "{{ trigger.payload_json.action == 'brightness_move_to_level' }}";
+                      sequence = [
+                        {
+                          action = "light.turn_on";
+                          target.entity_id = dubbelkiselLight;
+                          data = {
+                            brightness = "{{ trigger.payload_json.action_level | int }}";
+                            transition = 0.3;
+                          };
+                        }
+                      ];
+                    }
+                    {
+                      # toggle instead of on/off: the remote tracks its own state,
+                      # which drifts when the light is switched elsewhere
+                      conditions = "{{ trigger.payload_json.action in ['on', 'off'] }}";
+                      sequence = [
+                        {
+                          action = "light.toggle";
+                          target.entity_id = dubbelkiselLight;
+                        }
+                      ];
+                    }
+                  ];
+                }
+              ];
+            }
+          ];
         };
       };
 
