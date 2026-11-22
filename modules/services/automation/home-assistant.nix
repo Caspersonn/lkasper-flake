@@ -15,12 +15,14 @@
       threadDongle = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_5256aab514a1ef118a5fa1a361ce3355-if00-port0";
 
       # BILRESA scroll wheel (Matter node 3). Three channels, each with 3 endpoints:
-      #   channel 1: ep1 = rotate up, ep2 = rotate down, ep3 = button
+      #   channel 1: ep1 = rotate up, ep2 = rotate down, ep3 = wheel press
       #   channel 2: ep4/5/6, channel 3: ep7/8/9
-      # HA names the event entities "Button (<endpoint>)".
-      bilresaWheelUp = "event.bilresa_scroll_wheel_button_1";
-      bilresaWheelDown = "event.bilresa_scroll_wheel_button_2";
-      bilresaWheelButton = "event.bilresa_scroll_wheel_button_3";
+      # The bottom button only cycles the active channel (it sends no event itself),
+      # so listen on all channels. HA names the event entities "Button (<endpoint>)".
+      bilresaEvent = ep: "event.bilresa_scroll_wheel_button_${toString ep}";
+      bilresaWheelUp = map bilresaEvent [ 1 4 7 ];
+      bilresaWheelDown = map bilresaEvent [ 2 5 8 ];
+      bilresaWheelButton = map bilresaEvent [ 3 6 9 ];
       # Brightness change per detent of the wheel, in percent
       wheelStepPct = 5;
       # Home Assistant entity of the DUBBELKISEL LED driver (Matter)
