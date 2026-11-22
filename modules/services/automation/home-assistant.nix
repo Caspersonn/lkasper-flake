@@ -14,8 +14,15 @@
       # Sonoff Dongle Plus MG24 (EFR32MG24, OpenThread RCP firmware) -> Thread border router
       threadDongle = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_5256aab514a1ef118a5fa1a361ce3355-if00-port0";
 
-      # Zigbee2MQTT friendly name of the BILRESA scroll wheel (MQTT topic zigbee2mqtt/<name>)
-      bilresaWheel = "0x6cd8fb000020b0b4";
+      # BILRESA scroll wheel (Matter node 3). Three channels, each with 3 endpoints:
+      #   channel 1: ep1 = rotate up, ep2 = rotate down, ep3 = button
+      #   channel 2: ep4/5/6, channel 3: ep7/8/9
+      # HA names the event entities "Button (<endpoint>)".
+      bilresaWheelUp = "event.bilresa_scroll_wheel_button_1";
+      bilresaWheelDown = "event.bilresa_scroll_wheel_button_2";
+      bilresaWheelButton = "event.bilresa_scroll_wheel_button_3";
+      # Brightness change per detent of the wheel, in percent
+      wheelStepPct = 5;
       # Home Assistant entity of the DUBBELKISEL LED driver (Matter)
       dubbelkiselLight = "light.dubbelkisel_30w";
     in
@@ -68,43 +75,82 @@
             {
               id = "bilresa_wheel_dubbelkisel";
               alias = "BILRESA wiel -> DUBBELKISEL";
-              mode = "restart";
+              # queued so fast consecutive wheel events are all applied in order
+              mode = "queued";
+              max = 10;
               triggers = [
                 {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/${bilresaWheel}";
+                  trigger = "state";
+                  entity_id = bilresaWheelUp;
+                  id = "up";
+                }
+                {
+                  trigger = "state";
+                  entity_id = bilresaWheelDown;
+                  id = "down";
+                }
+                {
+                  trigger = "state";
+                  entity_id = bilresaWheelButton;
+                  id = "button";
                 }
               ];
               conditions = [
                 {
+                  # Event entities change state (a timestamp) on every press; ignore
+                  # startup/restore and availability changes.
                   condition = "template";
-                  value_template = "{{ trigger.payload_json.action is defined }}";
+                  value_template = ''
+                    {{ trigger.from_state is not none
+                       and trigger.from_state.state != 'unavailable'
+                       and trigger.to_state.state not in ['unavailable', 'unknown'] }}'';
                 }
               ];
+              variables = {
+                event_type = "{{ trigger.to_state.attributes.event_type | default('') }}";
+                # Matter reports a turn of N detents as multi_press_N
+                steps = "{{ event_type.split('_')[-1] | int(1) }}";
+              };
               actions = [
                 {
                   choose = [
                     {
-                      conditions = "{{ trigger.payload_json.action == 'brightness_move_to_level' }}";
+                      conditions = "{{ trigger.id == 'up' }}";
                       sequence = [
                         {
                           action = "light.turn_on";
                           target.entity_id = dubbelkiselLight;
-                          data = {
-                            brightness = "{{ trigger.payload_json.action_level | int }}";
-                            transition = 0.3;
-                          };
+                          data.brightness_step_pct = "{{ [steps * ${toString wheelStepPct}, 100] | min }}";
                         }
                       ];
                     }
                     {
-                      # toggle instead of on/off: the remote tracks its own state,
-                      # which drifts when the light is switched elsewhere
-                      conditions = "{{ trigger.payload_json.action in ['on', 'off'] }}";
+                      conditions = "{{ trigger.id == 'down' }}";
+                      sequence = [
+                        {
+                          action = "light.turn_on";
+                          target.entity_id = dubbelkiselLight;
+                          data.brightness_step_pct = "{{ -([steps * ${toString wheelStepPct}, 100] | min) }}";
+                        }
+                      ];
+                    }
+                    {
+                      conditions = "{{ trigger.id == 'button' and event_type == 'multi_press_1' }}";
                       sequence = [
                         {
                           action = "light.toggle";
                           target.entity_id = dubbelkiselLight;
+                        }
+                      ];
+                    }
+                    {
+                      # double press: full brightness
+                      conditions = "{{ trigger.id == 'button' and event_type == 'multi_press_2' }}";
+                      sequence = [
+                        {
+                          action = "light.turn_on";
+                          target.entity_id = dubbelkiselLight;
+                          data.brightness_pct = 100;
                         }
                       ];
                     }
