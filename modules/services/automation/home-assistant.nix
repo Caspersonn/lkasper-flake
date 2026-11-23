@@ -98,7 +98,7 @@
                         and trigger.from_state.state not in ['unavailable', 'unknown']
                         and trigger.to_state.state not in ['unavailable', 'unknown']
                         and trigger.from_state.state != trigger.to_state.state
-                        and (trigger.to_state.attributes.get('event_type') or '').startswith('multi_press_') }}'';
+                         and (trigger.to_state.attributes.get('event_type') or "").startswith('multi_press_') }}'';
                 }
               ];
               actions = [
