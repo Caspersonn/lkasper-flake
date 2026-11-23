@@ -253,10 +253,6 @@
       # Matter controller for Home Assistant (ws://127.0.0.1:5580/ws)
       services.matter-server = {
         enable = true;
-        # Keep in sync with the Home Assistant version (both from unstable)
-        # Patched: one malformed PAA root certificate on the DCL makes
-        # x509.load_pem_x509_certificate raise ValueError, which kills the startup
-        # task before the websocket/dashboard on :5580 is opened. Skip such certs.
         package = unstable.python-matter-server.overridePythonAttrs (old: {
           postPatch = (old.postPatch or "") + ''
             f=matter_server/server/helpers/paa_certificates.py
@@ -264,9 +260,6 @@
             grep -q "Skipping invalid PAA certificate" $f
           '';
         });
-        # Use kaito's own Bluetooth (hci0) so the Matter server can commission
-        # Thread devices directly (HA: Matter -> "Commission device with code"),
-        # bypassing the Android/Google Play Services border router discovery.
         extraArgs = {
           bluetooth-adapter = 0;
         };

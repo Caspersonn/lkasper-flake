@@ -13,6 +13,7 @@
 
       agents = ./agents;
       commands = ./commands;
+      skills = ./skills;
       context = ./AGENTS.md;
       tui = {
         theme = "opencode";
