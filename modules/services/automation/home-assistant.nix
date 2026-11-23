@@ -14,18 +14,11 @@
       # Sonoff Dongle Plus MG24 (EFR32MG24, OpenThread RCP firmware) -> Thread border router
       threadDongle = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_5256aab514a1ef118a5fa1a361ce3355-if00-port0";
 
-      # BILRESA scroll wheel (Matter node 3). Three channels, each with 3 endpoints:
-      #   channel 1: ep1 = rotate up, ep2 = rotate down, ep3 = wheel press
-      #   channel 2: ep4/5/6, channel 3: ep7/8/9
-      # The bottom button only cycles the active channel (it sends no event itself),
-      # so listen on all channels. HA names the event entities "Button (<endpoint>)".
       bilresaEvent = ep: "event.bilresa_scroll_wheel_button_${toString ep}";
       bilresaWheelUp = map bilresaEvent [ 1 4 7 ];
       bilresaWheelDown = map bilresaEvent [ 2 5 8 ];
       bilresaWheelButton = map bilresaEvent [ 3 6 9 ];
-      # Brightness change per detent of the wheel, in percent
       wheelStepPct = 5;
-      # Home Assistant entity of the DUBBELKISEL LED driver (Matter)
       dubbelkiselLight = "light.dubbelkisel_30w";
     in
     {
@@ -77,9 +70,8 @@
             {
               id = "bilresa_wheel_dubbelkisel";
               alias = "BILRESA wiel -> DUBBELKISEL";
-              # queued so fast consecutive wheel events are all applied in order
               mode = "queued";
-              max = 10;
+              max = 50;
               triggers = [
                 {
                   trigger = "state";
@@ -99,21 +91,23 @@
               ];
               conditions = [
                 {
-                  # Event entities change state (a timestamp) on every press; ignore
-                  # startup/restore and availability changes.
                   condition = "template";
                   value_template = ''
-                    {{ trigger.from_state is not none
-                       and trigger.from_state.state != 'unavailable'
-                       and trigger.to_state.state not in ['unavailable', 'unknown'] }}'';
+                     {{ trigger.from_state is not none
+                        and trigger.to_state is not none
+                        and trigger.from_state.state not in ['unavailable', 'unknown']
+                        and trigger.to_state.state not in ['unavailable', 'unknown']
+                        and trigger.from_state.state != trigger.to_state.state
+                        and (trigger.to_state.attributes.get('event_type') or '').startswith('multi_press_') }}'';
                 }
               ];
-              variables = {
-                event_type = "{{ trigger.to_state.attributes.event_type | default('') }}";
-                # Matter reports a turn of N detents as multi_press_N
-                steps = "{{ event_type.split('_')[-1] | int(1) }}";
-              };
               actions = [
+                {
+                  variables = {
+                    event_type = "{{ trigger.to_state.attributes.get('event_type') or '' }}";
+                    steps = "{{ (event_type ~ '').split('_')[-1] | int(1) }}";
+                  };
+                }
                 {
                   choose = [
                     {
@@ -137,22 +131,11 @@
                       ];
                     }
                     {
-                      conditions = "{{ trigger.id == 'button' and event_type == 'multi_press_1' }}";
+                      conditions = "{{ trigger.id == 'button' }}";
                       sequence = [
                         {
                           action = "light.toggle";
                           target.entity_id = dubbelkiselLight;
-                        }
-                      ];
-                    }
-                    {
-                      # double press: full brightness
-                      conditions = "{{ trigger.id == 'button' and event_type == 'multi_press_2' }}";
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = dubbelkiselLight;
-                          data.brightness_pct = 100;
                         }
                       ];
                     }
