@@ -30,10 +30,26 @@
         10300 # Wyoming Faster Whisper STT (for voice satellite devices)
       ];
       networking.firewall.allowedUDPPorts = [ 5353 ];
+      networking.firewall.interfaces.wpan0 = {
+        allowedUDPPorts = [ 5540 ];
+        allowedUDPPortRanges = [
+          {
+            from = 49152;
+            to = 65535;
+          }
+        ];
+      };
 
       services.home-assistant = {
         enable = true;
-        package = unstable.home-assistant;
+        package = unstable.home-assistant.overrideAttrs (old: {
+          postPatch = (old.postPatch or "") + ''
+            substituteInPlace homeassistant/components/matter/event.py \
+              --replace-fail \
+              'max_presses_supported = min(max_presses_supported or 2, 8)' \
+              'max_presses_supported = max_presses_supported or 2'
+          '';
+        });
         openFirewall = true;
         extraComponents = [
           # Components required to complete the onboarding
@@ -127,6 +143,16 @@
                           action = "light.turn_on";
                           target.entity_id = dubbelkiselLight;
                           data.brightness_step_pct = "{{ -([steps * ${toString wheelStepPct}, 100] | min) }}";
+                        }
+                      ];
+                    }
+                    {
+                      conditions = "{{ trigger.id == 'button' and event_type == 'multi_press_2' }}";
+                      sequence = [
+                        {
+                          action = "light.turn_on";
+                          target.entity_id = dubbelkiselLight;
+                          data.brightness_pct = 100;
                         }
                       ];
                     }
