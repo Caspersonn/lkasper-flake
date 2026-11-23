@@ -3013,11 +3013,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1789846401,
-        "narHash": "sha256-O2PVqzn+PsUSxOM2NvozJErmxHYxIWpfVcaFUG9OLAM=",
+        "lastModified": 1795178519,
+        "narHash": "sha256-oJ1D8fwPMwLFR7p1de8qW+OIbAmKEAbaaz4g29FeTC0=",
         "owner": "caspersonn",
         "repo": "nixvim",
-        "rev": "c8e280451a97ebff3e041fdda513819b8750c30f",
+        "rev": "0e10f8eb30f28b90547081c014db6852dcc7ff68",
         "type": "github"
       },
       "original": {
