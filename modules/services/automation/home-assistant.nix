@@ -30,6 +30,15 @@
         10300 # Wyoming Faster Whisper STT (for voice satellite devices)
       ];
       networking.firewall.allowedUDPPorts = [ 5353 ];
+      networking.firewall.interfaces.wpan0 = {
+        allowedUDPPorts = [ 5540 ];
+        allowedUDPPortRanges = [
+          {
+            from = 49152;
+            to = 65535;
+          }
+        ];
+      };
 
       services.home-assistant = {
         enable = true;
