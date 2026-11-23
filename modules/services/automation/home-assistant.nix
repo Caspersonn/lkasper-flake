@@ -33,7 +33,14 @@
 
       services.home-assistant = {
         enable = true;
-        package = unstable.home-assistant;
+        package = unstable.home-assistant.overridePythonAttrs (old: {
+          postPatch = (old.postPatch or "") + ''
+            substituteInPlace homeassistant/components/matter/event.py \
+              --replace-fail \
+              'max_presses_supported = min(max_presses_supported or 2, 8)' \
+              'max_presses_supported = max_presses_supported or 2'
+          '';
+        });
         openFirewall = true;
         extraComponents = [
           # Components required to complete the onboarding
