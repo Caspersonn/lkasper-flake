@@ -147,6 +147,16 @@
                       ];
                     }
                     {
+                      conditions = "{{ trigger.id == 'button' and event_type == 'multi_press_2' }}";
+                      sequence = [
+                        {
+                          action = "light.turn_on";
+                          target.entity_id = dubbelkiselLight;
+                          data.brightness_pct = 100;
+                        }
+                      ];
+                    }
+                    {
                       conditions = "{{ trigger.id == 'button' }}";
                       sequence = [
                         {
