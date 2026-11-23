@@ -30,7 +30,7 @@ buildFHSEnv {
     xdg-user-dirs xdg-utils alsa-lib pulseaudio fontconfig freetype
     glibc gsettings-desktop-schemas coreutils gawk gnugrep
     atk cairo openssl libdrm libepoxy mesa libgbm gdk-pixbuf harfbuzz
-    libjack2 pango pipewire librsvg systemd libxcb libXScrnSaver libXv
+    libjack2 pango pipewire librsvg systemd libxcb libXScrnSaver libXv wayland
   ];
   runScript = "${bundle}/share/moonfin/moonfin";
   extraInstallCommands = ''

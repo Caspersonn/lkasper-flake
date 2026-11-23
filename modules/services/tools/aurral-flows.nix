@@ -65,12 +65,28 @@
           default = 20 * 1024 * 1024 * 1024;
           description = "Minimum available bytes on both music and staging filesystems.";
         };
+        legacyLibraryPath = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          default = null;
+          description = "Host path of a music folder that Aurral mounts read-only, so an existing library can be ingested into the Library folder.";
+        };
       };
       config = lib.mkIf cfg.enable {
         assertions = [{
           assertion = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
           message = "The pinned Aurral Flows images are verified for x86_64-linux.";
         }];
+        users.groups.media.gid = 2000;
+        users.users.media = {
+          isSystemUser = true;
+          uid = 2000;
+          group = "media";
+          description = "Owner of the shared media tree in /data";
+        };
+        users.users.casper.extraGroups = [ "media" ];
+        systemd.tmpfiles.settings = {
+          "10-data-root"."/data".d = { user = "root"; group = "root"; mode = "0755"; };
+        };
         systemd.tmpfiles.rules = [
           "d ${state} 0700 root root -"
           "d /run/aurral-maintenance 0700 root root -"
@@ -109,7 +125,8 @@
               PGID = toString config.users.groups.media.gid;
               AURRAL_DATA_DIR = "/config";
               LIBRARY_FOLDER = "/data/music-aurral";
-              FILE_BROWSE_ROOTS = "/data/music-aurral,/data/downloads/slskd";
+              FILE_BROWSE_ROOTS = "/data/music-aurral,/data/downloads/slskd"
+                + lib.optionalString (cfg.legacyLibraryPath != null) ",${cfg.legacyLibraryPath}";
               XDG_CACHE_HOME = "/config/cache";
               TZ = config.time.timeZone;
             } // lib.optionalAttrs (cfg.clientDomain != null) {
@@ -121,6 +138,8 @@
               "${favoriteService}:/app/backend/services/subsonicLibraryService.ts:ro"
               "/data/music-aurral:/data/music-aurral"
               "/data/downloads/slskd:/data/downloads/slskd"
+            ] ++ lib.optionals (cfg.legacyLibraryPath != null) [
+              "${cfg.legacyLibraryPath}:${cfg.legacyLibraryPath}:ro"
             ];
           };
         };

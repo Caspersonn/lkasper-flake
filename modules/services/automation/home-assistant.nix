@@ -8,11 +8,24 @@
     }:
     let
       mapDashboardYaml = (pkgs.formats.yaml { }).generate "map.yaml" { type = "map"; };
+
+      # Sonoff ZBDongle-P (TI CC2652P, Z-Stack firmware) -> Zigbee2MQTT
+      zigbeeDongle = "/dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_0edbe6e0009eef11a7f6cba661ce3355-if00-port0";
+      # Sonoff Dongle Plus MG24 (EFR32MG24, OpenThread RCP firmware) -> Thread border router
+      threadDongle = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_5256aab514a1ef118a5fa1a361ce3355-if00-port0";
+
+      bilresaEvent = ep: "event.bilresa_scroll_wheel_button_${toString ep}";
+      bilresaWheelUp = map bilresaEvent [ 1 4 7 ];
+      bilresaWheelDown = map bilresaEvent [ 2 5 8 ];
+      bilresaWheelButton = map bilresaEvent [ 3 6 9 ];
+      wheelStepPct = 5;
+      dubbelkiselLight = "light.dubbelkisel_30w";
     in
     {
       networking.firewall.allowedTCPPorts = [
         8123 # Home Assistant
         8080 # Zigbee2MQTT frontend; remove if you do not want LAN access
+        5580 # Matter server dashboard + websocket (no auth!); remove if you do not want LAN access
         10200 # Wyoming Piper TTS (for voice satellite devices)
         10300 # Wyoming Faster Whisper STT (for voice satellite devices)
       ];
@@ -40,345 +53,92 @@
           "adguard"
           "ollama"
           "wyoming"
+
+          # Matter over Thread
           "matter"
+          "otbr"
+          "thread"
         ];
         config = {
           # Includes dependencies for a basic setup
           # https://www.home-assistant.io/integrations/default_config/
           default_config = { };
-          automation = [
-            {
-              id = "bilresa_bed_controls";
-              alias = "BILRESA Bed controls";
-              description = "Control KAJPLATS Bed Lamp and TRETAKT Fairy Lights from BILRESA Bed";
-              mode = "restart";
-              triggers = [
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "on";
-                  id = "kajplats_on";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "off";
-                  id = "kajplats_off";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "on_double";
-                  id = "tretakt_toggle";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "off_double";
-                  id = "all_off";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "brightness_move_up";
-                  id = "kajplats_brightness_up";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Bed";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "brightness_move_down";
-                  id = "kajplats_brightness_down";
-                }
-              ];
-              actions = [
-                {
-                  choose = [
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_on";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_off";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_off";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "tretakt_toggle";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "switch.toggle";
-                          target.entity_id = "switch.0x7c31fafffed877c5";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "all_off";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_off";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                        {
-                          action = "switch.turn_off";
-                          target.entity_id = "switch.0x7c31fafffed877c5";
-                        }
-                        {
-                          action = "switch.turn_off";
-                          metadata = { };
-                          target.device_id = "11eb5bdfd3ed3ea64942de741d70cef0";
-                          data = { };
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_brightness_up";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                          data.brightness_step_pct = 20;
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_brightness_down";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                          data.brightness_step_pct = -20;
-                        }
-                      ];
-                    }
-                  ];
-                }
-              ];
-            }
-            {
-              id = "bilresa_burea_controls";
-              alias = "BILRESA Burea controls";
-              description = "Control TRETAKT Burea Lamp from BILRESA Burea";
-              mode = "restart";
-              triggers = [
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "on";
-                  id = "kajplats_on";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "off";
-                  id = "kajplats_off";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "on_double";
-                  id = "tretakt_toggle";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "off_double";
-                  id = "all_off";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "brightness_move_up";
-                  id = "kajplats_brightness_up";
-                }
-                {
-                  trigger = "mqtt";
-                  topic = "zigbee2mqtt/BILRESA Burea";
-                  value_template = "{{ value_json.get('action', '') }}";
-                  payload = "brightness_move_down";
-                  id = "kajplats_brightness_down";
-                }
-              ];
-              actions = [
-                {
-                  choose = [
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_on";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_off";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_off";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "tretakt_toggle";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "switch.toggle";
-                          target.entity_id = "switch.0x983268fffe3c54e0";
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "all_off";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_off";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                        }
-                        {
-                          action = "switch.turn_off";
-                          target.entity_id = "switch.0x7c31fafffed877c5";
-                        }
-                        {
-                          action = "switch.turn_off";
-                          metadata = { };
-                          target.device_id = "11eb5bdfd3ed3ea64942de741d70cef0";
-                          data = { };
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_brightness_up";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                          data.brightness_step_pct = 20;
-                        }
-                      ];
-                    }
-                    {
-                      conditions = [
-                        {
-                          condition = "trigger";
-                          id = "kajplats_brightness_down";
-                        }
-                      ];
-                      sequence = [
-                        {
-                          action = "light.turn_on";
-                          target.entity_id = "light.0x00c09b9eff953a7d";
-                          data.brightness_step_pct = -20;
-                        }
-                      ];
-                    }
-                  ];
-                }
-              ];
-            }
-          ];
           scene = [ ];
           script = { };
-          lovelace = {
-            mode = "yaml";
-            dashboards = {
-              "nixos-lovelace" = null;
-              map = {
-                mode = "yaml";
-                filename = "dashboards/map.yaml";
-                title = "Map";
-                icon = "mdi:map";
-              };
-            };
-          };
-        };
-        lovelaceConfig = {
-          views = [
+
+          automation = [
             {
-              title = "Home";
-              cards = [
+              id = "bilresa_wheel_dubbelkisel";
+              alias = "BILRESA wiel -> DUBBELKISEL";
+              mode = "queued";
+              max = 50;
+              triggers = [
                 {
-                  type = "entities";
-                  title = "BILRESA";
-                  entities = [
-                    "light.0x00c09b9eff953a7d"
-                    "switch.0x7c31fafffed877c5"
-                    "switch.0x983268fffe3c54e0"
+                  trigger = "state";
+                  entity_id = bilresaWheelUp;
+                  id = "up";
+                }
+                {
+                  trigger = "state";
+                  entity_id = bilresaWheelDown;
+                  id = "down";
+                }
+                {
+                  trigger = "state";
+                  entity_id = bilresaWheelButton;
+                  id = "button";
+                }
+              ];
+              conditions = [
+                {
+                  condition = "template";
+                  value_template = ''
+                     {{ trigger.from_state is not none
+                        and trigger.to_state is not none
+                        and trigger.from_state.state not in ['unavailable', 'unknown']
+                        and trigger.to_state.state not in ['unavailable', 'unknown']
+                        and trigger.from_state.state != trigger.to_state.state
+                         and (trigger.to_state.attributes.get('event_type') or "").startswith('multi_press_') }}'';
+                }
+              ];
+              actions = [
+                {
+                  variables = {
+                    event_type = "{{ trigger.to_state.attributes.get('event_type') or '' }}";
+                    steps = "{{ (event_type ~ '').split('_')[-1] | int(1) }}";
+                  };
+                }
+                {
+                  choose = [
+                    {
+                      conditions = "{{ trigger.id == 'up' }}";
+                      sequence = [
+                        {
+                          action = "light.turn_on";
+                          target.entity_id = dubbelkiselLight;
+                          data.brightness_step_pct = "{{ [steps * ${toString wheelStepPct}, 100] | min }}";
+                        }
+                      ];
+                    }
+                    {
+                      conditions = "{{ trigger.id == 'down' }}";
+                      sequence = [
+                        {
+                          action = "light.turn_on";
+                          target.entity_id = dubbelkiselLight;
+                          data.brightness_step_pct = "{{ -([steps * ${toString wheelStepPct}, 100] | min) }}";
+                        }
+                      ];
+                    }
+                    {
+                      conditions = "{{ trigger.id == 'button' }}";
+                      sequence = [
+                        {
+                          action = "light.toggle";
+                          target.entity_id = dubbelkiselLight;
+                        }
+                      ];
+                    }
                   ];
                 }
               ];
@@ -401,7 +161,7 @@
           };
 
           serial = {
-            port = "/dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_0edbe6e0009eef11a7f6cba661ce3355-if00-port0";
+            port = zigbeeDongle;
             adapter = "zstack";
             baudrate = 115200;
             rtscts = false;
@@ -427,48 +187,64 @@
             #pan_id = "GENERATE";
             #ext_pan_id = "GENERATE";
 
+            # Network identity of the original Z-Stack network on the ZBDongle-P.
+            # Zigbee stays on channel 25; Thread should use a different channel (e.g. 15).
             channel = 25;
 
             # 0xaf0f = 44815
             pan_id = 44815;
 
             # 5c df 67 fe e2 da 96 c7
-            ext_pan_id = [
-              92
-              223
-              103
-              254
-              226
-              218
-              150
-              199
-            ];
+            ext_pan_id = [ 92 223 103 254 226 218 150 199 ];
 
             # 30 a4 be 53 b2 8b a6 4e c3 6e 25 a7 3e 0c 11 b2
-            network_key = [
-              48
-              164
-              190
-              83
-              178
-              139
-              166
-              78
-              195
-              110
-              37
-              167
-              62
-              12
-              17
-              178
-            ];
+            network_key = [ 48 164 190 83 178 139 166 78 195 110 37 167 62 12 17 178 ];
           };
         };
       };
 
-      systemd.services.zigbee2mqtt.serviceConfig.EnvironmentFile =
-        config.age.secrets.zigbee2mqtt-env.path;
+      systemd.services.zigbee2mqtt = {
+        # Zigbee2MQTT crashes at boot if the MQTT broker is not up yet
+        after = [ "mosquitto.service" ];
+        wants = [ "mosquitto.service" ];
+        serviceConfig.EnvironmentFile = config.age.secrets.zigbee2mqtt-env.path;
+      };
+
+      # Thread border router on the Sonoff MG24 (needs OpenThread RCP firmware).
+      # Home Assistant's OTBR integration talks to the REST API on http://127.0.0.1:8081
+      # and forms the Thread network if none exists yet.
+      services.openthread-border-router = {
+        enable = true;
+        backboneInterfaces = [ "enp86s0" ];
+        radio = {
+          device = threadDongle;
+          # Must match the baud rate of the flashed RCP firmware (usually in the file name)
+          baudRate = 460800;
+          flowControl = false;
+        };
+      };
+
+      # Matter controller for Home Assistant (ws://127.0.0.1:5580/ws)
+      services.matter-server = {
+        enable = true;
+        # Keep in sync with the Home Assistant version (both from unstable)
+        # Patched: one malformed PAA root certificate on the DCL makes
+        # x509.load_pem_x509_certificate raise ValueError, which kills the startup
+        # task before the websocket/dashboard on :5580 is opened. Skip such certs.
+        package = unstable.python-matter-server.overridePythonAttrs (old: {
+          postPatch = (old.postPatch or "") + ''
+            f=matter_server/server/helpers/paa_certificates.py
+            sed -i 's/^\( *\)cert = x509.load_pem_x509_certificate(pem_certificate.encode())$/\1try:\n\1    cert = x509.load_pem_x509_certificate(pem_certificate.encode())\n\1except ValueError as err:\n\1    LOGGER.warning("Skipping invalid PAA certificate %s: %s", subject, err)\n\1    return False/' $f
+            grep -q "Skipping invalid PAA certificate" $f
+          '';
+        });
+        # Use kaito's own Bluetooth (hci0) so the Matter server can commission
+        # Thread devices directly (HA: Matter -> "Commission device with code"),
+        # bypassing the Android/Google Play Services border router discovery.
+        extraArgs = {
+          bluetooth-adapter = 0;
+        };
+      };
 
       services.ollama = {
         enable = true;

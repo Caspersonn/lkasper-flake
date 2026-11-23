@@ -1,7 +1,7 @@
 { ... }:
 {
   # Discovery + requests; drives Lidarr and slskd, publishes to Navidrome/Jellyfin.
-  flake.modules.nixos.aurral = { config, lib, ... }:
+  flake.modules.nixos.aurral = { config, lib, unstable, ... }:
     let
       lastfmSecret = ../../../secrets/music-lastfm.age;
       # Optional until the Last.fm API account exists, see secrets/secrets.nix.
@@ -22,6 +22,7 @@
 
       services.aurral = {
         enable = true;
+        package = unstable.aurral;
         port = 3001;
         openFirewall = false;
 

@@ -64,31 +64,16 @@ in {
       smb
       atuin
       bluetooth-receiver
-      postgres
       #rtcwake
 
       # Tools
       acme
       vaultwarden
-      #nextcloud
-      #materialious
-      #invidious
-      #minecraft-server
       skyblock-minecraft
       home-assistant
       aiostreams
-      adguardhome
-      navidrome
-      remux
 
-      # Media acquisition (HolyArrs + Decypharr + Jackett on /data)
-      media-storage
-      jackett
-      decypharr
-      media-backup
-      holyarrs
-      media-connections
-      soundspan
+      # Music
       aurral-flows
 
       # System
@@ -106,6 +91,7 @@ in {
       enable = true;
       connect = true;
       clientDomain = "aurral.inspiravita.com";
+      legacyLibraryPath = "/mnt/audio/music";
     };
 
     networking.firewall.allowedTCPPorts = [ 53 443 80 51820 4096 13420 ];
