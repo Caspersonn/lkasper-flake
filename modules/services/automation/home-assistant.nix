@@ -33,7 +33,7 @@
 
       services.home-assistant = {
         enable = true;
-        package = unstable.home-assistant.overridePythonAttrs (old: {
+        package = unstable.home-assistant.overrideAttrs (old: {
           postPatch = (old.postPatch or "") + ''
             substituteInPlace homeassistant/components/matter/event.py \
               --replace-fail \
