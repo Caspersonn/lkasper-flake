@@ -72,6 +72,7 @@ in {
       skyblock-minecraft
       home-assistant
       aiostreams
+      solidtime
 
       # Music
       aurral-flows
