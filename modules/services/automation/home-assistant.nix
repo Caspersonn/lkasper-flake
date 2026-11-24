@@ -74,6 +74,7 @@
           "matter"
           "otbr"
           "thread"
+          "homewizard"
         ];
         config = {
           # Includes dependencies for a basic setup
