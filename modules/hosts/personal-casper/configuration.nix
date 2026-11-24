@@ -23,6 +23,8 @@ in {
     groups = [ "workstations" ];
   };
 
+  casper.backup.clients.personal-casper = { };
+
   casper.wol = {
     client = true;
   };
@@ -82,6 +84,7 @@ in {
       resolved
       tailscale
       networking-nebula
+      backup-restic-home
       mysql
       flatpak
       postgres

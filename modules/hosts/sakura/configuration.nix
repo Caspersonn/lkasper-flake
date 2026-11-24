@@ -31,6 +31,8 @@ in {
     groups = [ "workstations" ];
   };
 
+  casper.backup.clients.sakura = { };
+
   casper.wol = {
     client = true;
   };
@@ -87,6 +89,7 @@ in {
       resolved
       tailscale
       networking-nebula
+      backup-restic-home
       flatpak
       wireguard
 

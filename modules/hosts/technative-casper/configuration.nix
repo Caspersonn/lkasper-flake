@@ -25,6 +25,8 @@ in {
     groups = [ "workstations" ];
   };
 
+  casper.backup.clients.technative-casper = { };
+
   casper.wol = {
     client = true;
   };
@@ -94,6 +96,7 @@ in {
       resolved
       tailscale
       networking-nebula
+      backup-restic-home
       docker
       mysql
       openvpn

@@ -22,6 +22,8 @@ in {
     groups = [ "workstations" ];
   };
 
+  casper.backup.clients.gaming-casper = { };
+
   casper.wol = {
     interface = "enp8s0";
   };
@@ -87,6 +89,7 @@ in {
       hardware-coolerd
       resolved
       networking-nebula
+      backup-restic-home
       ollama
       flatpak
       lact

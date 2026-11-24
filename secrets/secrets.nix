@@ -3,17 +3,17 @@ let
   users = [ user1 ];
 
   system1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGsk6h6kDNUaLyDbImcxou/ZnIv65zSaaBqUXtP++poQ";
-  system2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJW8Y4D8Q6pgoZxZ2CKGcz9K7+JWUxojouVWYKObzzHt";
+  gaming-casper = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJW8Y4D8Q6pgoZxZ2CKGcz9K7+JWUxojouVWYKObzzHt";
   system3 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH18queSvalZ6ftHYr744tRut46OeMS9Z1SsDQvugCTD";
   system4 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRNFsCGiDVk/isN+bAfndANYjmIG7hfDD2azki93h4V";
   system5 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALR+WREWcS6d2lf8OH59yWSLGdv3PI5R6AOGobXB8a6";
-  system6 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA81Jmm0LADyGRv5aURGvi8aoRCtQEjdD21AdQozqCqY";
-  system7 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGSkCdC46exqaT+lg99eDiav1d2i+mwPVaHcu1eUeKVZ";
+  personal-casper = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA81Jmm0LADyGRv5aURGvi8aoRCtQEjdD21AdQozqCqY";
+  technative-casper = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGSkCdC46exqaT+lg99eDiav1d2i+mwPVaHcu1eUeKVZ";
   system8 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEIQfpx2MkVCOE3KPYw4kYn3DatjsoSWV99IhkeIRwTY";
   kaito   = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFdoJda3zawJPBxuOAEWs4cTZkGc5HmHnyH6E1eL/7P";
   sakura  = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHg9YgrgN20UXWUxeCkGGTLPxzPMTsDTCtCTA6h5b2Y8";
   raspberrypi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+MBgCQO3KqMF20ljvce+pFhViExVD91iEiFvd4dq0h";
-  systems = [ system1 system2 system3 system4 system5 system6 system7 system8 raspberrypi kaito sakura ];
+  systems = [ system1 gaming-casper system3 system4 system5 personal-casper technative-casper system8 raspberrypi kaito sakura ];
 in
 {
   "atuin-casper-session.age".publicKeys = [ user1 ];
@@ -59,6 +59,9 @@ in
   # Aiostreams
   "aiostreams-env.age".publicKeys = users ++ systems;
 
+  "solidtime-env.age".publicKeys = users ++ [ kaito ];
+  "solidtime-db-env.age".publicKeys = users ++ [ kaito ];
+
   # Linny MCP
   "linny-mcp-tokens.age".publicKeys = users ++ systems;
 
@@ -72,6 +75,20 @@ in
   # Music
   "music-credentials.age".publicKeys = users ++ [ kaito ];
   "music-lastfm.age".publicKeys = users ++ [ kaito ];
+
+  # Restic backups (add-restic-backups). Passwords: host + kaito (prunes);
+  # env (REST + AWS key): host only. kaito-env = kaito-backup IAM key.
+  "restic-htpasswd.age".publicKeys = users ++ [ kaito ];
+  "restic-kaito-password.age".publicKeys = users ++ [ kaito ];
+  "restic-kaito-env.age".publicKeys = users ++ [ kaito ];
+  "restic-personal-casper-password.age".publicKeys = users ++ [ personal-casper kaito ];
+  "restic-personal-casper-env.age".publicKeys = users ++ [ personal-casper ];
+  "restic-gaming-casper-password.age".publicKeys = users ++ [ gaming-casper kaito ];
+  "restic-gaming-casper-env.age".publicKeys = users ++ [ gaming-casper ];
+  "restic-technative-casper-password.age".publicKeys = users ++ [ technative-casper kaito ];
+  "restic-technative-casper-env.age".publicKeys = users ++ [ technative-casper ];
+  "restic-sakura-password.age".publicKeys = users ++ [ sakura kaito ];
+  "restic-sakura-env.age".publicKeys = users ++ [ sakura ];
 
   # Nebula
   "nebula-ca.crt.age".publicKeys = users ++ systems;

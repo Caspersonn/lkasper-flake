@@ -60,6 +60,8 @@ in {
       resolved
       tailscale
       networking-nebula
+      backup-restic-server
+      backup-restic-kaito-state
       docker
       smb
       atuin
@@ -80,6 +82,7 @@ in {
       # System
       secrets
       hardware-wol
+      nix-gc
     ];
 
     # State version
