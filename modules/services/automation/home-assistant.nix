@@ -20,6 +20,11 @@
       bilresaWheelButton = map bilresaEvent [ 3 6 9 ];
       wheelStepPct = 5;
       dubbelkiselLight = "light.dubbelkisel_30w";
+
+      bathroomOccupancy = "binary_sensor.bathroom_motion_sensor_occupancy";
+      bathroomLight = "switch.bathroom_light";
+      # Light turns off after this long without occupancy
+      bathroomOffDelay = "00:05:00";
     in
     {
       networking.firewall.allowedTCPPorts = [
@@ -86,6 +91,101 @@
           script = { };
 
           automation = [
+            {
+              id = "tretakt_occupancy_detection";
+              alias = "Occupancy detection triggers TRETAKT light switch";
+              mode = "single";
+              triggers = [
+                {
+                  trigger = "occupancy.detected";
+                  id = "detected";
+                  target.entity_id = bathroomOccupancy;
+                  options = {
+                    behavior = "each";
+                    for = "00:00:00";
+                  };
+                }
+                {
+                  trigger = "occupancy.cleared";
+                  id = "cleared";
+                  target.entity_id = bathroomOccupancy;
+                  options = {
+                    behavior = "each";
+                    for = bathroomOffDelay;
+                  };
+                }
+              ];
+              conditions = [ ];
+              actions = [
+                {
+                  choose = [
+                    {
+                      conditions = [
+                        {
+                          condition = "trigger";
+                          id = "detected";
+                        }
+                      ];
+                      sequence = [
+                        {
+                          action = "switch.turn_on";
+                          target.entity_id = bathroomLight;
+                        }
+                      ];
+                    }
+                    {
+                      conditions = [
+                        {
+                          condition = "trigger";
+                          id = "cleared";
+                        }
+                      ];
+                      sequence = [
+                        {
+                          action = "switch.turn_off";
+                          target.entity_id = bathroomLight;
+                        }
+                      ];
+                    }
+                  ];
+                }
+              ];
+            }
+            {
+              # Fallback for cases the automation above misses: the light was turned on
+              # without occupancy, or HA restarted during the off-delay (timers are lost).
+              # State `for` conditions measure from last_changed, which resets on restart,
+              # so after a restart the light turns off at most ~1 min after the delay.
+              id = "bathroom_light_auto_off_fallback";
+              alias = "Bathroom light off when nobody is present (fallback)";
+              mode = "single";
+              triggers = [
+                {
+                  trigger = "time_pattern";
+                  minutes = "/1";
+                }
+              ];
+              conditions = [
+                {
+                  condition = "state";
+                  entity_id = bathroomLight;
+                  state = "on";
+                  for = bathroomOffDelay;
+                }
+                {
+                  condition = "state";
+                  entity_id = bathroomOccupancy;
+                  state = "off";
+                  for = bathroomOffDelay;
+                }
+              ];
+              actions = [
+                {
+                  action = "switch.turn_off";
+                  target.entity_id = bathroomLight;
+                }
+              ];
+            }
             {
               id = "bilresa_wheel_dubbelkisel";
               alias = "BILRESA wiel -> DUBBELKISEL";
