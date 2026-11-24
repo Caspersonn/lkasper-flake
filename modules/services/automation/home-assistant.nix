@@ -74,6 +74,7 @@
           "matter"
           "otbr"
           "thread"
+          "homewizard"
         ];
         config = {
           homeassistant.unit_system = "metric";
