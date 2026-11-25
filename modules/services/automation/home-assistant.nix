@@ -24,7 +24,7 @@
       bathroomOccupancy = "binary_sensor.bathroom_motion_sensor_occupancy";
       bathroomLight = "switch.bathroom_light";
       # Light turns off after this long without occupancy
-      bathroomOffDelay = "00:05:00";
+      bathroomOffDelay = "00:00:30";
     in
     {
       networking.firewall.allowedTCPPorts = [
