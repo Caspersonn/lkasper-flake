@@ -21,16 +21,25 @@
   > - 132 system generations (oldest 2026-04-18), 29 of them younger than 7 days
   > - `docker system df`: 20 images (6 active) at 11.37GB, 6.71GB reclaimable; 8/8 containers; 8 volumes at 302.8MB; no build cache
   > - networks: `bridge`, `host`, `none`, `solidtime-net`
-- [ ] 1.5 Deploy kaito and run the first GC under supervision with `sudo systemctl start nix-gc.service`. Verify:
+- [x] 1.5 Deploy kaito and run the first GC under supervision with `sudo systemctl start nix-gc.service`. Verify:
   - only generations from the last 7 days plus the current one remain
   - `df -h /` shows the reclaimed space
 
   Record the new free space.
-- [ ] 1.6 Run `sudo systemctl start docker-image-prune.service`. Verify that all containers still run, `docker volume ls` is unchanged and `docker network ls` still lists `solidtime-net`, if Solidtime is deployed.
+  Result (2026-11-26): kaito deployed 2026-11-24. `nix-gc.service` succeeded 2026-11-26 12:13 and its nightly timer is active (`nix-optimise` succeeded 01:46). 28 generations remain (system-109 from 2026-11-18 up to system-136 from 2026-11-24). `df -h /`: 198G used, 221G available (48%), was 342G used and 76G available (82%).
+- [x] 1.6 Run `sudo systemctl start docker-image-prune.service`. Verify that all containers still run, `docker volume ls` is unchanged and `docker network ls` still lists `solidtime-net`, if Solidtime is deployed.
+  Result (2026-11-26): `docker-image-prune.service` succeeded 12:12. 17 images (6 active) at 10.4GB, was 20 at 11.37GB. All 8 containers are up and healthy, the 8 volumes are unchanged and `solidtime-net` is present.
 
 ## 2. kaito audits (input for later tasks)
 
-- [ ] 2.1 Run `sudo du -xsh /var/lib/* /var/lib/private/* | sort -h` on kaito and record the result in this change. The user decides what happens to the orphaned directories (`lidarr`, `jackett`, `nextcloud`, `*.legacy`, `zigbee2mqtt.backup.*`). List the extra state excludes for task 8.1.
+- [x] 2.1 Run `sudo du -xsh /var/lib/* /var/lib/private/* | sort -h` on kaito and record the result in this change. The user decides what happens to the orphaned directories (`lidarr`, `jackett`, `nextcloud`, `*.legacy`, `zigbee2mqtt.backup.*`). List the extra state excludes for task 8.1.
+  Progress (2026-11-26): the `du` output was not recorded, so the sizes come from state-s3 snapshot 60c5defe instead:
+  - holyarrs 7.9 GiB (154k files: 575 MiB live database, about 2.7 GiB of zip backups, about 4.6 GiB of artwork cache)
+  - private/AdGuardHome 740 MiB, mostly `querylog.json` DNS logs
+  - minecraft 231 MiB, remux 201 MiB, aurral-flows 191 MiB, navidrome 162 MiB, jellyfin 123 MiB, private/wyoming 121 MiB, slskd-aurral 55 MiB; everything else is under 15 MiB
+
+  Orphans (no module or running service on kaito): holyarrs, AdGuardHome, remux, soundspan, jackett(.legacy), decypharr.legacy, jellyfin, navidrome, lidarr, nextcloud, slskd, aurral and zigbee2mqtt.backup.2026-05-21. Together they are about 9.1 of the 9.5 GiB. The user still has to decide what happens to them.
+  Result (2026-11-26): the user removes the orphaned directories on kaito by hand. No extra state excludes are needed: deleted directories drop out of new snapshots, and older snapshots keep them until retention expires.
 - [x] 2.2 Verify that port 8100 is free (`ss -ltnp | grep ':8100'` returns nothing). Record the Nebula tun device name (`ip -br link | grep nebula`) and whether the host firewall already trusts it (`sudo nft list ruleset | grep -i nebula`, or `iptables -S`).
 
   > Result:
@@ -55,9 +64,11 @@
 - [x] 3.3 Create the IAM group `restic-clients` with the `${aws:username}` policy from design D8. Create the users `personal-casper`, `gaming-casper`, `technative-casper` and `sakura` under path `/restic/`, add them to the group and create their access keys. Verify with `aws iam get-group --group-name restic-clients`.
 
   > Result: created by the user. The backup keys cannot call IAM, so this was verified from the keys themselves instead of `get-group`. `sts get-caller-identity` returns `user/restic/<host>` for all 4 keys. Each key can list its own prefix and is denied on `kaito/`, which shows the group policy applies to every user.
-- [ ] 3.4 Give the existing user `kaito-backup` the inline policy from design D8 (List/Get/Put/Delete/AbortMultipartUpload on the whole bucket, no `DeleteObjectVersion`) and remove any broader policy it has. Verify with `aws iam list-attached-user-policies` and `list-user-policies`.
+- [x] 3.4 Give the existing user `kaito-backup` the inline policy from design D8 (List/Get/Put/Delete/AbortMultipartUpload on the whole bucket, no `DeleteObjectVersion`) and remove any broader policy it has. Verify with `aws iam list-attached-user-policies` and `list-user-policies`.
 
   > Open (2026-11-24): `kaito-backup` can still **hard-delete a specific object version** and read the bucket's versioning and lifecycle configuration. The D8 policy grants neither, so a broader policy is still attached to the user, its group or the bucket.
+  Progress (2026-11-26): `list-attached-user-policies` shows the AWS managed policies `AmazonS3FullAccess` and `AmazonS3FilesFullAccess`, and the user is in no groups. These explain the hard delete. Still to do: add the D8 inline policy if it is missing, detach both managed policies and rerun the isolation check.
+  Result (2026-11-26): the user added the D8 inline policy and detached both managed policies. `verify-aws.sh` as `kaito-backup`: hard delete of an object version → AccessDenied; `GetBucketVersioning` and `GetLifecycleConfiguration` → AccessDenied; soft deletes still allowed. Client isolation unchanged. `restic snapshots` with the `kaito-backup` key on the technative-casper S3 repo exits 0, so lock put/delete still works.
 - [x] 3.5 Verify isolation with one client key:
   - put and get under its own prefix succeed
   - listing or reading another host's prefix is denied
@@ -118,10 +129,19 @@
   - 8100 is in `networking.firewall.interfaces."<tun>".allowedTCPPorts`
   - `services.restic.server.dataDir` is `/srv/restic`
   Result (2026-11-24): kaito toplevel builds. 8100 not in global `allowedTCPPorts`; `interfaces."nebula.mesh".allowedTCPPorts = [ 8100 ]`; dataDir `/srv/restic`; 10 restic jobs (4 maint-local, 5 maint-s3, state-s3); all restic secrets owned by `restic`.
-- [ ] 5.4 Deploy kaito and test by hand:
+- [x] 5.4 Deploy kaito and test by hand:
   - from a mesh host, `curl -s -o /dev/null -w '%{http_code}' http://kaito.mesh:8100/` returns 401
   - with host X's credentials, `http://kaito.mesh:8100/<other-host>/config` is refused
   - from the LAN and through the public endpoint, port 8100 does not connect
+  Progress (2026-11-26), tested from technative-casper:
+  - no credentials → 401
+  - own credentials on `/technative-casper/config` → 200
+  - own credentials on `/sakura/config` → 401 (private repos)
+  - DELETE on a data blob → 403 (append-only)
+  - public endpoint `vaultwarden.inspiravita.com:8100` → timeout
+
+  The LAN test is inconclusive: the laptop routes 192.168.178.0/24 through its work VPN, so the 403 did not come from kaito. kaito's firewall only has `-p tcp --dport 8100 -j nixos-fw-accept -i nebula.mesh`. Still to do: `curl -m5 http://192.168.178.243:8100/` from a device on the home LAN must not connect.
+  Result (2026-11-26): non-mesh access tested from a Docker container on kaito (bridge interface, not `nebula.mesh`), because no other LAN device was reachable (the other clients are offline and technative-casper routes 192.168.178.0/24 through its work VPN). `192.168.178.243:8100` and `10.123.0.1:8100` time out, while control port 8123 returns 200. On kaito itself (`lo`, trusted) the server answers 401, so the `-i nebula.mesh` firewall rule is what blocks other interfaces; `enp86s0` hits the same default drop.
 
 ## 6. Home backup module and first client: personal-casper (non-critical)
 
@@ -137,11 +157,12 @@
   Result (2026-11-24): tested on kaito (not a client) instead of neko, because neko does not evaluate (pre-existing insecure nextcloud-32.0.15). The toplevel throws "backup-restic-home is imported on kaito, but the host is not registered: add `casper.backup.clients.kaito = { };` next to its Nebula node."
 - [x] 6.3 Add `casper.backup.clients.personal-casper = { };` next to its Nebula node and import `backup-restic-home`. Verify that `nix build .#nixosConfigurations.personal-casper.config.system.build.toplevel` succeeds.
   Result (2026-11-24): registered and imported; personal-casper toplevel builds. gaming-casper, technative-casper and sakura are registered and import the module too (7.x keeps their runtime steps).
-- [ ] 6.4 Run the dry-run audit on personal-casper with the commands in design D4. Verify the spec scenarios in the `-vv` output:
+- [x] 6.4 Run the dry-run audit on personal-casper with the commands in design D4. Verify the spec scenarios in the `-vv` output:
   - included: Documents, `.ssh`, `.gnupg`, `git/**/.git`, Firefox `places.sqlite`
   - excluded: Downloads, `.cache`, `.claude`, `.local/share/opencode`, `node_modules`, `git/**/target`, Firefox `storage/`, `.config/clipse`, `.config/*/Cache`
 
   Add registry `extraExcludes` where needed. Record the total size and check that it fits in kaito's free space.
+  Waived (2026-11-26): the user decided the dry-run audit on personal-casper and the other clients is not needed. The selection policy was audited on technative-casper (task 7.1); a host that turns out too large gets registry `extraExcludes` after its first snapshot.
 - [ ] 6.5 Rebuild and deploy kaito to get the personal-casper maintenance jobs and password secret, then deploy personal-casper. Run `systemctl start restic-backups-home-kaito restic-backups-home-s3`. Verify that `sudo restic-home-kaito snapshots` and `sudo restic-home-s3 snapshots` each show a snapshot with host `personal-casper`, tag `home` and path `/home`.
 - [ ] 6.6 Verify that deletion is impossible. `sudo restic-home-kaito forget <id>` and `sudo restic-home-s3 forget <id>` must both be refused, and the snapshot must still be listed.
 - [ ] 6.7 Verify independence. Stop Nebula on personal-casper and start both jobs: `home-kaito` fails and `home-s3` succeeds. Start Nebula again.
@@ -156,13 +177,19 @@
 
 - [ ] 7.1 technative-casper, only if task 3.1 approved it. Register the host, import the feature and build. Run the dry-run audit (about 30G expected, `/home/lucak` covered). Rebuild kaito and deploy both. Trigger both jobs. Verify the snapshots on both destinations and restore one file from each.
   Progress (2026-11-24): AWS account approved (3.1). Registered, imported, toplevel builds. Dry-run audit of `/home/casper` (as casper, `/home/lucak` unreadable but 4K): 28.6 GiB scanned, 26.3 GiB new, 16.9 GiB stored after compression; included Documents, .ssh, .gnupg, git/**/.git, places.sqlite, .config/Signal, .local/share/keyrings; zero matches for Downloads, .cache, .claude, .local/share/opencode, node_modules, git/**/target, firefox storage, .config/clipse, .config/*/Cache. Deploy, trigger and restore still open.
+  Progress (2026-11-26): technative-casper is deployed.
+  - `home-kaito` works: there is an hourly snapshot on 2026-11-26 (28.6 GiB, host technative-casper, tag `home`, path `/home`). Two runs on 2026-11-25 were killed while kaito was being deployed.
+  - `home-s3` initialised the repo at 10:16 and uploaded 10.04 GB (574 objects) before it was stopped by hand with SIGTERM at 11:26. The next run reuses those blobs.
+
+  Still to do: a complete `home-s3` run and the restore from both destinations.
 - [ ] 7.2 gaming-casper. Register the host, import the feature and build. Run the dry-run audit and add `extraExcludes` for games or other bulky data it finds. Rebuild kaito and deploy both. Trigger both jobs. Verify the snapshots on both destinations and restore one file from each.
 - [ ] 7.3 sakura. Tell antonia first that her home will be backed up. Register the host, import the feature and build. Run the dry-run audit. Rebuild kaito and deploy both. Trigger both jobs. Verify the snapshots, and that `restic-home-s3 ls latest /home/antonia` lists her files.
+  Progress (2026-11-26): antonia has been told. sakura is registered and imports the module. The audit, deploy and verification are still open.
 - [ ] 7.4 After all clients are done, record `df -h /` and `sudo du -sh /srv/restic/*` on kaito. Verify that at least 20% of the filesystem stays free.
 
 ## 8. kaito state backup
 
-- [ ] 8.1 Create `modules/services/backup/restic-kaito-state.nix`, which exports `backup-restic-kaito-state` (design D10). It contains:
+- [x] 8.1 Create `modules/services/backup/restic-kaito-state.nix`, which exports `backup-restic-kaito-state` (design D10). It contains:
   - `services.postgresqlBackup` (`backupAll`, `/var/backup/postgresql`, zstd, its own timer disabled)
   - `services.vaultwarden.backupDir`
   - the conditional Solidtime `pg_dump`
@@ -173,16 +200,23 @@
 
   `git add` the file. Import it on kaito. Verify that the kaito toplevel builds.
   Progress (2026-11-24): module written and imported on kaito; kaito toplevel builds. Open: add the excludes from the task 2.1 `/var/lib` audit (waiting for the `du` output).
+  Result (2026-11-26): no audit-driven excludes are added; the orphaned directories are removed by hand instead (task 2.1).
 - [x] 8.2 Verify the conditional dumps. `backupPrepareCommand` must contain the Solidtime dump for the normal kaito config. It must not contain it when evaluated through `extendModules` with `virtualisation.oci-containers.containers = lib.mkForce { }`.
   Result (2026-11-24): normal kaito config contains the Solidtime `pg_dump`; with `oci-containers.containers = lib.mkForce { }` the prepare script only starts postgresqlBackup and backup-vaultwarden.
-- [ ] 8.3 Deploy kaito and run `systemctl start restic-backups-state-s3`. Verify with `restic-state-s3 ls latest` that:
+- [x] 8.3 Deploy kaito and run `systemctl start restic-backups-state-s3`. Verify with `restic-state-s3 ls latest` that:
   - these are present: `/var/lib/nixos`, `/var/lib/hass/.storage`, Zigbee2MQTT, `/var/lib/private/matter-server`, `/var/lib/thread`, the PostgreSQL, Vaultwarden and Solidtime dumps in `/var/backup`, and the `solidtime-storage` volume
   - these are absent: `/var/lib/docker/overlay2`, `/var/lib/postgresql`, `/var/lib/vaultwarden/db.sqlite3` and anything from `/srv/restic`
+  Result (2026-11-26): run by the timer instead of by hand.
+  - 2026-11-25 03:37: repo initialised, snapshot e6d0882a, 159430 files, 9.15 GiB added (7.91 GiB stored).
+  - 2026-11-26 03:33: snapshot 60c5defe, 117 MiB added.
+  - Present: `/var/lib/nixos`, `hass/.storage`, `zigbee2mqtt`, `private/matter-server`, `thread`, `minecraft`, `docker/volumes/solidtime-storage` (the only Docker volume), `/var/backup/postgresql/all.sql.zstd`, `/var/backup/solidtime/solidtime.dump`, and `/var/backup/vaultwarden/db.sqlite3` with `rsa_key.pem`.
+  - Absent: `docker/overlay2`, `/var/lib/postgresql`, `/var/lib/vaultwarden/db.sqlite3*`, `/srv`, the HA recorder database and ollama.
 - [ ] 8.4 Verify the failure path. Stop `docker-solidtime-db.service` and start the state job: the unit must fail. Start the container again, rerun the job and verify that it succeeds.
 - [ ] 8.5 Restore drill:
   - Vaultwarden: in the restored `db.sqlite3`, `PRAGMA integrity_check` returns `ok` and the cipher count matches the live database
   - Atuin: the restored pg_dumpall file loads with `psql -f` into a throwaway PostgreSQL, and the history row count matches
   - Solidtime: `pg_restore --list` succeeds on the restored dump
+  Note (2026-11-26): in the dump, the `atuin` database has 0 rows in `users`, `history`, `records`, `sessions` and `store`. Since 2026-11-22 22:02 the server logs "presented session token was not recognised". Atuin sync is broken, so the Atuin part of this drill (and the premise that AI history is covered through Atuin) has to wait until Atuin is fixed.
 - [ ] 8.6 Run `systemctl start restic-backups-maint-s3-kaito`. Verify that it succeeds.
 
 ## 9. Runbook, final checks and follow-through
