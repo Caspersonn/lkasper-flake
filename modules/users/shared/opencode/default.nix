@@ -61,6 +61,15 @@
             };
             enabled = true;
           };
+          linkedin = {
+            type = "local";
+            command = ["${pkgs.uv}/bin/uvx" "mcp-server-linkedin@latest" "--transport" "stdio"];
+            environment = {
+              UV_HTTP_TIMEOUT = "300";
+              UV_PYTHON_PREFERENCE = "only-managed";
+            };
+            enabled = true;
+          };
         };
 
         provider = {

@@ -84,6 +84,7 @@ in {
       resolved
       tailscale
       networking-nebula
+      networking-nebula-arcana
       backup-restic-home
       mysql
       flatpak

@@ -89,6 +89,7 @@ in {
       hardware-coolerd
       resolved
       networking-nebula
+      networking-nebula-arcana
       backup-restic-home
       ollama
       flatpak

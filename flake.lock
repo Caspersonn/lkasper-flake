@@ -3125,11 +3125,11 @@
         "nixpkgs": "nixpkgs_23"
       },
       "locked": {
-        "lastModified": 1789626679,
-        "narHash": "sha256-I2z9ODO9nrV1CAuI42a9Fxi0QSuidUa6a/htjQnhmH0=",
+        "lastModified": 1795549446,
+        "narHash": "sha256-uReJeecR02bVFvH0HWn2yjAzQxphwvb46sNGXjt3gOw=",
         "owner": "Fission-AI",
         "repo": "OpenSpec",
-        "rev": "bae58cf61479986431bb798acbe5a688a591c18c",
+        "rev": "f1cd852f4edce22b8df9548a4df889172ca8ff25",
         "type": "github"
       },
       "original": {
