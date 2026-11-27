@@ -49,17 +49,11 @@
         };
       };
 
-      security.acme.certs.${domain} = {
-        webroot = "/var/lib/acme/acme-challenge";
-        group   = "nginx";
-      };
-
       services.nginx = {
         enable = true;
         virtualHosts.${domain} = {
           enableACME = true;
           forceSSL   = true;
-          locations."/.well-known/".root = "/var/lib/acme/acme-challenge/";
           locations."/" = {
             root     = buildDir;
             tryFiles = "$uri $uri/ $uri.html =404";
