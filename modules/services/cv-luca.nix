@@ -12,7 +12,7 @@
         if [ -d ${repoDir}/.git ]; then
           ${pkgs.git}/bin/git -C ${repoDir} pull --ff-only
         else
-          ${pkgs.git}/bin/git clone https://github.com/Caspersonn/cv-hugo.git ${repoDir}
+          ${pkgs.git}/bin/git clone git@github.com:Caspersonn/cv-hugo.git ${repoDir}
         fi
 
         # Hugo site bouwen
