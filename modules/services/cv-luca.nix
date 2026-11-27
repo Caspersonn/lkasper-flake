@@ -8,6 +8,7 @@
       buildScript = pkgs.writeShellScript "cv-luca-build" ''
         set -euo pipefail
         export HOME=/home/casper
+        export GIT_SSH_COMMAND="${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=accept-new"
 
         # Repo ophalen of bijwerken
         if [ -d ${repoDir}/.git ]; then
