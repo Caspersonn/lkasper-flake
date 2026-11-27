@@ -60,6 +60,7 @@ in {
       resolved
       tailscale
       networking-nebula
+      networking-nebula-arcana
       backup-restic-server
       backup-restic-kaito-state
       docker
@@ -70,6 +71,7 @@ in {
 
       # Tools
       acme
+      cv-luca
       vaultwarden
       skyblock-minecraft
       home-assistant

@@ -29,6 +29,7 @@ in
   "steam-casper.age".publicKeys = users ++ systems;
   "aws_config.age".publicKeys = users ++ systems;
   "aws_credentials.age".publicKeys = users ++ systems;
+  "cv-luca-aws.age".publicKeys = users ++ [ kaito ];
   "avante-bedrock.age".publicKeys = users ++ systems;
   "google-bedrock.age".publicKeys = users ++ systems;
   "google-engine-bedrock.age".publicKeys = users ++ systems;
@@ -110,4 +111,8 @@ in
   # Phone: no host needs these, only the owner to load them into Mobile Nebula
   "nebula-pixel-10a.crt.age".publicKeys = users;
   "nebula-pixel-10a.key.age".publicKeys = users;
+
+  "nebula-arcana-ca.crt.age".publicKeys = users ++ systems;
+  "nebula-arcana-casper.crt.age".publicKeys = users ++ systems;
+  "nebula-arcana-casper.key.age".publicKeys = users ++ systems;
 }
