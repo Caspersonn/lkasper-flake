@@ -10,9 +10,9 @@
 
         # Repo ophalen of bijwerken
         if [ -d ${repoDir}/.git ]; then
-          git -C ${repoDir} pull --ff-only
+          ${pkgs.git}/bin/git -C ${repoDir} pull --ff-only
         else
-          git clone https://github.com/Caspersonn/cv-hugo.git ${repoDir}
+          ${pkgs.git}/bin/git clone https://github.com/Caspersonn/cv-hugo.git ${repoDir}
         fi
 
         # Hugo site bouwen
