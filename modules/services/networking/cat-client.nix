@@ -5,7 +5,7 @@ flake.modules.nixos.cato-client = { pkgs, config, ... }:
       enable = true;
     };
 
-    networking.firewall.allowedTCPPorts = [ 443 ];
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     services.resolved.settings.Resolve = {
       DNS = [ "145.78.2.16" "145.78.59.6" ];
