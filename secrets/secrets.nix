@@ -29,7 +29,6 @@ in
   "steam-casper.age".publicKeys = users ++ systems;
   "aws_config.age".publicKeys = users ++ systems;
   "aws_credentials.age".publicKeys = users ++ systems;
-  "cv-luca-aws.age".publicKeys = users ++ [ kaito ];
   "avante-bedrock.age".publicKeys = users ++ systems;
   "google-bedrock.age".publicKeys = users ++ systems;
   "google-engine-bedrock.age".publicKeys = users ++ systems;

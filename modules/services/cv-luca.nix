@@ -1,47 +1,66 @@
 { inputs, ... }: {
-  flake.modules.nixos.cv-luca = { config, pkgs, lib, ... }: {
-    age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    age.secrets."cv-luca-aws".file = ../../../secrets/cv-luca-aws.age;
+  flake.modules.nixos.cv-luca = { config, pkgs, lib, ... }:
+    let
+      repoDir  = "/var/lib/cv-luca/repo";
+      buildDir = "/var/lib/cv-luca/public";
+      domain   = "cv-luca.inspiravita.com";
 
-    # Haal de gebouwde site op uit S3 en zet hem in /var/lib/cv-luca
-    systemd.services.cv-luca-sync = {
-      description = "CV-site syncronisoreen van S3";
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        EnvironmentFile = config.age.secrets."cv-luca-aws".path;
-        ExecStart = "${pkgs.awscli2}/bin/aws s3 sync s3://$CV_S3_BUCKET/ /var/lib/cv-luca/ --delete";
-        StateDirectory = "cv-luca";
+      buildScript = pkgs.writeShellScript "cv-luca-build" ''
+        set -euo pipefail
+
+        # Repo ophalen of bijwerken
+        if [ -d ${repoDir}/.git ]; then
+          git -C ${repoDir} pull --ff-only
+        else
+          git clone https://github.com/Caspersonn/cv-hugo.git ${repoDir}
+        fi
+
+        # Hugo site bouwen
+        ${pkgs.hugo}/bin/hugo \
+          --source ${repoDir} \
+          --destination ${buildDir} \
+          --baseURL "https://${domain}/" \
+          --gc --minify --cleanDestinationDir
+      '';
+    in
+    {
+      systemd.services.cv-luca-build = {
+        description = "CV-site bouwen vanuit GitHub";
+        after  = [ "network-online.target" ];
+        wants  = [ "network-online.target" ];
+        serviceConfig = {
+          Type            = "oneshot";
+          ExecStart       = buildScript;
+          StateDirectory  = "cv-luca";
+        };
       };
-    };
 
-    # Elke 15 minuten synchroniseren + meteen bij opstarten
-    systemd.timers.cv-luca-sync = {
-      wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnBootSec = "1min";
-        OnUnitActiveSec = "15min";
-        Unit = "cv-luca-sync.service";
+      # Dagelijks herbouwen + meteen bij opstarten
+      systemd.timers.cv-luca-build = {
+        wantedBy  = [ "timers.target" ];
+        timerConfig = {
+          OnBootSec      = "2min";
+          OnUnitActiveSec = "24h";
+          Unit           = "cv-luca-build.service";
+        };
       };
-    };
 
-    security.acme.certs."cv-luca.inspiravita.com" = {
-      webroot = "/var/lib/acme/acme-challenge";
-      group = "nginx";
-    };
+      security.acme.certs.${domain} = {
+        webroot = "/var/lib/acme/acme-challenge";
+        group   = "nginx";
+      };
 
-    services.nginx = {
-      enable = true;
-      virtualHosts."cv-luca.inspiravita.com" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/.well-known/".root = "/var/lib/acme/acme-challenge/";
-        locations."/" = {
-          root = "/var/lib/cv-luca";
-          tryFiles = "$uri $uri/ $uri.html =404";
+      services.nginx = {
+        enable = true;
+        virtualHosts.${domain} = {
+          enableACME = true;
+          forceSSL   = true;
+          locations."/.well-known/".root = "/var/lib/acme/acme-challenge/";
+          locations."/" = {
+            root     = buildDir;
+            tryFiles = "$uri $uri/ $uri.html =404";
+          };
         };
       };
     };
-  };
 }
