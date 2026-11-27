@@ -7,13 +7,13 @@
 
       buildScript = pkgs.writeShellScript "cv-luca-build" ''
         set -euo pipefail
-        export GIT_SSL_CAINFO="${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+        export HOME=/home/casper
 
         # Repo ophalen of bijwerken
         if [ -d ${repoDir}/.git ]; then
           ${pkgs.git}/bin/git -C ${repoDir} pull --ff-only
         else
-          ${pkgs.git}/bin/git clone https://github.com/Caspersonn/cv-hugo.git ${repoDir}
+          ${pkgs.git}/bin/git clone git@github.com:Caspersonn/cv-hugo.git ${repoDir}
         fi
 
         # Hugo site bouwen
@@ -31,8 +31,10 @@
         wants  = [ "network-online.target" ];
         serviceConfig = {
           Type            = "oneshot";
+          User            = "casper";
           ExecStart       = buildScript;
           StateDirectory  = "cv-luca";
+          StateDirectoryMode = "0755";
         };
       };
 
